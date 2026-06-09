@@ -11,14 +11,10 @@
             "id": "92b2b17189eb1d41",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "测试.md",
-                "mode": "source",
-                "source": false
-              },
+              "type": "empty",
+              "state": {},
               "icon": "lucide-file",
-              "title": "测试"
+              "title": "新标签页"
             }
           }
         ]
@@ -113,12 +109,11 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "测试.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "测试 的出链列表"
+              "title": "出链"
             }
           },
           {
@@ -194,10 +189,10 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "76ac99722fd12041",
+  "active": "04dc21ab80127322",
   "lastOpenFiles": [
-    "测试2.md",
     "测试.md",
+    "测试2.md",
     "未命名.canvas",
     "resource/diagram.png",
     "resource",
