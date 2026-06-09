@@ -11,14 +11,10 @@
             "id": "92b2b17189eb1d41",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "系统设计/日志分析/基于智能体的 AWDP 攻击日志分析系统设计方案 v1.4（Go + Python 混合架构）.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "基于智能体的 AWDP 攻击日志分析系统设计方案 v1.4（Go + Python 混合架构）"
+              "type": "graph",
+              "state": {},
+              "icon": "lucide-git-fork",
+              "title": "关系图谱"
             }
           }
         ]
@@ -151,21 +147,6 @@
             }
           },
           {
-            "id": "e279e9084a02be1c",
-            "type": "leaf",
-            "state": {
-              "type": "outline",
-              "state": {
-                "file": "系统设计/日志分析/基于智能体的 AWDP 攻击日志分析系统设计方案 v1.4（Go + Python 混合架构）.md",
-                "followCursor": false,
-                "showSearch": false,
-                "searchQuery": ""
-              },
-              "icon": "lucide-list",
-              "title": "基于智能体的 AWDP 攻击日志分析系统设计方案 v1.4（Go + Python 混合架构） 的大纲"
-            }
-          },
-          {
             "id": "04dc21ab80127322",
             "type": "leaf",
             "state": {
@@ -173,6 +154,20 @@
               "state": {},
               "icon": "git-pull-request",
               "title": "Source Control"
+            }
+          },
+          {
+            "id": "3dfa581ca7204af3",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "大纲"
             }
           }
         ],
@@ -194,17 +189,17 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "e279e9084a02be1c",
+  "active": "3dfa581ca7204af3",
   "lastOpenFiles": [
-    "系统设计/日志分析",
+    "未命名.base",
+    "未命名.canvas",
     "系统设计/日志分析/基于智能体的 AWDP 攻击日志分析系统设计方案 v1.4（Go + Python 混合架构）.md",
+    "系统设计/日志分析",
     "系统设计",
     "测试.md",
     "测试2.md",
-    "未命名.canvas",
     "resource/diagram.png",
     "resource",
-    "未命名.base",
     "OneNote/软件开发/AI编程学习/AI编程规范.md",
     "OneNote/软件开发/AI编程学习/Ai First.md",
     "OneNote/软件开发/AI编程学习/提示词绕过.md",
@@ -241,7 +236,6 @@
     "OneNote/CS-408/操作系统",
     "OneNote/CS-408",
     "OneNote/工作-satypt/知识库",
-    "OneNote/工作-satypt/智能体构建",
-    "OneNote/工作-satypt/基于大模型的社工管理"
+    "OneNote/工作-satypt/智能体构建"
   ]
 }
