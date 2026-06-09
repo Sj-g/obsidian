@@ -1,0 +1,33 @@
+{
+  "uploadByClipSwitch": true,
+  "uploader": "PicGo",
+  "uploadServer": "http://127.0.0.1:36677/upload",
+  "deleteServer": "http://127.0.0.1:36677/delete",
+  "imageSizeSuffix": "",
+  "picgoCorePath": "",
+  "workOnNetWork": false,
+  "fixPath": false,
+  "applyImage": true,
+  "newWorkBlackDomains": "",
+  "deleteSource": true,
+  "imageDesc": "origin",
+  "remoteServerMode": true,
+  "uploadedImages": [
+    {
+      "isEncrypted": 1,
+      "EncryptedData": "99e889b2d35fa78ec2d071212c6c30ff:a2cb89d56b6a28e91149bb4d6f7e17a1a67c53006b98131899e1f71db2020413e6d478ccd40b07c9c8031f01b41329318077ed56840ca8f70e640bb34953f46ff32bea1ac4cab9c3419d704029f008ded51408d86980d95d0acbe930ff51180dcfcf59ff3b781b34d32cc02d8f23328533d6ca1dfbd738d83655f4d6110bd41db98a88b507334830deff5c437b9e244e0d5ee753be2ddde603e22380443029a37a27a2a922343c8de4adadf655d54a41a10a81bd907539a5eac3fa11a5cd0f2d9ba1d780545188162de8c0e1db7ef29a29075e4e19a5e15c74b02cb06ba954ab9764f1776b5789d9425f84501ebb2ac9a601049cea2204508f9417899bb6e2f58ef64cf8d98b0111c5b56e8f9d18cde174b69f39d3ff973f0b03103f95cebc6779693affffc31369cb6e2f9addece18f8728ba689da201527a1f099ab8ef573d18b439e222e793298cbeaf400c620a0c052aa21c32b627d58f8fecbef7ce21621d0bcd4fca6b5f241bd93f9148711e77ee694115ca5637add1580ada5b5763056e59cc3ec6d3cca150e2d1207727ad16cba2c158d68db9373da220740cb03604cec66216b0ddc54b6f35a87f883c8cdc84da0c4d0b78d5bea8f107abb77a6d03063191f6cb22ad409c12383371732584d992adaf6da71faa98805ef8ddaa1e23201f77192583ecdd7eb4ced89f6760ccd37c063c33e8761594363b1594620b3f478f7b7e836e757866c856f4d806819ff8fc491444b70e35695edfc2905320e757dadd6d595d3af78ecc70cadb03a396e3349f87a7226906d22644f1faa8e951d429f17317ec63d1d5f2d933f4f444ae4263892294ec47c4ea20f41509848236fe357dd16ee9f454d1e6f9cfb18298c5b17eb3aaff3995025328351f97cb46c79f70a29c58253cfbe910d8b7ca6e58b1a8153c886060e43a7b22ad72491c62bbebaf85f891fdc61a54496c936c4faa69b8e95e984c89035e5b2603779369adb766df787bdb987b20e8889a2314577bd3",
+      "fileName": "diagram (1).png",
+      "width": 2436,
+      "height": 4696,
+      "filePath": "/home/sjg/.config/piclist/serverTemp/diagram (1).png",
+      "extname": ".png",
+      "mimeType": "image/png",
+      "imgUrl": "https://obsidian-shijianguo.oss-cn-beijing.aliyuncs.com/images/diagram%20(1).png",
+      "type": "aliyun",
+      "shortUrl": "",
+      "id": "79870c73-1f40-420d-a992-0c0256fedeee",
+      "createdAt": 1780989354440,
+      "updatedAt": 1780989354440
+    }
+  ]
+}
