@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "测试2.md",
+                "file": "测试.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "测试2"
+              "title": "测试"
             }
           }
         ]
@@ -194,11 +194,11 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "92b2b17189eb1d41",
+  "active": "04dc21ab80127322",
   "lastOpenFiles": [
-    "未命名.canvas",
     "测试2.md",
     "测试.md",
+    "未命名.canvas",
     "resource/diagram.png",
     "resource",
     "未命名.base",
