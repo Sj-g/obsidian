@@ -27,12 +27,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "待看名单.md",
+                "file": "系统设计/内容审核/TikTok 内容审核系统设计方案.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "待看名单"
+              "title": "TikTok 内容审核系统设计方案"
             }
           }
         ],
@@ -181,13 +181,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "待看名单.md",
+                "file": "系统设计/内容审核/TikTok 内容审核系统设计方案.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "待看名单 的大纲"
+              "title": "TikTok 内容审核系统设计方案 的大纲"
             }
           }
         ],
@@ -209,11 +209,12 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "7893c6c91b70ba0a",
+  "active": "27203800410c927d",
   "lastOpenFiles": [
+    "待看名单.md",
+    "系统设计/内容审核/TikTok 内容审核系统设计方案.md",
     "系统设计/内容审核",
     "系统设计/日志分析/基于智能体的 AWDP 攻击日志分析系统设计方案 v1.4（Go + Python 混合架构）.md",
-    "待看名单.md",
     "个人日子/理财/资产配置.md",
     "个人日子/理财",
     "个人日子",
@@ -256,7 +257,6 @@
     "OneNote/CS-408/数据结构/大题.md",
     "OneNote/CS-408/数据结构/第七章 查找.md",
     "OneNote/CS-408/数据结构",
-    "OneNote/CS-408/操作系统",
-    "OneNote/CS-408"
+    "OneNote/CS-408/操作系统"
   ]
 }
