@@ -189,13 +189,23 @@
               "icon": "lucide-list",
               "title": "TikTok 内容审核系统设计方案 的大纲"
             }
+          },
+          {
+            "id": "ae6943bf1ac1ebd6",
+            "type": "leaf",
+            "state": {
+              "type": "copilot-chat-view",
+              "state": {},
+              "icon": "message-square",
+              "title": "Copilot"
+            }
           }
         ],
-        "currentTab": 5
+        "currentTab": 6
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 676.5
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -206,13 +216,34 @@
       "templates:插入模板": false,
       "command-palette:打开命令面板": false,
       "bases:新建数据库": false,
-      "obsidian-git:Open Git source control": false
+      "obsidian-git:Open Git source control": false,
+      "copilot:Open Copilot Chat": false
     }
   },
-  "active": "27203800410c927d",
+  "active": "ae6943bf1ac1ebd6",
   "lastOpenFiles": [
-    "待看名单.md",
+    "copilot/copilot-conversations/你能看到的内容@20260615_142842.md",
+    "copilot/copilot-conversations",
+    "2026-06-15.md",
     "系统设计/内容审核/TikTok 内容审核系统设计方案.md",
+    "copilot/copilot-custom-prompts/Clip Web Page.md",
+    "copilot/copilot-custom-prompts/Clip YouTube Transcript.md",
+    "copilot/copilot-custom-prompts/Rewrite as tweet thread.md",
+    "copilot/copilot-custom-prompts/Rewrite as tweet.md",
+    "copilot/copilot-custom-prompts/Remove URLs.md",
+    "copilot/copilot-custom-prompts/Generate glossary.md",
+    "copilot/copilot-custom-prompts/Generate table of contents.md",
+    "copilot/copilot-custom-prompts/Make longer.md",
+    "copilot/copilot-custom-prompts/Make shorter.md",
+    "copilot/copilot-custom-prompts/Emojify.md",
+    "copilot/copilot-custom-prompts/Explain like I am 5.md",
+    "copilot/copilot-custom-prompts/Simplify.md",
+    "copilot/copilot-custom-prompts/Summarize.md",
+    "copilot/copilot-custom-prompts/Translate to Chinese.md",
+    "copilot/copilot-custom-prompts/Fix grammar and spelling.md",
+    "copilot/copilot-custom-prompts",
+    "copilot",
+    "待看名单.md",
     "系统设计/内容审核",
     "系统设计/日志分析/基于智能体的 AWDP 攻击日志分析系统设计方案 v1.4（Go + Python 混合架构）.md",
     "个人日子/理财/资产配置.md",
@@ -229,22 +260,7 @@
     "OneNote/软件开发/AI编程学习/AI编程规范.md",
     "OneNote/软件开发/AI编程学习/Ai First.md",
     "OneNote/软件开发/AI编程学习/提示词绕过.md",
-    "OneNote/软件开发/软件工程/git版本管理.md",
-    "OneNote/公司常使用/工作计划/2026年0305日计划.md",
-    "OneNote/CS-408/数据结构/第八章 排序.md",
-    "OneNote/CS-408/数据结构/背诵知识点.md",
-    "OneNote/CS-408/操作系统/示例.md",
-    "OneNote/CS-408/操作系统/第一章 计算机系统概述.md",
-    "OneNote/CS-408/操作系统/第五章 I-O管理.md",
-    "OneNote/CS-408/操作系统/第四章 文件管理.md",
-    "OneNote/CS-408/操作系统/第三章 内存管理.md",
     "OneNote/CS-408/操作系统/第二章 进程与线程 - Ink.svg",
-    "OneNote/CS-408/操作系统/第二章 进程与线程.md",
-    "OneNote/CS-408/操作系统/大题.md",
-    "OneNote/CS-408/操作系统/背诵知识点.md",
-    "OneNote/工作-satypt/智能体构建/安全与隔离.md",
-    "OneNote/CS-408/计算机组成原理/第一章 计算机系统概述.md",
-    "OneNote/工作-satypt/基于大模型的社工管理/注意点：.md",
     "OneNote/resource/Exported image 20260609144009-9.jpeg",
     "OneNote/resource/Exported image 20260609142502-8.jpeg",
     "OneNote/resource/Exported image 20260609142500-7.jpeg",
@@ -252,11 +268,6 @@
     "OneNote/resource/Exported image 20260609142452-5.jpeg",
     "OneNote/resource/Exported image 20260609142449-4.jpeg",
     "OneNote/resource/Exported image 20260609142447-3.jpeg",
-    "OneNote/resource/Exported image 20260609142445-2.jpeg",
-    "OneNote/CS-408/计算机组成原理",
-    "OneNote/CS-408/数据结构/大题.md",
-    "OneNote/CS-408/数据结构/第七章 查找.md",
-    "OneNote/CS-408/数据结构",
-    "OneNote/CS-408/操作系统"
+    "OneNote/resource/Exported image 20260609142445-2.jpeg"
   ]
 }
