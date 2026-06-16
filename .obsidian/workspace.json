@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "系统设计/内容审核/TikTok 内容审核系统设计方案.md",
+                "file": "系统设计/内容审核/模型与规则编排子系统设计方案.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "TikTok 内容审核系统设计方案"
+              "title": "模型与规则编排子系统设计方案"
             }
           }
         ]
@@ -166,13 +166,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "系统设计/内容审核/TikTok 内容审核系统设计方案.md",
+                "file": "系统设计/内容审核/模型与规则编排子系统设计方案.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "TikTok 内容审核系统设计方案 的大纲"
+              "title": "模型与规则编排子系统设计方案 的大纲"
             }
           },
           {
@@ -207,8 +207,9 @@
   },
   "active": "92b2b17189eb1d41",
   "lastOpenFiles": [
-    "系统设计/内容审核/图片.md",
     "系统设计/内容审核/TikTok 内容审核系统设计方案.md",
+    "系统设计/内容审核/模型与规则编排子系统设计方案.md",
+    "系统设计/内容审核/图片.md",
     "系统设计/日志分析/基于智能体的 AWDP 攻击日志分析系统设计方案 v1.4（Go + Python 混合架构）.md",
     "copilot/copilot-conversations/马来西亚替换成某地区@20260616_101142.md",
     "系统设计/内容审核/思路.md",
@@ -243,7 +244,6 @@
     "未命名.base",
     "系统设计/日志分析",
     "系统设计",
-    "测试.md",
     "resource/diagram.png",
     "OneNote/CS-408/操作系统/第二章 进程与线程 - Ink.svg",
     "OneNote/resource/Exported image 20260609144009-9.jpeg",
