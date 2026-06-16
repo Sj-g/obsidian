@@ -1,5 +1,7 @@
 {
   "enabledCssSnippets": [
     "aa"
-  ]
+  ],
+  "textFontFamily": "",
+  "baseFontSize": 16
 }

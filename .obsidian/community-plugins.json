@@ -2,5 +2,7 @@
   "obsidian-image-auto-upload-plugin",
   "obsidian-linter",
   "obsidian-git",
-  "copilot"
+  "copilot",
+  "mermaid-popup",
+  "obsidian-minimal-settings"
 ]
