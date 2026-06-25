@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "个人/基础能力学习/英语学习.md",
+                "file": "公司项目/认知作战/预算报告.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "英语学习"
+              "title": "预算报告"
             }
           }
         ]
@@ -166,13 +166,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "个人/基础能力学习/英语学习.md",
+                "file": "公司项目/认知作战/预算报告.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "英语学习 的大纲"
+              "title": "预算报告 的大纲"
             }
           },
           {
@@ -208,8 +208,10 @@
   },
   "active": "3a829bf5267d9751",
   "lastOpenFiles": [
-    "计算机相关学习/系统设计/数据密集型应用系统设计.md",
     "个人/基础能力学习/英语学习.md",
+    "公司项目/认知作战/预算报告.md",
+    "公司项目/认知作战",
+    "计算机相关学习/系统设计/数据密集型应用系统设计.md",
     "个人/基础能力学习",
     "计算机相关学习/系统设计",
     "计算机相关学习/设计/ui设计思路.md",
@@ -240,11 +242,9 @@
     "copilot/copilot-custom-prompts/Make shorter.md",
     "copilot/copilot-custom-prompts/Emojify.md",
     "copilot/copilot-custom-prompts/Explain like I am 5.md",
-    "copilot/copilot-custom-prompts/Simplify.md",
     "copilot/copilot-custom-prompts",
     "copilot",
     "公司项目/内容审核",
-    "个人/理财",
     "resource/diagram.png",
     "OneNote/CS-408/操作系统/第二章 进程与线程 - Ink.svg",
     "OneNote/resource/Exported image 20260609144009-9.jpeg",
