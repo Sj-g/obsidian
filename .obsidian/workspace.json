@@ -78,8 +78,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 362.5,
-    "collapsed": true
+    "width": 362.5
   },
   "right": {
     "id": "7971d56ea5728395",
@@ -191,7 +190,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 526.5
+    "width": 200
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -206,7 +205,7 @@
       "copilot:Open Copilot Chat": false
     }
   },
-  "active": "3a829bf5267d9751",
+  "active": "7893c6c91b70ba0a",
   "lastOpenFiles": [
     "公司项目/内容审核/TikTok 内容审核系统设计方案.md",
     "公司项目/认知作战/预算报告.md",
