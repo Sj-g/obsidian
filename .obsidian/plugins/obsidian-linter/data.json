@@ -280,7 +280,13 @@
   "settingsConvertedToConfigKeyValues": true,
   "additionalFileExtensions": [],
   "foldersToIgnore": [],
-  "filesToIgnore": [],
+  "filesToIgnore": [
+    {
+      "match": "^公司项目/认知作战/工作日志安排\\.md$",
+      "flags": "",
+      "label": ""
+    }
+  ],
   "linterLocale": "system-default",
   "logLevel": "ERROR",
   "lintCommands": [],
