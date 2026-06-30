@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "公司项目/认知作战/工作日志安排.md",
+                "file": "个人/产品相关学习/产品相关文档.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "工作日志安排"
+              "title": "产品相关文档"
             }
           }
         ]
@@ -166,13 +166,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "公司项目/认知作战/工作日志安排.md",
+                "file": "个人/产品相关学习/产品相关文档.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "工作日志安排 的大纲"
+              "title": "产品相关文档 的大纲"
             }
           },
           {
@@ -205,10 +205,13 @@
       "copilot:Open Copilot Chat": false
     }
   },
-  "active": "7893c6c91b70ba0a",
+  "active": "3a829bf5267d9751",
   "lastOpenFiles": [
-    "公司项目/认知作战/预算报告.md",
+    "个人/理财/资产配置.md",
+    "个人/产品相关学习/产品相关文档.md",
+    "个人/产品相关学习",
     "公司项目/认知作战/工作日志安排.md",
+    "公司项目/认知作战/预算报告.md",
     "公司项目/认知作战/xxx社媒采集预算_v1.xlsx",
     "公司项目/认知作战/xxx社媒采集预算_确定版.xlsx",
     "公司项目/认知作战/xxx社媒采集预算_v1.0lsx",
@@ -223,7 +226,6 @@
     "计算机相关学习/系统设计",
     "计算机相关学习/设计/ui设计思路.md",
     "未命名.md",
-    "计算机相关学习/设计",
     "待看名单.md",
     "未命名.canvas",
     "公司项目/内容审核/模型与规则编排子系统设计方案.md",
@@ -242,8 +244,6 @@
     "copilot/copilot-custom-prompts/Generate glossary.md",
     "copilot/copilot-custom-prompts/Generate table of contents.md",
     "copilot/copilot-custom-prompts/Make longer.md",
-    "copilot/copilot-custom-prompts/Make shorter.md",
-    "copilot/copilot-custom-prompts/Emojify.md",
     "resource/diagram.png",
     "OneNote/CS-408/操作系统/第二章 进程与线程 - Ink.svg",
     "OneNote/resource/Exported image 20260609144009-9.jpeg",
