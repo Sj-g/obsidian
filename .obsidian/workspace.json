@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "公司项目/认知作战/工作日志安排.md",
+                "file": "公司项目/认知作战/需求.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "工作日志安排"
+              "title": "需求"
             }
           }
         ]
@@ -166,13 +166,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "公司项目/认知作战/工作日志安排.md",
+                "file": "公司项目/认知作战/需求.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "工作日志安排 的大纲"
+              "title": "需求 的大纲"
             }
           },
           {
@@ -208,11 +208,11 @@
   },
   "active": "3a829bf5267d9751",
   "lastOpenFiles": [
+    "公司项目/认知作战/工作日志安排.md",
     "公司项目/认知作战/需求.md",
     "个人/产品相关学习/产品相关文档.md",
     "个人/理财/资产配置.md",
     "个人/产品相关学习",
-    "公司项目/认知作战/工作日志安排.md",
     "公司项目/认知作战/预算报告.md",
     "公司项目/认知作战/xxx社媒采集预算_v1.xlsx",
     "公司项目/认知作战/xxx社媒采集预算_确定版.xlsx",
