@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "公司项目/认知作战/需求.md",
+                "file": "公司项目/认知作战/多设备矩阵自动化运营系统开发方案 V1.0.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "需求"
+              "title": "多设备矩阵自动化运营系统开发方案 V1.0"
             }
           }
         ]
@@ -166,13 +166,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "公司项目/认知作战/需求.md",
+                "file": "公司项目/认知作战/多设备矩阵自动化运营系统开发方案 V1.0.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "需求 的大纲"
+              "title": "多设备矩阵自动化运营系统开发方案 V1.0 的大纲"
             }
           },
           {
@@ -207,11 +207,12 @@
   },
   "active": "3a829bf5267d9751",
   "lastOpenFiles": [
+    "公司项目/认知作战/需求.md",
+    "公司项目/认知作战/多设备矩阵自动化运营系统开发方案 V1.0.md",
     "公司项目/认知作战/工作日志安排.md",
     "公司项目/认知作战/文档/软件需求规格说明.md",
     "公司项目/认知作战/文档/软件概要设计说明.md",
     "公司项目/认知作战/文档/软件开发计划.md",
-    "公司项目/认知作战/需求.md",
     "公司项目/认知作战/文档",
     "个人/产品相关学习/产品相关文档.md",
     "个人/理财/资产配置.md",
@@ -243,7 +244,6 @@
     "copilot/copilot-custom-prompts/Clip Web Page.md",
     "copilot/copilot-custom-prompts/Clip YouTube Transcript.md",
     "copilot/copilot-custom-prompts/Rewrite as tweet thread.md",
-    "copilot/copilot-custom-prompts/Rewrite as tweet.md",
     "resource/diagram.png",
     "OneNote/CS-408/操作系统/第二章 进程与线程 - Ink.svg",
     "OneNote/resource/Exported image 20260609144009-9.jpeg",
