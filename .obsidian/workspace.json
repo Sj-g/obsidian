@@ -41,12 +41,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "公司项目/杂项/Linear Issue 规范.md",
+                "file": "公司项目/认知作战/文档/软件概要设计说明.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Linear Issue 规范"
+              "title": "软件概要设计说明"
             }
           }
         ],
@@ -195,13 +195,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "公司项目/杂项/Linear Issue 规范.md",
+                "file": "公司项目/认知作战/文档/软件概要设计说明.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Linear Issue 规范 的大纲"
+              "title": "软件概要设计说明 的大纲"
             }
           },
           {
@@ -236,9 +236,9 @@
   },
   "active": "76ccf14287a99561",
   "lastOpenFiles": [
+    "公司项目/杂项/Linear Issue 规范.md",
     "公司项目/认知作战/软件概要设计简述.md",
     "公司项目/认知作战/文档/软件概要设计说明.md",
-    "公司项目/杂项/Linear Issue 规范.md",
     "公司项目/杂项",
     "公司项目/认知作战/文档/软件概要设计说明.md.bak",
     "公司项目/认知作战/文档/软件需求规格说明.md",
