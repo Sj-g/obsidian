@@ -41,12 +41,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "公司项目/认知作战/文档/软件概要设计说明.md",
+                "file": "公司项目/杂项/Linear Issue 规范.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "软件概要设计说明"
+              "title": "Linear Issue 规范"
             }
           }
         ],
@@ -195,13 +195,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "公司项目/认知作战/文档/软件概要设计说明.md",
+                "file": "公司项目/杂项/Linear Issue 规范.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "软件概要设计说明 的大纲"
+              "title": "Linear Issue 规范 的大纲"
             }
           },
           {
@@ -236,13 +236,13 @@
   },
   "active": "76ccf14287a99561",
   "lastOpenFiles": [
-    "公司项目/杂项/Linear Issue 规范.md",
+    "公司项目/认知作战/软件概要设计简述.md",
     "公司项目/认知作战/文档/软件概要设计说明.md",
+    "公司项目/杂项/Linear Issue 规范.md",
     "公司项目/杂项",
     "公司项目/认知作战/文档/软件概要设计说明.md.bak",
     "公司项目/认知作战/文档/软件需求规格说明.md",
     "公司项目/认知作战/文档/软件开发计划.md",
-    "公司项目/认知作战/软件概要设计简述.md",
     "简报.md",
     "公司项目/认知作战/工作日志安排.md",
     "公司项目/认知作战/多设备矩阵自动化运营系统开发方案 V1.1.md",
