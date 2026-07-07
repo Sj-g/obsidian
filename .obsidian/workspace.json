@@ -27,12 +27,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "公司项目/认知作战/文档/软件概要设计说明.md",
+                "file": "公司项目/认知作战/文档/软件需求规格说明.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "软件概要设计说明"
+              "title": "软件需求规格说明"
             }
           }
         ],
@@ -181,13 +181,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "公司项目/认知作战/文档/软件概要设计说明.md",
+                "file": "公司项目/认知作战/文档/软件需求规格说明.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "软件概要设计说明 的大纲"
+              "title": "软件需求规格说明 的大纲"
             }
           },
           {
@@ -222,10 +222,11 @@
   },
   "active": "a1d41747111a58e8",
   "lastOpenFiles": [
+    "公司项目/认知作战/文档/软件概要设计说明.md",
+    "公司项目/认知作战/文档/DC子系统模块功能拆分.xlsx",
     "公司项目/认知作战/文档/软件需求规格说明.md",
     "公司项目/认知作战/软件概要设计简述.md",
     "公司项目/杂项/Linear Issue 规范.md",
-    "公司项目/认知作战/文档/软件概要设计说明.md",
     "公司项目/杂项",
     "公司项目/认知作战/文档/软件概要设计说明.md.bak",
     "公司项目/认知作战/文档/软件开发计划.md",
@@ -247,7 +248,6 @@
     "公司项目/认知作战/xxx社媒采集预算_v1.xlsx",
     "公司项目/认知作战/xxx社媒采集预算_确定版.xlsx",
     "公司项目/认知作战/xxx社媒采集预算_v1.0lsx",
-    "公司项目/认知作战/xxx社媒采集预算_v1.0.lsx",
     "公司项目/内容审核/TikTok 内容审核系统设计方案.md",
     "个人/基础能力学习/英语学习.md",
     "计算机相关学习/系统设计/数据密集型应用系统设计.md",
@@ -258,7 +258,6 @@
     "公司项目/日志分析/基于智能体的 AWDP 攻击日志分析系统设计方案 v1.4（Go + Python 混合架构）.md",
     "copilot/copilot-conversations/马来西亚替换成某地区@20260616_101142.md",
     "系统设计/内容审核/思路.md",
-    "copilot/memory/Recent Conversations.md",
     "resource/diagram.png",
     "OneNote/CS-408/操作系统/第二章 进程与线程 - Ink.svg",
     "OneNote/resource/Exported image 20260609144009-9.jpeg",
