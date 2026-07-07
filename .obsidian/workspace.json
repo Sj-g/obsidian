@@ -41,12 +41,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "公司项目/认知作战/文档/软件概要设计说明.md",
+                "file": "公司项目/杂项/Linear Issue 规范.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "软件概要设计说明"
+              "title": "Linear Issue 规范"
             }
           }
         ],
@@ -195,13 +195,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "公司项目/认知作战/文档/软件概要设计说明.md",
+                "file": "公司项目/杂项/Linear Issue 规范.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "软件概要设计说明 的大纲"
+              "title": "Linear Issue 规范 的大纲"
             }
           },
           {
@@ -236,10 +236,12 @@
   },
   "active": "76ccf14287a99561",
   "lastOpenFiles": [
+    "公司项目/认知作战/文档/软件概要设计说明.md",
+    "公司项目/杂项/Linear Issue 规范.md",
+    "公司项目/杂项",
     "公司项目/认知作战/文档/软件概要设计说明.md.bak",
     "公司项目/认知作战/文档/软件需求规格说明.md",
     "公司项目/认知作战/文档/软件开发计划.md",
-    "公司项目/认知作战/文档/软件概要设计说明.md",
     "公司项目/认知作战/软件概要设计简述.md",
     "简报.md",
     "公司项目/认知作战/工作日志安排.md",
@@ -260,8 +262,6 @@
     "公司项目/认知作战/xxx社媒采集预算_确定版.xlsx",
     "公司项目/认知作战/xxx社媒采集预算_v1.0lsx",
     "公司项目/认知作战/xxx社媒采集预算_v1.0.lsx",
-    "公司项目/认知作战/马来西亚社媒采集预算_确定版.xlsx",
-    "公司项目/认知作战/马来西亚社媒采集预算_确定版_最高口径.xlsx",
     "公司项目/内容审核/TikTok 内容审核系统设计方案.md",
     "个人/基础能力学习/英语学习.md",
     "计算机相关学习/系统设计/数据密集型应用系统设计.md",
