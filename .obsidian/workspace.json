@@ -39,12 +39,14 @@
             "id": "c8d525e1d3cd80c3",
             "type": "leaf",
             "state": {
-              "type": "excalidraw",
+              "type": "markdown",
               "state": {
-                "file": "Excalidraw/Drawing 2026-07-08 11.19.00.excalidraw.md"
+                "file": "公司项目/认知作战/文档/软件需求规格说明.md",
+                "mode": "source",
+                "source": false
               },
-              "icon": "excalidraw-icon",
-              "title": "Drawing 2026-07-08 11.19.00.excalidraw"
+              "icon": "lucide-file",
+              "title": "软件需求规格说明"
             }
           }
         ],
@@ -193,13 +195,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Excalidraw/Drawing 2026-07-08 11.19.00.excalidraw.md",
+                "file": "公司项目/认知作战/文档/软件需求规格说明.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Drawing 2026-07-08 11.19.00.excalidraw 的大纲"
+              "title": "软件需求规格说明 的大纲"
             }
           },
           {
@@ -235,6 +237,7 @@
   },
   "active": "c8d525e1d3cd80c3",
   "lastOpenFiles": [
+    "公司项目/认知作战/文档/软件概要设计说明.md",
     "公司项目/认知作战/文档/软件需求规格说明.md",
     "Excalidraw/Drawing 2026-07-08 11.19.00.excalidraw.md",
     "Excalidraw/Drawing 2026-07-08 09.17.51.excalidraw.md",
@@ -244,7 +247,6 @@
     "待看名单.md",
     "简报.md",
     "未命名.md",
-    "公司项目/认知作战/文档/软件概要设计说明.md",
     "公司项目/认知作战/文档/软件开发计划.md",
     "公司项目/认知作战/多设备矩阵自动化运营系统开发方案 V1.1.md",
     "公司项目/认知作战/文档/DC子系统模块功能拆分.xlsx",
