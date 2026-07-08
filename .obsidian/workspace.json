@@ -34,9 +34,21 @@
               "icon": "lucide-file",
               "title": "软件需求规格说明"
             }
+          },
+          {
+            "id": "c8d525e1d3cd80c3",
+            "type": "leaf",
+            "state": {
+              "type": "excalidraw",
+              "state": {
+                "file": "Excalidraw/Drawing 2026-07-08 11.19.00.excalidraw.md"
+              },
+              "icon": "excalidraw-icon",
+              "title": "Drawing 2026-07-08 11.19.00.excalidraw"
+            }
           }
         ],
-        "currentTab": 1
+        "currentTab": 2
       }
     ],
     "direction": "vertical"
@@ -181,13 +193,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "公司项目/认知作战/文档/软件需求规格说明.md",
+                "file": "Excalidraw/Drawing 2026-07-08 11.19.00.excalidraw.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "软件需求规格说明 的大纲"
+              "title": "Drawing 2026-07-08 11.19.00.excalidraw 的大纲"
             }
           },
           {
@@ -221,15 +233,16 @@
       "obsidian-excalidraw-plugin:新建绘图文件": false
     }
   },
-  "active": "e1a180e12f23b4bb",
+  "active": "c8d525e1d3cd80c3",
   "lastOpenFiles": [
+    "公司项目/认知作战/文档/软件需求规格说明.md",
+    "Excalidraw/Drawing 2026-07-08 11.19.00.excalidraw.md",
     "Excalidraw/Drawing 2026-07-08 09.17.51.excalidraw.md",
     "未命名.canvas",
     "公司项目/认知作战/多设备矩阵自动化运营系统开发方案 V1.0.md",
     "Excalidraw",
     "待看名单.md",
     "简报.md",
-    "公司项目/认知作战/文档/软件需求规格说明.md",
     "未命名.md",
     "公司项目/认知作战/文档/软件概要设计说明.md",
     "公司项目/认知作战/文档/软件开发计划.md",
