@@ -98,11 +98,11 @@ flowchart TB
 三类协作关系：
 - **任务驱动采集流（正向数据流）**：M-DC-01 消费任务池下发抓取任务给 M-DC-02 → M-DC-02 原始数据经 Kafka 流入 M-DC-04 清洗去重持久化 → M-DC-04 加工数据供 M-DC-05 分析产出情报。
 - **监控反馈调节（感知反馈）**：M-DC-01 任务池水位、M-DC-02 采集成功率/封禁率、M-DC-04 质量/去重命中率上报 M-DC-03；M-DC-03 汇聚指标反馈调节 M-DC-01 调度，形成自适应系统。
-- **情报驱动反向闭环（R-DC-004）**：M-DC-05 情报产出经 M-DC-06 回注 M-DC-01 任务池并按关系扩散采集，新目标回流 M-DC-04 存储与 M-DC-05 分析后可再次触发回注，使 DC 从单向采集管道升级为情报驱动闭环。
+- **情报驱动反向闭环（FR-DC-004）**：M-DC-05 情报产出经 M-DC-06 回注 M-DC-01 任务池并按关系扩散采集，新目标回流 M-DC-04 存储与 M-DC-05 分析后可再次触发回注，使 DC 从单向采集管道升级为情报驱动闭环。
 
 ### 1.2 模块内功能架构图
 
-#### M-DC-01 采集调度与资源管控（R-DC-001 调度）
+#### M-DC-01 采集调度与资源管控（FR-DC-001 调度）
 
 ```mermaid
 flowchart LR
@@ -122,7 +122,7 @@ flowchart LR
     EXT2["M-DC-06 情报回注"] -.->|"回注任务"| F0101
 ```
 
-#### M-DC-02 社交媒体数据采集（R-DC-001 执行）
+#### M-DC-02 社交媒体数据采集（FR-DC-001 执行）
 
 ```mermaid
 flowchart LR
@@ -139,7 +139,7 @@ flowchart LR
     F0201 -->|"原始数据"| EXT2["M-DC-04 ETL"]
 ```
 
-#### M-DC-03 采集监控告警（R-DC-001 支撑）
+#### M-DC-03 采集监控告警（FR-DC-001 支撑）
 
 ```mermaid
 flowchart LR
@@ -156,7 +156,7 @@ flowchart LR
     EXT2["各模块指标"] -.-> F0301
 ```
 
-#### M-DC-04 数据处理与存储（R-DC-002）
+#### M-DC-04 数据处理与存储（FR-DC-002）
 
 ```mermaid
 flowchart LR
@@ -172,7 +172,7 @@ flowchart LR
     F0403 -.->|"质量指标"| EXT2["M-DC-03 监控"]
 ```
 
-#### M-DC-05 数据分析与情报（R-DC-003）
+#### M-DC-05 数据分析与情报（FR-DC-003）
 
 ```mermaid
 flowchart LR
@@ -190,7 +190,7 @@ flowchart LR
     F0503 -.->|"情报输出(II-14)"| OCC["OCC 目标识别"]
 ```
 
-#### M-DC-06 情报驱动采集与扩散（R-DC-004）
+#### M-DC-06 情报驱动采集与扩散（FR-DC-004）
 
 ```mermaid
 flowchart LR
@@ -253,7 +253,7 @@ flowchart TB
 
 ### 2.2 模块内功能架构图
 
-#### M-MC-01 执行终端接入与台账（R-MC-001 接入）
+#### M-MC-01 执行终端接入与台账（FR-MC-001 接入）
 
 ```mermaid
 flowchart LR
@@ -268,7 +268,7 @@ flowchart LR
     F0104 -.->|"批量结果"| F0101 & F0102
 ```
 
-#### M-MC-02 终端指纹与环境隔离（R-MC-001 风控基建）
+#### M-MC-02 终端指纹与环境隔离（FR-MC-001 风控基建）
 
 ```mermaid
 flowchart LR
@@ -283,7 +283,7 @@ flowchart LR
     F0204 -.->|"隔离配置"| EXT4["M-MC-01 终端"]
 ```
 
-#### M-MC-03 终端监控与风控对抗（R-MC-001 健康感知）
+#### M-MC-03 终端监控与风控对抗（FR-MC-001 健康感知）
 
 ```mermaid
 flowchart LR
@@ -297,7 +297,7 @@ flowchart LR
     EXT3["终端指标"] -.-> F0301
 ```
 
-#### M-MC-04 远程控制（R-MC-002）
+#### M-MC-04 远程控制（FR-MC-002）
 
 ```mermaid
 flowchart LR
@@ -311,7 +311,7 @@ flowchart LR
     F0404 -.-> F0401 & F0402
 ```
 
-#### M-MC-05 执行网关与双执行模式（R-MC-003 核心）
+#### M-MC-05 执行网关与双执行模式（FR-MC-003 核心）
 
 ```mermaid
 flowchart TB
@@ -330,7 +330,7 @@ flowchart TB
     F0504 -.->|"动作日志"| EXT2["M-MC-08 可观测"]
 ```
 
-#### M-MC-06 任务管理（R-MC-004）
+#### M-MC-06 任务管理（FR-MC-004）
 
 ```mermaid
 flowchart LR
@@ -346,7 +346,7 @@ flowchart LR
     F0601 -->|"调度分发"| EXT["M-MC-05 执行网关"]
 ```
 
-#### M-MC-07 自动化管理与编排（R-MC-005）
+#### M-MC-07 自动化管理与编排（FR-MC-005）
 
 ```mermaid
 flowchart TB
@@ -366,7 +366,7 @@ flowchart TB
     F0707 -.->|"状态变更停止任务"| F0705
 ```
 
-#### M-MC-08 可观测性与作业统计复盘（R-MC-006）
+#### M-MC-08 可观测性与作业统计复盘（FR-MC-006）
 
 ```mermaid
 flowchart LR
@@ -387,7 +387,7 @@ flowchart LR
     F0807 -.->|"效果数据"| OCC["OCC 效果评估"]
 ```
 
-#### M-MC-09 账号资源管理（R-MC-007 权威源）
+#### M-MC-09 账号资源管理（FR-MC-007 权威源）
 
 ```mermaid
 flowchart TB
@@ -412,7 +412,7 @@ flowchart TB
     F0901 -.->|"account_id 分发"| EXT2["使用方引用"]
 ```
 
-#### M-MC-10 智能体执行宿主与同步（R-MC-008）
+#### M-MC-10 智能体执行宿主与同步（FR-MC-008）
 
 ```mermaid
 flowchart LR
@@ -471,7 +471,7 @@ flowchart TB
 
 ### 3.2 模块内功能架构图
 
-#### M-SWM-01 人设标签管理（R-SWM-001 人设）
+#### M-SWM-01 人设标签管理（FR-SWM-001 人设）
 
 ```mermaid
 flowchart LR
@@ -482,7 +482,7 @@ flowchart LR
     F0101 -.->|"人设标签"| EXT["M-SWM-05 构建"]
 ```
 
-#### M-SWM-02 提示词模板库与版本管理（R-SWM-001 资产）
+#### M-SWM-02 提示词模板库与版本管理（FR-SWM-001 资产）
 
 ```mermaid
 flowchart LR
@@ -494,7 +494,7 @@ flowchart LR
     EXT2["M-SWM-06 评测"] -.->|"迭代反馈"| F0201
 ```
 
-#### M-SWM-03 提示词场景适配与动态调用（R-SWM-001 运行时）
+#### M-SWM-03 提示词场景适配与动态调用（FR-SWM-001 运行时）
 
 ```mermaid
 flowchart LR
@@ -506,7 +506,7 @@ flowchart LR
     F0302 -.->|"作业指令"| EXT2["MC 执行(经网关)"]
 ```
 
-#### M-SWM-04 蜂群记忆管理（R-SWM-002）
+#### M-SWM-04 蜂群记忆管理（FR-SWM-002）
 
 ```mermaid
 flowchart LR
@@ -520,7 +520,7 @@ flowchart LR
     F0401 -.->|"记忆初值"| EXT["M-SWM-05 构建"]
 ```
 
-#### M-SWM-05 智能体构建与定义下发（R-SWM-003）
+#### M-SWM-05 智能体构建与定义下发（FR-SWM-003）
 
 ```mermaid
 flowchart LR
@@ -535,7 +535,7 @@ flowchart LR
     F0503 -.->|"II-15"| MC["MC 执行宿主"]
 ```
 
-#### M-SWM-06 智能体评测与迭代决策（R-SWM-004）
+#### M-SWM-06 智能体评测与迭代决策（FR-SWM-004）
 
 ```mermaid
 flowchart LR
@@ -596,7 +596,7 @@ flowchart TB
 
 ### 4.2 模块内功能架构图
 
-#### M-OCC-01 目标档案与状态管理（R-OCC-001 实体）
+#### M-OCC-01 目标档案与状态管理（FR-OCC-001 实体）
 
 ```mermaid
 flowchart LR
@@ -613,7 +613,7 @@ flowchart LR
     DC["DC 情报"] -.-> F0104
 ```
 
-#### M-OCC-02 目标关联网络（R-OCC-001 图结构）
+#### M-OCC-02 目标关联网络（FR-OCC-001 图结构）
 
 ```mermaid
 flowchart LR
@@ -625,7 +625,7 @@ flowchart LR
     F0202 -.->|"关联网络"| EXT2["M-OCC-03 方案规划"]
 ```
 
-#### M-OCC-03 作战方案规划（R-OCC-002 决策）
+#### M-OCC-03 作战方案规划（FR-OCC-002 决策）
 
 ```mermaid
 flowchart LR
@@ -638,7 +638,7 @@ flowchart LR
     F0302 -->|"作业方案"| EXT3["M-OCC-04 编排执行"]
 ```
 
-#### M-OCC-04 编排执行引擎（R-OCC-002 建模+运行）
+#### M-OCC-04 编排执行引擎（FR-OCC-002 建模+运行）
 
 ```mermaid
 flowchart TB
@@ -651,7 +651,7 @@ flowchart TB
     F0402 -.->|"效果数据"| EXT2["M-OCC-05 评估"]
 ```
 
-#### M-OCC-05 效果评估（R-OCC-003）
+#### M-OCC-05 效果评估（FR-OCC-003）
 
 ```mermaid
 flowchart LR
@@ -668,7 +668,7 @@ flowchart LR
     F0503 -.->|"策略迭代"| EXT["M-OCC-06 策略库"]
 ```
 
-#### M-OCC-06 舆论作业策略库（R-OCC-004）
+#### M-OCC-06 舆论作业策略库（FR-OCC-004）
 
 ```mermaid
 flowchart LR
@@ -684,7 +684,7 @@ flowchart LR
     F0604 -.->|"匹配策略"| EXT2["M-OCC-03 方案规划"]
 ```
 
-#### M-OCC-07 内容主数据与排期（R-OCC-005 资产+调度）
+#### M-OCC-07 内容主数据与排期（FR-OCC-005 资产+调度）
 
 ```mermaid
 flowchart LR
@@ -699,7 +699,7 @@ flowchart LR
     F0704 -.->|"content.changed"| SWM["SWM"] & MC["MC"]
 ```
 
-#### M-OCC-08 内容审核与敏感词风控（R-OCC-005 合规）
+#### M-OCC-08 内容审核与敏感词风控（FR-OCC-005 合规）
 
 ```mermaid
 flowchart LR
@@ -744,7 +744,7 @@ flowchart TB
 
 ### 5.2 模块内功能架构图
 
-#### M-OM-01 日志汇聚与检索（R-OM-001 日志）
+#### M-OM-01 日志汇聚与检索（FR-OM-001 日志）
 
 ```mermaid
 flowchart LR
@@ -756,7 +756,7 @@ flowchart LR
     F0102 -.->|"检索结果"| EXT2["M-OM-04 运维作业"]
 ```
 
-#### M-OM-02 指标采集与时序存储（R-OM-001 指标）
+#### M-OM-02 指标采集与时序存储（FR-OM-001 指标）
 
 ```mermaid
 flowchart LR
@@ -768,7 +768,7 @@ flowchart LR
     F0202 -.->|"时序数据"| EXT2["M-OM-03 告警"] & EXT3["M-OM-04 看板"]
 ```
 
-#### M-OM-03 告警引擎（R-OM-002 告警）
+#### M-OM-03 告警引擎（FR-OM-002 告警）
 
 ```mermaid
 flowchart LR
@@ -780,7 +780,7 @@ flowchart LR
     F0302 -.->|"多渠道通知"| NOTIFY["电话/IM/邮件"]
 ```
 
-#### M-OM-04 运维可视化与作业（R-OM-002 看板+运维）
+#### M-OM-04 运维可视化与作业（FR-OM-002 看板+运维）
 
 ```mermaid
 flowchart LR
@@ -814,7 +814,7 @@ flowchart LR
 
 ### 6.2 模块内功能架构图
 
-#### M-COM-01 身份认证（R-COM-001 AuthN）
+#### M-COM-01 身份认证（FR-COM-001 AuthN）
 
 ```mermaid
 flowchart LR
@@ -826,7 +826,7 @@ flowchart LR
     F0103 -.->|"令牌"| EXT["M-COM-02 权限决策"]
 ```
 
-#### M-COM-02 权限与组织管理（R-COM-001 AuthZ）
+#### M-COM-02 权限与组织管理（FR-COM-001 AuthZ）
 
 ```mermaid
 flowchart LR
@@ -861,7 +861,7 @@ flowchart TB
 
 ### 7.2 模块内功能架构图
 
-#### M-IRS-01 本地大模型部署（R-IRS-001）
+#### M-IRS-01 本地大模型部署（FR-IRS-001）
 
 ```mermaid
 flowchart LR
