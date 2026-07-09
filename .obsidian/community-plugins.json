@@ -3,7 +3,7 @@
   "obsidian-linter",
   "obsidian-git",
   "copilot",
-  "mermaid-popup",
   "obsidian-minimal-settings",
-  "obsidian-excalidraw-plugin"
+  "obsidian-excalidraw-plugin",
+  "beautiful-mermaid-renderer"
 ]
