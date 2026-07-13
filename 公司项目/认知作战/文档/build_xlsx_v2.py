@@ -920,7 +920,7 @@ def build_overview_sheet(wb):
     for col in range(1, 8):
         c = ws.cell(row=1, column=col)
         style_cell(c, HEADER_FONT, HEADER_FILL, CENTER_WRAP)
-    ws.row_dimensions[1].height = 26
+    ws.row_dimensions[1].height = 30  # 两行表头标签需更高行高
     # 每个子系统一块：子系统行(A,B,C,F,G 填) + 模块行(D,E,F,G 填)
     for sub in SUBSYSTEMS:
         modules = sub["modules"]
