@@ -1,0 +1,157 @@
+/* Auto Beautiful Mermaid — block container, toggle bar, views & error styling */
+
+/* ---- Block container & toolbar ----------------------------------------- */
+
+/* position:relative anchors the absolutely-positioned toolbar; the toolbar is
+   lifted out of flow so showing/hiding it never reflows the diagram. */
+.abm-block {
+  position: relative;
+  margin: 0.5em 0;
+}
+
+.abm-toolbar {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  z-index: 1;
+  display: flex;
+  gap: 2px;
+  padding: 2px;
+  border: 1px solid var(--background-modifier-border);
+  border-radius: var(--radius-m, 6px);
+  background-color: var(--background-secondary);
+  /* Hidden until hover/keyboard focus. opacity+visibility (not display) keeps
+     layout stable and lets the fade transition run. */
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 120ms ease;
+}
+
+/* Reveal on pointer hover and on keyboard focus within the block, so keyboard
+   users can reach the buttons. */
+.abm-block:hover .abm-toolbar,
+.abm-block:focus-within .abm-toolbar {
+  opacity: 1;
+  visibility: visible;
+}
+
+.abm-toolbar-btn {
+  appearance: none;
+  border: none;
+  background: transparent;
+  color: var(--text-muted);
+  font-size: var(--font-smaller, 0.85em);
+  line-height: 1.4;
+  padding: 2px 10px;
+  border-radius: var(--radius-s, 4px);
+  cursor: pointer;
+  box-shadow: none;
+}
+
+.abm-toolbar-btn:hover {
+  background-color: var(--background-modifier-hover);
+  color: var(--text-normal);
+}
+
+.abm-toolbar-btn:focus-visible {
+  outline: 2px solid var(--interactive-accent);
+  outline-offset: 1px;
+}
+
+.abm-toolbar-btn.is-active {
+  background-color: var(--interactive-accent);
+  color: var(--text-on-accent);
+}
+
+/* ---- Views: visibility driven entirely by the container's data-mode ----- */
+
+.abm-view {
+  display: none;
+}
+
+.abm-block[data-mode="beautiful"] .abm-view-beautiful {
+  display: block;
+}
+
+.abm-block[data-mode="system"] .abm-view-system {
+  display: block;
+}
+
+/* "Both" stacks Beautiful above System (DOM order). */
+.abm-block[data-mode="both"] .abm-view-beautiful,
+.abm-block[data-mode="both"] .abm-view-system {
+  display: block;
+}
+
+.abm-block[data-mode="both"] .abm-view-beautiful {
+  margin-bottom: 0.5em;
+}
+
+.abm-block[data-mode="source"] .abm-view-source {
+  display: block;
+}
+
+.abm-view-source pre {
+  margin: 0;
+  overflow-x: auto;
+}
+
+/* ---- beautiful-mermaid output ------------------------------------------ */
+
+.abm-container {
+  display: flex;
+  justify-content: center;
+  overflow-x: auto;
+}
+
+.abm-container svg {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Bind beautiful-mermaid CSS variables to Obsidian theme vars so the diagram
+   follows the active theme automatically. */
+.abm-beautiful {
+  --bg: var(--background-primary);
+  --fg: var(--text-normal);
+}
+
+/* ---- Error rendering — show message + source, no engine fallback ------- */
+
+.abm-error {
+  border: 1px solid var(--background-modifier-error, #e93147);
+  border-radius: var(--radius-s, 4px);
+  padding: 0.75em 1em;
+  margin: 0.5em 0;
+  background-color: var(--background-secondary);
+  color: var(--text-normal);
+  overflow-x: auto;
+}
+
+.abm-error-title {
+  color: var(--text-error, #e93147);
+  font-weight: var(--font-bold, 600);
+  margin-bottom: 0.4em;
+}
+
+.abm-error-message {
+  white-space: pre-wrap;
+  font-family: var(--font-monospace);
+  font-size: var(--font-smaller, 0.85em);
+  margin-bottom: 0.6em;
+  color: var(--text-muted);
+}
+
+.abm-error pre {
+  margin: 0;
+  white-space: pre;
+}
+
+/* ---- Live Preview: hide the native mermaid widget ------------------------ */
+
+/* Obsidian renders its own mermaid widget inside cm-preview-code-block even
+   when our widget is already present. Since we own every mermaid fence, the
+   native render is always redundant — hide it globally. */
+.markdown-source-view.mod-cm6 .cm-preview-code-block.cm-lang-mermaid {
+  display: none;
+}

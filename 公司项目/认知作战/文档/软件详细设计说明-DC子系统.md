@@ -3,7 +3,7 @@
 | 项目 | 内容 |
 | --- | --- |
 | 项目名称 | 认知作战平台（v1.0） |
-| 文档版本 | V1.0 |
+| 文档版本 | V1.1 |
 | 密级 | 内部使用 |
 | 编制 | 石建国 |
 | 编制日期 | 2026-07-13 |
@@ -116,14 +116,14 @@ flowchart TB
 
 各部署单元职责：
 
-| 部署单元 | 实现 | 对应模块 | 扩缩容 |
-| --- | --- | --- | --- |
-| dc-scheduler-api | FastAPI REST 服务 | M-DC-01 任务接入/查询/配额管理 | 3 副本（高可用，NR-R-04） |
-| dc-worker-dispatcher | Python 调度循环 | M-DC-01 调度队列分发 | 2 副本（主备，分布式锁保证单 leader） |
-| dc-intel-engine | Python 回注/扩散引擎 | M-DC-04 | 2 副本 |
-| dc-crawler-* | Python 爬虫 Worker（按平台分组） | M-DC-02 采集执行 | HPA 按 Kafka lag 横向扩缩 |
-| dc-etl-job | PySpark 批作业 | M-DC-03 清洗 | Spark on K8s 动态分配 executor |
-| dc-storage-sink | Python 落库写入 | M-DC-03 多模型存储 | 2 副本 |
+| 部署单元                 | 实现                      | 对应模块                 | 扩缩容                        |
+| -------------------- | ----------------------- | -------------------- | -------------------------- |
+| dc-scheduler-api     | FastAPI REST 服务         | M-DC-01 任务接入/查询/配额管理 | 3 副本（高可用，NR-R-04）          |
+| dc-worker-dispatcher | Python 调度循环             | M-DC-01 调度队列分发       | 2 副本（主备，分布式锁保证单 leader）    |
+| dc-intel-engine      | Python 回注/扩散引擎          | M-DC-04              | 2 副本                       |
+| dc-crawler-*         | Python 爬虫 Worker（按平台分组） | M-DC-02 采集执行         | HPA 按 Kafka lag 横向扩缩       |
+| dc-etl-job           | PySpark 批作业             | M-DC-03 清洗           | Spark on K8s 动态分配 executor |
+| dc-storage-sink      | Python 落库写入             | M-DC-03 多模型存储        | 2 副本                       |
 
 ### 3.3 模块间调用关系
 
@@ -690,12 +690,128 @@ DC 经 REST 向 OCC 提供采集与 ETL 加工后的原始舆情/传播/关系�
 
 ## 8 部署与运维设计
 
-### 8.1 K8s 部署（KubeSphere 纳管）
+### 8.1 K8s 部署架构（KubeSphere 纳管）
 
-- DC 全部服务以 Deployment/StatefulSet 部署于 K8s，KubeSphere 提供统一管理面（应用负载、监控、扩缩容、灰度）。
-- 爬虫 Worker `dc-crawler-*` 配置 HPA（按 Kafka consumer lag 横向扩缩容），节点故障自愈（NR-P-03）。
-- dc-scheduler-api / dc-intel-engine 多副本高可用（NR-R-04 无单点）。
-- PySpark 作业以 Spark on K8s 提交，动态分配 executor。
+#### 8.1.1 部署架构图
+
+DC 子系统部署于一个 Kubernetes 集群，由 KubeSphere 作为统一容器管理平台（PaaS）纳管，按职责划分命名空间与节点池，存储组件以独立命名空间或专用节点部署，采集出口经 VPS 代理链路访问海外社交平台。
+
+```mermaid
+flowchart TB
+    subgraph KS["KubeSphere 管理面（PaaS）"]
+        KSUI["多集群/多租户控制台<br/>应用负载 / 监控告警 / 扩缩容 / 灰度 / 日志"]
+    end
+
+    subgraph K8S["Kubernetes 集群"]
+        KS -.纳管.-> K8S
+
+        subgraph NS_APP["Namespace: dc-app（DC 计算服务）"]
+            direction TB
+            subgraph CTRL["管控面（高可用，NR-R-04）"]
+                SCHED["dc-scheduler-api<br/>FastAPI Deployment ×3<br/>M-DC-01 任务接入/配额/查询"]
+                DISP["dc-worker-dispatcher<br/>Deployment ×2（leader 选举）<br/>M-DC-01 调度分发"]
+                INTEL["dc-intel-engine<br/>Deployment ×2<br/>M-DC-04 回注/扩散"]
+            end
+            subgraph EXEC["采集执行面（弹性扩缩）"]
+                CRAWL["dc-crawler-tiktok / ig / fb / yt / x<br/>Deployment + HPA<br/>M-DC-02 平台采集 Worker"]
+            end
+            subgraph ETL_SINK["ETL 与落库面"]
+                ETLJ["dc-etl-job<br/>Spark on K8s（动态 executor）<br/>M-DC-03 清洗"]
+                SINK["dc-storage-sink<br/>Deployment ×2<br/>M-DC-03 多模型落库"]
+            end
+        end
+
+        subgraph NS_DATA["Namespace: dc-data（数据组件）"]
+            PG[("PostgreSQL<br/>StatefulSet + PVC<br/>元数据/任务/代理/指标")]
+            RD[("Redis<br/>StatefulSet 哨兵<br/>去重/队列/锁/限流")]
+            KF[("Kafka<br/>StatefulSet / 或外置<br/>原始数据/任务/事件")]
+            CH[("ClickHouse<br/>StatefulSet 分片副本<br/>明细列式")]
+            NG[("NebulaGraph<br/>graphd+metad+storaged<br/>关系图")]
+            MN[("MinIO<br/>StatefulSet + PVC<br/>采集附件")]
+        end
+
+        subgraph NS_OBS["Namespace: dc-obs（可观测 Agent）"]
+            PROM["Prometheus / Grafana"]
+            LOGA["日志采集 Agent<br/>→ OM (ELK/Loki)"]
+        end
+
+        subgraph NP["节点池（NodePool）"]
+            N1["管控节点池<br/>dc-scheduler/intel"]
+            N2["采集节点池<br/>dc-crawler-*（按 lag 扩缩）"]
+            N3["计算节点池<br/>Spark executor"]
+            N4["数据节点池<br/>PG/CH/NG/MN（本地盘）"]
+        end
+        CTRL --> N1
+        EXEC --> N2
+        ETL_SINK --> N3
+        NS_DATA --> N4
+    end
+
+    subgraph EXT_OUT["外部出口与平台"]
+        VPS["VPS 代理链路<br/>(EI-02)"]
+        SOC["海外社交平台<br/>TikTok/IG/FB/YT/X<br/>(EI-01)"]
+    end
+
+    subgraph EXT_DEP["跨子系统依赖"]
+        MC["MC 账号服务 (II-01)<br/>account_id 凭据/事件"]
+        OCC["OCC 数据分析与情报<br/>II-13(出) / II-15(入)"]
+        OM["OM 运维监控 (II-04)<br/>日志/指标汇聚"]
+    end
+
+    SCHED --> RD & KF & PG
+    DISP --> KF & RD
+    CRAWL --> KF & RD
+    CRAWL -->|"经代理采集"| VPS --> SOC
+    CRAWL -.->|"取账号 (II-01)"| MC
+    ETLJ --> KF & CH & PG & NG & MN
+    SINK --> CH & PG & NG & MN
+    INTEL --> KF & RD & NG & PG
+    INTEL -.->|"情报回注 (II-15)"| OCC
+    ETL_SINK -.->|"原始数据 (II-13)"| OCC
+    SCHED & CRAWL & ETL_SINK -.->|"日志/指标 (II-04)"| OM
+    PROM & LOGA -.->|"上报"| OM
+```
+
+#### 8.1.2 命名空间与节点池
+
+| 命名空间 | 内容 | 节点池 | 调度策略 |
+| --- | --- | --- | --- |
+| `dc-app` | DC 计算服务（管控面/采集执行面/ETL 落库面） | 管控/采集/计算节点池 | 按 nodeSelector + 资源 request 分配 |
+| `dc-data` | PG/Redis/Kafka/ClickHouse/NebulaGraph/MinIO | 数据节点池（本地盘） | 数据组件亲和本地存储，避免跨节点 IO |
+| `dc-obs` | Prometheus/Grafana、日志采集 Agent | 与被采集节点共存 | DaemonSet 日志采集 |
+
+节点池按工作负载特征隔离：管控节点池求稳（低弹性）、采集节点池求弹性（HPA 按 Kafka lag 扩缩，对齐 NR-P-03）、计算节点池按 Spark 作业峰值分配（动态 executor）、数据节点池求 IO（本地盘 + PVC）。
+
+#### 8.1.3 部署单元规格与高可用
+
+| 部署单元                 | 工作负载                               | 副本/规格       | 高可用机制                           | 对应模块     |
+| -------------------- | ---------------------------------- | ----------- | ------------------------------- | -------- |
+| dc-scheduler-api     | Deployment                         | ×3          | 多副本无状态，前置 Service 负载均衡（NR-R-04） | M-DC-01  |
+| dc-worker-dispatcher | Deployment                         | ×2          | Redis 分布式锁选举单 leader，备节点待命      | M-DC-01  |
+| dc-intel-engine      | Deployment                         | ×2          | 多副本，回注任务幂等（dedup_key）保证不重复      | M-DC-04  |
+| dc-crawler-*         | Deployment + HPA                   | 按 lag 2~50  | HPA 横向扩缩，Pod 故障自愈               | M-DC-02  |
+| dc-etl-job           | SparkApplication（Spark on K8s）     | 动态 executor | 任务级重试/speculative，坏数据隔离         | M-DC-03  |
+| dc-storage-sink      | Deployment                         | ×2          | 多副本，写入失败转重试队列（NR-F-04）          | M-DC-03  |
+| PostgreSQL           | StatefulSet + PVC                  | 主从          | 主从复制 + 定期备份（NR-C-04）            | 元数据      |
+| Redis                | StatefulSet + 哨兵                   | 主+哨兵        | 哨兵自动故障转移                        | 去重/调度/限流 |
+| Kafka                | StatefulSet / 外置                   | 分区多副本       | 分区副本保证可回溯消费（II-05）              | 总线       |
+| ClickHouse           | StatefulSet                        | 分片+副本       | 分布式表 + 副本容错                     | 明细列式     |
+| NebulaGraph          | StatefulSet（graphd/metad/storaged） | 多副本         | metad/storaged 副本               | 关系图      |
+| MinIO                | StatefulSet + PVC                  | 分布式         | 纠删码冗余                           | 附件       |
+
+#### 8.1.4 网络与出口
+
+- **集群内**：命名空间间经 K8s Service（ClusterIP）互通，DC 服务经 Service 名互访；Kafka topic 为内部总线（II-05）。
+- **采集出口**：`dc-crawler-*` Pod 经 VPS 代理链路（EI-02）访问海外社交平台（EI-01），代理由 M-DC-02 代理池按 platform×region 分配，一终端/Profile 一 IP（CON-13 精神在采集侧体现为按任务绑定代理）。
+- **跨子系统**：经 Service/Ingress 调用 MC（II-01 取账号）、OCC（II-13 出 / II-15 入）；日志指标经 II-04 上报 OM。
+- **安全**：全部 API 经 COM 鉴权（NR-S-01），传输 HTTPS/TLS（NR-S-02），代理凭据加密存储（NR-S-03）。
+
+#### 8.1.5 扩缩容与自愈
+
+- 采集 Worker `dc-crawler-*` 配 HPA：按 Kafka `dc-crawl-task` consumer lag 阈值自动扩缩（lag>阈值扩、idle 缩），节点故障由 K8s 自动重调度自愈（NR-P-03）。
+- 管控面多副本保证无单点（NR-R-04）；dispatcher leader 故障由哨兵/锁超时切换备节点。
+- Spark executor 动态分配，按批次规模弹性；作业失败自动重试/转移。
+- KubeSphere 提供可视化扩缩容、灰度发布与告警闭环（NR-M-04）。
 
 ### 8.2 配置化（NR-M-02）
 
