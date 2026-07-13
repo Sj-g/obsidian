@@ -249,8 +249,11 @@
       "obsidian-excalidraw-plugin:新建绘图文件": false
     }
   },
-  "active": "7893c6c91b70ba0a",
+  "active": "d68748e19a10cc4e",
   "lastOpenFiles": [
+    "公司项目/认知作战/文档/AGENTS.md",
+    "公司项目/认知作战/文档/软件概要设计-架构图.md",
+    "公司项目/认知作战/文档/软件概要设计说明.md",
     "公司项目/认知作战/文档/CLAUDE.md",
     "公司项目/认知作战/文档/软件需求规格说明.md",
     "公司项目/认知作战/文档/版本变动记录/版本变动记录.md.zcode-2461011-1924aaca-5b0e-43ba-a762-8841027ed7ff.tmp",
@@ -261,8 +264,6 @@
     "公司项目/认知作战/文档/软件概要设计说明.md.zcode-2461011-ebccad4e-c303-429e-a961-10dea80476c4.tmp",
     "公司项目/认知作战/文档/软件概要设计说明.md.bak_v2.0",
     "公司项目/认知作战/文档/版本变动记录/版本变动记录.md",
-    "公司项目/认知作战/文档/软件概要设计说明.md",
-    "公司项目/认知作战/文档/软件概要设计-架构图.md",
     "公司项目/认知作战/文档/文档目录.md.zcode-2461011-17c4cae2-5d94-43ee-a366-d9830f9131d9.tmp",
     "公司项目/认知作战/文档/软件概要设计-架构图.md.zcode-2461011-7535a8a0-9932-4260-a161-b75ccc49bbab.tmp",
     "公司项目/认知作战/文档/__pycache__/build_xlsx_v2.cpython-312.pyc",
@@ -287,7 +288,6 @@
     "Excalidraw/Drawing 2026-07-08 09.17.51.excalidraw.md",
     "简报.md",
     "公司项目/杂项/Linear Issue 规范.md",
-    "公司项目/认知作战/工作日志安排.md",
     "resource/diagram.png",
     "OneNote/CS-408/操作系统/第二章 进程与线程 - Ink.svg",
     "OneNote/resource/Exported image 20260609144009-9.jpeg",
