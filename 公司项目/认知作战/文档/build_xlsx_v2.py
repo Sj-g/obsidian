@@ -936,6 +936,17 @@ def build_overview_sheet(wb):
     return ws
 
 
+NAME_MAP = {
+    "DC": "DC 数据爬取子系统",
+    "MC": "MC 多设备矩阵自动化群控子系统",
+    "OM": "OM 运维监控子系统",
+    "COM": "COM 公共功能",
+    "SWM": "SWM 蜂群智能体子系统",
+    "IRS": "IRS 私有化大模型部署",
+    "OCC": "OCC 舆情作战业务子系统",
+}
+
+
 def main():
     wb = openpyxl.Workbook()
     # 删除默认 sheet
@@ -945,22 +956,7 @@ def main():
     build_overview_sheet(wb)
     # 子系统明细（顺序与总览一致）
     for sub in SUBSYSTEMS:
-        sheet_name = f"{sub['code']} {sub['full']}"
-        if sub["code"] not in ("COM", "IRS"):
-            sheet_name = f"{sub['code']} {sub['full']}子系统" if not sub["full"].endswith("子系统") and sub["code"] != "COM" else sheet_name
-    # 上面循环逻辑有问题，直接重新按命名规则建
-    # 移除刚建的空循环影响（实际未创建），重写
-    name_map = {
-        "DC": "DC 数据爬取子系统",
-        "MC": "MC 多设备矩阵自动化群控子系统",
-        "OM": "OM 运维监控子系统",
-        "COM": "COM 公共功能",
-        "SWM": "SWM 蜂群智能体子系统",
-        "IRS": "IRS 私有化大模型部署",
-        "OCC": "OCC 舆情作战业务子系统",
-    }
-    for sub in SUBSYSTEMS:
-        build_detail_sheet(wb, sub, name_map[sub["code"]])
+        build_detail_sheet(wb, sub, NAME_MAP[sub["code"]])
 
     out = "软件概要设计-模块功能拆分-v2.xlsx"
     wb.save(out)
