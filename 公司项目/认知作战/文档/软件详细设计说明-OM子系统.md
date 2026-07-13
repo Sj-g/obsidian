@@ -104,7 +104,7 @@ flowchart TB
     FB["FluentBit DaemonSet<br/>日志采集"]
     PROM["Prometheus<br/>指标 Pull"]
     OS[("OpenSearch<br/>日志检索")]
-    AM["Alertmanager<br/>告警引擎")]
+    AM["Alertmanager<br/>告警引擎"]
     GRAF["Grafana<br/>看板渲染"]
 
     KF[("Kafka<br/>业务数据总线")]

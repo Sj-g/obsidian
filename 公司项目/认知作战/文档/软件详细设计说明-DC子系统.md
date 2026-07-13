@@ -3,7 +3,7 @@
 | 项目 | 内容 |
 | --- | --- |
 | 项目名称 | 认知作战平台（v1.0） |
-| 文档版本 | V1.1 |
+| 文档版本 | V1.2 |
 | 密级 | 内部使用 |
 | 编制 | 石建国 |
 | 编制日期 | 2026-07-13 |
@@ -88,16 +88,16 @@ DC 子系统在 K8s（KubeSphere 管理）上部署为以下独立可扩缩容�
 flowchart TB
     subgraph K8s["Kubernetes 集群（KubeSphere 纳管）"]
         subgraph DC_CTRL["DC 管控面"]
-            API["dc-scheduler-api<br/>FastAPI Pod ×3"]
-            WORKER_CTRL["dc-worker-dispatcher<br/>Pod ×2"]
-            INTEL["dc-intel-engine<br/>回注+扩散 Pod ×2"]
+            API["dc-scheduler-api<br/>FastAPI Pod ×1<br/>(V2 演进 ×3)"]
+            WORKER_CTRL["dc-worker-dispatcher<br/>Pod ×1<br/>(V2 演进 ×2)"]
+            INTEL["dc-intel-engine<br/>回注+扩散 Pod ×1<br/>(V2 演进 ×2)"]
         end
         subgraph DC_EXEC["DC 采集执行面"]
             CRAWLER["dc-crawler-*<br/>爬虫 Worker Deployment<br/>HPA 横向扩缩"]
         end
         subgraph DC_ETL["DC ETL 面"]
             ETL["dc-etl-job<br/>PySpark on K8s<br/>按批提交"]
-            SINK["dc-storage-sink<br/>落库写入 Pod ×2"]
+            SINK["dc-storage-sink<br/>落库写入 Pod ×1<br/>(V2 演进 ×2)"]
         end
     end
     PG[("PostgreSQL<br/>元数据/任务/代理")]
@@ -118,12 +118,12 @@ flowchart TB
 
 | 部署单元                 | 实现                      | 对应模块                 | 扩缩容                        |
 | -------------------- | ----------------------- | -------------------- | -------------------------- |
-| dc-scheduler-api     | FastAPI REST 服务         | M-DC-01 任务接入/查询/配额管理 | 3 副本（高可用，NR-R-04）          |
-| dc-worker-dispatcher | Python 调度循环             | M-DC-01 调度队列分发       | 2 副本（主备，分布式锁保证单 leader）    |
-| dc-intel-engine      | Python 回注/扩散引擎          | M-DC-04              | 2 副本                       |
+| dc-scheduler-api     | FastAPI REST 服务         | M-DC-01 任务接入/查询/配额管理 | ×1（V2 演进 ×3 多副本，NR-R-04 为 V2 目标）          |
+| dc-worker-dispatcher | Python 调度循环             | M-DC-01 调度队列分发       | ×1（V2 演进 ×2 主备，分布式锁选主）    |
+| dc-intel-engine      | Python 回注/扩散引擎          | M-DC-04              | ×1（V2 演进 ×2）                       |
 | dc-crawler-*         | Python 爬虫 Worker（按平台分组） | M-DC-02 采集执行         | HPA 按 Kafka lag 横向扩缩       |
 | dc-etl-job           | PySpark 批作业             | M-DC-03 清洗           | Spark on K8s 动态分配 executor |
-| dc-storage-sink      | Python 落库写入             | M-DC-03 多模型存储        | 2 副本                       |
+| dc-storage-sink      | Python 落库写入             | M-DC-03 多模型存储        | ×1（V2 演进 ×2）                       |
 
 ### 3.3 模块间调用关系
 
@@ -707,17 +707,17 @@ flowchart TB
 
         subgraph NS_APP["Namespace: dc-app（DC 计算服务）"]
             direction TB
-            subgraph CTRL["管控面（高可用，NR-R-04）"]
-                SCHED["dc-scheduler-api<br/>FastAPI Deployment ×3<br/>M-DC-01 任务接入/配额/查询"]
-                DISP["dc-worker-dispatcher<br/>Deployment ×2（leader 选举）<br/>M-DC-01 调度分发"]
-                INTEL["dc-intel-engine<br/>Deployment ×2<br/>M-DC-04 回注/扩散"]
+            subgraph CTRL["管控面（当前单副本，V2 演进多副本 NR-R-04）"]
+                SCHED["dc-scheduler-api<br/>FastAPI Deployment ×1<br/>（V2 演进 ×3）<br/>M-DC-01 任务接入/配额/查询"]
+                DISP["dc-worker-dispatcher<br/>Deployment ×1<br/>（V2 演进 ×2 leader 选举）<br/>M-DC-01 调度分发"]
+                INTEL["dc-intel-engine<br/>Deployment ×1<br/>（V2 演进 ×2）<br/>M-DC-04 回注/扩散"]
             end
             subgraph EXEC["采集执行面（弹性扩缩）"]
                 CRAWL["dc-crawler-tiktok / ig / fb / yt / x<br/>Deployment + HPA<br/>M-DC-02 平台采集 Worker"]
             end
             subgraph ETL_SINK["ETL 与落库面"]
                 ETLJ["dc-etl-job<br/>Spark on K8s（动态 executor）<br/>M-DC-03 清洗"]
-                SINK["dc-storage-sink<br/>Deployment ×2<br/>M-DC-03 多模型落库"]
+                SINK["dc-storage-sink<br/>Deployment ×1<br/>（V2 演进 ×2）<br/>M-DC-03 多模型落库"]
             end
         end
 
@@ -786,12 +786,12 @@ flowchart TB
 
 | 部署单元                 | 工作负载                               | 副本/规格       | 高可用机制                           | 对应模块     |
 | -------------------- | ---------------------------------- | ----------- | ------------------------------- | -------- |
-| dc-scheduler-api     | Deployment                         | ×3          | 多副本无状态，前置 Service 负载均衡（NR-R-04） | M-DC-01  |
-| dc-worker-dispatcher | Deployment                         | ×2          | Redis 分布式锁选举单 leader，备节点待命      | M-DC-01  |
-| dc-intel-engine      | Deployment                         | ×2          | 多副本，回注任务幂等（dedup_key）保证不重复      | M-DC-04  |
+| dc-scheduler-api     | Deployment                         | ×1（V2 演进 ×3）          | 当前单副本；V2 多副本无状态，前置 Service 负载均衡（NR-R-04 为 V2 目标） | M-DC-01  |
+| dc-worker-dispatcher | Deployment                         | ×1（V2 演进 ×2）          | 当前单副本；V2 Redis 分布式锁选举单 leader，备节点待命      | M-DC-01  |
+| dc-intel-engine      | Deployment                         | ×1（V2 演进 ×2）          | 当前单副本；V2 多副本，回注任务幂等（dedup_key）保证不重复      | M-DC-04  |
 | dc-crawler-*         | Deployment + HPA                   | 按 lag 2~50  | HPA 横向扩缩，Pod 故障自愈               | M-DC-02  |
 | dc-etl-job           | SparkApplication（Spark on K8s）     | 动态 executor | 任务级重试/speculative，坏数据隔离         | M-DC-03  |
-| dc-storage-sink      | Deployment                         | ×2          | 多副本，写入失败转重试队列（NR-F-04）          | M-DC-03  |
+| dc-storage-sink      | Deployment                         | ×1（V2 演进 ×2）          | 当前单副本；V2 多副本，写入失败转重试队列（NR-F-04）          | M-DC-03  |
 | PostgreSQL           | StatefulSet + PVC                  | 主从          | 主从复制 + 定期备份（NR-C-04）            | 元数据      |
 | Redis                | StatefulSet + 哨兵                   | 主+哨兵        | 哨兵自动故障转移                        | 去重/调度/限流 |
 | Kafka                | StatefulSet / 外置                   | 分区多副本       | 分区副本保证可回溯消费（II-05）              | 总线       |
@@ -809,7 +809,7 @@ flowchart TB
 #### 8.1.5 扩缩容与自愈
 
 - 采集 Worker `dc-crawler-*` 配 HPA：按 Kafka `dc-crawl-task` consumer lag 阈值自动扩缩（lag>阈值扩、idle 缩），节点故障由 K8s 自动重调度自愈（NR-P-03）。
-- 管控面多副本保证无单点（NR-R-04）；dispatcher leader 故障由哨兵/锁超时切换备节点。
+- 管控面当前版本单副本（NR-R-01/04 为 V2 目标，见 SRS V3.5）；V2 演进多副本保证无单点，dispatcher leader 故障由哨兵/锁超时切换备节点。
 - Spark executor 动态分配，按批次规模弹性；作业失败自动重试/转移。
 - KubeSphere 提供可视化扩缩容、灰度发布与告警闭环（NR-M-04）。
 
