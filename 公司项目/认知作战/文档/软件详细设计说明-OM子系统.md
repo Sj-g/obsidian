@@ -303,10 +303,10 @@ CREATE INDEX idx_dashboard_meta_category ON om.dashboard_meta(category);
 
 ### 4.4 Redis Key 设计
 
-| Redis Key 模式 | 类型 | 用途 |
-| --- | --- | --- |
-| `om:lock:ops_leader` | STRING（NX，TTL 30s） | V2 多副本定时巡检选主锁（当前单副本不启用） |
-| `om:metric:agg:cursor` | HASH | 指标聚合消费位点（按 metric_name 记录最近聚合窗口，防重复聚合） |
+| Redis Key 模式           | 类型                 | 用途                                     |
+| ---------------------- | ------------------ | -------------------------------------- |
+| `om:lock:ops_leader`   | STRING（NX，TTL 30s） | V2 多副本定时巡检选主锁（当前单副本不启用）                |
+| `om:metric:agg:cursor` | HASH               | 指标聚合消费位点（按 metric_name 记录最近聚合窗口，防重复聚合） |
 
 ---
 
