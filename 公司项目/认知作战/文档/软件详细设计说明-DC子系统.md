@@ -67,18 +67,18 @@ DC 子系统由四个模块组成（对应 8 项功能需求与 13 个功能点�
 
 DC 子系统技术栈遵循《软件需求规格说明》V3.4 运行环境与 CON-03 约束：
 
-| 维度 | 选型 | 说明 |
-| --- | --- | --- |
-| 管控面/调度面语言 | **Python 3.11 + FastAPI** | M-DC-01/02（管控面）/04 用 Python 实现 REST 服务、调度器、限流器、回注与扩散引擎 |
-| ETL 引擎 | **PySpark 3.5** | M-DC-03 分布式批处理清洗（字段提取/标准化/去重/关联），Spark on K8s 提交作业 |
-| 采集 Worker | **Python（httpx/playwright）** | M-DC-02 的平台逆向采集执行器，K8s Pod 编排，经 Kafka 任务/结果总线与管控面解耦 |
-| 列式存储 | **ClickHouse** | 明细数据列式存储（替代 HBase），高压缩比、列式扫描、适合大规模采集明细的 OLAP 查询 |
-| 关系库 | **PostgreSQL** | 元数据、索引、任务主数据、代理池台账、采集配置（OLTP 点查与事务） |
-| 图库 | **NebulaGraph** | 关系数据存储，支撑 R-DC-008 BFS 目标扩散与 OCC 关联网络分析 |
-| 消息总线 | **Kafka** | 原始采集数据流转（II-05）、任务分发、事件总线 |
-| 缓存与调度 | **Redis** | 任务去重（目标级去重键）、ZSet 优先级队列、分布式锁、限流计数器/令牌桶 |
-| 对象存储 | **MinIO** | 采集附件（图片/视频/原始 HTML 快照） |
-| 容器编排 | **Kubernetes（KubeSphere 纳管）** | DC 全部服务 Pod 化部署、爬虫 Deployment 横向扩缩容与节点故障自愈 |
+| 维度        | 选型                            | 说明                                                     |
+| --------- | ----------------------------- | ------------------------------------------------------ |
+| 管控面/调度面语言 | **Python 3.11 + FastAPI**     | M-DC-01/02（管控面）/04 用 Python 实现 REST 服务、调度器、限流器、回注与扩散引擎 |
+| ETL 引擎    | **PySpark 3.5**               | M-DC-03 分布式批处理清洗（字段提取/标准化/去重/关联），Spark on K8s 提交作业     |
+| 采集 Worker | **Python（httpx/playwright）**  | M-DC-02 的平台逆向采集执行器，K8s Pod 编排，经 Kafka 任务/结果总线与管控面解耦    |
+| 列式存储      | **ClickHouse**                | 明细数据列式存储（替代 HBase），高压缩比、列式扫描、适合大规模采集明细的 OLAP 查询        |
+| 关系库       | **PostgreSQL**                | 元数据、索引、任务主数据、代理池台账、采集配置（OLTP 点查与事务）                    |
+| 图库        | **NebulaGraph**               | 关系数据存储，支撑 R-DC-008 BFS 目标扩散与 OCC 关联网络分析                |
+| 消息总线      | **Kafka**                     | 原始采集数据流转（II-05）、任务分发、事件总线                              |
+| 缓存与调度     | **Redis**                     | 任务去重（目标级去重键）、ZSet 优先级队列、分布式锁、限流计数器/令牌桶                 |
+| 对象存储      | **MinIO**                     | 采集附件（图片/视频/原始 HTML 快照）                                 |
+| 容器编排      | **Kubernetes（KubeSphere 纳管）** | DC 全部服务 Pod 化部署、爬虫 Deployment 横向扩缩容与节点故障自愈             |
 
 ### 3.2 部署单元
 
@@ -116,14 +116,15 @@ flowchart TB
 
 各部署单元职责：
 
-| 部署单元                 | 实现                      | 对应模块                 | 扩缩容                        |
-| -------------------- | ----------------------- | -------------------- | -------------------------- |
-| dc-scheduler-api     | FastAPI REST 服务         | M-DC-01 任务接入/查询/配额管理 | ×1（V2 演进 ×3 多副本，NR-R-04 为 V2 目标）          |
-| dc-worker-dispatcher | Python 调度循环             | M-DC-01 调度队列分发       | ×1（V2 演进 ×2 主备，分布式锁选主）    |
-| dc-intel-engine      | Python 回注/扩散引擎          | M-DC-04              | ×1（V2 演进 ×2）                       |
-| dc-crawler-*         | Python 爬虫 Worker（按平台分组） | M-DC-02 采集执行         | HPA 按 Kafka lag 横向扩缩       |
-| dc-etl-job           | PySpark 批作业             | M-DC-03 清洗           | Spark on K8s 动态分配 executor |
-| dc-storage-sink      | Python 落库写入             | M-DC-03 多模型存储        | ×1（V2 演进 ×2）                       |
+| 部署单元                 | 实现                      | 对应模块                 | 扩缩容                              |
+| -------------------- | ----------------------- | -------------------- | -------------------------------- |
+| dc-scheduler-api     | FastAPI REST 服务         | M-DC-01 任务接入/查询/配额管理 | ×1（V2 演进 ×3 多副本，NR-R-04 为 V2 目标） |
+| dc-worker-dispatcher | Python 调度循环             | M-DC-01 调度队列分发       | ×1（V2 演进 ×2 主备，分布式锁选主）           |
+| dc-intel-engine      | Python 回注/扩散引擎          | M-DC-04              | ×1（V2 演进 ×2）                     |
+| dc-crawler-*         | Python 爬虫 Worker（按平台分组） | M-DC-02 采集执行         | HPA 按 Kafka lag 横向扩缩             |
+| dc-etl-job           | PySpark 批作业             | M-DC-03 清洗           | Spark on K8s 动态分配 executor       |
+| dc-storage-sink      | Python 落库写入             | M-DC-03 多模型存储        | ×1（V2 演进 ×2）                     |
+|                      |                         |                      |                                  |
 
 ### 3.3 模块间调用关系
 
@@ -155,65 +156,65 @@ DC 主数据流为「任务池 → 采集 → Kafka → ETL → 多存储」，�
 
 #### 4.1.1 采集任务表 `crawl_task`（F-DC-01-01 任务池主表）
 
-| 字段 | 类型 | 说明 |
-| --- | --- | --- |
-| task_id | UUID PK | 任务唯一标识 |
-| source_type | ENUM | `manual`/`csv_import`/`intel_feedback`（回注）/`diffusion`（扩散） |
-| platform | ENUM | `tiktok`/`instagram`/`facebook`/`youtube`/`x` |
-| target_type | ENUM | `account`/`keyword`/`url_list`/`hashtag` |
-| target_value | TEXT | 目标值（账号名/关键词/URL 列表 JSON） |
-| data_types | JSONB | 采集数据类型数组，如 `["profile","posts","reels","interactions"]` |
-| dedup_key | VARCHAR(128) | 目标级去重键（见 5.1.2），唯一索引 |
-| priority | INT | 优先级（ZSet score，默认 100） |
-| status | ENUM | `pending`/`dispatched`/`running`/`succeeded`/`failed`/`recheck` |
-| quota_scope | VARCHAR | 配额作用域（平台:地区） |
-| account_id | VARCHAR | 关联采集账号（引用 MC account_id） |
-| proxy_id | VARCHAR | 关联代理 IP 标识 |
-| source_intel_id | VARCHAR | 来源情报标识（source_type=intel_feedback 时） |
-| retry_count | INT | 重试次数 |
-| created_at / updated_at | TIMESTAMPTZ | 时间戳 |
+| 字段                      | 类型           | 说明                                                              |
+| ----------------------- | ------------ | --------------------------------------------------------------- |
+| task_id                 | UUID PK      | 任务唯一标识                                                          |
+| source_type             | ENUM         | `manual`/`csv_import`/`intel_feedback`（回注）/`diffusion`（扩散）      |
+| platform                | ENUM         | `tiktok`/`instagram`/`facebook`/`youtube`/`x`                   |
+| target_type             | ENUM         | `account`/`keyword`/`url_list`/`hashtag`                        |
+| target_value            | TEXT         | 目标值（账号名/关键词/URL 列表 JSON）                                        |
+| data_types              | JSONB        | 采集数据类型数组，如 `["profile","posts","reels","interactions"]`         |
+| dedup_key               | VARCHAR(128) | 目标级去重键（见 5.1.2），唯一索引                                            |
+| priority                | INT          | 优先级（ZSet score，默认 100）                                          |
+| status                  | ENUM         | `pending`/`dispatched`/`running`/`succeeded`/`failed`/`recheck` |
+| quota_scope             | VARCHAR      | 配额作用域（平台:地区）                                                    |
+| account_id              | VARCHAR      | 关联采集账号（引用 MC account_id）                                        |
+| proxy_id                | VARCHAR      | 关联代理 IP 标识                                                      |
+| source_intel_id         | VARCHAR      | 来源情报标识（source_type=intel_feedback 时）                            |
+| retry_count             | INT          | 重试次数                                                            |
+| created_at / updated_at | TIMESTAMPTZ  | 时间戳                                                             |
 
 #### 4.1.2 代理 IP 池表 `proxy_pool`（F-DC-02-04）
 
-| 字段 | 类型 | 说明 |
-| --- | --- | --- |
-| proxy_id | VARCHAR PK | 代理标识 |
-| ip | VARCHAR | 代理 IP |
-| port | INT | 端口 |
-| credential_enc | BYTEA | 加密凭据（NR-S-03，AES-GCM） |
-| platform | ENUM | 绑定平台 |
-| region | VARCHAR | 绑定地区 |
-| status | ENUM | `available`/`in_use`/`unhealthy`/`evicted` |
-| last_check_at | TIMESTAMPTZ | 最后可用性检测时间 |
-| fail_count | INT | 连续失败次数 |
-| rotated_at | TIMESTAMPTZ | 最后轮换时间 |
+| 字段             | 类型          | 说明                                         |
+| -------------- | ----------- | ------------------------------------------ |
+| proxy_id       | VARCHAR PK  | 代理标识                                       |
+| ip             | VARCHAR     | 代理 IP                                      |
+| port           | INT         | 端口                                         |
+| credential_enc | BYTEA       | 加密凭据（NR-S-03，AES-GCM）                      |
+| platform       | ENUM        | 绑定平台                                       |
+| region         | VARCHAR     | 绑定地区                                       |
+| status         | ENUM        | `available`/`in_use`/`unhealthy`/`evicted` |
+| last_check_at  | TIMESTAMPTZ | 最后可用性检测时间                                  |
+| fail_count     | INT         | 连续失败次数                                     |
+| rotated_at     | TIMESTAMPTZ | 最后轮换时间                                     |
 
 #### 4.1.3 采集指标表 `crawl_metric`（F-DC-02-05 策略自优化输入）
 
-| 字段 | 类型 | 说明 |
-| --- | --- | --- |
-| metric_id | BIGSERIAL PK | 指标 ID |
-| platform | ENUM | 平台 |
-| method | ENUM | 采集手段（`reverse_api`/`official_api`/`playwright`/`html_parse`） |
-| window_start | TIMESTAMPTZ | 统计窗口起点 |
-| total_requests | INT | 总请求数 |
-| success_count | INT | 成功数 |
-| ban_count | INT | 封禁数 |
-| block_signal_count | INT | 反爬信号数 |
-| avg_latency_ms | INT | 平均延迟 |
+| 字段                 | 类型           | 说明                                                           |
+| ------------------ | ------------ | ------------------------------------------------------------ |
+| metric_id          | BIGSERIAL PK | 指标 ID                                                        |
+| platform           | ENUM         | 平台                                                           |
+| method             | ENUM         | 采集手段（`reverse_api`/`official_api`/`playwright`/`html_parse`） |
+| window_start       | TIMESTAMPTZ  | 统计窗口起点                                                       |
+| total_requests     | INT          | 总请求数                                                         |
+| success_count      | INT          | 成功数                                                          |
+| ban_count          | INT          | 封禁数                                                          |
+| block_signal_count | INT          | 反爬信号数                                                        |
+| avg_latency_ms     | INT          | 平均延迟                                                         |
 
-### 4.2 去重与调度结构（Redis）
+### 4.2 去重与调度结构（Redis，在定义，根据实际情况）
 
-| Redis Key 模式 | 类型 | 用途 |
-| --- | --- | --- |
-| `dc:dedup:{platform}:{target_type}:{digest}` | STRING（NX，TTL 可配） | 目标级去重键（Q10 决策：去重键=目标×数据类型） |
-| `dc:queue:dispatch` | ZSET | 调度优先级队列（score=priority） |
-| `dc:lock:dispatch_leader` | STRING（NX，TTL 10s） | 调度器 leader 分布式锁 |
-| `dc:lock:task:{task_id}` | STRING（NX，TTL 60s） | 任务执行分布式锁 |
-| `dc:quota:global_concurrent` | STRING（计数） | 全局并发计数 |
-| `dc:quota:qps:{platform}` | SORTED SET（滑动窗口） | 单平台 QPS 限流 |
-| `dc:quota:freq:{account_id}` / `{proxy_id}` | SORTED SET（滑动窗口） | 单账号/单IP 频率限流 |
-| `dc:strategy:current` | HASH | 当前生效策略（手段优先级/频率/并发） |
+| Redis Key 模式                                 | 类型                 | 用途                         |
+| -------------------------------------------- | ------------------ | -------------------------- |
+| `dc:dedup:{platform}:{target_type}:{digest}` | STRING（NX，TTL 可配）  | 目标级去重键（Q10 决策：去重键=目标×数据类型） |
+| `dc:queue:dispatch`                          | ZSET               | 调度优先级队列（score=priority）    |
+| `dc:lock:dispatch_leader`                    | STRING（NX，TTL 10s） | 调度器 leader 分布式锁            |
+| `dc:lock:task:{task_id}`                     | STRING（NX，TTL 60s） | 任务执行分布式锁                   |
+| `dc:quota:global_concurrent`                 | STRING（计数）         | 全局并发计数                     |
+| `dc:quota:qps:{platform}`                    | SORTED SET（滑动窗口）   | 单平台 QPS 限流                 |
+| `dc:quota:freq:{account_id}` / `{proxy_id}`  | SORTED SET（滑动窗口）   | 单账号/单IP 频率限流               |
+| `dc:strategy:current`                        | HASH               | 当前生效策略（手段优先级/频率/并发）        |
 
 ### 4.3 明细数据存储（ClickHouse）
 
@@ -314,11 +315,11 @@ def check_and_mark(dedup_key, ttl):
 
 三维配额（决策 A：全局并发 + 单平台 QPS + 单账号/单IP 频率），用 Redis 滑动窗口 + 令牌桶实现：
 
-| 维度 | 实现 | Redis 机制 |
-| --- | --- | --- |
-| 全局并发上限 | 令牌桶（容量=全局并发数） | `dc:quota:global_concurrent` 计数，acquire/release |
-| 单平台 QPS | 滑动窗口（每平台每秒上限） | ZSET `dc:quota:qps:{platform}`，按 timestamp 去除过期成员后计数 |
-| 单账号/单IP 频率 | 滑动窗口（每账号/IP 每分钟上限） | ZSET `dc:quota:freq:{account_id}` / `{proxy_id}` |
+| 维度         | 实现                 | Redis 机制                                             |
+| ---------- | ------------------ | ---------------------------------------------------- |
+| 全局并发上限     | 令牌桶（容量=全局并发数）      | `dc:quota:global_concurrent` 计数，acquire/release      |
+| 单平台 QPS    | 滑动窗口（每平台每秒上限）      | ZSET `dc:quota:qps:{platform}`，按 timestamp 去除过期成员后计数 |
+| 单账号/单IP 频率 | 滑动窗口（每账号/IP 每分钟上限） | ZSET `dc:quota:freq:{account_id}` / `{proxy_id}`     |
 
 调度分发前先三维校验，任一超限则任务留队（不 dispatch），并发水位由账号池/IP 池健康度动态调节（M-DC-02 代理与账号应用反馈水位）。
 
