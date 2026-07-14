@@ -433,13 +433,13 @@ stateDiagram-v2
 
 `ProxyPoolService` 管理代理池全生命周期（对接 EI-02 VPS 链路）：
 
-| 能力 | 说明 |
-| --- | --- |
+| 能力       | 说明                                                            |
+| -------- | ------------------------------------------------------------- |
 | 按平台与地区分配 | 对接 VPS 链路，按 platform × region 从 `proxy_pool` 取 `available` 代理 |
-| 定时轮换 | 定时任务（Cron，周期可配）轮换在用代理，降低单 IP 被风控概率 |
-| 可用性检测 | 周期性探活（HTTP 探针 + 目标平台连通性），更新 `last_check_at` 与 `status` |
-| 失效剔除 | 连续失败 `fail_count` 超阈值则置 `evicted` 并补充新代理 |
-| 全失效告警 | 某 platform×region 全部 `unhealthy/evicted` 时告警并暂停受影响采集任务 |
+| 定时轮换     | 定时任务（Cron，周期可配）轮换在用代理，降低单 IP 被风控概率                            |
+| 可用性检测    | 周期性探活（HTTP 探针 + 目标平台连通性），更新 `last_check_at` 与 `status`        |
+| 失效剔除     | 连续失败 `fail_count` 超阈值则置 `evicted` 并补充新代理                      |
+| 全失效告警    | 某 platform×region 全部 `unhealthy/evicted` 时告警并暂停受影响采集任务        |
 
 #### 5.2.5 采集策略自适应优化（F-DC-02-05，R-DC-004）
 
