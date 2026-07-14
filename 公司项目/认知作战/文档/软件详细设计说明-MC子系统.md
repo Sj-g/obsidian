@@ -767,7 +767,7 @@ classDiagram
 - **CircuitBreaker**：熔断。检测风控信号或单终端异常频率（Redis `mc:rate:gateway:{terminal_id}` 滑动窗口计数），触发熔断后该终端后续动作停止并告警。
 - **ChannelRouter + ChannelAdapter**：通道适配（策略模式）。按 `terminal_type` 路由到 `AdbAdapter`（移动端 ADB，经 II-02 下发 Agent 执行）/ `AccessibilityAdapter`（移动端无障碍）/ `CdpAdapter`（桌面端 CDP，直连 EI-06），控制通道对上层透明。
 
-**动作执行算法（F-MC-05-01~04）**：
+**动作执行算法（F-MC-05-01~05）**：
 
 ```
 ExecutionGateway.submit(action):
@@ -1043,14 +1043,14 @@ classDiagram
     }
     class JobStatistician {
         +compute_completion_rate()               %% F-MC-10-05 任务完成率
-        +compute_reach_interact()                %% F-MC-10-06/07 触达互动
-        +compute_health()                        %% F-MC-10-08 账号健康度
+        +compute_reach_interact()                %% F-MC-10-06 内容触达与互动统计
+        +compute_health()                        %% F-MC-10-07 账号健康度
     }
     class TaskReviewer {
-        +attribute_failure(task_id)              %% F-MC-10-09 任务复盘归因
+        +attribute_failure(task_id)              %% F-MC-10-08 任务复盘归因
     }
     class EffectCallbackPublisher {
-        +callback_to_occ(effect_data)            %% F-MC-10-10 效果回传OCC(II-10)
+        +callback_to_occ(effect_data)            %% F-MC-10-09 效果回传OCC(II-10)
     }
     class ActionTracer ..> ClickHouseClient : 写mc_action_log
     class JobStatistician ..> ClickHouseClient : 读mc_action_log聚合
