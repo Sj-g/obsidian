@@ -113,11 +113,11 @@ flowchart TB
 
 各部署单元职责：
 
-| 部署单元                 | 实现                      | 对应模块                 | 扩缩容                              |
-| -------------------- | ----------------------- | -------------------- | -------------------------------- |
-| dc-service           | Python(FastAPI) 单一微服务（scheduler/dispatcher/intel/sink 为同进程模块） | M-DC-01 任务接入/查询/配额/调度分发 + M-DC-04 回注/扩散 + M-DC-03 落库写入 | ×1（V2 演进 ×N 多副本 HA，NR-R-01/04 为 V2 目标） |
-| dc-crawler-*         | Python 爬虫 Worker（按平台分组） | M-DC-02 采集执行         | HPA 按 Kafka lag 横向扩缩             |
-| dc-etl-job           | PySpark 批作业             | M-DC-03 清洗           | Spark on K8s 动态分配 executor       |
+| 部署单元         | 实现                                                            | 对应模块                                                   | 扩缩容                                    |
+| ------------ | ------------------------------------------------------------- | ------------------------------------------------------ | -------------------------------------- |
+| dc-service   | Python(FastAPI) 单一微服务（scheduler/dispatcher/intel/sink 为同进程模块） | M-DC-01 任务接入/查询/配额/调度分发 + M-DC-04 回注/扩散 + M-DC-03 落库写入 | ×1（V2 演进 ×N 多副本 HA，NR-R-01/04 为 V2 目标） |
+| dc-crawler-* | Python 爬虫 Worker（按平台分组）                                       | M-DC-02 采集执行                                           | HPA 按 Kafka lag 横向扩缩                   |
+| dc-etl-job   | PySpark 批作业                                                   | M-DC-03 清洗                                             | Spark on K8s 动态分配 executor             |
 
 ### 3.3 模块间调用关系
 
