@@ -29,6 +29,8 @@
 | `软件详细设计说明-DC子系统.md` | SDD 详细设计 | **V1.2** | DC 子系统详细设计，M-DC-01~04 四模块下沉到类/接口/数据结构/算法/状态机/部署单元 + §8.1 部署架构图。技术栈 Python（采集域特例）。 |
 | `软件详细设计说明-OM子系统.md` | SDD 详细设计 | **V1.0** | OM 子系统详细设计，M-OM-01~04 四模块。技术栈 Java(Spring Boot)+KubeSphere。 |
 | `软件详细设计说明-COM子系统.md` | SDD 详细设计 | **V1.0** | COM 子系统详细设计，M-COM-01/02 下沉到类/接口/数据结构/算法/状态机/部署单元。JWT 无状态 + com-auth-lib 共享验签库，技术栈 Java(Spring Boot)+Spring Security。 |
+| `软件详细设计说明-SWM子系统.md` | SDD 详细设计 | **V1.0** | SWM 子系统详细设计，M-SWM-01/02/04/05/06/07 六模块，「提示词生成与记忆中心」定位（不含运行时，运行时归 MC agent-runtime）。集成层 coze-loop（Go）旁挂 + Java（swm-gw/swm-memory/swm-distill），CON-14 智能体域特例。 |
+| `软件详细设计说明-MC子系统.md` | SDD 详细设计 | **V1.0** | MC 子系统详细设计，M-MC-01~14 十四模块下沉到类/接口/数据结构/算法/状态机/部署单元。三边界形态：mc-service（Java/Spring Boot 单一微服务，14 模块同进程）+ mc-sfu（mediasoup SFU，远控媒体面）+ 设备端 Agent。统一执行网关唯一收口；双执行模式（GraalVM JS 沙箱 + agent-runtime 调 IRS）；账号平台级权威源（AES-256-GCM 凭据加密）。agent-runtime 归 M-MC-06、绑定关系单一物理存储（mc_binding）。技术栈 Java(Spring Boot)+mediasoup+CDP/ADB/无障碍+PostgreSQL+Redis+Kafka+ClickHouse+MinIO。 |
 | `软件开发计划.md` | SDP 管理 | — | 目录大纲。 |
 | `多设备矩阵自动化运营系统开发方案 V1.1.md` | 早期方案 | V1.1 | 位于上级目录，MC 子系统的早期设计与阶段规划（合规导向）。 |
 | `版本变动记录/版本变动记录.md` | 变更记录 | — | 每次修订**必须**追加一条。 |
