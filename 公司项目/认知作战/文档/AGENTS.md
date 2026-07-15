@@ -33,6 +33,8 @@
 | `软件详细设计说明-MC子系统.md` | SDD 详细设计 | **V1.0** | MC 子系统详细设计，M-MC-01~14 十四模块下沉到类/接口/数据结构/算法/状态机/部署单元。三边界形态：mc-service（Java/Spring Boot 单一微服务，14 模块同进程）+ mc-sfu（mediasoup SFU，远控媒体面）+ 设备端 Agent。统一执行网关唯一收口；双执行模式（GraalVM JS 沙箱 + agent-runtime 调 IRS）；账号平台级权威源（AES-256-GCM 凭据加密）。agent-runtime 归 M-MC-06、绑定关系单一物理存储（mc_binding）。技术栈 Java(Spring Boot)+mediasoup+CDP/ADB/无障碍+PostgreSQL+Redis+Kafka+ClickHouse+MinIO。 |
 | `软件详细设计说明-OCC子系统.md` | SDD 详细设计 | **V1.0** | OCC 子系统详细设计，M-OCC-01~09 九模块（31 功能点）下沉到类/接口/数据结构/算法/状态机/部署单元。双边界形态：occ-service（Java/Spring Boot 单一微服务，M-OCC-01/03/04/05/06/07/08/09 八业务模块同进程）+ occ-analysis（Python/FastAPI，M-OCC-02 数据分析与情报，V3.3 由 DC 移入）。M-OCC-02 群体下钻自研规则树+sklearn 评分模型（不调 IRS，指标自控）；M-OCC-05 编排用 Flowable/BPMN 逐步驱动（OCC 持编排图状态）经 II-10 逐节点下发 MC 网关收口；M-OCC-06 评估基于独立 ClickHouse 库 occ_analysis（DC 明细经 II-13 抽取+MC 成效经 II-10 同步，不重复采集）；M-OCC-03 图谱用 NebulaGraph 独立空间 occ_relation；M-OCC-08 内容主数据权威源（与 MC 账号主数据 CON-11 同构）。技术栈 Java(Spring Boot)+Python(FastAPI)+Flowable+PostgreSQL(occ)+ClickHouse(occ_analysis)+NebulaGraph(occ_relation)+Redis+Kafka+MinIO+ES。 |
 | `软件开发计划.md` | SDP 管理 | — | 目录大纲。 |
+| `系统页面清单.md` | 页面视图 | V1.0 | Web 管控控制台页面清单（路由级），4 控制台 / 62 业务页 + 5 横切通用页，每页映射模块 `M-XX-NN` 与角色。线框稿的需求来源。 |
+| `认知作战平台-线框图`（.pen，Pencil 格式） | 线框稿 | 进行中 | 全平台 Web 页面低保真灰阶线框稿。Pencil（pencil.dev）MCP 编辑，**加密文件，必须经 Pencil MCP 工具读写，禁止 Read/Grep**。设计规范见本文档 §9。 |
 | `多设备矩阵自动化运营系统开发方案 V1.1.md` | 早期方案 | V1.1 | 位于上级目录，MC 子系统的早期设计与阶段规划（合规导向）。 |
 | `版本变动记录/版本变动记录.md` | 变更记录 | — | 每次修订**必须**追加一条。 |
 
@@ -124,6 +126,7 @@
 - **自动备份**：仓库有定时 `vault backup` 提交（约每 10 分钟），勿手动干预备份提交。
 - **本工作目录**：`公司项目/认知作战/文档/`。
 - **编辑 .xlsx**：使用 officecli 工具（`load_skill excel` 后操作），不要直接手改二进制。
+- **编辑线框稿**：使用 Pencil MCP 工具（`mcp__pencil__*`，需 Pencil 桌面端运行并打开 `.pen` 文件）。`.pen` 文件加密，**禁止 Read/Grep/Bash 读它**，只用 `get_editor_state`/`batch_get`/`batch_design` 等工具。详见 §9。
 - **检查 mermaid 图**：架构图改动后确认子系统数、模块数、接口编号与正文一致。
 
 ---
