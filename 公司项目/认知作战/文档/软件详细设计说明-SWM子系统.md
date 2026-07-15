@@ -3,10 +3,10 @@
 | 项目 | 内容 |
 | --- | --- |
 | 项目名称 | 认知作战平台（v1.0） |
-| 文档版本 | V1.0 |
+| 文档版本 | V1.1 |
 | 密级 | 内部使用 |
 | 编制 | 石建国 |
-| 编制日期 | 2026-07-14 |
+| 编制日期 | 2026-07-15 |
 
 ---
 
@@ -14,7 +14,7 @@
 
 ### 1.1 标识
 
-本文件为「认知作战平台」（以下简称"系统"或"平台"）蜂群智能体子系统（SWM，软部件标识 M-SWM-00）的软件详细设计说明（SDD）。它是《软件需求规格说明》V3.7 功能需求 R-SWM-001~005 与《软件概要设计说明》V2.6 模块 M-SWM-01/02/04/05/06/07 的详细设计下沉，描述 SWM 子系统各模块的内部结构、类与接口、数据结构、算法、状态机与部署单元，作为编码实现与单元测试的依据。
+本文件为「认知作战平台」（以下简称"系统"或"平台"）蜂群智能体子系统（SWM，软部件标识 M-SWM-00）的软件详细设计说明（SDD）。它是《软件需求规格说明》V3.8 功能需求 R-SWM-001~005 与《软件概要设计说明》V2.7 模块 M-SWM-01/02/04/05/06/07 的详细设计下沉，描述 SWM 子系统各模块的内部结构、类与接口、数据结构、算法、状态机与部署单元，作为编码实现与单元测试的依据。
 
 **SWM 不含运行时**。原 M-SWM-03（提示词场景适配与动态调用 / 运行时引擎）已整体移至群控子系统（MC）的 agent-runtime 子模块（见 R-MC-006/014、CON-10），编号在 SWM 内废止。SWM 仅承担「生成提示词包 + 承载记忆 + 同步 MC + 评测迭代」四项职责；运行时（场景适配、动态调用提示词、读记忆注入、调 IRS 视觉推理）由 MC 的 agent-runtime 子模块执行——其中读记忆是 MC agent-runtime 远程调用 SWM 的 swm-memory 服务完成，SWM 不参与运行时。本文件不涉及 MC agent-runtime 的内部设计（属 MC 子系统详细设计范畴）。
 
@@ -22,20 +22,20 @@
 
 蜂群智能体子系统（SWM）是执行层的「提示词生成与记忆中心」，根据人设（画像、账号属性）生成驱动智能体作业的提示词并管理记忆，将生成的提示词包（人设标签、提示词、作业策略）以 agent_id（稳定逻辑标识）同步至 MC 持存，由 MC 的 agent-runtime 子模块运行。本子系统**不直接操作设备**，所有动作收口于 MC 统一执行网关（CON-07）。
 
-SWM 采用「**集成层**」形态：提示词工程（模板库、版本管理、Playground 试运行、版本输出对比）与智能体评测（评测集、评估器、实验）能力以开源项目 **coze-loop（Go）** 作为提示词工程与评测引擎旁挂集成（CON-14，智能体域特例，仿 DC 采集域特例思路）；网关 swm-gw、记忆服务 swm-memory、提炼编排 swm-distill 采用 Java 17 + Spring Boot 3.x，与管控/业务微服务统一 Java 栈一致。coze-loop 作为唯一外部 Go 服务，经 HTTP/OpenAPI 与 Java 侧解耦。
+SWM 采用「**集成层**」形态：提示词工程（模板库、版本管理、Playground 试运行、版本输出对比）与智能体评测（评测集、评估器、实验）能力以**魔改 coze-loop 作为 SWM 提示词工程与评测主体内核**（在开源项目 coze-loop 基础上定制开发，UI 层自研并与全平台统一控制台体验对齐，不再是旁挂外部黑盒）（CON-14，智能体域特例，仿 DC 采集域特例思路）；网关 swm-gw、记忆服务 swm-memory、提炼编排 swm-distill 采用 Java 17 + Spring Boot 3.x，与管控/业务微服务统一 Java 栈一致。魔改后的 coze-loop 作为 SWM 内核组件部署于 `swm` 命名空间，Java 侧经 HTTP/OpenAPI 调用其接口。
 
 SWM 子系统由六个模块组成（对应 5 项功能需求与 22 个功能点）：
 
 | 模块 | 标识 | 对应需求 | 功能点 | 承载组件 |
 | --- | --- | --- | --- | --- |
 | 人设标签管理 | M-SWM-01 | R-SWM-001（人设） | F-SWM-01-01、F-SWM-01-02 | swm-gw（Java） |
-| 提示词模板库与版本管理 | M-SWM-02 | R-SWM-001（资产） | F-SWM-02-01、F-SWM-02-02、F-SWM-02-03、F-SWM-02-04 | coze-loop（Go） |
+| 提示词模板库与版本管理 | M-SWM-02 | R-SWM-001（资产） | F-SWM-02-01、F-SWM-02-02、F-SWM-02-03、F-SWM-02-04 | 魔改 coze-loop 内核（prompt 模块） |
 | 蜂群记忆管理 | M-SWM-04 | R-SWM-002 | F-SWM-04-01、F-SWM-04-02、F-SWM-04-03、F-SWM-04-04 | swm-memory（Java） |
 | 智能体构建与提示词包下发 | M-SWM-05 | R-SWM-003 | F-SWM-05-01、F-SWM-05-02、F-SWM-05-03、F-SWM-05-04 | swm-gw / swm-distill（Java） |
-| 智能体评测与迭代决策 | M-SWM-06 | R-SWM-004 | F-SWM-06-01~06 | coze-loop（Go） |
-| 按账号与画像自动生成提示词 | M-SWM-07 | R-SWM-005 | F-SWM-07-01、F-SWM-07-02、F-SWM-07-03 | coze-loop 工作流（Go） |
+| 智能体评测与迭代决策 | M-SWM-06 | R-SWM-004 | F-SWM-06-01~06 | 魔改 coze-loop 内核（evaluation 模块） |
+| 按账号与画像自动生成提示词 | M-SWM-07 | R-SWM-005 | F-SWM-07-01、F-SWM-07-02、F-SWM-07-03 | 魔改 coze-loop 内核（工作流） |
 
-> 说明：① R-SWM-001 原含运行时（提示词场景适配与动态调用，V3.7 前的模块 M-SWM-03、功能点 F-SWM-03-01/02），V3.7 起「SWM 结构性转向」整体移至 MC 的 agent-runtime 子模块（见 R-MC-006/014、CON-10/11），编号 M-SWM-03 / F-SWM-03-0x 随之废止，M-SWM-04 及以后保留原编号以稳定全文交叉引用（编号缺口在《版本变动记录》V3.7 明细中登记）。② SWM 为集成层：coze-loop（Go）承载 M-SWM-02/06/07，Java 侧（swm-gw/swm-memory/swm-distill）承载 M-SWM-01/04/05；本文件对 coze-loop 按外部依赖组件处理（黑盒，仅描述适配层与 OpenAPI 契约），对 Java 自研组件全粒度下沉（类/接口/算法/状态机/部署单元）。
+> 说明：① R-SWM-001 原含运行时（提示词场景适配与动态调用，V3.7 前的模块 M-SWM-03、功能点 F-SWM-03-01/02），V3.7 起「SWM 结构性转向」整体移至 MC 的 agent-runtime 子模块（见 R-MC-006/014、CON-10/11），编号 M-SWM-03 / F-SWM-03-0x 随之废止，M-SWM-04 及以后保留原编号以稳定全文交叉引用（编号缺口在《版本变动记录》V3.7 明细中登记）。② SWM 为集成层：**魔改 coze-loop 内核**承载 M-SWM-02/06/07，Java 侧（swm-gw/swm-memory/swm-distill）承载 M-SWM-01/04/05；V1.1 起 coze-loop 由「外部旁挂黑盒」改为「SWM 主体内核（魔改定制）」，本文件对魔改内核按 SWM 内部组件描述（接口契约 + 适配层），对 Java 自研组件全粒度下沉（类/接口/算法/状态机/部署单元）。
 
 ### 1.3 文档概述
 
@@ -47,7 +47,7 @@ SWM 子系统由六个模块组成（对应 5 项功能需求与 22 个功能点
 
 | 术语 | 说明 |
 | --- | --- |
-| coze-loop | 开源的 LLM 评测与可观测性平台（Go），本项目以其 prompt 模块承载提示词工程、evaluation 模块承载智能体评测、工作流承载提示词自动生成，作为唯一外部 Go 服务经 HTTP/OpenAPI 旁挂集成（CON-14） |
+| coze-loop | 开源的 LLM 评测与可观测性平台（Go），本项目在其基础上魔改定制（V1.1 起由「旁挂外部黑盒」改为「SWM 主体内核」），以其 prompt 模块承载提示词工程、evaluation 模块承载智能体评测、工作流承载提示词自动生成，UI 层自研并与全平台统一控制台体验对齐，作为 SWM 内核组件部署于 `swm` 命名空间（CON-14） |
 | 提示词包 | SWM 生成的、用于驱动智能体作业的人设标签 + 提示词 + 作业策略的集合，以 agent_id（稳定逻辑标识）为索引、提示词版本为子属性；记忆不在其中，由记忆服务独立承载 |
 | agent_id | 智能体的稳定逻辑标识，不随提示词重新生成而变；提示词版本（version）作为 agent_id 下的子属性，每次重新生成升版本号；agent_id 与 account_id 严格 1:1 绑定 |
 | 评测集 / 评估器 / 实验 | R-SWM-004 离线评测的三类可管理实体：评测集承载测试用例，评估器承载可复用的打分逻辑，实验承载一次可追踪、可对比的评测运行；均承载于 coze-loop 的 evaluation 模块 |
@@ -62,8 +62,8 @@ SWM 子系统由六个模块组成（对应 5 项功能需求与 22 个功能点
 
 | 文件 | 说明 |
 | --- | --- |
-| 《软件需求规格说明.md》V3.7 | 上游需求，R-SWM-001~005、CON-06/07/10/11/14、II-01/01a/14/18、EI-05、DR-09 |
-| 《软件概要设计说明.md》V2.6 | 概要设计，§4.5 SWM 六模块职责/组成/关键设计、§4.2.6/§4.2.14 MC agent-runtime |
+| 《软件需求规格说明.md》V3.8 | 上游需求，R-SWM-001~005、CON-06/07/10/11/14、II-01/01a/14/18、EI-05、DR-09 |
+| 《软件概要设计说明.md》V2.7 | 概要设计，§4.5 SWM 六模块职责/组成/关键设计、§4.2.6/§4.2.14 MC agent-runtime |
 | 《软件概要设计-架构图.md》V1.4 | §3 SWM 专属架构图与各模块功能架构图 |
 | 《软件概要设计-模块功能拆分-v2.xlsx》 | SWM 蜂群智能体子系统工作表（模块/功能点拆分） |
 | 《软件需求跟踪矩阵.xlsx》 | 需求双向追溯唯一权威源（GJB 438C） |
@@ -77,13 +77,13 @@ SWM 子系统由六个模块组成（对应 5 项功能需求与 22 个功能点
 
 ### 3.1 技术选型
 
-SWM 子系统技术栈遵循 CON-14 智能体域特例（仿 DC 采集域特例思路）：提示词工程（M-SWM-02 模板库/版本/Playground/版本对比）与智能体评测（M-SWM-06 评测集/评估器/实验）以 **coze-loop（Go）** 旁挂集成；网关 swm-gw、记忆服务 swm-memory、提炼编排 swm-distill 采用 **Java 17 + Spring Boot 3.x**，与管控/业务微服务统一 Java 栈一致。coze-loop 作为唯一外部 Go 服务，经 HTTP/OpenAPI 与 Java 侧解耦。异构原因：coze-loop 原生覆盖提示词版本管理与评测集/评估器/实验体系，自研成本高且成熟度不及；其余智能体域逻辑（人设、记忆、构建同步、提炼编排）业务性强，用 Java 与 COM/OM 同栈便于复用 com-auth-lib 验签与统一运维。
+SWM 子系统技术栈遵循 CON-14 智能体域特例（仿 DC 采集域特例思路）：提示词工程（M-SWM-02 模板库/版本/Playground/版本对比）与智能体评测（M-SWM-06 评测集/评估器/实验）以 **魔改 coze-loop 作为 SWM 主体内核**（在开源 coze-loop 基础上定制开发，UI 层自研并与全平台统一控制台体验对齐，V1.1 起由「旁挂外部黑盒」改为「SWM 主体内核」）；网关 swm-gw、记忆服务 swm-memory、提炼编排 swm-distill 采用 **Java 17 + Spring Boot 3.x**，与管控/业务微服务统一 Java 栈一致。魔改后的 coze-loop 作为 SWM 内核组件部署于 `swm` 命名空间，Java 侧经 HTTP/OpenAPI 调用其接口。异构原因：coze-loop 原生覆盖提示词版本管理与评测集/评估器/实验体系，魔改后既复用其成熟能力又纳入 SWM 统一治理；其余智能体域逻辑（人设、记忆、构建同步、提炼编排）业务性强，用 Java 与 COM/OM 同栈便于复用 com-auth-lib 验签与统一运维。
 
 | 维度 | 选型 | 说明 |
 | --- | --- | --- |
 | 网关/编排语言 | Java 17 + Spring Boot 3.x | swm-gw / swm-distill，与 COM/OM 同栈，复用 com-auth-lib 本地验签（JWT 无状态） |
 | 记忆服务语言 | Java 17 + Spring Boot 3.x | swm-memory，与 MC（agent-runtime 的读取方）同栈，便于跨服务调用 |
-| 提示词工程/评测引擎 | coze-loop（Go） | 外部开源依赖（CON-14 智能体域特例），承载 M-SWM-02/06/07，经 HTTP/OpenAPI 解耦 |
+| 提示词工程/评测引擎 | 魔改 coze-loop（Go） | SWM 主体内核（CON-14 智能体域特例，V1.1 起由旁挂外部黑盒改为主体内核），承载 M-SWM-02/06/07，Java 侧经 HTTP/OpenAPI 调用 |
 | 元数据库 | PostgreSQL | sw schema：agent_id/人设/模板版本/提示词包 |
 | 记忆存储 | Milvus + PostgreSQL | Milvus 存向量记忆（轨迹层/经验层），PG 存记忆元数据；按 agent_id 隔离 |
 | 缓存 | Redis | 人设/提示词包/画像缓存 |
@@ -92,7 +92,7 @@ SWM 子系统技术栈遵循 CON-14 智能体域特例（仿 DC 采集域特例�
 
 ### 3.2 部署单元
 
-SWM 在 K8s（KubeSphere 纳管）的 `swm` 命名空间下部署四个单元：三个 Java 微服务（swm-gw / swm-memory / swm-distill）+ 一个 Go 外挂（coze-loop）。coze-loop 自带 MySQL/ClickHouse/Redis/MinIO 依赖，作为独立 Pod 组旁挂。
+SWM 在 K8s（KubeSphere 纳管）的 `swm` 命名空间下部署四个单元：三个 Java 微服务（swm-gw / swm-memory / swm-distill）+ 一个魔改 coze-loop 内核（Go，V1.1 起作为 SWM 主体内核组件，不再是外部旁挂黑盒）。魔改 coze-loop 自带 MySQL/ClickHouse 依赖，与 Java 服务同处 `swm` 命名空间。
 
 ```mermaid
 flowchart TB
@@ -101,7 +101,7 @@ flowchart TB
             GW["swm-gw<br/>(Java/Spring Boot)<br/>网关·M-SWM-01/05"]
             MEM["swm-memory<br/>(Java/Spring Boot)<br/>记忆·M-SWM-04"]
             DIST["swm-distill<br/>(Java/Spring Boot)<br/>提炼编排"]
-            LOOP["coze-loop<br/>(Go 外挂)<br/>M-SWM-02/06/07"]
+            LOOP["魔改 coze-loop 内核<br/>(Go，SWM 主体内核)<br/>M-SWM-02/06/07"]
         end
         subgraph SHARED["共享基础设施"]
             PG[("PostgreSQL<br/>sw schema")]
@@ -127,10 +127,10 @@ flowchart TB
 
 | 部署单元 | 语言/形态 | 副本 | 承载模块 | 职责 |
 | --- | --- | --- | --- | --- |
-| swm-gw | Java/Spring Boot | 2（HA） | M-SWM-01、M-SWM-05 | 对外门面：人设标签管理、提示词包构建与下发（II-14 同步 MC）、代理 coze-loop 鉴权、编排自动生成与评测 |
+| swm-gw | Java/Spring Boot | 2（HA） | M-SWM-01、M-SWM-05 | 对外门面：人设标签管理、提示词包构建与下发（II-14 同步 MC）、编排魔改 coze-loop 的自动生成与评测 |
 | swm-memory | Java/Spring Boot | 2（HA） | M-SWM-04 | 蜂群记忆存储/沉淀/复用/延续；被 MC agent-runtime 远程读取 |
-| swm-distill | Java/Spring Boot | 1（有状态编排） | M-SWM-05/06 编排 | 收 coze-loop 评测打分，编排记忆提炼与迭代决策；持久化提炼任务状态 |
-| coze-loop | Go（外部开源） | 1 | M-SWM-02、M-SWM-06、M-SWM-07 | 提示词工程（prompt 模块）、评测（evaluation 模块）、自动生成工作流 |
+| swm-distill | Java/Spring Boot | 1（有状态编排） | M-SWM-05/06 编排 | 收魔改 coze-loop 评测打分，编排记忆提炼与迭代决策；持久化提炼任务状态 |
+| coze-loop | Go（魔改内核） | 1 | M-SWM-02、M-SWM-06、M-SWM-07 | SWM 主体内核：提示词工程（prompt 模块）、评测（evaluation 模块）、自动生成工作流 |
 
 ### 3.3 模块间调用关系
 
@@ -327,7 +327,7 @@ classDiagram
 
 ### 5.2 M-SWM-02 提示词模板库与版本管理（对应需求 R-SWM-001 资产）
 
-本模块由 **coze-loop（Go）的 prompt 模块承载**（CON-14）。Java 侧 swm-gw 仅提供适配层，coze-loop 内部实现不在本文件设计范围（黑盒）。
+本模块由 **魔改 coze-loop 内核的 prompt 模块承载**（CON-14）。Java 侧 swm-gw 提供适配层与对外门面，魔改 coze-loop 作为 SWM 主体内核组件（不再是外部旁挂黑盒）。
 
 #### 5.2.1 模块组成与类图（Java 适配层）
 
