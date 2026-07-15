@@ -164,13 +164,12 @@
 
 ### 9.3 侧边栏覆盖模板（复制即用）
 
-实例化侧边栏时，必做两件事：① 展开当前页所在菜单；② 高亮当前页。其余菜单保持收起。OCC/SWM/OM 页面还要覆盖品牌名 + 菜单文字（MC 菜单文字是组件默认值，MC 页面免覆盖）。
+实例化侧边栏时，只需做一件事：**高亮当前页**（侧边栏常驻全部展开，不折叠，无需控制 enabled）。OCC/SWM/OM 页面还要覆盖品牌名 + 菜单文字（MC 菜单文字是组件默认值，MC 页面免覆盖）。
 
-**先 `batch_get` 实查侧边栏组件，拿到 6 个 `Group-XX`/`Sub-XX`/`Item-XX` 的真实 id**，再按下方模板填 descendants：
+**先 `batch_get` 实查侧边栏组件，拿到 6 个 `Group-XX`/`Item-XX` 的真实 id**，再按下方模板填 descendants：
 
 ```js
 Insert(page,{type:"ref",ref:"<侧边栏组件id>",name:"Sidebar",height:"fill_container",descendants:{
-  "<Sub-当前菜单id>":{enabled:true},            // 仅展开当前页所在菜单
   "<Item-当前页id>":{fill:"$--muted"},           // 高亮当前页：实底
   "<Item-当前页id>/Dot 或 ILabel":{fill:"$--foreground",fontWeight:"600"},
   // OCC/SWM/OM 页面额外覆盖（MC 免）：
