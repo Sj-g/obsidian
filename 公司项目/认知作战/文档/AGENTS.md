@@ -21,16 +21,17 @@
 
 | 文件 | 类型 | 当前版本 | 说明 |
 | --- | --- | --- | --- |
-| `软件需求规格说明.md` | SRS 需求 | **V3.6** | 系统需求规格，按子系统给出功能/非功能/接口/数据/约束。最上游、改动牵连最广。V3.6：COM 删除双因素（简化实现）、R-COM-001 关联接口补 II-16/17、NR-S-01 删双因素。 |
-| `软件需求跟踪矩阵.xlsx` | RTM 追踪 | — | GJB 438C 双向追溯（上游来源→需求→设计模块→验证方法），7 张工作表。已对齐 V3.6（R-COM-001 接口 II-16/17、删 F-COM-01-02、接口页增 II-16/17、NR-S-01 删双因素）。 |
-| `软件概要设计-模块功能拆分-v2.xlsx` | 概要设计 | 已对齐 V3.6 | 40 模块 / 145 功能（COM 功能点 6→5，删 F-COM-01-02 双因素）。 |
-| `软件概要设计-架构图.md` | 概要设计 | V1.3 | 架构图（mermaid），已对齐 V3.6（COM §6 删 F-COM-01-02 双因素）。 |
-| `软件概要设计说明.md` | HLD 概要设计 | **V2.5** | 概要设计说明，已对齐 SRS V3.6（§4.4 COM 删双因素、技术选型补 COM Java/JWT、接口表增 II-16/17）。 |
+| `软件需求规格说明.md` | SRS 需求 | **V3.7** | 系统需求规格，按子系统给出功能/非功能/接口/数据/约束。最上游、改动牵连最广。V3.7：SWM 结构性转向（定位改「提示词生成与记忆中心」、coze-loop 旁挂、运行时移 MC agent-runtime、删 II-09、新增 R-SWM-005/II-18/CON-14、R-OCC-004 关联接口补 II-18）。 |
+| `软件需求跟踪矩阵.xlsx` | RTM 追踪 | — | GJB 438C 双向追溯（上游来源→需求→设计模块→验证方法），7 张工作表。已对齐 V3.7（R-SWM-005 新增、II-09 删/II-18 加、CON-14 加、CON-10/11 改）。 |
+| `软件概要设计-模块功能拆分-v2.xlsx` | 概要设计 | 已对齐 V3.7 | 40 模块 / 145 功能（SWM 删 M-SWM-03 运行时引擎、新增 M-SWM-07 自动生成提示词、M-SWM-05 改提示词包；MC F-MC-06-02 补 agent-runtime）。 |
+| `软件概要设计-架构图.md` | 概要设计 | V1.4 | 架构图（mermaid），已对齐 V3.7（SWM 标签改「提示词生成与记忆中心」、§3 删 M-SWM-03/加 M-SWM-07、附录 II-14 改提示词包+加 II-18）。 |
+| `软件概要设计说明.md` | HLD 概要设计 | **V2.6** | 概要设计说明，已对齐 SRS V3.7（§4.5 SWM 改写删 M-SWM-03/加 M-SWM-07/补 coze-loop+Java 技术栈、§4.2 MC 补 agent-runtime、§3.1 CON-10/11 同步+新增 CON-14、§5.2 接口表删 II-09/改 II-14/加 II-18）。 |
 | `软件详细设计说明-DC子系统.md` | SDD 详细设计 | **V1.2** | DC 子系统详细设计，M-DC-01~04 四模块下沉到类/接口/数据结构/算法/状态机/部署单元 + §8.1 部署架构图。技术栈 Python（采集域特例）。 |
 | `软件详细设计说明-OM子系统.md` | SDD 详细设计 | **V1.0** | OM 子系统详细设计，M-OM-01~04 四模块。技术栈 Java(Spring Boot)+KubeSphere。 |
 | `软件详细设计说明-COM子系统.md` | SDD 详细设计 | **V1.0** | COM 子系统详细设计，M-COM-01/02 下沉到类/接口/数据结构/算法/状态机/部署单元。JWT 无状态 + com-auth-lib 共享验签库，技术栈 Java(Spring Boot)+Spring Security。 |
 | `软件详细设计说明-SWM子系统.md` | SDD 详细设计 | **V1.0** | SWM 子系统详细设计，M-SWM-01/02/04/05/06/07 六模块，「提示词生成与记忆中心」定位（不含运行时，运行时归 MC agent-runtime）。集成层 coze-loop（Go）旁挂 + Java（swm-gw/swm-memory/swm-distill），CON-14 智能体域特例。 |
 | `软件详细设计说明-MC子系统.md` | SDD 详细设计 | **V1.0** | MC 子系统详细设计，M-MC-01~14 十四模块下沉到类/接口/数据结构/算法/状态机/部署单元。三边界形态：mc-service（Java/Spring Boot 单一微服务，14 模块同进程）+ mc-sfu（mediasoup SFU，远控媒体面）+ 设备端 Agent。统一执行网关唯一收口；双执行模式（GraalVM JS 沙箱 + agent-runtime 调 IRS）；账号平台级权威源（AES-256-GCM 凭据加密）。agent-runtime 归 M-MC-06、绑定关系单一物理存储（mc_binding）。技术栈 Java(Spring Boot)+mediasoup+CDP/ADB/无障碍+PostgreSQL+Redis+Kafka+ClickHouse+MinIO。 |
+| `软件详细设计说明-OCC子系统.md` | SDD 详细设计 | **V1.0** | OCC 子系统详细设计，M-OCC-01~09 九模块（31 功能点）下沉到类/接口/数据结构/算法/状态机/部署单元。双边界形态：occ-service（Java/Spring Boot 单一微服务，M-OCC-01/03/04/05/06/07/08/09 八业务模块同进程）+ occ-analysis（Python/FastAPI，M-OCC-02 数据分析与情报，V3.3 由 DC 移入）。M-OCC-02 群体下钻自研规则树+sklearn 评分模型（不调 IRS，指标自控）；M-OCC-05 编排用 Flowable/BPMN 逐步驱动（OCC 持编排图状态）经 II-10 逐节点下发 MC 网关收口；M-OCC-06 评估基于独立 ClickHouse 库 occ_analysis（DC 明细经 II-13 抽取+MC 成效经 II-10 同步，不重复采集）；M-OCC-03 图谱用 NebulaGraph 独立空间 occ_relation；M-OCC-08 内容主数据权威源（与 MC 账号主数据 CON-11 同构）。技术栈 Java(Spring Boot)+Python(FastAPI)+Flowable+PostgreSQL(occ)+ClickHouse(occ_analysis)+NebulaGraph(occ_relation)+Redis+Kafka+MinIO+ES。 |
 | `软件开发计划.md` | SDP 管理 | — | 目录大纲。 |
 | `多设备矩阵自动化运营系统开发方案 V1.1.md` | 早期方案 | V1.1 | 位于上级目录，MC 子系统的早期设计与阶段规划（合规导向）。 |
 | `版本变动记录/版本变动记录.md` | 变更记录 | — | 每次修订**必须**追加一条。 |
