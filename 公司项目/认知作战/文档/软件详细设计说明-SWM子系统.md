@@ -216,7 +216,7 @@ SWM 数据分三类存储：元数据（PostgreSQL `sw` schema，Java 侧自管�
 | synced_at | timestamp | |
 | unique(agent_id, version) | | 同步幂等键（同一 agent_id+version 不重复同步） |
 
-**4.1.5 coze-loop 侧契约字段**（Java 侧仅感知，物理存储在 coze-loop 自带 MySQL）
+**4.1.5 魔改 coze-loop 内核侧契约字段**（Java 侧感知，物理存储在魔改 coze-loop 自带 MySQL）
 
 - 提示词模板库 / Playground 调试记录 / 版本对比记录（M-SWM-02）
 - 评测集 / 评估器 / 实验 / 逐题评分（M-SWM-06）
@@ -368,7 +368,7 @@ classDiagram
 | Playground 试运行 | `POST /api/prompt/playground` | 填入草稿+上下文，coze-loop 调 IRS（EI-05，不经执行网关 CON-10）返回产出；不产生真实作业、不同步 MC |
 | 版本输出对比 | `POST /api/prompt/compare` | 同 agent_id 两版本并排输入相同测试用例，调 IRS 并排展示 |
 
-> 说明：Playground 与版本对比的 IRS 推理由 coze-loop 内部经 EI-05 完成（私有化 CON-06）；coze-loop 的内部 prompt 模块结构、存储 schema 不在本文件覆盖范围，升级时以 coze-loop 官方契约为准。
+> 说明：Playground 与版本对比的 IRS 推理由魔改 coze-loop 内核经 EI-05 完成（私有化 CON-06）；魔改 coze-loop 的 prompt 模块内部结构与存储 schema 以魔改后代码为准，本文件仅描述 Java 侧调用的 OpenAPI 契约（接口边界）。
 
 #### 5.2.4 配置项
 
@@ -799,7 +799,7 @@ swm-gw / swm-memory / swm-distill 向运维监控子系统（OM）上报日志�
 ## 10 待后续补充事项
 
 1. swm-memory 向量索引选型（Milvus IVF/HNSW）与 collection 分区策略的细化与压测。
-2. coze-loop 部署版本锁定策略与升级回归测试用例集。
+2. 魔改 coze-loop 部署版本锁定策略与升级回归测试用例集。
 3. II-14 提示词包同步在高峰并发下的压测与限流阈值。
 4. R-SWM-004 评测各维度（有效性/稳定性/合规性/人设一致性）按作业类型的门槛细化（SRS 已注明"详细设计阶段按作业类型细化"）。
 5. R-SWM-005 自动生成提示词所用的 IRS 本地模型选型与生成质量基线。
