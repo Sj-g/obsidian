@@ -4069,79 +4069,3484 @@
       ]
     },
     {
-      "type": "prompt",
-      "id": "j4hLC",
-      "x": 3053,
+      "type": "frame",
+      "id": "uT34R",
+      "x": 4653,
       "y": -384,
-      "model": "cursor-composer",
-      "width": 400,
-      "height": 219,
-      "content": "Design a dashboard with a sidebar on the left into \"dashboard-utility\" frame for a utility company showing current usage and a history in a table."
-    },
-    {
-      "type": "frame",
-      "id": "nSNTs",
-      "x": 3053,
-      "y": -10,
-      "name": "dashboard-utility",
-      "theme": {
-        "Mode": "Light"
-      },
+      "name": "认知作战平台-整体信息架构线框图",
       "clip": true,
-      "width": 1440,
-      "height": "fit_content(900)",
-      "fill": "$--background"
-    },
-    {
-      "type": "prompt",
-      "id": "b6D19",
-      "x": 3053,
-      "y": 1037,
-      "model": "cursor-composer",
-      "width": 400,
-      "height": 219,
-      "content": "Design a dashboard into \"dashboard-revenue\" frame for a revenue tracking app with a sidebar, showing revenue stats, history in the content."
-    },
-    {
-      "type": "frame",
-      "id": "TZ4am",
-      "x": 3053,
-      "y": 1422,
-      "name": "dashboard-revenue",
-      "theme": {
-        "Mode": "Light"
-      },
-      "clip": true,
-      "width": 1440,
-      "height": "fit_content(717)",
-      "fill": "$--background"
-    },
-    {
-      "type": "prompt",
-      "id": "QGYHK",
-      "x": 3053,
-      "y": 2320.9999999999995,
-      "model": "cursor-composer",
-      "width": 400,
-      "height": 219,
-      "content": "Design a dashboard into \"dashboard-football\" frame with a table ranking UEFA teams. Show goal counts, captain name, etc. Put stats on the top."
-    },
-    {
-      "type": "frame",
-      "id": "6LMCW",
-      "x": 3053,
-      "y": 2652.9999999999995,
-      "name": "dashboard-football",
-      "theme": {
-        "Mode": "Light"
-      },
-      "clip": true,
-      "width": 1440,
-      "height": 933,
-      "fill": "$--background",
+      "width": 3200,
+      "fill": "#ffffff",
       "layout": "vertical",
-      "gap": 24,
-      "padding": 32
+      "gap": 48,
+      "padding": [
+        64,
+        80,
+        80,
+        80
+      ],
+      "children": [
+        {
+          "type": "frame",
+          "id": "LACz8",
+          "name": "Title",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 8,
+          "children": [
+            {
+              "type": "text",
+              "id": "T79pVE",
+              "name": "Heading",
+              "fill": "$--foreground",
+              "content": "认知作战平台 · 整体信息架构线框图",
+              "fontFamily": "Inter",
+              "fontSize": 38,
+              "fontWeight": "700"
+            },
+            {
+              "type": "text",
+              "id": "nGQT1",
+              "name": "Sub",
+              "fill": "$--muted-foreground",
+              "content": "多子系统独立控制台 + 统一单点登录(SSO) · 4 控制台 / 62 业务页 + 5 横切通用页 · 数据源《系统页面清单》V1.0",
+              "fontFamily": "Inter",
+              "fontSize": 16,
+              "fontWeight": "normal"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "JB9wT",
+          "name": "Legend",
+          "width": "fill_container",
+          "gap": 32,
+          "justifyContent": "space_between",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "oFcru",
+              "name": "Legend Left",
+              "gap": 24,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "tcjhv",
+                  "name": "Chip OCC 作战中心",
+                  "gap": 8,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "rectangle",
+                      "cornerRadius": 3,
+                      "id": "i2eQPb",
+                      "name": "Dot",
+                      "fill": "$occ-accent",
+                      "width": 12,
+                      "height": 12
+                    },
+                    {
+                      "type": "text",
+                      "id": "PjtNM",
+                      "name": "L",
+                      "fill": "$--foreground",
+                      "content": "OCC 作战中心",
+                      "fontFamily": "Inter",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "p0upJu",
+                  "name": "Chip MC 设备矩阵",
+                  "gap": 8,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "rectangle",
+                      "cornerRadius": 3,
+                      "id": "p9K0v",
+                      "name": "Dot",
+                      "fill": "$mc-accent",
+                      "width": 12,
+                      "height": 12
+                    },
+                    {
+                      "type": "text",
+                      "id": "doSEy",
+                      "name": "L",
+                      "fill": "$--foreground",
+                      "content": "MC 设备矩阵",
+                      "fontFamily": "Inter",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "e7wmcv",
+                  "name": "Chip SWM 智能体工厂",
+                  "gap": 8,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "rectangle",
+                      "cornerRadius": 3,
+                      "id": "kebGv",
+                      "name": "Dot",
+                      "fill": "$swm-accent",
+                      "width": 12,
+                      "height": 12
+                    },
+                    {
+                      "type": "text",
+                      "id": "aFTR7",
+                      "name": "L",
+                      "fill": "$--foreground",
+                      "content": "SWM 智能体工厂",
+                      "fontFamily": "Inter",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "W7gQcc",
+                  "name": "Chip OM 运维管理",
+                  "gap": 8,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "rectangle",
+                      "cornerRadius": 3,
+                      "id": "S88wCv",
+                      "name": "Dot",
+                      "fill": "$om-accent",
+                      "width": 12,
+                      "height": 12
+                    },
+                    {
+                      "type": "text",
+                      "id": "Zdtcm",
+                      "name": "L",
+                      "fill": "$--foreground",
+                      "content": "OM 运维管理",
+                      "fontFamily": "Inter",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "L6uV5",
+              "name": "Legend Right",
+              "gap": 20,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "Dh2yx",
+                  "name": "L1",
+                  "fill": "$--muted-foreground",
+                  "content": "— 实线 = 同会话导航",
+                  "fontFamily": "Inter",
+                  "fontSize": 13,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "T4cZdm",
+                  "name": "L2",
+                  "fill": "$--muted-foreground",
+                  "content": "- - 虚线 = 横切(所有控制台共享)",
+                  "fontFamily": "Inter",
+                  "fontSize": 13,
+                  "fontWeight": "normal"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "Gg6Ns",
+          "name": "SSO 链",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 16,
+          "children": [
+            {
+              "type": "text",
+              "id": "JsRP4",
+              "name": "Section Label SSO",
+              "fill": "$--muted-foreground",
+              "content": "① 统一登录入口",
+              "fontFamily": "Inter",
+              "fontSize": 14,
+              "fontWeight": "600"
+            },
+            {
+              "type": "frame",
+              "id": "vnOKG",
+              "name": "SSO Chain",
+              "width": "fill_container",
+              "gap": 32,
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "AbxuG",
+                  "name": "G-01 SSO 登录",
+                  "width": 280,
+                  "fill": "$--card",
+                  "cornerRadius": 10,
+                  "stroke": "#d4d4d8",
+                  "strokeWidth": 1,
+                  "layout": "vertical",
+                  "gap": 12,
+                  "padding": 20,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "IYuMa",
+                      "name": "Code",
+                      "fill": "$--muted-foreground",
+                      "content": "G-01",
+                      "fontFamily": "Inter",
+                      "fontSize": 12,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "text",
+                      "id": "OQWrx",
+                      "name": "Name",
+                      "fill": "$--foreground",
+                      "content": "SSO 统一登录页",
+                      "fontFamily": "Inter",
+                      "fontSize": 18,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "type": "text",
+                      "id": "xygKR",
+                      "name": "Desc",
+                      "fill": "$--muted-foreground",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "账号密码登录(COM II-16) · 连续5次错误锁定(需超管解锁)",
+                      "fontFamily": "Inter",
+                      "fontSize": 12,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "id": "Fg7ls",
+                  "name": "Arrow1",
+                  "fill": "$--muted-foreground",
+                  "content": "→",
+                  "fontFamily": "Inter",
+                  "fontSize": 24,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "frame",
+                  "id": "qT5YZ",
+                  "name": "G-02 门户选择器",
+                  "width": 360,
+                  "fill": "$--card",
+                  "cornerRadius": 10,
+                  "stroke": "#d4d4d8",
+                  "strokeWidth": 1,
+                  "layout": "vertical",
+                  "gap": 12,
+                  "padding": 20,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "C2oSdt",
+                      "name": "Code",
+                      "fill": "$--muted-foreground",
+                      "content": "G-02",
+                      "fontFamily": "Inter",
+                      "fontSize": 12,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "text",
+                      "id": "ZSuuV",
+                      "name": "Name",
+                      "fill": "$--foreground",
+                      "content": "控制台门户选择器",
+                      "fontFamily": "Inter",
+                      "fontSize": 18,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "type": "text",
+                      "id": "eTV9Q",
+                      "name": "Desc",
+                      "fill": "$--muted-foreground",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "SSO 后选择进入 4 个控制台之一 · 共享会话/RBAC/视觉体系",
+                      "fontFamily": "Inter",
+                      "fontSize": 12,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "B8cM1",
+          "name": "控制台区",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 16,
+          "children": [
+            {
+              "type": "text",
+              "id": "MvYhs",
+              "name": "Section Label Consoles",
+              "fill": "$--muted-foreground",
+              "content": "② 四大独立控制台（横排 · 各自独立导航）",
+              "fontFamily": "Inter",
+              "fontSize": 14,
+              "fontWeight": "600"
+            },
+            {
+              "type": "frame",
+              "id": "xGMs2",
+              "name": "Console Row",
+              "width": "fill_container",
+              "gap": 24,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "vtLc5",
+                  "name": "OCC 作战中心卡片",
+                  "clip": true,
+                  "width": "fill_container",
+                  "fill": "$--card",
+                  "cornerRadius": 10,
+                  "stroke": "#d4d4d8",
+                  "strokeWidth": 1,
+                  "layout": "vertical",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "fSeL4",
+                      "name": "OCC Head",
+                      "width": "fill_container",
+                      "fill": "#f4f4f5",
+                      "layout": "vertical",
+                      "gap": 4,
+                      "padding": [
+                        16,
+                        20
+                      ],
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "YjxeF",
+                          "name": "Badge",
+                          "fill": "$--muted-foreground",
+                          "content": "OCC · 业务层",
+                          "fontFamily": "Inter",
+                          "fontSize": 11,
+                          "fontWeight": "700"
+                        },
+                        {
+                          "type": "text",
+                          "id": "bYYAg",
+                          "name": "Title",
+                          "fill": "$--foreground",
+                          "content": "作战中心",
+                          "fontFamily": "Inter",
+                          "fontSize": 18,
+                          "fontWeight": "700"
+                        },
+                        {
+                          "type": "text",
+                          "id": "hsjjj",
+                          "name": "Sub",
+                          "fill": "$--muted-foreground",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "舆情作战业务子系统 · 6 菜单 / 20 页",
+                          "fontFamily": "Inter",
+                          "fontSize": 12,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "DFUiL",
+                      "name": "OCC Body",
+                      "width": "fill_container",
+                      "layout": "vertical",
+                      "gap": 14,
+                      "padding": [
+                        12,
+                        20,
+                        16,
+                        20
+                      ],
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "gw47H",
+                          "name": "Menu 作战总览",
+                          "width": "fill_container",
+                          "layout": "vertical",
+                          "gap": 6,
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "Nd1AA",
+                              "name": "M作战总览",
+                              "fill": "$--foreground",
+                              "content": "作战总览  (1)",
+                              "fontFamily": "Inter",
+                              "fontSize": 12,
+                              "fontWeight": "600"
+                            },
+                            {
+                              "type": "frame",
+                              "id": "K4W37K",
+                              "name": "Page OCC-01",
+                              "width": "fill_container",
+                              "gap": 8,
+                              "padding": [
+                                2,
+                                0
+                              ],
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "hxFnO",
+                                  "name": "OCC-01 code",
+                                  "fill": "$--muted-foreground",
+                                  "content": "OCC-01",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 11,
+                                  "fontWeight": "500"
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "Vszyt",
+                                  "name": "OCC-01 name",
+                                  "fill": "$--foreground",
+                                  "textGrowth": "fixed-width",
+                                  "width": "fill_container",
+                                  "content": "作战总览首页",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 12,
+                                  "fontWeight": "normal"
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "tLY79",
+                          "name": "Menu 情报分析",
+                          "width": "fill_container",
+                          "layout": "vertical",
+                          "gap": 6,
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "V0jUNv",
+                              "name": "M情报分析",
+                              "fill": "$--foreground",
+                              "content": "情报分析  (4)",
+                              "fontFamily": "Inter",
+                              "fontSize": 12,
+                              "fontWeight": "600"
+                            },
+                            {
+                              "type": "frame",
+                              "id": "ameOE",
+                              "name": "Page OCC-02",
+                              "width": "fill_container",
+                              "gap": 8,
+                              "padding": [
+                                2,
+                                0
+                              ],
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "k4pcvh",
+                                  "name": "OCC-02 code",
+                                  "fill": "$--muted-foreground",
+                                  "content": "OCC-02",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 11,
+                                  "fontWeight": "500"
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "nJKWN",
+                                  "name": "OCC-02 name",
+                                  "fill": "$--foreground",
+                                  "textGrowth": "fixed-width",
+                                  "width": "fill_container",
+                                  "content": "群体下钻筛选页",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 12,
+                                  "fontWeight": "normal"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "m1q2tC",
+                              "name": "Page OCC-03",
+                              "width": "fill_container",
+                              "gap": 8,
+                              "padding": [
+                                2,
+                                0
+                              ],
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "JtoL6",
+                                  "name": "OCC-03 code",
+                                  "fill": "$--muted-foreground",
+                                  "content": "OCC-03",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 11,
+                                  "fontWeight": "500"
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "MknVE",
+                                  "name": "OCC-03 name",
+                                  "fill": "$--foreground",
+                                  "textGrowth": "fixed-width",
+                                  "width": "fill_container",
+                                  "content": "关系图谱页",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 12,
+                                  "fontWeight": "normal"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "Yj1xt",
+                              "name": "Page OCC-04",
+                              "width": "fill_container",
+                              "gap": 8,
+                              "padding": [
+                                2,
+                                0
+                              ],
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "I9QJg",
+                                  "name": "OCC-04 code",
+                                  "fill": "$--muted-foreground",
+                                  "content": "OCC-04",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 11,
+                                  "fontWeight": "500"
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "b5ROL",
+                                  "name": "OCC-04 name",
+                                  "fill": "$--foreground",
+                                  "textGrowth": "fixed-width",
+                                  "width": "fill_container",
+                                  "content": "实体检索与档案页",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 12,
+                                  "fontWeight": "normal"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "w1yxH",
+                              "name": "Page OCC-05",
+                              "width": "fill_container",
+                              "gap": 8,
+                              "padding": [
+                                2,
+                                0
+                              ],
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "o2fFLp",
+                                  "name": "OCC-05 code",
+                                  "fill": "$--muted-foreground",
+                                  "content": "OCC-05",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 11,
+                                  "fontWeight": "500"
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "wdygY",
+                                  "name": "OCC-05 name",
+                                  "fill": "$--foreground",
+                                  "textGrowth": "fixed-width",
+                                  "width": "fill_container",
+                                  "content": "文本智能分析页",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 12,
+                                  "fontWeight": "normal"
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "HbJ6h",
+                          "name": "Menu 目标与网络",
+                          "width": "fill_container",
+                          "layout": "vertical",
+                          "gap": 6,
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "wIDoc",
+                              "name": "M目标与网络",
+                              "fill": "$--foreground",
+                              "content": "目标与网络  (2)",
+                              "fontFamily": "Inter",
+                              "fontSize": 12,
+                              "fontWeight": "600"
+                            },
+                            {
+                              "type": "frame",
+                              "id": "HxR4X",
+                              "name": "Page OCC-06",
+                              "width": "fill_container",
+                              "gap": 8,
+                              "padding": [
+                                2,
+                                0
+                              ],
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "qnbN6",
+                                  "name": "OCC-06 code",
+                                  "fill": "$--muted-foreground",
+                                  "content": "OCC-06",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 11,
+                                  "fontWeight": "500"
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "nvFbe",
+                                  "name": "OCC-06 name",
+                                  "fill": "$--foreground",
+                                  "textGrowth": "fixed-width",
+                                  "width": "fill_container",
+                                  "content": "目标档案与状态管理页",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 12,
+                                  "fontWeight": "normal"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "I7542u",
+                              "name": "Page OCC-07",
+                              "width": "fill_container",
+                              "gap": 8,
+                              "padding": [
+                                2,
+                                0
+                              ],
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "H1RRF",
+                                  "name": "OCC-07 code",
+                                  "fill": "$--muted-foreground",
+                                  "content": "OCC-07",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 11,
+                                  "fontWeight": "500"
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "z6oPKl",
+                                  "name": "OCC-07 name",
+                                  "fill": "$--foreground",
+                                  "textGrowth": "fixed-width",
+                                  "width": "fill_container",
+                                  "content": "目标关联网络页",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 12,
+                                  "fontWeight": "normal"
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "qbw07",
+                          "name": "Menu 作战编排",
+                          "width": "fill_container",
+                          "layout": "vertical",
+                          "gap": 6,
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "ezyGU",
+                              "name": "M作战编排",
+                              "fill": "$--foreground",
+                              "content": "作战编排  (3)",
+                              "fontFamily": "Inter",
+                              "fontSize": 12,
+                              "fontWeight": "600"
+                            },
+                            {
+                              "type": "frame",
+                              "id": "mP1b9",
+                              "name": "Page OCC-08",
+                              "width": "fill_container",
+                              "gap": 8,
+                              "padding": [
+                                2,
+                                0
+                              ],
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "CnZZv",
+                                  "name": "OCC-08 code",
+                                  "fill": "$--muted-foreground",
+                                  "content": "OCC-08",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 11,
+                                  "fontWeight": "500"
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "iuysr",
+                                  "name": "OCC-08 name",
+                                  "fill": "$--foreground",
+                                  "textGrowth": "fixed-width",
+                                  "width": "fill_container",
+                                  "content": "作战方案规划页",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 12,
+                                  "fontWeight": "normal"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "Q9FQVF",
+                              "name": "Page OCC-09",
+                              "width": "fill_container",
+                              "gap": 8,
+                              "padding": [
+                                2,
+                                0
+                              ],
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "Ujlb1",
+                                  "name": "OCC-09 code",
+                                  "fill": "$--muted-foreground",
+                                  "content": "OCC-09",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 11,
+                                  "fontWeight": "500"
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "g6lsIb",
+                                  "name": "OCC-09 name",
+                                  "fill": "$--foreground",
+                                  "textGrowth": "fixed-width",
+                                  "width": "fill_container",
+                                  "content": "编排流程定义管理页",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 12,
+                                  "fontWeight": "normal"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "o4jyjB",
+                              "name": "Page OCC-10",
+                              "width": "fill_container",
+                              "gap": 8,
+                              "padding": [
+                                2,
+                                0
+                              ],
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "okwmi",
+                                  "name": "OCC-10 code",
+                                  "fill": "$--muted-foreground",
+                                  "content": "OCC-10",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 11,
+                                  "fontWeight": "500"
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "q3S8Dd",
+                                  "name": "OCC-10 name",
+                                  "fill": "$--foreground",
+                                  "textGrowth": "fixed-width",
+                                  "width": "fill_container",
+                                  "content": "编排实例执行跟踪页",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 12,
+                                  "fontWeight": "normal"
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "ZaHaL",
+                          "name": "Menu 效果评估",
+                          "width": "fill_container",
+                          "layout": "vertical",
+                          "gap": 6,
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "Msnnc",
+                              "name": "M效果评估",
+                              "fill": "$--foreground",
+                              "content": "效果评估  (3)",
+                              "fontFamily": "Inter",
+                              "fontSize": 12,
+                              "fontWeight": "600"
+                            },
+                            {
+                              "type": "frame",
+                              "id": "p2jB9",
+                              "name": "Page OCC-11",
+                              "width": "fill_container",
+                              "gap": 8,
+                              "padding": [
+                                2,
+                                0
+                              ],
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "v5dxpX",
+                                  "name": "OCC-11 code",
+                                  "fill": "$--muted-foreground",
+                                  "content": "OCC-11",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 11,
+                                  "fontWeight": "500"
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "c1VDle",
+                                  "name": "OCC-11 name",
+                                  "fill": "$--foreground",
+                                  "textGrowth": "fixed-width",
+                                  "width": "fill_container",
+                                  "content": "单轮/走势成效看板",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 12,
+                                  "fontWeight": "normal"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "RFZp3",
+                              "name": "Page OCC-12",
+                              "width": "fill_container",
+                              "gap": 8,
+                              "padding": [
+                                2,
+                                0
+                              ],
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "f6cFtQ",
+                                  "name": "OCC-12 code",
+                                  "fill": "$--muted-foreground",
+                                  "content": "OCC-12",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 11,
+                                  "fontWeight": "500"
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "LBGuO",
+                                  "name": "OCC-12 name",
+                                  "fill": "$--foreground",
+                                  "textGrowth": "fixed-width",
+                                  "width": "fill_container",
+                                  "content": "作业复盘报告页",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 12,
+                                  "fontWeight": "normal"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "Y1cWg5",
+                              "name": "Page OCC-13",
+                              "width": "fill_container",
+                              "gap": 8,
+                              "padding": [
+                                2,
+                                0
+                              ],
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "WlpI0",
+                                  "name": "OCC-13 code",
+                                  "fill": "$--muted-foreground",
+                                  "content": "OCC-13",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 11,
+                                  "fontWeight": "500"
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "a7xZN",
+                                  "name": "OCC-13 name",
+                                  "fill": "$--foreground",
+                                  "textGrowth": "fixed-width",
+                                  "width": "fill_container",
+                                  "content": "中短期与长期评估页",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 12,
+                                  "fontWeight": "normal"
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "fPGoZ",
+                          "name": "Menu 策略与内容",
+                          "width": "fill_container",
+                          "layout": "vertical",
+                          "gap": 6,
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "kK1RY",
+                              "name": "M策略与内容",
+                              "fill": "$--foreground",
+                              "content": "策略与内容  (7)",
+                              "fontFamily": "Inter",
+                              "fontSize": 12,
+                              "fontWeight": "600"
+                            },
+                            {
+                              "type": "frame",
+                              "id": "Kyjw5",
+                              "name": "Page OCC-14",
+                              "width": "fill_container",
+                              "gap": 8,
+                              "padding": [
+                                2,
+                                0
+                              ],
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "GvvTT",
+                                  "name": "OCC-14 code",
+                                  "fill": "$--muted-foreground",
+                                  "content": "OCC-14",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 11,
+                                  "fontWeight": "500"
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "Wj8Na",
+                                  "name": "OCC-14 name",
+                                  "fill": "$--foreground",
+                                  "textGrowth": "fixed-width",
+                                  "width": "fill_container",
+                                  "content": "策略库列表与分类页",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 12,
+                                  "fontWeight": "normal"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "XxbE9",
+                              "name": "Page OCC-15",
+                              "width": "fill_container",
+                              "gap": 8,
+                              "padding": [
+                                2,
+                                0
+                              ],
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "mtpHT",
+                                  "name": "OCC-15 code",
+                                  "fill": "$--muted-foreground",
+                                  "content": "OCC-15",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 11,
+                                  "fontWeight": "500"
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "J1DJwJ",
+                                  "name": "OCC-15 name",
+                                  "fill": "$--foreground",
+                                  "textGrowth": "fixed-width",
+                                  "width": "fill_container",
+                                  "content": "策略版本与迭代历史页",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 12,
+                                  "fontWeight": "normal"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "yc57z",
+                              "name": "Page OCC-16",
+                              "width": "fill_container",
+                              "gap": 8,
+                              "padding": [
+                                2,
+                                0
+                              ],
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "VD0cD",
+                                  "name": "OCC-16 code",
+                                  "fill": "$--muted-foreground",
+                                  "content": "OCC-16",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 11,
+                                  "fontWeight": "500"
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "mjOsT",
+                                  "name": "OCC-16 name",
+                                  "fill": "$--foreground",
+                                  "textGrowth": "fixed-width",
+                                  "width": "fill_container",
+                                  "content": "素材库内容主数据页",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 12,
+                                  "fontWeight": "normal"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "pfTUV",
+                              "name": "Page OCC-17",
+                              "width": "fill_container",
+                              "gap": 8,
+                              "padding": [
+                                2,
+                                0
+                              ],
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "w1xn6x",
+                                  "name": "OCC-17 code",
+                                  "fill": "$--muted-foreground",
+                                  "content": "OCC-17",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 11,
+                                  "fontWeight": "500"
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "knB4P",
+                                  "name": "OCC-17 name",
+                                  "fill": "$--foreground",
+                                  "textGrowth": "fixed-width",
+                                  "width": "fill_container",
+                                  "content": "素材分类与平台适配页",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 12,
+                                  "fontWeight": "normal"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "DEY9v",
+                              "name": "Page OCC-18",
+                              "width": "fill_container",
+                              "gap": 8,
+                              "padding": [
+                                2,
+                                0
+                              ],
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "a0JvJb",
+                                  "name": "OCC-18 code",
+                                  "fill": "$--muted-foreground",
+                                  "content": "OCC-18",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 11,
+                                  "fontWeight": "500"
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "GEo1K",
+                                  "name": "OCC-18 name",
+                                  "fill": "$--foreground",
+                                  "textGrowth": "fixed-width",
+                                  "width": "fill_container",
+                                  "content": "发布排期页",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 12,
+                                  "fontWeight": "normal"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "g0wHKU",
+                              "name": "Page OCC-19",
+                              "width": "fill_container",
+                              "gap": 8,
+                              "padding": [
+                                2,
+                                0
+                              ],
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "t1TVg",
+                                  "name": "OCC-19 code",
+                                  "fill": "$--muted-foreground",
+                                  "content": "OCC-19",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 11,
+                                  "fontWeight": "500"
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "syH74",
+                                  "name": "OCC-19 name",
+                                  "fill": "$--foreground",
+                                  "textGrowth": "fixed-width",
+                                  "width": "fill_container",
+                                  "content": "内容审核工作台",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 12,
+                                  "fontWeight": "normal"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "FZePM",
+                              "name": "Page OCC-20",
+                              "width": "fill_container",
+                              "gap": 8,
+                              "padding": [
+                                2,
+                                0
+                              ],
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "MVshb",
+                                  "name": "OCC-20 code",
+                                  "fill": "$--muted-foreground",
+                                  "content": "OCC-20",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 11,
+                                  "fontWeight": "500"
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "VGFdI",
+                                  "name": "OCC-20 name",
+                                  "fill": "$--foreground",
+                                  "textGrowth": "fixed-width",
+                                  "width": "fill_container",
+                                  "content": "敏感词风控库页",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 12,
+                                  "fontWeight": "normal"
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "cNZ5P",
+                  "name": "MC 设备矩阵卡片",
+                  "clip": true,
+                  "width": "fill_container",
+                  "fill": "$--card",
+                  "cornerRadius": 10,
+                  "stroke": "#d4d4d8",
+                  "strokeWidth": 1,
+                  "layout": "vertical",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "nHMFX",
+                      "name": "MC Head",
+                      "width": "fill_container",
+                      "fill": "#f4f4f5",
+                      "layout": "vertical",
+                      "gap": 4,
+                      "padding": [
+                        16,
+                        20
+                      ],
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "rPA04",
+                          "name": "Badge",
+                          "fill": "$--muted-foreground",
+                          "content": "MC · 执行层",
+                          "fontFamily": "Inter",
+                          "fontSize": 11,
+                          "fontWeight": "700"
+                        },
+                        {
+                          "type": "text",
+                          "id": "R6ghI",
+                          "name": "Title",
+                          "fill": "$--foreground",
+                          "content": "设备矩阵控制台",
+                          "fontFamily": "Inter",
+                          "fontSize": 18,
+                          "fontWeight": "700"
+                        },
+                        {
+                          "type": "text",
+                          "id": "YuAWZ",
+                          "name": "Sub",
+                          "fill": "$--muted-foreground",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "多设备矩阵自动化群控子系统 · 6 菜单 / 21 页",
+                          "fontFamily": "Inter",
+                          "fontSize": 12,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "nqfD1",
+                      "name": "MC Body",
+                      "width": "fill_container",
+                      "layout": "vertical",
+                      "gap": 14,
+                      "padding": [
+                        12,
+                        20,
+                        16,
+                        20
+                      ],
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "s1xWU",
+                          "name": "Menu 设备总览",
+                          "width": "fill_container",
+                          "layout": "vertical",
+                          "gap": 6,
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "kWNdj",
+                              "name": "M设备总览",
+                              "fill": "$--foreground",
+                              "content": "设备总览  (1)",
+                              "fontFamily": "Inter",
+                              "fontSize": 12,
+                              "fontWeight": "600"
+                            },
+                            {
+                              "type": "frame",
+                              "id": "A83lpx",
+                              "name": "Page MC-01",
+                              "width": "fill_container",
+                              "gap": 8,
+                              "padding": [
+                                2,
+                                0
+                              ],
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "x3M6iv",
+                                  "name": "MC-01 code",
+                                  "fill": "$--muted-foreground",
+                                  "content": "MC-01",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 11,
+                                  "fontWeight": "500"
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "f0RBw",
+                                  "name": "MC-01 name",
+                                  "fill": "$--foreground",
+                                  "textGrowth": "fixed-width",
+                                  "width": "fill_container",
+                                  "content": "设备总览首页",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 12,
+                                  "fontWeight": "normal"
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "D0tRG",
+                          "name": "Menu 终端资源",
+                          "width": "fill_container",
+                          "layout": "vertical",
+                          "gap": 6,
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "aEFhZ",
+                              "name": "M终端资源",
+                              "fill": "$--foreground",
+                              "content": "终端资源  (4)",
+                              "fontFamily": "Inter",
+                              "fontSize": 12,
+                              "fontWeight": "600"
+                            },
+                            {
+                              "type": "frame",
+                              "id": "UIH8J",
+                              "name": "Page MC-02",
+                              "width": "fill_container",
+                              "gap": 8,
+                              "padding": [
+                                2,
+                                0
+                              ],
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "GpmWG",
+                                  "name": "MC-02 code",
+                                  "fill": "$--muted-foreground",
+                                  "content": "MC-02",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 11,
+                                  "fontWeight": "500"
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "Gousn",
+                                  "name": "MC-02 name",
+                                  "fill": "$--foreground",
+                                  "textGrowth": "fixed-width",
+                                  "width": "fill_container",
+                                  "content": "终端台账列表页",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 12,
+                                  "fontWeight": "normal"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "b1d7BY",
+                              "name": "Page MC-03",
+                              "width": "fill_container",
+                              "gap": 8,
+                              "padding": [
+                                2,
+                                0
+                              ],
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "ElTbx",
+                                  "name": "MC-03 code",
+                                  "fill": "$--muted-foreground",
+                                  "content": "MC-03",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 11,
+                                  "fontWeight": "500"
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "d0oqBa",
+                                  "name": "MC-03 name",
+                                  "fill": "$--foreground",
+                                  "textGrowth": "fixed-width",
+                                  "width": "fill_container",
+                                  "content": "终端分组与标签页",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 12,
+                                  "fontWeight": "normal"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "vxSjK",
+                              "name": "Page MC-04",
+                              "width": "fill_container",
+                              "gap": 8,
+                              "padding": [
+                                2,
+                                0
+                              ],
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "hEtyR",
+                                  "name": "MC-04 code",
+                                  "fill": "$--muted-foreground",
+                                  "content": "MC-04",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 11,
+                                  "fontWeight": "500"
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "b1n3Y",
+                                  "name": "MC-04 name",
+                                  "fill": "$--foreground",
+                                  "textGrowth": "fixed-width",
+                                  "width": "fill_container",
+                                  "content": "终端指纹与风控分级页",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 12,
+                                  "fontWeight": "normal"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "AIvD3",
+                              "name": "Page MC-05",
+                              "width": "fill_container",
+                              "gap": 8,
+                              "padding": [
+                                2,
+                                0
+                              ],
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "lrWw2",
+                                  "name": "MC-05 code",
+                                  "fill": "$--muted-foreground",
+                                  "content": "MC-05",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 11,
+                                  "fontWeight": "500"
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "nqMXb",
+                                  "name": "MC-05 name",
+                                  "fill": "$--foreground",
+                                  "textGrowth": "fixed-width",
+                                  "width": "fill_container",
+                                  "content": "代理 IP 池与绑定页",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 12,
+                                  "fontWeight": "normal"
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "UKewg",
+                          "name": "Menu 账号资产",
+                          "width": "fill_container",
+                          "layout": "vertical",
+                          "gap": 6,
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "jOYms",
+                              "name": "M账号资产",
+                              "fill": "$--foreground",
+                              "content": "账号资产  (7)",
+                              "fontFamily": "Inter",
+                              "fontSize": 12,
+                              "fontWeight": "600"
+                            },
+                            {
+                              "type": "frame",
+                              "id": "wVv2z",
+                              "name": "Page MC-06",
+                              "width": "fill_container",
+                              "gap": 8,
+                              "padding": [
+                                2,
+                                0
+                              ],
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "wIqq8",
+                                  "name": "MC-06 code",
+                                  "fill": "$--muted-foreground",
+                                  "content": "MC-06",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 11,
+                                  "fontWeight": "500"
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "Rrc0q",
+                                  "name": "MC-06 name",
+                                  "fill": "$--foreground",
+                                  "textGrowth": "fixed-width",
+                                  "width": "fill_container",
+                                  "content": "账号主数据列表页",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 12,
+                                  "fontWeight": "normal"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "JRcMb",
+                              "name": "Page MC-07",
+                              "width": "fill_container",
+                              "gap": 8,
+                              "padding": [
+                                2,
+                                0
+                              ],
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "JBQGW",
+                                  "name": "MC-07 code",
+                                  "fill": "$--muted-foreground",
+                                  "content": "MC-07",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 11,
+                                  "fontWeight": "500"
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "S7O8v",
+                                  "name": "MC-07 name",
+                                  "fill": "$--foreground",
+                                  "textGrowth": "fixed-width",
+                                  "width": "fill_container",
+                                  "content": "账号注册流程页",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 12,
+                                  "fontWeight": "normal"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "zWvDx",
+                              "name": "Page MC-08",
+                              "width": "fill_container",
+                              "gap": 8,
+                              "padding": [
+                                2,
+                                0
+                              ],
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "h7FlJ",
+                                  "name": "MC-08 code",
+                                  "fill": "$--muted-foreground",
+                                  "content": "MC-08",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 11,
+                                  "fontWeight": "500"
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "KHaHV",
+                                  "name": "MC-08 name",
+                                  "fill": "$--foreground",
+                                  "textGrowth": "fixed-width",
+                                  "width": "fill_container",
+                                  "content": "账号生命周期与凭据页",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 12,
+                                  "fontWeight": "normal"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "T6XPr",
+                              "name": "Page MC-09",
+                              "width": "fill_container",
+                              "gap": 8,
+                              "padding": [
+                                2,
+                                0
+                              ],
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "EAAZZ",
+                                  "name": "MC-09 code",
+                                  "fill": "$--muted-foreground",
+                                  "content": "MC-09",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 11,
+                                  "fontWeight": "500"
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "B1csuO",
+                                  "name": "MC-09 name",
+                                  "fill": "$--foreground",
+                                  "textGrowth": "fixed-width",
+                                  "width": "fill_container",
+                                  "content": "智能体账号分层分组页",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 12,
+                                  "fontWeight": "normal"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "xC09m",
+                              "name": "Page MC-10",
+                              "width": "fill_container",
+                              "gap": 8,
+                              "padding": [
+                                2,
+                                0
+                              ],
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "AHr2I",
+                                  "name": "MC-10 code",
+                                  "fill": "$--muted-foreground",
+                                  "content": "MC-10",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 11,
+                                  "fontWeight": "500"
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "iGZAa",
+                                  "name": "MC-10 name",
+                                  "fill": "$--foreground",
+                                  "textGrowth": "fixed-width",
+                                  "width": "fill_container",
+                                  "content": "智能体绑定与资产迁移页",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 12,
+                                  "fontWeight": "normal"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "MFjuK",
+                              "name": "Page MC-11",
+                              "width": "fill_container",
+                              "gap": 8,
+                              "padding": [
+                                2,
+                                0
+                              ],
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "AtoSj",
+                                  "name": "MC-11 code",
+                                  "fill": "$--muted-foreground",
+                                  "content": "MC-11",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 11,
+                                  "fontWeight": "500"
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "MXuP9",
+                                  "name": "MC-11 name",
+                                  "fill": "$--foreground",
+                                  "textGrowth": "fixed-width",
+                                  "width": "fill_container",
+                                  "content": "养号任务编排监控页",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 12,
+                                  "fontWeight": "normal"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "GYLRJ",
+                              "name": "Page MC-12",
+                              "width": "fill_container",
+                              "gap": 8,
+                              "padding": [
+                                2,
+                                0
+                              ],
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "iMtSZ",
+                                  "name": "MC-12 code",
+                                  "fill": "$--muted-foreground",
+                                  "content": "MC-12",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 11,
+                                  "fontWeight": "500"
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "smHf3",
+                                  "name": "MC-12 name",
+                                  "fill": "$--foreground",
+                                  "textGrowth": "fixed-width",
+                                  "width": "fill_container",
+                                  "content": "拟人化节奏策略页",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 12,
+                                  "fontWeight": "normal"
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "sDJ9B",
+                          "name": "Menu 任务与编排",
+                          "width": "fill_container",
+                          "layout": "vertical",
+                          "gap": 6,
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "EVObL",
+                              "name": "M任务与编排",
+                              "fill": "$--foreground",
+                              "content": "任务与编排  (4)",
+                              "fontFamily": "Inter",
+                              "fontSize": 12,
+                              "fontWeight": "600"
+                            },
+                            {
+                              "type": "frame",
+                              "id": "QM1Wh",
+                              "name": "Page MC-13",
+                              "width": "fill_container",
+                              "gap": 8,
+                              "padding": [
+                                2,
+                                0
+                              ],
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "GZCUU",
+                                  "name": "MC-13 code",
+                                  "fill": "$--muted-foreground",
+                                  "content": "MC-13",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 11,
+                                  "fontWeight": "500"
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "nBUmX",
+                                  "name": "MC-13 name",
+                                  "fill": "$--foreground",
+                                  "textGrowth": "fixed-width",
+                                  "width": "fill_container",
+                                  "content": "任务管理列表页",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 12,
+                                  "fontWeight": "normal"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "iFYkN",
+                              "name": "Page MC-14",
+                              "width": "fill_container",
+                              "gap": 8,
+                              "padding": [
+                                2,
+                                0
+                              ],
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "H6xJz",
+                                  "name": "MC-14 code",
+                                  "fill": "$--muted-foreground",
+                                  "content": "MC-14",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 11,
+                                  "fontWeight": "500"
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "jaoRm",
+                                  "name": "MC-14 name",
+                                  "fill": "$--foreground",
+                                  "textGrowth": "fixed-width",
+                                  "width": "fill_container",
+                                  "content": "模板任务库页",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 12,
+                                  "fontWeight": "normal"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "iph4g",
+                              "name": "Page MC-15",
+                              "width": "fill_container",
+                              "gap": 8,
+                              "padding": [
+                                2,
+                                0
+                              ],
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "A7BxQI",
+                                  "name": "MC-15 code",
+                                  "fill": "$--muted-foreground",
+                                  "content": "MC-15",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 11,
+                                  "fontWeight": "500"
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "L6SRH",
+                                  "name": "MC-15 name",
+                                  "fill": "$--foreground",
+                                  "textGrowth": "fixed-width",
+                                  "width": "fill_container",
+                                  "content": "可视化工作流编排器",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 12,
+                                  "fontWeight": "normal"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "U9dwE",
+                              "name": "Page MC-16",
+                              "width": "fill_container",
+                              "gap": 8,
+                              "padding": [
+                                2,
+                                0
+                              ],
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "HQOUB",
+                                  "name": "MC-16 code",
+                                  "fill": "$--muted-foreground",
+                                  "content": "MC-16",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 11,
+                                  "fontWeight": "500"
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "BcXY5",
+                                  "name": "MC-16 name",
+                                  "fill": "$--foreground",
+                                  "textGrowth": "fixed-width",
+                                  "width": "fill_container",
+                                  "content": "脚本开发与调试 IDE",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 12,
+                                  "fontWeight": "normal"
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "QRRHH",
+                          "name": "Menu 远程控制",
+                          "width": "fill_container",
+                          "layout": "vertical",
+                          "gap": 6,
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "MUvuc",
+                              "name": "M远程控制",
+                              "fill": "$--foreground",
+                              "content": "远程控制  (2)",
+                              "fontFamily": "Inter",
+                              "fontSize": 12,
+                              "fontWeight": "600"
+                            },
+                            {
+                              "type": "frame",
+                              "id": "v3jdor",
+                              "name": "Page MC-17",
+                              "width": "fill_container",
+                              "gap": 8,
+                              "padding": [
+                                2,
+                                0
+                              ],
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "kffz5",
+                                  "name": "MC-17 code",
+                                  "fill": "$--muted-foreground",
+                                  "content": "MC-17",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 11,
+                                  "fontWeight": "500"
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "Tmbrx",
+                                  "name": "MC-17 name",
+                                  "fill": "$--foreground",
+                                  "textGrowth": "fixed-width",
+                                  "width": "fill_container",
+                                  "content": "单设备远控页",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 12,
+                                  "fontWeight": "normal"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "RESQ1",
+                              "name": "Page MC-18",
+                              "width": "fill_container",
+                              "gap": 8,
+                              "padding": [
+                                2,
+                                0
+                              ],
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "uTWtM",
+                                  "name": "MC-18 code",
+                                  "fill": "$--muted-foreground",
+                                  "content": "MC-18",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 11,
+                                  "fontWeight": "500"
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "rVeIz",
+                                  "name": "MC-18 name",
+                                  "fill": "$--foreground",
+                                  "textGrowth": "fixed-width",
+                                  "width": "fill_container",
+                                  "content": "多设备宫格同屏监控页",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 12,
+                                  "fontWeight": "normal"
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "K1bvr",
+                          "name": "Menu 执行审计",
+                          "width": "fill_container",
+                          "layout": "vertical",
+                          "gap": 6,
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "SqAT5",
+                              "name": "M执行审计",
+                              "fill": "$--foreground",
+                              "content": "执行审计  (3)",
+                              "fontFamily": "Inter",
+                              "fontSize": 12,
+                              "fontWeight": "600"
+                            },
+                            {
+                              "type": "frame",
+                              "id": "WvbL8",
+                              "name": "Page MC-19",
+                              "width": "fill_container",
+                              "gap": 8,
+                              "padding": [
+                                2,
+                                0
+                              ],
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "erOsC",
+                                  "name": "MC-19 code",
+                                  "fill": "$--muted-foreground",
+                                  "content": "MC-19",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 11,
+                                  "fontWeight": "500"
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "H6T1Fn",
+                                  "name": "MC-19 name",
+                                  "fill": "$--foreground",
+                                  "textGrowth": "fixed-width",
+                                  "width": "fill_container",
+                                  "content": "执行网关熔断监控页",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 12,
+                                  "fontWeight": "normal"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "kn8Dn",
+                              "name": "Page MC-20",
+                              "width": "fill_container",
+                              "gap": 8,
+                              "padding": [
+                                2,
+                                0
+                              ],
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "JYQwq",
+                                  "name": "MC-20 code",
+                                  "fill": "$--muted-foreground",
+                                  "content": "MC-20",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 11,
+                                  "fontWeight": "500"
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "Shmqs",
+                                  "name": "MC-20 name",
+                                  "fill": "$--foreground",
+                                  "textGrowth": "fixed-width",
+                                  "width": "fill_container",
+                                  "content": "动作审计与作业统计复盘页",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 12,
+                                  "fontWeight": "normal"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "eVwKe",
+                              "name": "Page MC-21",
+                              "width": "fill_container",
+                              "gap": 8,
+                              "padding": [
+                                2,
+                                0
+                              ],
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "LGImf",
+                                  "name": "MC-21 code",
+                                  "fill": "$--muted-foreground",
+                                  "content": "MC-21",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 11,
+                                  "fontWeight": "500"
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "yya1W",
+                                  "name": "MC-21 name",
+                                  "fill": "$--foreground",
+                                  "textGrowth": "fixed-width",
+                                  "width": "fill_container",
+                                  "content": "智能体宿主同步状态页",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 12,
+                                  "fontWeight": "normal"
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "I7aQdW",
+                  "name": "SWM 智能体工厂卡片",
+                  "clip": true,
+                  "width": "fill_container",
+                  "fill": "$--card",
+                  "cornerRadius": 10,
+                  "stroke": "#d4d4d8",
+                  "strokeWidth": 1,
+                  "layout": "vertical",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "i3HKJ",
+                      "name": "SWM Head",
+                      "width": "fill_container",
+                      "fill": "#f4f4f5",
+                      "layout": "vertical",
+                      "gap": 4,
+                      "padding": [
+                        16,
+                        20
+                      ],
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "o52hA",
+                          "name": "Badge",
+                          "fill": "$--muted-foreground",
+                          "content": "SWM · 执行层",
+                          "fontFamily": "Inter",
+                          "fontSize": 11,
+                          "fontWeight": "700"
+                        },
+                        {
+                          "type": "text",
+                          "id": "gazYS",
+                          "name": "Title",
+                          "fill": "$--foreground",
+                          "content": "智能体工厂",
+                          "fontFamily": "Inter",
+                          "fontSize": 18,
+                          "fontWeight": "700"
+                        },
+                        {
+                          "type": "text",
+                          "id": "ZBOri",
+                          "name": "Sub",
+                          "fill": "$--muted-foreground",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "蜂群智能体子系统 · 4 菜单 / 11 页",
+                          "fontFamily": "Inter",
+                          "fontSize": 12,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "kEvvA",
+                      "name": "SWM Body",
+                      "width": "fill_container",
+                      "layout": "vertical",
+                      "gap": 14,
+                      "padding": [
+                        12,
+                        20,
+                        16,
+                        20
+                      ],
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "KaGf3",
+                          "name": "Menu 智能体总览",
+                          "width": "fill_container",
+                          "layout": "vertical",
+                          "gap": 6,
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "OBVgO",
+                              "name": "M智能体总览",
+                              "fill": "$--foreground",
+                              "content": "智能体总览  (1)",
+                              "fontFamily": "Inter",
+                              "fontSize": 12,
+                              "fontWeight": "600"
+                            },
+                            {
+                              "type": "frame",
+                              "id": "mEiRj",
+                              "name": "Page SWM-01",
+                              "width": "fill_container",
+                              "gap": 8,
+                              "padding": [
+                                2,
+                                0
+                              ],
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "S4FVk",
+                                  "name": "SWM-01 code",
+                                  "fill": "$--muted-foreground",
+                                  "content": "SWM-01",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 11,
+                                  "fontWeight": "500"
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "f4qsmE",
+                                  "name": "SWM-01 name",
+                                  "fill": "$--foreground",
+                                  "textGrowth": "fixed-width",
+                                  "width": "fill_container",
+                                  "content": "智能体总览首页",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 12,
+                                  "fontWeight": "normal"
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "WNj9O",
+                          "name": "Menu 人设与画像",
+                          "width": "fill_container",
+                          "layout": "vertical",
+                          "gap": 6,
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "cccft",
+                              "name": "M人设与画像",
+                              "fill": "$--foreground",
+                              "content": "人设与画像  (2)",
+                              "fontFamily": "Inter",
+                              "fontSize": 12,
+                              "fontWeight": "600"
+                            },
+                            {
+                              "type": "frame",
+                              "id": "XsGXL",
+                              "name": "Page SWM-02",
+                              "width": "fill_container",
+                              "gap": 8,
+                              "padding": [
+                                2,
+                                0
+                              ],
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "Qalh9",
+                                  "name": "SWM-02 code",
+                                  "fill": "$--muted-foreground",
+                                  "content": "SWM-02",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 11,
+                                  "fontWeight": "500"
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "vVbI5",
+                                  "name": "SWM-02 name",
+                                  "fill": "$--foreground",
+                                  "textGrowth": "fixed-width",
+                                  "width": "fill_container",
+                                  "content": "人设标签管理页",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 12,
+                                  "fontWeight": "normal"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "aoJRX",
+                              "name": "Page SWM-03",
+                              "width": "fill_container",
+                              "gap": 8,
+                              "padding": [
+                                2,
+                                0
+                              ],
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "z5BoeW",
+                                  "name": "SWM-03 code",
+                                  "fill": "$--muted-foreground",
+                                  "content": "SWM-03",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 11,
+                                  "fontWeight": "500"
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "F5UghP",
+                                  "name": "SWM-03 name",
+                                  "fill": "$--foreground",
+                                  "textGrowth": "fixed-width",
+                                  "width": "fill_container",
+                                  "content": "按账号画像自动生成提示词页",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 12,
+                                  "fontWeight": "normal"
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "etb6A",
+                          "name": "Menu 提示词工程",
+                          "width": "fill_container",
+                          "layout": "vertical",
+                          "gap": 6,
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "WpmRx",
+                              "name": "M提示词工程",
+                              "fill": "$--foreground",
+                              "content": "提示词工程  (5)",
+                              "fontFamily": "Inter",
+                              "fontSize": 12,
+                              "fontWeight": "600"
+                            },
+                            {
+                              "type": "frame",
+                              "id": "bI9Qo",
+                              "name": "Page SWM-04",
+                              "width": "fill_container",
+                              "gap": 8,
+                              "padding": [
+                                2,
+                                0
+                              ],
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "RXNDe",
+                                  "name": "SWM-04 code",
+                                  "fill": "$--muted-foreground",
+                                  "content": "SWM-04",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 11,
+                                  "fontWeight": "500"
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "Cmi6Q",
+                                  "name": "SWM-04 name",
+                                  "fill": "$--foreground",
+                                  "textGrowth": "fixed-width",
+                                  "width": "fill_container",
+                                  "content": "提示词模板库页",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 12,
+                                  "fontWeight": "normal"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "P03ZD",
+                              "name": "Page SWM-05",
+                              "width": "fill_container",
+                              "gap": 8,
+                              "padding": [
+                                2,
+                                0
+                              ],
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "trAoH",
+                                  "name": "SWM-05 code",
+                                  "fill": "$--muted-foreground",
+                                  "content": "SWM-05",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 11,
+                                  "fontWeight": "500"
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "ZCEBq",
+                                  "name": "SWM-05 name",
+                                  "fill": "$--foreground",
+                                  "textGrowth": "fixed-width",
+                                  "width": "fill_container",
+                                  "content": "提示词版本管理页",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 12,
+                                  "fontWeight": "normal"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "GmWDq",
+                              "name": "Page SWM-06",
+                              "width": "fill_container",
+                              "gap": 8,
+                              "padding": [
+                                2,
+                                0
+                              ],
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "UvAaK",
+                                  "name": "SWM-06 code",
+                                  "fill": "$--muted-foreground",
+                                  "content": "SWM-06",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 11,
+                                  "fontWeight": "500"
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "VgTSc",
+                                  "name": "SWM-06 name",
+                                  "fill": "$--foreground",
+                                  "textGrowth": "fixed-width",
+                                  "width": "fill_container",
+                                  "content": "Playground 试运行页",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 12,
+                                  "fontWeight": "normal"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "sN811",
+                              "name": "Page SWM-07",
+                              "width": "fill_container",
+                              "gap": 8,
+                              "padding": [
+                                2,
+                                0
+                              ],
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "BTdz6",
+                                  "name": "SWM-07 code",
+                                  "fill": "$--muted-foreground",
+                                  "content": "SWM-07",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 11,
+                                  "fontWeight": "500"
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "ze8uY",
+                                  "name": "SWM-07 name",
+                                  "fill": "$--foreground",
+                                  "textGrowth": "fixed-width",
+                                  "width": "fill_container",
+                                  "content": "版本输出对比页",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 12,
+                                  "fontWeight": "normal"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "DKZrM",
+                              "name": "Page SWM-08",
+                              "width": "fill_container",
+                              "gap": 8,
+                              "padding": [
+                                2,
+                                0
+                              ],
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "e9HdSz",
+                                  "name": "SWM-08 code",
+                                  "fill": "$--muted-foreground",
+                                  "content": "SWM-08",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 11,
+                                  "fontWeight": "500"
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "KX78N",
+                                  "name": "SWM-08 name",
+                                  "fill": "$--foreground",
+                                  "textGrowth": "fixed-width",
+                                  "width": "fill_container",
+                                  "content": "智能体构建与提示词包下发页",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 12,
+                                  "fontWeight": "normal"
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "Ajb9L",
+                          "name": "Menu 评测与记忆",
+                          "width": "fill_container",
+                          "layout": "vertical",
+                          "gap": 6,
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "F88B4p",
+                              "name": "M评测与记忆",
+                              "fill": "$--foreground",
+                              "content": "评测与记忆  (3)",
+                              "fontFamily": "Inter",
+                              "fontSize": 12,
+                              "fontWeight": "600"
+                            },
+                            {
+                              "type": "frame",
+                              "id": "JXKBP",
+                              "name": "Page SWM-09",
+                              "width": "fill_container",
+                              "gap": 8,
+                              "padding": [
+                                2,
+                                0
+                              ],
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "cU27C",
+                                  "name": "SWM-09 code",
+                                  "fill": "$--muted-foreground",
+                                  "content": "SWM-09",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 11,
+                                  "fontWeight": "500"
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "yseF3",
+                                  "name": "SWM-09 name",
+                                  "fill": "$--foreground",
+                                  "textGrowth": "fixed-width",
+                                  "width": "fill_container",
+                                  "content": "评测数据集管理页",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 12,
+                                  "fontWeight": "normal"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "T4s4wG",
+                              "name": "Page SWM-10",
+                              "width": "fill_container",
+                              "gap": 8,
+                              "padding": [
+                                2,
+                                0
+                              ],
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "ffAbD",
+                                  "name": "SWM-10 code",
+                                  "fill": "$--muted-foreground",
+                                  "content": "SWM-10",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 11,
+                                  "fontWeight": "500"
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "FYqdJ",
+                                  "name": "SWM-10 name",
+                                  "fill": "$--foreground",
+                                  "textGrowth": "fixed-width",
+                                  "width": "fill_container",
+                                  "content": "评测实验与迭代决策页",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 12,
+                                  "fontWeight": "normal"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "XmXwb",
+                              "name": "Page SWM-11",
+                              "width": "fill_container",
+                              "gap": 8,
+                              "padding": [
+                                2,
+                                0
+                              ],
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "wmv5f",
+                                  "name": "SWM-11 code",
+                                  "fill": "$--muted-foreground",
+                                  "content": "SWM-11",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 11,
+                                  "fontWeight": "500"
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "V0nK2",
+                                  "name": "SWM-11 name",
+                                  "fill": "$--foreground",
+                                  "textGrowth": "fixed-width",
+                                  "width": "fill_container",
+                                  "content": "蜂群记忆管理页",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 12,
+                                  "fontWeight": "normal"
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "NApjk",
+                  "name": "OM 运维管理卡片",
+                  "clip": true,
+                  "width": "fill_container",
+                  "fill": "$--card",
+                  "cornerRadius": 10,
+                  "stroke": "#d4d4d8",
+                  "strokeWidth": 1,
+                  "layout": "vertical",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "kLhGf",
+                      "name": "OM Head",
+                      "width": "fill_container",
+                      "fill": "#f4f4f5",
+                      "layout": "vertical",
+                      "gap": 4,
+                      "padding": [
+                        16,
+                        20
+                      ],
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "al4dp",
+                          "name": "Badge",
+                          "fill": "$--muted-foreground",
+                          "content": "OM+COM · 基础设施层+公共",
+                          "fontFamily": "Inter",
+                          "fontSize": 11,
+                          "fontWeight": "700"
+                        },
+                        {
+                          "type": "text",
+                          "id": "a52oGr",
+                          "name": "Title",
+                          "fill": "$--foreground",
+                          "content": "运维管理控制台",
+                          "fontFamily": "Inter",
+                          "fontSize": 18,
+                          "fontWeight": "700"
+                        },
+                        {
+                          "type": "text",
+                          "id": "X7iLa",
+                          "name": "Sub",
+                          "fill": "$--muted-foreground",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "运维监控 + 公共功能 · 5 菜单 / 10 页",
+                          "fontFamily": "Inter",
+                          "fontSize": 12,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "AgHBC",
+                      "name": "OM Body",
+                      "width": "fill_container",
+                      "layout": "vertical",
+                      "gap": 14,
+                      "padding": [
+                        12,
+                        20,
+                        16,
+                        20
+                      ],
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "vgohd",
+                          "name": "Menu 运维总览",
+                          "width": "fill_container",
+                          "layout": "vertical",
+                          "gap": 6,
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "R4NJW",
+                              "name": "M运维总览",
+                              "fill": "$--foreground",
+                              "content": "运维总览  (1)",
+                              "fontFamily": "Inter",
+                              "fontSize": 12,
+                              "fontWeight": "600"
+                            },
+                            {
+                              "type": "frame",
+                              "id": "Ryg3i",
+                              "name": "Page OM-01",
+                              "width": "fill_container",
+                              "gap": 8,
+                              "padding": [
+                                2,
+                                0
+                              ],
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "eogE8",
+                                  "name": "OM-01 code",
+                                  "fill": "$--muted-foreground",
+                                  "content": "OM-01",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 11,
+                                  "fontWeight": "500"
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "vTj4Q",
+                                  "name": "OM-01 name",
+                                  "fill": "$--foreground",
+                                  "textGrowth": "fixed-width",
+                                  "width": "fill_container",
+                                  "content": "运维总览首页",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 12,
+                                  "fontWeight": "normal"
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "aHx8Z",
+                          "name": "Menu 日志与检索",
+                          "width": "fill_container",
+                          "layout": "vertical",
+                          "gap": 6,
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "mSdEi",
+                              "name": "M日志与检索",
+                              "fill": "$--foreground",
+                              "content": "日志与检索  (2)",
+                              "fontFamily": "Inter",
+                              "fontSize": 12,
+                              "fontWeight": "600"
+                            },
+                            {
+                              "type": "frame",
+                              "id": "IcSEX",
+                              "name": "Page OM-02",
+                              "width": "fill_container",
+                              "gap": 8,
+                              "padding": [
+                                2,
+                                0
+                              ],
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "p9BnFE",
+                                  "name": "OM-02 code",
+                                  "fill": "$--muted-foreground",
+                                  "content": "OM-02",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 11,
+                                  "fontWeight": "500"
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "ZR0Dk",
+                                  "name": "OM-02 name",
+                                  "fill": "$--foreground",
+                                  "textGrowth": "fixed-width",
+                                  "width": "fill_container",
+                                  "content": "日志检索页",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 12,
+                                  "fontWeight": "normal"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "mu44l",
+                              "name": "Page OM-03",
+                              "width": "fill_container",
+                              "gap": 8,
+                              "padding": [
+                                2,
+                                0
+                              ],
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "ZRz45",
+                                  "name": "OM-03 code",
+                                  "fill": "$--muted-foreground",
+                                  "content": "OM-03",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 11,
+                                  "fontWeight": "500"
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "A1aEJ",
+                                  "name": "OM-03 name",
+                                  "fill": "$--foreground",
+                                  "textGrowth": "fixed-width",
+                                  "width": "fill_container",
+                                  "content": "审计日志检索页",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 12,
+                                  "fontWeight": "normal"
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "Z156cl",
+                          "name": "Menu 指标与告警",
+                          "width": "fill_container",
+                          "layout": "vertical",
+                          "gap": 6,
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "VObzp",
+                              "name": "M指标与告警",
+                              "fill": "$--foreground",
+                              "content": "指标与告警  (2)",
+                              "fontFamily": "Inter",
+                              "fontSize": 12,
+                              "fontWeight": "600"
+                            },
+                            {
+                              "type": "frame",
+                              "id": "s3S9D",
+                              "name": "Page OM-04",
+                              "width": "fill_container",
+                              "gap": 8,
+                              "padding": [
+                                2,
+                                0
+                              ],
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "mqtzU",
+                                  "name": "OM-04 code",
+                                  "fill": "$--muted-foreground",
+                                  "content": "OM-04",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 11,
+                                  "fontWeight": "500"
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "GUYHh",
+                                  "name": "OM-04 name",
+                                  "fill": "$--foreground",
+                                  "textGrowth": "fixed-width",
+                                  "width": "fill_container",
+                                  "content": "指标看板页",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 12,
+                                  "fontWeight": "normal"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "q0wPUo",
+                              "name": "Page OM-05",
+                              "width": "fill_container",
+                              "gap": 8,
+                              "padding": [
+                                2,
+                                0
+                              ],
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "tQlOH",
+                                  "name": "OM-05 code",
+                                  "fill": "$--muted-foreground",
+                                  "content": "OM-05",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 11,
+                                  "fontWeight": "500"
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "f1and",
+                                  "name": "OM-05 name",
+                                  "fill": "$--foreground",
+                                  "textGrowth": "fixed-width",
+                                  "width": "fill_container",
+                                  "content": "告警事件归档与处置页",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 12,
+                                  "fontWeight": "normal"
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "NHvEx",
+                          "name": "Menu 用户与组织",
+                          "width": "fill_container",
+                          "layout": "vertical",
+                          "gap": 6,
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "IlhxI",
+                              "name": "M用户与组织",
+                              "fill": "$--foreground",
+                              "content": "用户与组织  (3)",
+                              "fontFamily": "Inter",
+                              "fontSize": 12,
+                              "fontWeight": "600"
+                            },
+                            {
+                              "type": "frame",
+                              "id": "R6GJT0",
+                              "name": "Page OM-06",
+                              "width": "fill_container",
+                              "gap": 8,
+                              "padding": [
+                                2,
+                                0
+                              ],
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "y9CWi",
+                                  "name": "OM-06 code",
+                                  "fill": "$--muted-foreground",
+                                  "content": "OM-06",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 11,
+                                  "fontWeight": "500"
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "pZgin",
+                                  "name": "OM-06 name",
+                                  "fill": "$--foreground",
+                                  "textGrowth": "fixed-width",
+                                  "width": "fill_container",
+                                  "content": "用户管理页",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 12,
+                                  "fontWeight": "normal"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "vPiwA",
+                              "name": "Page OM-07",
+                              "width": "fill_container",
+                              "gap": 8,
+                              "padding": [
+                                2,
+                                0
+                              ],
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "q4mK6",
+                                  "name": "OM-07 code",
+                                  "fill": "$--muted-foreground",
+                                  "content": "OM-07",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 11,
+                                  "fontWeight": "500"
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "EiF13",
+                                  "name": "OM-07 name",
+                                  "fill": "$--foreground",
+                                  "textGrowth": "fixed-width",
+                                  "width": "fill_container",
+                                  "content": "角色与权限管理页",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 12,
+                                  "fontWeight": "normal"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "o4qkL",
+                              "name": "Page OM-08",
+                              "width": "fill_container",
+                              "gap": 8,
+                              "padding": [
+                                2,
+                                0
+                              ],
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "V7Vdgc",
+                                  "name": "OM-08 code",
+                                  "fill": "$--muted-foreground",
+                                  "content": "OM-08",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 11,
+                                  "fontWeight": "500"
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "G2Quz",
+                                  "name": "OM-08 name",
+                                  "fill": "$--foreground",
+                                  "textGrowth": "fixed-width",
+                                  "width": "fill_container",
+                                  "content": "组织与成员管理页",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 12,
+                                  "fontWeight": "normal"
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "JpFzY",
+                          "name": "Menu 认证与会话",
+                          "width": "fill_container",
+                          "layout": "vertical",
+                          "gap": 6,
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "Ds7Bn",
+                              "name": "M认证与会话",
+                              "fill": "$--foreground",
+                              "content": "认证与会话  (2)",
+                              "fontFamily": "Inter",
+                              "fontSize": 12,
+                              "fontWeight": "600"
+                            },
+                            {
+                              "type": "frame",
+                              "id": "Fe8Ju",
+                              "name": "Page OM-09",
+                              "width": "fill_container",
+                              "gap": 8,
+                              "padding": [
+                                2,
+                                0
+                              ],
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "fp6PV",
+                                  "name": "OM-09 code",
+                                  "fill": "$--muted-foreground",
+                                  "content": "OM-09",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 11,
+                                  "fontWeight": "500"
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "Hi2Eg",
+                                  "name": "OM-09 name",
+                                  "fill": "$--foreground",
+                                  "textGrowth": "fixed-width",
+                                  "width": "fill_container",
+                                  "content": "登录策略与锁定管理页",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 12,
+                                  "fontWeight": "normal"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "Q2lp9I",
+                              "name": "Page OM-10",
+                              "width": "fill_container",
+                              "gap": 8,
+                              "padding": [
+                                2,
+                                0
+                              ],
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "pYHkS",
+                                  "name": "OM-10 code",
+                                  "fill": "$--muted-foreground",
+                                  "content": "OM-10",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 11,
+                                  "fontWeight": "500"
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "dXmr8",
+                                  "name": "OM-10 name",
+                                  "fill": "$--foreground",
+                                  "textGrowth": "fixed-width",
+                                  "width": "fill_container",
+                                  "content": "令牌与会话审计页",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 12,
+                                  "fontWeight": "normal"
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "C6jL3F",
+          "name": "横切通用页区",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 16,
+          "children": [
+            {
+              "type": "text",
+              "id": "pbDqY",
+              "name": "Section Label General",
+              "fill": "$--muted-foreground",
+              "content": "③ 横切通用页（所有控制台共享 · 非任一控制台菜单）",
+              "fontFamily": "Inter",
+              "fontSize": 14,
+              "fontWeight": "600"
+            },
+            {
+              "type": "frame",
+              "id": "Wtrs6",
+              "name": "General Row",
+              "width": "fill_container",
+              "gap": 16,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "SN1Jr",
+                  "name": "G-03 个人中心",
+                  "width": "fill_container",
+                  "fill": "#fafafa",
+                  "cornerRadius": 8,
+                  "stroke": "#a1a1aa",
+                  "strokeWidth": 1,
+                  "layout": "vertical",
+                  "gap": 8,
+                  "padding": 16,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "mcIJi",
+                      "name": "G-03 code",
+                      "fill": "$--muted-foreground",
+                      "content": "G-03",
+                      "fontFamily": "Inter",
+                      "fontSize": 12,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "text",
+                      "id": "fKohM",
+                      "name": "G-03 name",
+                      "fill": "$--foreground",
+                      "content": "个人中心",
+                      "fontFamily": "Inter",
+                      "fontSize": 15,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "type": "text",
+                      "id": "v7IBd",
+                      "name": "G-03 desc",
+                      "fill": "$--muted-foreground",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "修改密码 · 查看/注销会话 · 个人偏好",
+                      "fontFamily": "Inter",
+                      "fontSize": 11,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "rkjAl",
+                  "name": "G-04 错误页",
+                  "width": "fill_container",
+                  "fill": "#fafafa",
+                  "cornerRadius": 8,
+                  "stroke": "#a1a1aa",
+                  "strokeWidth": 1,
+                  "layout": "vertical",
+                  "gap": 8,
+                  "padding": 16,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "I0slgk",
+                      "name": "G-04 code",
+                      "fill": "$--muted-foreground",
+                      "content": "G-04",
+                      "fontFamily": "Inter",
+                      "fontSize": 12,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "text",
+                      "id": "qloYv",
+                      "name": "G-04 name",
+                      "fill": "$--foreground",
+                      "content": "错误页",
+                      "fontFamily": "Inter",
+                      "fontSize": 15,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "type": "text",
+                      "id": "f3tFq",
+                      "name": "G-04 desc",
+                      "fill": "$--muted-foreground",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "403 无权限 / 404 未找到 / 500 异常 / 维护中",
+                      "fontFamily": "Inter",
+                      "fontSize": 11,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "Itmyf",
+                  "name": "G-05 全局通知中心",
+                  "width": "fill_container",
+                  "fill": "#fafafa",
+                  "cornerRadius": 8,
+                  "stroke": "#a1a1aa",
+                  "strokeWidth": 1,
+                  "layout": "vertical",
+                  "gap": 8,
+                  "padding": 16,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "XFsC9",
+                      "name": "G-05 code",
+                      "fill": "$--muted-foreground",
+                      "content": "G-05",
+                      "fontFamily": "Inter",
+                      "fontSize": 12,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "text",
+                      "id": "n0P7K",
+                      "name": "G-05 name",
+                      "fill": "$--foreground",
+                      "content": "全局通知中心",
+                      "fontFamily": "Inter",
+                      "fontSize": 15,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "type": "text",
+                      "id": "o9iFc",
+                      "name": "G-05 desc",
+                      "fill": "$--muted-foreground",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "告警 · 任务通知 · 账号状态变更 等站内消息",
+                      "fontFamily": "Inter",
+                      "fontSize": 11,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "DfTdl",
+                  "name": "横切说明",
+                  "width": "fill_container",
+                  "fill": "#f4f4f5",
+                  "cornerRadius": 8,
+                  "stroke": "#d4d4d8",
+                  "strokeWidth": 1,
+                  "layout": "vertical",
+                  "gap": 6,
+                  "padding": 16,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "jJgyl",
+                      "name": "N1",
+                      "fill": "$--foreground",
+                      "content": "横切(非任一控制台菜单)",
+                      "fontFamily": "Inter",
+                      "fontSize": 12,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "type": "text",
+                      "id": "pIkzS",
+                      "name": "N2",
+                      "fill": "$--muted-foreground",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "G-01/G-02 见上方登录链。G-03~05 为全控制台共享，不计入任一控制台菜单。",
+                      "fontFamily": "Inter",
+                      "fontSize": 11,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
     }
   ],
   "themes": {
@@ -5283,6 +8688,46 @@
     "--black": {
       "type": "color",
       "value": "#000000"
+    },
+    "occ-accent": {
+      "type": "color",
+      "value": "#3f3f46"
+    },
+    "occ-accent-soft": {
+      "type": "color",
+      "value": "#f4f4f5"
+    },
+    "mc-accent": {
+      "type": "color",
+      "value": "#3f3f46"
+    },
+    "mc-accent-soft": {
+      "type": "color",
+      "value": "#f4f4f5"
+    },
+    "swm-accent": {
+      "type": "color",
+      "value": "#3f3f46"
+    },
+    "swm-accent-soft": {
+      "type": "color",
+      "value": "#f4f4f5"
+    },
+    "om-accent": {
+      "type": "color",
+      "value": "#3f3f46"
+    },
+    "om-accent-soft": {
+      "type": "color",
+      "value": "#f4f4f5"
+    },
+    "wf-border": {
+      "type": "color",
+      "value": "#d4d4d8"
+    },
+    "wf-dashed": {
+      "type": "color",
+      "value": "#a1a1aa"
     }
   },
   "fileToken": "2d850b3b-808e-40d9-b36e-feebe9610df7"
