@@ -355,11 +355,11 @@ classDiagram
 
 #### 5.2.2 关键类说明
 
-- **PromptAdapter**：Java 适配层，封装对 coze-loop prompt 模块 OpenAPI 的调用，对上层提供模板库分类管理（F-SWM-02-01）、版本管理（F-SWM-02-02）、Playground 试运行（F-SWM-02-03）、版本输出对比（F-SWM-02-04）四类操作。
-- **CozeLoopClient**：HTTP/OpenAPI 客户端，承载鉴权透传（COM JWT 经 swm-gw 代理，coze-loop 自带用户体系架空）与超时/重试。
+- **PromptAdapter**：Java 适配层，封装对魔改 coze-loop prompt 模块 OpenAPI 的调用，对上层提供模板库分类管理（F-SWM-02-01）、版本管理（F-SWM-02-02）、Playground 试运行（F-SWM-02-03）、版本输出对比（F-SWM-02-04）四类操作。
+- **CozeLoopClient**：HTTP/OpenAPI 客户端，承载鉴权透传（COM JWT 经 swm-gw 代理，魔改 coze-loop 自带用户体系架空）与超时/重试。
 - **PromptVersion**：与 §4.1.2 `sw_prompt_version` 对应的值对象。
 
-#### 5.2.3 coze-loop OpenAPI 契约（黑盒边界）
+#### 5.2.3 魔改 coze-loop OpenAPI 契约（内核接口边界）
 
 | 操作 | coze-loop 端点（契约） | 说明 |
 | --- | --- | --- |
@@ -519,7 +519,7 @@ sequenceDiagram
 
 ### 5.5 M-SWM-06 智能体评测与迭代决策（对应需求 R-SWM-004）
 
-本模块的**离线评测能力由 coze-loop（Go）的 evaluation 模块承载**（CON-14）；迭代决策与记忆有效性验收由 Java 侧 swm-distill 编排。coze-loop 内部实现为黑盒。
+本模块的**离线评测能力由魔改 coze-loop 内核的 evaluation 模块承载**（CON-14）；迭代决策与记忆有效性验收由 Java 侧 swm-distill 编排。魔改 coze-loop 作为 SWM 主体内核组件（不再是外部旁挂黑盒）。
 
 #### 5.5.1 模块组成与类图（Java 适配层 + 决策）
 
@@ -554,7 +554,7 @@ classDiagram
 - **DecisionService**：迭代/淘汰决策（F-SWM-06-06）。按 loop 评估器返回的人设一致性评分 + 线上有效性，决策 promote（>60 可用）/ iterate（40~60 迭代）/ eliminate（<40 淘汰），并反馈 M-SWM-02 提示词迭代 + M-SWM-05 提示词包重建 + swm-memory 经验提炼。
 - **ExperimentResult**：实验结果值对象，含人设一致性评分（**R-SWM-002 记忆有效性验收依据**）。
 
-#### 5.5.3 coze-loop evaluation OpenAPI 契约（黑盒边界）
+#### 5.5.3 魔改 coze-loop evaluation OpenAPI 契约（内核接口边界）
 
 | 操作 | coze-loop 端点（契约） | 说明 |
 | --- | --- | --- |
@@ -563,7 +563,7 @@ classDiagram
 | 评估器管理 | `POST/GET /api/evaluation/evaluator` | 规则/LLM-as-judge/人工三类评估器 CRUD |
 | 评测集管理 | `POST/GET /api/evaluation/dataset` | 评测集 CRUD |
 
-#### 5.5.4 实验运行状态机（F-SWM-06-03，coze-loop 承载、Java 侧感知）
+#### 5.5.4 实验运行状态机（F-SWM-06-03，魔改 coze-loop 承载、Java 侧感知）
 
 ```mermaid
 stateDiagram-v2
@@ -596,7 +596,7 @@ stateDiagram-v2
 
 ### 5.6 M-SWM-07 按账号与画像自动生成提示词（对应需求 R-SWM-005）
 
-本模块的**生成工作流由 coze-loop（Go）承载**（CON-14）；账号/画像拉取由 Java 侧 swm-gw 完成后传入 coze-loop。
+本模块的**生成工作流由魔改 coze-loop 内核承载**（CON-14）；账号/画像拉取由 Java 侧 swm-gw 完成后传入魔改 coze-loop。
 
 #### 5.6.1 模块组成与类图（Java 适配层）
 
@@ -624,9 +624,9 @@ classDiagram
 
 #### 5.6.2 关键类说明
 
-- **AutoGenService**：自动生成入口。拉账号（II-01）+ 画像（II-18）→ 调 coze-loop 工作流（经 EI-05 调 IRS 生成）→ 版本化回写。
+- **AutoGenService**：自动生成入口。拉账号（II-01）+ 画像（II-18）→ 调魔改 coze-loop 工作流（经 EI-05 调 IRS 生成）→ 版本化回写。
 - **AccountClient / ProfileClient**：II-01 / II-18 消费客户端，只引用标识不复制主数据（CON-11）。
-- **GenWorkflowClient**：coze-loop 工作流调用（黑盒），内部调 IRS 生成提示词。
+- **GenWorkflowClient**：魔改 coze-loop 工作流调用（SWM 内核组件），内部调 IRS 生成提示词。
 
 #### 5.6.3 自动生成时序（F-SWM-07-01~03）
 
@@ -675,7 +675,7 @@ sequenceDiagram
 
 #### 6.1.1 EI-05 本地大模型推理（SWM 为消费方）
 
-SWM 经此接口调用 IRS 本地大模型，用于四类推理，**均不经执行网关**（CON-10），**严格私有化**（CON-06）。物理调用由 coze-loop 内部完成（M-SWM-02/06/07 承载于 coze-loop），Java 侧不直接调 IRS。
+SWM 经此接口调用 IRS 本地大模型，用于四类推理，**均不经执行网关**（CON-10），**严格私有化**（CON-06）。物理调用由魔改 coze-loop 内核完成（M-SWM-02/06/07 承载于魔改 coze-loop 内核），Java 侧不直接调 IRS。
 
 | 用途 | 承载模块 | 输入 | 输出 |
 | --- | --- | --- | --- |
@@ -730,13 +730,13 @@ MC → 事件总线 → SWM。SWM 订阅 `account.status.changed` 事件：账�
 | coze-loop 调用失败 | HTTP 超时/5xx 重试，连续失败触发熔断，Java 侧降级（见 §7.2） |
 | swm-memory 写入失败 | 本地暂存，恢复后补写（NR-R-05 补偿） |
 
-### 7.2 coze-loop 外部依赖容错
+### 7.2 魔改 coze-loop 内核依赖容错
 
-coze-loop 作为唯一外部 Go 服务经 HTTP/OpenAPI 解耦（CON-14）。容错策略：
-- **读类操作**（模板库查询、实验结果查询）：coze-loop 故障时返回降级提示，不阻塞构建。
-- **写类操作**（Playground、发起实验、自动生成）：coze-loop 故障时任务排队，coze-loop 恢复后重放。
-- **健康检查**：swm-gw 对 coze-loop 做存活探针，连续失败从负载均衡摘除。
-- **版本锁定**：coze-loop 部署版本固定，升级需回归测试（§10）。
+魔改 coze-loop 作为 SWM 主体内核组件部署于 `swm` 命名空间，Java 侧经 HTTP/OpenAPI 调用（CON-14）。容错策略：
+- **读类操作**（模板库查询、实验结果查询）：魔改 coze-loop 故障时返回降级提示，不阻塞构建。
+- **写类操作**（Playground、发起实验、自动生成）：魔改 coze-loop 故障时任务排队，恢复后重放。
+- **健康检查**：swm-gw 对魔改 coze-loop 做存活探针，连续失败从负载均衡摘除。
+- **版本锁定**：魔改 coze-loop 部署版本固定，升级需回归测试（§10）。
 
 ### 7.3 幂等性
 
@@ -752,7 +752,7 @@ coze-loop 作为唯一外部 Go 服务经 HTTP/OpenAPI 解耦（CON-14）。容�
 
 #### 8.1.1 部署架构图
 
-见 §3.2 部署单元图。SWM 部署于 `swm` 命名空间，含三个 Java Deployment（swm-gw / swm-memory / swm-distill）与一个 coze-loop Pod 组（Go 外挂 + 自带 MySQL/ClickHouse）。共享基础设施（PostgreSQL sw schema / Redis / Milvus）由平台统一提供。
+见 §3.2 部署单元图。SWM 部署于 `swm` 命名空间，含三个 Java Deployment（swm-gw / swm-memory / swm-distill）与一个魔改 coze-loop Pod 组（Go，SWM 主体内核 + 自带 MySQL/ClickHouse）。共享基础设施（PostgreSQL sw schema / Redis / Milvus）由平台统一提供。
 
 #### 8.1.2 部署清单
 
@@ -761,20 +761,20 @@ coze-loop 作为唯一外部 Go 服务经 HTTP/OpenAPI 解耦（CON-14）。容�
 | swm-gw | Deployment | 2 | 1C2G / 2C4G | 无状态网关，HA |
 | swm-memory | Deployment | 2 | 1C2G / 2C4G | 记忆服务，HA |
 | swm-distill | Deployment | 1 | 1C2G / 2C4G | 有状态编排（提炼任务状态持久化于 PG） |
-| coze-loop | Deployment | 1 | 2C4G / 4C8G | 外挂 Go 服务 + 自带依赖 Pod |
-| coze-loop-mysql | StatefulSet | 1 | 1C2G / 2C4G | coze-loop 自带 |
-| coze-loop-clickhouse | StatefulSet | 1 | 2C4G / 4C8G | coze-loop 自带 |
+| coze-loop | Deployment | 1 | 2C4G / 4C8G | 魔改内核（SWM 主体内核组件） + 自带依赖 Pod |
+| coze-loop-mysql | StatefulSet | 1 | 1C2G / 2C4G | 魔改 coze-loop 自带 |
+| coze-loop-clickhouse | StatefulSet | 1 | 2C4G / 4C8G | 魔改 coze-loop 自带 |
 
 ### 8.2 配置化（NR-M-02）
 
-- coze-loop 服务地址、超时、鉴权令牌（§5.2.4）经 ConfigMap + Secret 注入。
+- 魔改 coze-loop 服务地址、超时、鉴权令牌（§5.2.4）经 ConfigMap + Secret 注入。
 - II-14 同步重试次数、熔断阈值、评测决策门槛（及格60/淘汰40/线上<50%迭代）可配置。
 - swm-memory Milvus collection 分区策略、recall topK 可配置。
 
 ### 8.3 可观测（NR-M-03/04）
 
 swm-gw / swm-memory / swm-distill 向运维监控子系统（OM）上报日志与指标（II-04）：
-- **指标**：II-14 同步成功率（目标≥99%）、coze-loop 调用延迟/失败率、评测实验吞吐、记忆 recall 延迟。
+- **指标**：II-14 同步成功率（目标≥99%）、魔改 coze-loop 调用延迟/失败率、评测实验吞吐、记忆 recall 延迟。
 - **日志**：提示词包同步审计、评测决策（promote/iterate/eliminate）、自动生成触发。
 - **关键动作全量留痕**：人设绑定、提示词包同步、评测淘汰决策。
 
