@@ -3617,7 +3617,8 @@
                       "fill": "$--foreground",
                       "content": "终端资源",
                       "fontFamily": "Inter",
-                      "fontSize": 13
+                      "fontSize": 13,
+                      "fontWeight": "normal"
                     }
                   ]
                 },
@@ -3651,7 +3652,8 @@
                       "fill": "$--foreground",
                       "content": "账号资产",
                       "fontFamily": "Inter",
-                      "fontSize": 13
+                      "fontSize": 13,
+                      "fontWeight": "normal"
                     }
                   ]
                 },
@@ -3685,7 +3687,8 @@
                       "fill": "$--foreground",
                       "content": "任务与编排",
                       "fontFamily": "Inter",
-                      "fontSize": 13
+                      "fontSize": 13,
+                      "fontWeight": "normal"
                     }
                   ]
                 },
@@ -3719,7 +3722,8 @@
                       "fill": "$--foreground",
                       "content": "远程控制",
                       "fontFamily": "Inter",
-                      "fontSize": 13
+                      "fontSize": 13,
+                      "fontWeight": "normal"
                     }
                   ]
                 },
@@ -3753,7 +3757,8 @@
                       "fill": "$--foreground",
                       "content": "执行审计",
                       "fontFamily": "Inter",
-                      "fontSize": 13
+                      "fontSize": 13,
+                      "fontWeight": "normal"
                     }
                   ]
                 }
@@ -4025,7 +4030,8 @@
                               "fill": "$--muted-foreground",
                               "content": "移动端真机",
                               "fontFamily": "Inter",
-                              "fontSize": 11
+                              "fontSize": 11,
+                              "fontWeight": "normal"
                             }
                           ]
                         },
@@ -4050,7 +4056,8 @@
                               "fill": "$--muted-foreground",
                               "content": "云手机",
                               "fontFamily": "Inter",
-                              "fontSize": 11
+                              "fontSize": 11,
+                              "fontWeight": "normal"
                             }
                           ]
                         },
@@ -4075,7 +4082,8 @@
                               "fill": "$--muted-foreground",
                               "content": "ARM 板卡",
                               "fontFamily": "Inter",
-                              "fontSize": 11
+                              "fontSize": 11,
+                              "fontWeight": "normal"
                             }
                           ]
                         },
@@ -4100,7 +4108,8 @@
                               "fill": "$--muted-foreground",
                               "content": "虚拟化真机",
                               "fontFamily": "Inter",
-                              "fontSize": 11
+                              "fontSize": 11,
+                              "fontWeight": "normal"
                             }
                           ]
                         },
@@ -4125,7 +4134,8 @@
                               "fill": "$--muted-foreground",
                               "content": "桌面端 Profile",
                               "fontFamily": "Inter",
-                              "fontSize": 11
+                              "fontSize": 11,
+                              "fontWeight": "normal"
                             }
                           ]
                         }
@@ -6361,7 +6371,8 @@
                                   "fill": "$--muted-foreground",
                                   "content": "‹",
                                   "fontFamily": "Inter",
-                                  "fontSize": 11
+                                  "fontSize": 11,
+                                  "fontWeight": "normal"
                                 }
                               ]
                             },
@@ -6409,7 +6420,8 @@
                                   "fill": "$--muted-foreground",
                                   "content": "2",
                                   "fontFamily": "Inter",
-                                  "fontSize": 11
+                                  "fontSize": 11,
+                                  "fontWeight": "normal"
                                 }
                               ]
                             },
@@ -6433,7 +6445,8 @@
                                   "fill": "$--muted-foreground",
                                   "content": "3",
                                   "fontFamily": "Inter",
-                                  "fontSize": 11
+                                  "fontSize": 11,
+                                  "fontWeight": "normal"
                                 }
                               ]
                             },
@@ -6457,7 +6470,8 @@
                                   "fill": "$--muted-foreground",
                                   "content": "…",
                                   "fontFamily": "Inter",
-                                  "fontSize": 11
+                                  "fontSize": 11,
+                                  "fontWeight": "normal"
                                 }
                               ]
                             },
@@ -6481,7 +6495,8 @@
                                   "fill": "$--muted-foreground",
                                   "content": "8",
                                   "fontFamily": "Inter",
-                                  "fontSize": 11
+                                  "fontSize": 11,
+                                  "fontWeight": "normal"
                                 }
                               ]
                             },
@@ -6505,7 +6520,8 @@
                                   "fill": "$--muted-foreground",
                                   "content": "›",
                                   "fontFamily": "Inter",
-                                  "fontSize": 11
+                                  "fontSize": 11,
+                                  "fontWeight": "normal"
                                 }
                               ]
                             }
@@ -6525,7 +6541,7 @@
       "type": "frame",
       "id": "y7j22v",
       "x": 4800,
-      "y": 12100,
+      "y": 11174,
       "name": "OCC-06 目标档案与状态管理页",
       "clip": true,
       "width": 1440,
@@ -7504,7 +7520,8 @@
                                       "fill": "$--foreground",
                                       "content": "待核实 → 已确认",
                                       "fontFamily": "Inter",
-                                      "fontSize": 11
+                                      "fontSize": 11,
+                                      "fontWeight": "normal"
                                     },
                                     {
                                       "type": "text",
@@ -7788,7 +7805,8 @@
                           "fill": "$--foreground",
                           "content": "另存为新目标",
                           "fontFamily": "Inter",
-                          "fontSize": 13
+                          "fontSize": 13,
+                          "fontWeight": "normal"
                         }
                       ]
                     },
@@ -7814,7 +7832,8 @@
                           "fill": "$--foreground",
                           "content": "取消",
                           "fontFamily": "Inter",
-                          "fontSize": 13
+                          "fontSize": 13,
+                          "fontWeight": "normal"
                         }
                       ]
                     },
@@ -8022,7 +8041,8 @@
                               "fill": "$--muted-foreground",
                               "content": "近 7 天",
                               "fontFamily": "Inter",
-                              "fontSize": 12
+                              "fontSize": 12,
+                              "fontWeight": "normal"
                             }
                           ]
                         },
@@ -8045,7 +8065,8 @@
                               "fill": "$--muted-foreground",
                               "content": "近 30 天",
                               "fontFamily": "Inter",
-                              "fontSize": 12
+                              "fontSize": 12,
+                              "fontWeight": "normal"
                             }
                           ]
                         }
@@ -10202,7 +10223,8 @@
                           "fill": "$--foreground",
                           "content": "开始",
                           "fontFamily": "Inter",
-                          "fontSize": 11
+                          "fontSize": 11,
+                          "fontWeight": "normal"
                         }
                       ]
                     },
@@ -10242,7 +10264,8 @@
                           "fill": "$--foreground",
                           "content": "设备选择",
                           "fontFamily": "Inter",
-                          "fontSize": 11
+                          "fontSize": 11,
+                          "fontWeight": "normal"
                         }
                       ]
                     },
@@ -10323,7 +10346,8 @@
                           "fill": "$--foreground",
                           "content": "等待 3s",
                           "fontFamily": "Inter",
-                          "fontSize": 11
+                          "fontSize": 11,
+                          "fontWeight": "normal"
                         }
                       ]
                     },
@@ -10363,7 +10387,8 @@
                           "fill": "$--foreground",
                           "content": "点击",
                           "fontFamily": "Inter",
-                          "fontSize": 11
+                          "fontSize": 11,
+                          "fontWeight": "normal"
                         }
                       ]
                     },
@@ -10403,7 +10428,8 @@
                           "fill": "$--foreground",
                           "content": "输入内容",
                           "fontFamily": "Inter",
-                          "fontSize": 11
+                          "fontSize": 11,
+                          "fontWeight": "normal"
                         }
                       ]
                     },
@@ -10443,7 +10469,8 @@
                           "fill": "$--foreground",
                           "content": "截图",
                           "fontFamily": "Inter",
-                          "fontSize": 11
+                          "fontSize": 11,
+                          "fontWeight": "normal"
                         }
                       ]
                     },
@@ -10483,7 +10510,8 @@
                           "fill": "$--foreground",
                           "content": "结束",
                           "fontFamily": "Inter",
-                          "fontSize": 11
+                          "fontSize": 11,
+                          "fontWeight": "normal"
                         }
                       ]
                     },
@@ -12202,8 +12230,8 @@
     {
       "type": "frame",
       "id": "qFn7c",
-      "x": 4800,
-      "y": 10900,
+      "x": 6300,
+      "y": 9974,
       "name": "OCC-03 关系图谱页",
       "clip": true,
       "width": 1440,
@@ -12692,7 +12720,8 @@
                           "fill": "$--foreground",
                           "content": "TGT-0039",
                           "fontFamily": "Inter",
-                          "fontSize": 9
+                          "fontSize": 9,
+                          "fontWeight": "normal"
                         }
                       ]
                     },
@@ -12728,7 +12757,8 @@
                           "fill": "$--foreground",
                           "content": "TGT-0044",
                           "fontFamily": "Inter",
-                          "fontSize": 9
+                          "fontSize": 9,
+                          "fontWeight": "normal"
                         }
                       ]
                     },
@@ -12764,7 +12794,8 @@
                           "fill": "$--foreground",
                           "content": "acc_201",
                           "fontFamily": "Inter",
-                          "fontSize": 9
+                          "fontSize": 9,
+                          "fontWeight": "normal"
                         }
                       ]
                     },
@@ -12800,7 +12831,8 @@
                           "fill": "$--foreground",
                           "content": "acc_207",
                           "fontFamily": "Inter",
-                          "fontSize": 9
+                          "fontSize": 9,
+                          "fontWeight": "normal"
                         }
                       ]
                     },
@@ -12836,7 +12868,8 @@
                           "fill": "$--foreground",
                           "content": "TGT-0051",
                           "fontFamily": "Inter",
-                          "fontSize": 9
+                          "fontSize": 9,
+                          "fontWeight": "normal"
                         }
                       ]
                     },
@@ -21860,7 +21893,8 @@
                                   "fill": "$--foreground",
                                   "content": "预览步骤",
                                   "fontFamily": "Inter",
-                                  "fontSize": 11
+                                  "fontSize": 11,
+                                  "fontWeight": "normal"
                                 }
                               ]
                             }
@@ -22036,7 +22070,8 @@
                                   "fill": "$--foreground",
                                   "content": "预览步骤",
                                   "fontFamily": "Inter",
-                                  "fontSize": 11
+                                  "fontSize": 11,
+                                  "fontWeight": "normal"
                                 }
                               ]
                             }
@@ -22212,7 +22247,8 @@
                                   "fill": "$--foreground",
                                   "content": "预览步骤",
                                   "fontFamily": "Inter",
-                                  "fontSize": 11
+                                  "fontSize": 11,
+                                  "fontWeight": "normal"
                                 }
                               ]
                             }
@@ -22382,7 +22418,8 @@
                           "fill": "$--muted-foreground",
                           "content": "作业统计",
                           "fontFamily": "Inter",
-                          "fontSize": 12
+                          "fontSize": 12,
+                          "fontWeight": "normal"
                         }
                       ]
                     },
@@ -22405,7 +22442,8 @@
                           "fill": "$--muted-foreground",
                           "content": "复盘归因",
                           "fontFamily": "Inter",
-                          "fontSize": 12
+                          "fontSize": 12,
+                          "fontWeight": "normal"
                         }
                       ]
                     }
@@ -24926,7 +24964,8 @@
                               "fill": "$--muted-foreground",
                               "content": "风控分级与信号",
                               "fontFamily": "Inter",
-                              "fontSize": 12
+                              "fontSize": 12,
+                              "fontWeight": "normal"
                             }
                           ]
                         }
@@ -25443,7 +25482,8 @@
                                   "fill": "$--foreground",
                                   "content": "指纹校验",
                                   "fontFamily": "Inter",
-                                  "fontSize": 12
+                                  "fontSize": 12,
+                                  "fontWeight": "normal"
                                 }
                               ]
                             },
@@ -25469,7 +25509,8 @@
                                   "fill": "$--foreground",
                                   "content": "手动降级/暂停",
                                   "fontFamily": "Inter",
-                                  "fontSize": 12
+                                  "fontSize": 12,
+                                  "fontWeight": "normal"
                                 }
                               ]
                             }
@@ -25571,7 +25612,8 @@
                                   "fill": "$--foreground",
                                   "content": "mid_high 中高（虚拟化）",
                                   "fontFamily": "Inter",
-                                  "fontSize": 11
+                                  "fontSize": 11,
+                                  "fontWeight": "normal"
                                 }
                               ]
                             },
@@ -25604,7 +25646,8 @@
                                   "fill": "$--foreground",
                                   "content": "mid 中（云手机/Profile）",
                                   "fontFamily": "Inter",
-                                  "fontSize": 11
+                                  "fontSize": 11,
+                                  "fontWeight": "normal"
                                 }
                               ]
                             },
@@ -25637,7 +25680,8 @@
                                   "fill": "$--foreground",
                                   "content": "low 低",
                                   "fontFamily": "Inter",
-                                  "fontSize": 11
+                                  "fontSize": 11,
+                                  "fontWeight": "normal"
                                 }
                               ]
                             }
@@ -26504,7 +26548,8 @@
                                   "fill": "$--foreground",
                                   "content": "验证探测",
                                   "fontFamily": "Inter",
-                                  "fontSize": 12
+                                  "fontSize": 12,
+                                  "fontWeight": "normal"
                                 }
                               ]
                             },
@@ -26530,7 +26575,8 @@
                                   "fill": "$--foreground",
                                   "content": "更新凭据",
                                   "fontFamily": "Inter",
-                                  "fontSize": 12
+                                  "fontSize": 12,
+                                  "fontWeight": "normal"
                                 }
                               ]
                             },
@@ -26556,7 +26602,8 @@
                                   "fill": "$--foreground",
                                   "content": "解密查看(受限)",
                                   "fontFamily": "Inter",
-                                  "fontSize": 12
+                                  "fontSize": 12,
+                                  "fontWeight": "normal"
                                 }
                               ]
                             }
@@ -27483,7 +27530,8 @@
                                   "fill": "$--foreground",
                                   "content": "失败回滚",
                                   "fontFamily": "Inter",
-                                  "fontSize": 12
+                                  "fontSize": 12,
+                                  "fontWeight": "normal"
                                 }
                               ]
                             },
@@ -27509,7 +27557,8 @@
                                   "fill": "$--foreground",
                                   "content": "重试",
                                   "fontFamily": "Inter",
-                                  "fontSize": 12
+                                  "fontSize": 12,
+                                  "fontWeight": "normal"
                                 }
                               ]
                             }
@@ -27815,7 +27864,8 @@
                               "fill": "$--muted-foreground",
                               "content": "资产迁移向导",
                               "fontFamily": "Inter",
-                              "fontSize": 12
+                              "fontSize": 12,
+                              "fontWeight": "normal"
                             }
                           ]
                         }
@@ -28934,7 +28984,8 @@
                               "fill": "$--foreground",
                               "content": "facebook 养号-B",
                               "fontFamily": "Inter",
-                              "fontSize": 12
+                              "fontSize": 12,
+                              "fontWeight": "normal"
                             },
                             {
                               "type": "text",
@@ -28968,7 +29019,8 @@
                               "fill": "$--foreground",
                               "content": "通用浏览策略",
                               "fontFamily": "Inter",
-                              "fontSize": 12
+                              "fontSize": 12,
+                              "fontWeight": "normal"
                             },
                             {
                               "type": "text",
@@ -29720,7 +29772,8 @@
                                   "fill": "$--foreground",
                                   "content": "复制",
                                   "fontFamily": "Inter",
-                                  "fontSize": 12
+                                  "fontSize": 12,
+                                  "fontWeight": "normal"
                                 }
                               ]
                             },
@@ -29746,7 +29799,8 @@
                                   "fill": "$--foreground",
                                   "content": "启用",
                                   "fontFamily": "Inter",
-                                  "fontSize": 12
+                                  "fontSize": 12,
+                                  "fontWeight": "normal"
                                 }
                               ]
                             }
@@ -30227,7 +30281,8 @@
                           "fill": "$--foreground",
                           "content": "移出",
                           "fontFamily": "Inter",
-                          "fontSize": 12
+                          "fontSize": 12,
+                          "fontWeight": "normal"
                         }
                       ]
                     }
@@ -32364,7 +32419,8 @@
                           "fill": "$--foreground",
                           "content": "nurture_a.js",
                           "fontFamily": "Inter",
-                          "fontSize": 11
+                          "fontSize": 11,
+                          "fontWeight": "normal"
                         },
                         {
                           "type": "text",
@@ -32399,7 +32455,8 @@
                           "fill": "$--foreground",
                           "content": "publish_b.js",
                           "fontFamily": "Inter",
-                          "fontSize": 11
+                          "fontSize": 11,
+                          "fontWeight": "normal"
                         },
                         {
                           "type": "text",
@@ -32434,7 +32491,8 @@
                           "fill": "$--foreground",
                           "content": "inspect_c.js",
                           "fontFamily": "Inter",
-                          "fontSize": 11
+                          "fontSize": 11,
+                          "fontWeight": "normal"
                         },
                         {
                           "type": "text",
@@ -33045,45 +33103,24 @@
     {
       "type": "frame",
       "id": "yEL1W",
-      "x": 4600,
-      "y": 8500,
+      "x": 4800,
+      "y": 8518,
       "name": "区域标题-OCC作战中心",
       "width": 2000,
+      "height": "fit_content(90)",
       "fill": "$--foreground",
       "layout": "vertical",
       "gap": 6,
       "padding": [
         16,
         20
-      ],
-      "children": [
-        {
-          "type": "text",
-          "id": "xBsaO",
-          "name": "T",
-          "fill": "$--primary-foreground",
-          "content": "OCC 作战中心 · 20 页（已画2 · 待画18）",
-          "fontFamily": "Inter",
-          "fontSize": 24,
-          "fontWeight": "700"
-        },
-        {
-          "type": "text",
-          "id": "JOL3P",
-          "name": "D",
-          "fill": "$--primary-foreground",
-          "content": "舆情作战业务子系统 · 业务层 · 布局：6菜单纵向，菜单内页横向",
-          "fontFamily": "Inter",
-          "fontSize": 12,
-          "fontWeight": "normal"
-        }
       ]
     },
     {
       "type": "frame",
       "id": "S80C0",
       "x": 4800,
-      "y": 9630,
+      "y": 9843,
       "name": "OCC菜单-作战总览",
       "fill": "$--muted",
       "cornerRadius": 6,
@@ -33122,7 +33159,7 @@
       "type": "frame",
       "id": "G2R3hS",
       "x": 4800,
-      "y": 10800,
+      "y": 11036,
       "name": "OCC菜单-情报分析",
       "fill": "$--muted",
       "cornerRadius": 6,
@@ -33161,7 +33198,7 @@
       "type": "frame",
       "id": "WwttK",
       "x": 4800,
-      "y": 12000,
+      "y": 12353,
       "name": "OCC菜单-目标与网络",
       "fill": "$--muted",
       "cornerRadius": 6,
@@ -33200,7 +33237,7 @@
       "type": "frame",
       "id": "qii21",
       "x": 4800,
-      "y": 13230,
+      "y": 13454,
       "name": "OCC菜单-作战编排",
       "fill": "$--muted",
       "cornerRadius": 6,
@@ -33239,7 +33276,7 @@
       "type": "frame",
       "id": "i8WmKG",
       "x": 4800,
-      "y": 14430,
+      "y": 14611,
       "name": "OCC菜单-效果评估",
       "fill": "$--muted",
       "cornerRadius": 6,
@@ -33278,7 +33315,7 @@
       "type": "frame",
       "id": "MRdZ6",
       "x": 4800,
-      "y": 15630,
+      "y": 15698,
       "name": "OCC菜单-策略与内容",
       "fill": "$--muted",
       "cornerRadius": 6,
@@ -33457,7 +33494,7 @@
                           "id": "P1WTG",
                           "name": "ILabel",
                           "fill": "$--foreground",
-                          "content": "MC-01 设备总览首页",
+                          "content": "设备总览首页",
                           "fontFamily": "Inter",
                           "fontSize": 13,
                           "fontWeight": "500"
@@ -37252,8 +37289,8 @@
     {
       "type": "frame",
       "id": "s1GfOJ",
-      "x": 4600,
-      "y": 15800,
+      "x": 4800,
+      "y": 15874,
       "name": "区域标题-SWM智能体工厂",
       "width": 2000,
       "fill": "$--foreground",
@@ -37289,8 +37326,8 @@
     {
       "type": "frame",
       "id": "vBRJg",
-      "x": 3280,
-      "y": 15950,
+      "x": 4800,
+      "y": 16074,
       "name": "SWM-01 智能体总览首页",
       "clip": true,
       "width": 1440,
@@ -37854,8 +37891,8 @@
     {
       "type": "frame",
       "id": "KFhRt",
-      "x": 3280,
-      "y": 16910,
+      "x": 4800,
+      "y": 17274,
       "name": "SWM-02 人设标签管理",
       "clip": true,
       "width": 1440,
@@ -38922,8 +38959,8 @@
     {
       "type": "frame",
       "id": "lxxxy",
-      "x": 3280,
-      "y": 17790,
+      "x": 4800,
+      "y": 18474,
       "name": "SWM-04 提示词模板库",
       "clip": true,
       "width": 1440,
@@ -39726,8 +39763,8 @@
     {
       "type": "frame",
       "id": "S0f2A",
-      "x": 3280,
-      "y": 18670,
+      "x": 6300,
+      "y": 18474,
       "name": "SWM-05 提示词版本管理",
       "clip": true,
       "width": 1440,
@@ -40670,8 +40707,8 @@
     {
       "type": "frame",
       "id": "iM3MP",
-      "x": 3280,
-      "y": 19550,
+      "x": 4800,
+      "y": 19674,
       "name": "SWM-09 评测数据集管理",
       "clip": true,
       "width": 1440,
@@ -41498,8 +41535,8 @@
     {
       "type": "frame",
       "id": "l9rq4",
-      "x": 3280,
-      "y": 20430,
+      "x": 6300,
+      "y": 19674,
       "name": "SWM-10 评测实验与迭代决策",
       "clip": true,
       "width": 1440,
@@ -42510,8 +42547,8 @@
     {
       "type": "frame",
       "id": "ZgtME",
-      "x": 3280,
-      "y": 21310,
+      "x": 7800,
+      "y": 19674,
       "name": "SWM-11 蜂群记忆管理",
       "clip": true,
       "width": 1440,
@@ -43430,8 +43467,8 @@
     {
       "type": "frame",
       "id": "EGlW6",
-      "x": 3280,
-      "y": 22190,
+      "x": 6300,
+      "y": 17274,
       "name": "SWM-03 画像生成提示词",
       "clip": true,
       "width": 1440,
@@ -43882,7 +43919,8 @@
                                   "fill": "$--foreground",
                                   "content": "重试",
                                   "fontFamily": "Inter",
-                                  "fontSize": 12
+                                  "fontSize": 12,
+                                  "fontWeight": "normal"
                                 }
                               ]
                             },
@@ -43908,7 +43946,8 @@
                                   "fill": "$--foreground",
                                   "content": "审核微调",
                                   "fontFamily": "Inter",
-                                  "fontSize": 12
+                                  "fontSize": 12,
+                                  "fontWeight": "normal"
                                 }
                               ]
                             }
@@ -44018,8 +44057,8 @@
     {
       "type": "frame",
       "id": "i1s6wl",
-      "x": 3280,
-      "y": 23070,
+      "x": 7800,
+      "y": 18474,
       "name": "SWM-06 Playground试运行",
       "clip": true,
       "width": 1440,
@@ -44258,7 +44297,8 @@
                                   "fill": "$--foreground",
                                   "content": "清空",
                                   "fontFamily": "Inter",
-                                  "fontSize": 12
+                                  "fontSize": 12,
+                                  "fontWeight": "normal"
                                 }
                               ]
                             },
@@ -44284,7 +44324,8 @@
                                   "fill": "$--foreground",
                                   "content": "保存草稿",
                                   "fontFamily": "Inter",
-                                  "fontSize": 12
+                                  "fontSize": 12,
+                                  "fontWeight": "normal"
                                 }
                               ]
                             }
@@ -44374,8 +44415,8 @@
     {
       "type": "frame",
       "id": "IuV76",
-      "x": 3280,
-      "y": 23950,
+      "x": 9300,
+      "y": 18474,
       "name": "SWM-07 版本输出对比",
       "clip": true,
       "width": 1440,
@@ -44806,8 +44847,8 @@
     {
       "type": "frame",
       "id": "f1I3Pm",
-      "x": 3280,
-      "y": 24830,
+      "x": 10800,
+      "y": 18474,
       "name": "SWM-08 构建与提示词包下发",
       "clip": true,
       "width": 1440,
@@ -45495,8 +45536,8 @@
     {
       "type": "frame",
       "id": "wn4mT",
-      "x": 4600,
-      "y": 24800,
+      "x": 4800,
+      "y": 24874,
       "name": "区域标题-OM运维管理",
       "width": 2000,
       "fill": "$--foreground",
@@ -45532,8 +45573,8 @@
     {
       "type": "frame",
       "id": "Z6HVbu",
-      "x": 3280,
-      "y": 25710,
+      "x": 4800,
+      "y": 25074,
       "name": "OM-01 运维总览首页",
       "clip": true,
       "width": 1440,
@@ -45833,8 +45874,8 @@
     {
       "type": "frame",
       "id": "QxBwR",
-      "x": 3280,
-      "y": 26670,
+      "x": 4800,
+      "y": 26274,
       "name": "OM-02 日志检索",
       "clip": true,
       "width": 1440,
@@ -46687,8 +46728,8 @@
     {
       "type": "frame",
       "id": "ejltN",
-      "x": 3280,
-      "y": 27550,
+      "x": 6300,
+      "y": 26274,
       "name": "OM-03 审计日志检索",
       "clip": true,
       "width": 1440,
@@ -47751,8 +47792,8 @@
     {
       "type": "frame",
       "id": "k3E1dD",
-      "x": 3280,
-      "y": 28430,
+      "x": 6300,
+      "y": 27474,
       "name": "OM-05 告警事件归档",
       "clip": true,
       "width": 1440,
@@ -48697,8 +48738,8 @@
     {
       "type": "frame",
       "id": "DzsKI",
-      "x": 3280,
-      "y": 29310,
+      "x": 4800,
+      "y": 28674,
       "name": "OM-06 用户管理",
       "clip": true,
       "width": 1440,
@@ -49735,8 +49776,8 @@
     {
       "type": "frame",
       "id": "qqCpe",
-      "x": 3280,
-      "y": 30190,
+      "x": 7800,
+      "y": 28674,
       "name": "OM-08 组织成员管理",
       "clip": true,
       "width": 1440,
@@ -50537,8 +50578,8 @@
     {
       "type": "frame",
       "id": "uONPi",
-      "x": 3280,
-      "y": 31070,
+      "x": 6300,
+      "y": 29874,
       "name": "OM-10 令牌与会话审计",
       "clip": true,
       "width": 1440,
@@ -51549,8 +51590,8 @@
     {
       "type": "frame",
       "id": "WX423",
-      "x": 3280,
-      "y": 31950,
+      "x": 4800,
+      "y": 27474,
       "name": "OM-04 指标看板",
       "clip": true,
       "width": 1440,
@@ -52018,8 +52059,8 @@
     {
       "type": "frame",
       "id": "uPRz2",
-      "x": 3280,
-      "y": 32830,
+      "x": 6300,
+      "y": 28674,
       "name": "OM-07 角色与权限管理",
       "clip": true,
       "width": 1440,
@@ -52325,7 +52366,8 @@
                               "fill": "$--muted-foreground",
                               "content": "mc:manage",
                               "fontFamily": "Inter",
-                              "fontSize": 10
+                              "fontSize": 10,
+                              "fontWeight": "normal"
                             }
                           ]
                         },
@@ -52372,7 +52414,8 @@
                               "fill": "$--muted-foreground",
                               "content": "—",
                               "fontFamily": "Inter",
-                              "fontSize": 10
+                              "fontSize": 10,
+                              "fontWeight": "normal"
                             }
                           ]
                         },
@@ -52395,7 +52438,8 @@
                               "fill": "$--muted-foreground",
                               "content": "—",
                               "fontFamily": "Inter",
-                              "fontSize": 10
+                              "fontSize": 10,
+                              "fontWeight": "normal"
                             }
                           ]
                         },
@@ -52418,7 +52462,8 @@
                               "fill": "$--muted-foreground",
                               "content": "—",
                               "fontFamily": "Inter",
-                              "fontSize": 10
+                              "fontSize": 10,
+                              "fontWeight": "normal"
                             }
                           ]
                         },
@@ -52441,7 +52486,8 @@
                               "fill": "$--muted-foreground",
                               "content": "—",
                               "fontFamily": "Inter",
-                              "fontSize": 10
+                              "fontSize": 10,
+                              "fontWeight": "normal"
                             }
                           ]
                         },
@@ -52464,7 +52510,8 @@
                               "fill": "$--muted-foreground",
                               "content": "—",
                               "fontFamily": "Inter",
-                              "fontSize": 10
+                              "fontSize": 10,
+                              "fontWeight": "normal"
                             }
                           ]
                         }
@@ -52497,7 +52544,8 @@
                               "fill": "$--muted-foreground",
                               "content": "mc:operate",
                               "fontFamily": "Inter",
-                              "fontSize": 10
+                              "fontSize": 10,
+                              "fontWeight": "normal"
                             }
                           ]
                         },
@@ -52616,7 +52664,8 @@
                               "fill": "$--muted-foreground",
                               "content": "—",
                               "fontFamily": "Inter",
-                              "fontSize": 10
+                              "fontSize": 10,
+                              "fontWeight": "normal"
                             }
                           ]
                         },
@@ -52639,7 +52688,8 @@
                               "fill": "$--muted-foreground",
                               "content": "—",
                               "fontFamily": "Inter",
-                              "fontSize": 10
+                              "fontSize": 10,
+                              "fontWeight": "normal"
                             }
                           ]
                         }
@@ -52672,7 +52722,8 @@
                               "fill": "$--muted-foreground",
                               "content": "mc:view",
                               "fontFamily": "Inter",
-                              "fontSize": 10
+                              "fontSize": 10,
+                              "fontWeight": "normal"
                             }
                           ]
                         },
@@ -52849,7 +52900,8 @@
                               "fill": "$--muted-foreground",
                               "content": "occ:manage",
                               "fontFamily": "Inter",
-                              "fontSize": 10
+                              "fontSize": 10,
+                              "fontWeight": "normal"
                             }
                           ]
                         },
@@ -52920,7 +52972,8 @@
                               "fill": "$--muted-foreground",
                               "content": "—",
                               "fontFamily": "Inter",
-                              "fontSize": 10
+                              "fontSize": 10,
+                              "fontWeight": "normal"
                             }
                           ]
                         },
@@ -52943,7 +52996,8 @@
                               "fill": "$--muted-foreground",
                               "content": "—",
                               "fontFamily": "Inter",
-                              "fontSize": 10
+                              "fontSize": 10,
+                              "fontWeight": "normal"
                             }
                           ]
                         },
@@ -52966,7 +53020,8 @@
                               "fill": "$--muted-foreground",
                               "content": "—",
                               "fontFamily": "Inter",
-                              "fontSize": 10
+                              "fontSize": 10,
+                              "fontWeight": "normal"
                             }
                           ]
                         },
@@ -52989,7 +53044,8 @@
                               "fill": "$--muted-foreground",
                               "content": "—",
                               "fontFamily": "Inter",
-                              "fontSize": 10
+                              "fontSize": 10,
+                              "fontWeight": "normal"
                             }
                           ]
                         }
@@ -53022,7 +53078,8 @@
                               "fill": "$--muted-foreground",
                               "content": "occ:operate",
                               "fontFamily": "Inter",
-                              "fontSize": 10
+                              "fontSize": 10,
+                              "fontWeight": "normal"
                             }
                           ]
                         },
@@ -53117,7 +53174,8 @@
                               "fill": "$--muted-foreground",
                               "content": "—",
                               "fontFamily": "Inter",
-                              "fontSize": 10
+                              "fontSize": 10,
+                              "fontWeight": "normal"
                             }
                           ]
                         },
@@ -53164,7 +53222,8 @@
                               "fill": "$--muted-foreground",
                               "content": "—",
                               "fontFamily": "Inter",
-                              "fontSize": 10
+                              "fontSize": 10,
+                              "fontWeight": "normal"
                             }
                           ]
                         }
@@ -53197,7 +53256,8 @@
                               "fill": "$--muted-foreground",
                               "content": "com:manage",
                               "fontFamily": "Inter",
-                              "fontSize": 10
+                              "fontSize": 10,
+                              "fontWeight": "normal"
                             }
                           ]
                         },
@@ -53244,7 +53304,8 @@
                               "fill": "$--muted-foreground",
                               "content": "—",
                               "fontFamily": "Inter",
-                              "fontSize": 10
+                              "fontSize": 10,
+                              "fontWeight": "normal"
                             }
                           ]
                         },
@@ -53267,7 +53328,8 @@
                               "fill": "$--muted-foreground",
                               "content": "—",
                               "fontFamily": "Inter",
-                              "fontSize": 10
+                              "fontSize": 10,
+                              "fontWeight": "normal"
                             }
                           ]
                         },
@@ -53290,7 +53352,8 @@
                               "fill": "$--muted-foreground",
                               "content": "—",
                               "fontFamily": "Inter",
-                              "fontSize": 10
+                              "fontSize": 10,
+                              "fontWeight": "normal"
                             }
                           ]
                         },
@@ -53313,7 +53376,8 @@
                               "fill": "$--muted-foreground",
                               "content": "—",
                               "fontFamily": "Inter",
-                              "fontSize": 10
+                              "fontSize": 10,
+                              "fontWeight": "normal"
                             }
                           ]
                         },
@@ -53336,7 +53400,8 @@
                               "fill": "$--muted-foreground",
                               "content": "—",
                               "fontFamily": "Inter",
-                              "fontSize": 10
+                              "fontSize": 10,
+                              "fontWeight": "normal"
                             }
                           ]
                         }
@@ -53375,8 +53440,8 @@
     {
       "type": "frame",
       "id": "xU23x",
-      "x": 3280,
-      "y": 33710,
+      "x": 4800,
+      "y": 29874,
       "name": "OM-09 登录策略与锁定管理",
       "clip": true,
       "width": 1440,
@@ -53920,8 +53985,8 @@
     {
       "type": "frame",
       "id": "CeV0H",
-      "x": 3280,
-      "y": 34590,
+      "x": 4800,
+      "y": 14774,
       "name": "OCC-14 策略库列表与分类",
       "clip": true,
       "width": 1440,
@@ -54984,8 +55049,8 @@
     {
       "type": "frame",
       "id": "x6xbl",
-      "x": 3280,
-      "y": 35470,
+      "x": 6300,
+      "y": 14774,
       "name": "OCC-15 策略版本与迭代",
       "clip": true,
       "width": 1440,
@@ -55812,8 +55877,8 @@
     {
       "type": "frame",
       "id": "xURT9",
-      "x": 3280,
-      "y": 36350,
+      "x": 7800,
+      "y": 14774,
       "name": "OCC-16 素材库内容主数据",
       "clip": true,
       "width": 1440,
@@ -56758,8 +56823,8 @@
     {
       "type": "frame",
       "id": "K6IHLb",
-      "x": 3280,
-      "y": 37230,
+      "x": 9300,
+      "y": 14774,
       "name": "OCC-17 素材分类与平台适配",
       "clip": true,
       "width": 1440,
@@ -57612,8 +57677,8 @@
     {
       "type": "frame",
       "id": "eufgA",
-      "x": 3280,
-      "y": 38110,
+      "x": 10800,
+      "y": 14774,
       "name": "OCC-18 发布排期",
       "clip": true,
       "width": 1440,
@@ -58440,8 +58505,8 @@
     {
       "type": "frame",
       "id": "vKKgA",
-      "x": 3280,
-      "y": 38990,
+      "x": 12300,
+      "y": 14774,
       "name": "OCC-19 内容审核工作台",
       "clip": true,
       "width": 1440,
@@ -59360,8 +59425,8 @@
     {
       "type": "frame",
       "id": "E9e7Nj",
-      "x": 3280,
-      "y": 39870,
+      "x": 13800,
+      "y": 14774,
       "name": "OCC-20 敏感词风控库",
       "clip": true,
       "width": 1440,
@@ -60188,8 +60253,8 @@
     {
       "type": "frame",
       "id": "Rockb",
-      "x": 3280,
-      "y": 40750,
+      "x": 4800,
+      "y": 8774,
       "name": "OCC-01 作战总览首页",
       "clip": true,
       "width": 1440,
@@ -60633,8 +60698,8 @@
     {
       "type": "frame",
       "id": "pvPag",
-      "x": 3280,
-      "y": 41710,
+      "x": 4800,
+      "y": 9974,
       "name": "OCC-02 群体下钻筛选",
       "clip": true,
       "width": 1440,
@@ -61579,8 +61644,8 @@
     {
       "type": "frame",
       "id": "ZrqVA",
-      "x": 3280,
-      "y": 42590,
+      "x": 4800,
+      "y": 13574,
       "name": "OCC-11 单轮/走势成效看板",
       "clip": true,
       "width": 1440,
@@ -62499,8 +62564,8 @@
     {
       "type": "frame",
       "id": "yj8aA",
-      "x": 3280,
-      "y": 43470,
+      "x": 7800,
+      "y": 13574,
       "name": "OCC-13 中短期与长期评估",
       "clip": true,
       "width": 1440,
@@ -62936,8 +63001,8 @@
     {
       "type": "frame",
       "id": "A0FUs",
-      "x": 3280,
-      "y": 44350,
+      "x": 7800,
+      "y": 9974,
       "name": "OCC-04 实体检索与档案",
       "clip": true,
       "width": 1440,
@@ -63590,8 +63655,8 @@
     {
       "type": "frame",
       "id": "teKBE",
-      "x": 3280,
-      "y": 45230,
+      "x": 9300,
+      "y": 9974,
       "name": "OCC-05 文本智能分析",
       "clip": true,
       "width": 1440,
@@ -63858,7 +63923,8 @@
                                   "fill": "$--foreground",
                                   "content": "批量",
                                   "fontFamily": "Inter",
-                                  "fontSize": 12
+                                  "fontSize": 12,
+                                  "fontWeight": "normal"
                                 }
                               ]
                             },
@@ -63884,7 +63950,8 @@
                                   "fill": "$--foreground",
                                   "content": "导出",
                                   "fontFamily": "Inter",
-                                  "fontSize": 12
+                                  "fontSize": 12,
+                                  "fontWeight": "normal"
                                 }
                               ]
                             }
@@ -64072,8 +64139,8 @@
     {
       "type": "frame",
       "id": "f88kW",
-      "x": 3280,
-      "y": 46110,
+      "x": 4800,
+      "y": 12449,
       "name": "OCC-08 作战方案规划",
       "clip": true,
       "width": 1440,
@@ -64605,7 +64672,8 @@
                                   "fill": "$--foreground",
                                   "content": "人工选择",
                                   "fontFamily": "Inter",
-                                  "fontSize": 12
+                                  "fontSize": 12,
+                                  "fontWeight": "normal"
                                 }
                               ]
                             },
@@ -64649,8 +64717,8 @@
     {
       "type": "frame",
       "id": "M5Uldv",
-      "x": 3280,
-      "y": 46990,
+      "x": 6300,
+      "y": 13574,
       "name": "OCC-12 作业复盘报告",
       "clip": true,
       "width": 1440,
@@ -65161,8 +65229,8 @@
     {
       "type": "frame",
       "id": "h0xOeZ",
-      "x": 3280,
-      "y": 47870,
+      "x": 6300,
+      "y": 11174,
       "name": "OCC-07 目标关联网络",
       "clip": true,
       "width": 1440,
@@ -65340,7 +65408,8 @@
                               "fill": "$--foreground",
                               "content": "TGT-0039",
                               "fontFamily": "Inter",
-                              "fontSize": 9
+                              "fontSize": 9,
+                              "fontWeight": "normal"
                             }
                           ]
                         },
@@ -65376,7 +65445,8 @@
                               "fill": "$--foreground",
                               "content": "TGT-0044",
                               "fontFamily": "Inter",
-                              "fontSize": 9
+                              "fontSize": 9,
+                              "fontWeight": "normal"
                             }
                           ]
                         },
@@ -65412,7 +65482,8 @@
                               "fill": "$--foreground",
                               "content": "acc_201",
                               "fontFamily": "Inter",
-                              "fontSize": 9
+                              "fontSize": 9,
+                              "fontWeight": "normal"
                             }
                           ]
                         },
@@ -65686,8 +65757,8 @@
     {
       "type": "frame",
       "id": "Tm6Nz",
-      "x": 3280,
-      "y": 48750,
+      "x": 6300,
+      "y": 12449,
       "name": "OCC-09 编排流程定义",
       "clip": true,
       "width": 1440,
@@ -65861,7 +65932,8 @@
                               "fill": "$--foreground",
                               "content": "开始",
                               "fontFamily": "Inter",
-                              "fontSize": 10
+                              "fontSize": 10,
+                              "fontWeight": "normal"
                             }
                           ]
                         },
@@ -65942,7 +66014,8 @@
                               "fill": "$--foreground",
                               "content": "脚本节点",
                               "fontFamily": "Inter",
-                              "fontSize": 10
+                              "fontSize": 10,
+                              "fontWeight": "normal"
                             }
                           ]
                         },
@@ -65982,7 +66055,8 @@
                               "fill": "$--foreground",
                               "content": "结束",
                               "fontFamily": "Inter",
-                              "fontSize": 10
+                              "fontSize": 10,
+                              "fontWeight": "normal"
                             }
                           ]
                         },
@@ -66367,8 +66441,8 @@
     {
       "type": "frame",
       "id": "RPx05",
-      "x": 3280,
-      "y": 49630,
+      "x": 7800,
+      "y": 12449,
       "name": "OCC-10 编排实例执行跟踪",
       "clip": true,
       "width": 1440,
@@ -66588,6 +66662,30 @@
           ]
         }
       ]
+    },
+    {
+      "type": "text",
+      "id": "xBsaO",
+      "x": 4820,
+      "y": 8556,
+      "name": "T",
+      "fill": "$--primary-foreground",
+      "content": "OCC 作战中心 · 20 页",
+      "fontFamily": "Inter",
+      "fontSize": 24,
+      "fontWeight": "700"
+    },
+    {
+      "type": "text",
+      "id": "JOL3P",
+      "x": 4820,
+      "y": 8631,
+      "name": "D",
+      "fill": "$--primary-foreground",
+      "content": "舆情作战业务子系统 · 业务层 · 布局：6菜单纵向，菜单内页横向",
+      "fontFamily": "Inter",
+      "fontSize": 12,
+      "fontWeight": "normal"
     }
   ],
   "themes": {
