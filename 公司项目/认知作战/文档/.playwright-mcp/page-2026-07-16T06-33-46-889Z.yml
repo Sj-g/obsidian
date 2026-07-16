@@ -1,0 +1,121 @@
+- generic [ref=f8e4]:
+  - menu [ref=f8e10]:
+    - generic [ref=f8e17] [cursor=pointer]:
+      - listitem [ref=f8e18]
+      - generic [ref=f8e20]: Demo 空间
+    - generic [ref=f8e26]:
+      - generic [ref=f8e27]:
+        - generic [ref=f8e28]: Prompt 工程
+        - generic [ref=f8e30]:
+          - menuitem "Prompt 开发" [ref=f8e31] [cursor=pointer]
+          - menuitem "Playground" [ref=f8e37] [cursor=pointer]
+      - generic [ref=f8e44]:
+        - generic [ref=f8e45]: 评测
+        - generic [ref=f8e47]:
+          - menuitem "评测集" [ref=f8e48] [cursor=pointer]
+          - menuitem "评估器" [ref=f8e54] [cursor=pointer]
+          - menuitem "实验" [ref=f8e62] [cursor=pointer]
+      - generic [ref=f8e69]:
+        - generic [ref=f8e70]: 观测
+        - generic [ref=f8e72]:
+          - menuitem "Trace" [ref=f8e73] [cursor=pointer]
+          - menuitem "统计" [ref=f8e79] [cursor=pointer]
+          - menuitem "自动化任务" [active] [ref=f8e86] [cursor=pointer]
+      - generic [ref=f8e94]:
+        - generic [ref=f8e95]: 模型
+        - menuitem "模型管理" [ref=f8e98] [cursor=pointer]
+      - generic [ref=f8e104]:
+        - generic [ref=f8e105]: 应用
+        - menuitem "应用注册" [ref=f8e108] [cursor=pointer]
+      - generic [ref=f8e114]:
+        - generic [ref=f8e115]: 标签
+        - menuitem "标签管理" [ref=f8e118] [cursor=pointer]
+      - generic [ref=f8e125]:
+        - generic [ref=f8e126]: SDK&API
+        - generic [ref=f8e128]:
+          - menuitem "编排框架 Eino" [ref=f8e129] [cursor=pointer]
+          - menuitem "扣子罗盘 SDK" [ref=f8e136] [cursor=pointer]
+    - generic [ref=f8e183] [cursor=pointer]:
+      - listitem [ref=f8e185]
+      - generic [ref=f8e188]:
+        - strong [ref=f8e190]: RootUser_2105805697
+        - generic [ref=f8e191]: "@user7199022797"
+  - generic [ref=f8e196]:
+    - navigation "Breadcrumb" [ref=f8e198]:
+      - generic [ref=f8e199]:
+        - generic [ref=f8e200]: 观测
+        - generic [ref=f8e1755]: /
+      - generic [ref=f8e1757]: 自动化任务
+    - alert [ref=f8e209]:
+      - generic [ref=f8e217]:
+        - text: 当前空间为Demo空间，数据及功能仅用做展示不可运行，
+        - generic [ref=f8e218]: 体验功能可前往个人或企业空间
+        - text: 。
+    - generic [ref=f8e4360]:
+      - generic [ref=f8e4361]: 自动化任务
+      - generic [ref=f8e4365]:
+        - generic [ref=f8e4366]:
+          - generic [ref=f8e4368]:
+            - textbox "搜索名称" [ref=f8e4374]
+            - combobox [ref=f8e4375] [cursor=pointer]:
+              - generic [ref=f8e4376]: 状态
+              - generic [ref=f8e4377]: 请选择
+            - button "过滤器" [ref=f8e4383] [cursor=pointer]
+          - generic [ref=f8e4388]:
+            - button [ref=f8e4389] [cursor=pointer]
+            - button [ref=f8e4395] [cursor=pointer]
+            - button "在线评测任务" [ref=f8e4400] [cursor=pointer]
+        - generic [ref=f8e4411]:
+          - table [ref=f8e4413]:
+            - rowgroup [ref=f8e4426]:
+              - row [ref=f8e4427]:
+                - columnheader "ID" [ref=f8e4428]
+                - columnheader "名称" [ref=f8e4429]
+                - columnheader "任务类型" [ref=f8e4430]
+                - columnheader "任务进度" [ref=f8e4431]
+                - columnheader "状态" [ref=f8e4432]
+                - columnheader "描述" [ref=f8e4433]
+                - columnheader "创建人" [ref=f8e4434]
+                - columnheader [ref=f8e4435] [cursor=pointer]:
+                  - button "Current sort order is none" [ref=f8e4437]:
+                    - generic "创建时间" [ref=f8e4438]
+                - columnheader "新数据时间范围" [ref=f8e4444]
+                - columnheader "历史数据时间范围" [ref=f8e4445]
+                - columnheader "操作" [ref=f8e4446]
+          - grid [ref=f8e4449]:
+            - rowgroup [ref=f8e4462]:
+              - row [ref=f8e4463] [cursor=pointer]:
+                - gridcell "#85109" [ref=f8e4464]
+                - gridcell "Prompt百科助手自动评测" [ref=f8e4467]
+                - gridcell [ref=f8e4469]:
+                  - 'generic "Tag: 在线评测任务" [ref=f8e4471]': 在线评测任务
+                - gridcell "总条数 3 （成功 3 失败 0 ）" [ref=f8e4473]:
+                  - generic [ref=f8e4476]:
+                    - text: 总条数
+                    - generic [ref=f8e4477]: "3"
+                    - text: （成功
+                    - generic [ref=f8e4478]: "3"
+                    - text: 失败
+                    - generic [ref=f8e4480]: "0"
+                    - text: ）
+                - gridcell [ref=f8e4481]:
+                  - 'generic "Tag: 已完成" [ref=f8e4483]': 已完成
+                - gridcell "评测Prompt百科助手的表现" [ref=f8e4490]
+                - gridcell "shemingxin66bytedanc" [ref=f8e4492]:
+                  - generic [ref=f8e4493]:
+                    - listitem [ref=f8e4494]
+                    - generic [ref=f8e4495]: shemingxin66bytedanc
+                - gridcell "2025-06-13 15:31:04" [ref=f8e4496]
+                - gridcell "2025-06-13 15:28:27 - 2025-06-14 00:00:00" [ref=f8e4497]
+                - gridcell "- - -" [ref=f8e4498]
+                - gridcell "中止 详情" [ref=f8e4499]:
+                  - generic [ref=f8e4501]:
+                    - generic [ref=f8e4502]: 中止
+                    - generic [ref=f8e4503]: 详情
+        - list [ref=f8e4510]:
+          - generic [ref=f8e4511]: 总页数：1
+          - button "Previous" [disabled] [ref=f8e4512]
+          - listitem "Page 1" [ref=f8e4515] [cursor=pointer]: "1"
+          - button "Next" [disabled] [ref=f8e4516]
+          - combobox "selected" [ref=f8e4520] [cursor=pointer]:
+            - generic [ref=f8e4521]: 每页条数：10

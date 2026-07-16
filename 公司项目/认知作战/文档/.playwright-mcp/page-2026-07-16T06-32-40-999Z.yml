@@ -1,0 +1,375 @@
+- generic [ref=f8e4]:
+  - menu [ref=f8e10]:
+    - generic [ref=f8e17] [cursor=pointer]:
+      - listitem [ref=f8e18]
+      - generic [ref=f8e20]: Demo 空间
+    - generic [ref=f8e26]:
+      - generic [ref=f8e27]:
+        - generic [ref=f8e28]: Prompt 工程
+        - generic [ref=f8e30]:
+          - menuitem "Prompt 开发" [ref=f8e31] [cursor=pointer]
+          - menuitem "Playground" [ref=f8e37] [cursor=pointer]
+      - generic [ref=f8e44]:
+        - generic [ref=f8e45]: 评测
+        - generic [ref=f8e47]:
+          - menuitem "评测集" [ref=f8e48] [cursor=pointer]
+          - menuitem "评估器" [ref=f8e54] [cursor=pointer]
+          - menuitem "实验" [ref=f8e62] [cursor=pointer]
+      - generic [ref=f8e69]:
+        - generic [ref=f8e70]: 观测
+        - generic [ref=f8e72]:
+          - menuitem "Trace" [ref=f8e73] [cursor=pointer]
+          - menuitem "统计" [active] [ref=f8e79] [cursor=pointer]
+          - menuitem "自动化任务" [ref=f8e86] [cursor=pointer]
+      - generic [ref=f8e94]:
+        - generic [ref=f8e95]: 模型
+        - menuitem "模型管理" [ref=f8e98] [cursor=pointer]
+      - generic [ref=f8e104]:
+        - generic [ref=f8e105]: 应用
+        - menuitem "应用注册" [ref=f8e108] [cursor=pointer]
+      - generic [ref=f8e114]:
+        - generic [ref=f8e115]: 标签
+        - menuitem "标签管理" [ref=f8e118] [cursor=pointer]
+      - generic [ref=f8e125]:
+        - generic [ref=f8e126]: SDK&API
+        - generic [ref=f8e128]:
+          - menuitem "编排框架 Eino" [ref=f8e129] [cursor=pointer]
+          - menuitem "扣子罗盘 SDK" [ref=f8e136] [cursor=pointer]
+    - generic [ref=f8e183] [cursor=pointer]:
+      - listitem [ref=f8e185]
+      - generic [ref=f8e188]:
+        - strong [ref=f8e190]: RootUser_2105805697
+        - generic [ref=f8e191]: "@user7199022797"
+  - generic [ref=f8e196]:
+    - navigation "Breadcrumb" [ref=f8e198]:
+      - generic [ref=f8e199]:
+        - generic [ref=f8e200]: 观测
+        - generic [ref=f8e1755]: /
+      - generic [ref=f8e1757]: 统计
+    - alert [ref=f8e209]:
+      - generic [ref=f8e217]:
+        - text: 当前空间为Demo空间，数据及功能仅用做展示不可运行，
+        - generic [ref=f8e218]: 体验功能可前往个人或企业空间
+        - text: 。
+    - generic [ref=f8e3628]:
+      - generic [ref=f8e3631]:
+        - generic [ref=f8e3632]:
+          - text: 统计
+          - combobox "selected" [ref=f8e3634] [cursor=pointer]:
+            - generic [ref=f8e3635]: SDK 上报
+        - generic [ref=f8e3641]:
+          - combobox "selected" [ref=f8e3643] [cursor=pointer]:
+            - generic [ref=f8e3644]: 过去 7 天
+          - button [ref=f8e3650] [cursor=pointer]
+      - generic [ref=f8e3654]:
+        - generic [ref=f8e3655]:
+          - generic [ref=f8e3657] [cursor=pointer]:
+            - generic [ref=f8e3658]:
+              - generic [ref=f8e3659]: 使用次数
+              - generic [ref=f8e3663]: 查看
+            - generic [ref=f8e3670]:
+              - generic [ref=f8e3671]: "0"
+              - generic: 次
+            - generic [ref=f8e3672]:
+              - generic [ref=f8e3673]: 环比
+              - generic [ref=f8e3674]: 0.00%
+          - generic [ref=f8e3680] [cursor=pointer]:
+            - generic [ref=f8e3681]:
+              - generic [ref=f8e3682]: Span 错误率
+              - generic [ref=f8e3686]: 查看
+            - generic [ref=f8e3693]:
+              - generic [ref=f8e3694]: "--"
+              - generic [ref=f8e3695]: "%"
+          - generic [ref=f8e3698] [cursor=pointer]:
+            - generic [ref=f8e3699]:
+              - generic [ref=f8e3700]: 模型调用错误率
+              - generic [ref=f8e3704]: 查看
+            - generic [ref=f8e3711]:
+              - generic [ref=f8e3712]: "--"
+              - generic [ref=f8e3713]: "%"
+          - generic [ref=f8e3716] [cursor=pointer]:
+            - generic [ref=f8e3717]:
+              - generic [ref=f8e3718]: 模型调用耗时均值
+              - generic [ref=f8e3722]: 查看
+            - generic [ref=f8e3729]:
+              - generic [ref=f8e3730]: "--"
+              - generic [ref=f8e3731]: ms
+          - generic [ref=f8e3734] [cursor=pointer]:
+            - generic [ref=f8e3735]:
+              - generic [ref=f8e3736]: 模型 Tokens 消耗
+              - generic [ref=f8e3740]: 查看
+            - generic [ref=f8e3747]:
+              - generic [ref=f8e3748]: "0"
+              - generic: 个
+            - generic [ref=f8e3749]:
+              - generic [ref=f8e3750]: 环比
+              - generic [ref=f8e3751]: 0.00%
+          - generic [ref=f8e3757] [cursor=pointer]:
+            - generic [ref=f8e3758]:
+              - generic [ref=f8e3759]: 工具调用次数
+              - generic [ref=f8e3763]: 查看
+            - generic [ref=f8e3770]:
+              - generic [ref=f8e3771]: "0"
+              - generic: 次
+            - generic [ref=f8e3772]:
+              - generic [ref=f8e3773]: 环比
+              - generic [ref=f8e3774]: 0.00%
+          - generic [ref=f8e3780] [cursor=pointer]:
+            - generic [ref=f8e3781]:
+              - generic [ref=f8e3782]: 工具调用错误率
+              - generic [ref=f8e3786]: 查看
+            - generic [ref=f8e3793]:
+              - generic [ref=f8e3794]: "--"
+              - generic [ref=f8e3795]: "%"
+          - generic [ref=f8e3798] [cursor=pointer]:
+            - generic [ref=f8e3799]:
+              - generic [ref=f8e3800]: 工具调用耗时均值
+              - generic [ref=f8e3804]: 查看
+            - generic [ref=f8e3811]:
+              - generic [ref=f8e3812]: "--"
+              - generic [ref=f8e3813]: ms
+        - generic [ref=f8e3815]:
+          - button "全部" [ref=f8e3816] [cursor=pointer]
+          - button "模型" [ref=f8e3818] [cursor=pointer]
+          - button "工具" [ref=f8e3820] [cursor=pointer]
+          - button "上下文统计" [ref=f8e3822] [cursor=pointer]
+          - button "服务调用" [ref=f8e3824] [cursor=pointer]
+        - generic [ref=f8e3826]:
+          - generic [ref=f8e3827]: 模型
+          - combobox "selected" [ref=f8e3829] [cursor=pointer]:
+            - generic [ref=f8e3830]: 全部模型
+        - generic [ref=f8e3836]:
+          - generic [ref=f8e3838]:
+            - generic [ref=f8e3841]:
+              - generic [ref=f8e3842] [cursor=pointer]:
+                - generic [ref=f8e3843]: Tokens 消耗
+                - generic [ref=f8e3846]: "0.00"
+              - generic [ref=f8e3847] [cursor=pointer]:
+                - generic [ref=f8e3848]: Input Tokens 消耗
+                - generic [ref=f8e3851]: "0.00"
+              - generic [ref=f8e3852] [cursor=pointer]:
+                - generic [ref=f8e3853]: Output Tokens 消耗
+                - generic [ref=f8e3856]: "0.00"
+              - combobox "selected" [ref=f8e3858] [cursor=pointer]:
+                - generic [ref=f8e3859]: 千 Tokens
+            - generic [ref=f8e3869]:
+              - button [ref=f8e3870] [cursor=pointer]
+              - button [ref=f8e3876] [cursor=pointer]
+          - generic [ref=f8e3883]:
+            - generic [ref=f8e3884]:
+              - generic [ref=f8e3885] [cursor=pointer]: 模型 QPS | QPM
+              - generic [ref=f8e3888]:
+                - combobox "selected" [ref=f8e3890] [cursor=pointer]:
+                  - generic [ref=f8e3891]: QPS
+                - combobox "selected" [ref=f8e3898] [cursor=pointer]:
+                  - generic [ref=f8e3899]: All
+            - generic [ref=f8e3910]:
+              - generic [ref=f8e3911]: 当前无数据上报，请修改时间范围。
+              - generic [ref=f8e3912]:
+                - text: 若未接入扣子罗盘 SDK，
+                - link "请查看文档" [ref=f8e3914] [cursor=pointer]:
+                  - /url: /open/docs/cozeloop/sdk
+          - generic [ref=f8e3916]:
+            - generic [ref=f8e3917]: 模型请求成功率
+            - generic [ref=f8e3926]:
+              - generic [ref=f8e3927]: 当前无数据上报，请修改时间范围。
+              - generic [ref=f8e3928]:
+                - text: 若未接入扣子罗盘 SDK，
+                - link "请查看文档" [ref=f8e3930] [cursor=pointer]:
+                  - /url: /open/docs/cozeloop/sdk
+          - generic [ref=f8e3932]:
+            - generic [ref=f8e3933]:
+              - generic [ref=f8e3934] [cursor=pointer]: 模型 Token 速率
+              - combobox "selected" [ref=f8e3939] [cursor=pointer]:
+                - generic [ref=f8e3940]: Avg
+            - generic [ref=f8e3951]:
+              - generic [ref=f8e3952]: 当前无数据上报，请修改时间范围。
+              - generic [ref=f8e3953]:
+                - text: 若未接入扣子罗盘 SDK，
+                - link "请查看文档" [ref=f8e3955] [cursor=pointer]:
+                  - /url: /open/docs/cozeloop/sdk
+          - generic [ref=f8e3957]:
+            - generic [ref=f8e3958]:
+              - generic [ref=f8e3959] [cursor=pointer]: 模型调用总耗时
+              - combobox "selected" [ref=f8e3964] [cursor=pointer]:
+                - generic [ref=f8e3965]: Avg
+            - generic [ref=f8e3976]:
+              - generic [ref=f8e3977]: 当前无数据上报，请修改时间范围。
+              - generic [ref=f8e3978]:
+                - text: 若未接入扣子罗盘 SDK，
+                - link "请查看文档" [ref=f8e3980] [cursor=pointer]:
+                  - /url: /open/docs/cozeloop/sdk
+          - generic [ref=f8e3982]:
+            - generic [ref=f8e3983]:
+              - generic [ref=f8e3984] [cursor=pointer]: Time To First Token
+              - combobox "selected" [ref=f8e3989] [cursor=pointer]:
+                - generic [ref=f8e3990]: Avg
+            - generic [ref=f8e4001]:
+              - generic [ref=f8e4002]: 当前无数据上报，请修改时间范围。
+              - generic [ref=f8e4003]:
+                - text: 若未接入扣子罗盘 SDK，
+                - link "请查看文档" [ref=f8e4005] [cursor=pointer]:
+                  - /url: /open/docs/cozeloop/sdk
+          - generic [ref=f8e4007]:
+            - generic [ref=f8e4008]:
+              - generic [ref=f8e4009] [cursor=pointer]: Time Per Output Token
+              - combobox "selected" [ref=f8e4014] [cursor=pointer]:
+                - generic [ref=f8e4015]: Avg
+            - generic [ref=f8e4026]:
+              - generic [ref=f8e4027]: 当前无数据上报，请修改时间范围。
+              - generic [ref=f8e4028]:
+                - text: 若未接入扣子罗盘 SDK，
+                - link "请查看文档" [ref=f8e4030] [cursor=pointer]:
+                  - /url: /open/docs/cozeloop/sdk
+          - generic [ref=f8e4032]:
+            - generic [ref=f8e4033]:
+              - generic [ref=f8e4034] [cursor=pointer]: 模型分布
+              - combobox "selected" [ref=f8e4039] [cursor=pointer]:
+                - generic [ref=f8e4040]: 调用频次
+            - generic [ref=f8e4051]:
+              - generic [ref=f8e4052]: 当前无数据上报，请修改时间范围。
+              - generic [ref=f8e4053]:
+                - text: 若未接入扣子罗盘 SDK，
+                - link "请查看文档" [ref=f8e4055] [cursor=pointer]:
+                  - /url: /open/docs/cozeloop/sdk
+          - generic [ref=f8e4057]:
+            - generic [ref=f8e4058]: 模型调用错误码分布
+            - generic [ref=f8e4069]:
+              - generic [ref=f8e4070]: 当前无数据上报，请修改时间范围。
+              - generic [ref=f8e4071]:
+                - text: 若未接入扣子罗盘 SDK，
+                - link "请查看文档" [ref=f8e4073] [cursor=pointer]:
+                  - /url: /open/docs/cozeloop/sdk
+        - generic [ref=f8e4074]:
+          - generic [ref=f8e4075]: 工具
+          - combobox "selected" [ref=f8e4077] [cursor=pointer]:
+            - generic [ref=f8e4078]: 全部工具
+        - generic [ref=f8e4084]:
+          - generic [ref=f8e4086]:
+            - generic [ref=f8e4087]: 工具调用量
+            - generic [ref=f8e4096]:
+              - generic [ref=f8e4097]: 当前无数据上报，请修改时间范围。
+              - generic [ref=f8e4098]:
+                - text: 若未接入扣子罗盘 SDK，
+                - link "请查看文档" [ref=f8e4100] [cursor=pointer]:
+                  - /url: /open/docs/cozeloop/sdk
+          - generic [ref=f8e4102]:
+            - generic [ref=f8e4103]:
+              - generic [ref=f8e4104] [cursor=pointer]: 工具调用耗时
+              - combobox "selected" [ref=f8e4109] [cursor=pointer]:
+                - generic [ref=f8e4110]: Avg
+            - generic [ref=f8e4121]:
+              - generic [ref=f8e4122]: 当前无数据上报，请修改时间范围。
+              - generic [ref=f8e4123]:
+                - text: 若未接入扣子罗盘 SDK，
+                - link "请查看文档" [ref=f8e4125] [cursor=pointer]:
+                  - /url: /open/docs/cozeloop/sdk
+          - generic [ref=f8e4127]:
+            - generic [ref=f8e4128]: 工具调用成功率
+            - generic [ref=f8e4137]:
+              - generic [ref=f8e4138]: 当前无数据上报，请修改时间范围。
+              - generic [ref=f8e4139]:
+                - text: 若未接入扣子罗盘 SDK，
+                - link "请查看文档" [ref=f8e4141] [cursor=pointer]:
+                  - /url: /open/docs/cozeloop/sdk
+          - generic [ref=f8e4143]:
+            - generic [ref=f8e4144]: 工具调用分布
+            - generic [ref=f8e4153]:
+              - generic [ref=f8e4154]: 当前无数据上报，请修改时间范围。
+              - generic [ref=f8e4155]:
+                - text: 若未接入扣子罗盘 SDK，
+                - link "请查看文档" [ref=f8e4157] [cursor=pointer]:
+                  - /url: /open/docs/cozeloop/sdk
+          - generic [ref=f8e4159]:
+            - generic [ref=f8e4160]: 工具调用错误码分布
+            - generic [ref=f8e4171]:
+              - generic [ref=f8e4172]: 当前无数据上报，请修改时间范围。
+              - generic [ref=f8e4173]:
+                - text: 若未接入扣子罗盘 SDK，
+                - link "请查看文档" [ref=f8e4175] [cursor=pointer]:
+                  - /url: /open/docs/cozeloop/sdk
+        - generic [ref=f8e4176]: 上下文统计
+        - generic [ref=f8e4178]:
+          - generic [ref=f8e4180]:
+            - generic [ref=f8e4181]: Agent 平均执行步数
+            - generic [ref=f8e4190]:
+              - generic [ref=f8e4191]: 当前无数据上报，请修改时间范围。
+              - generic [ref=f8e4192]:
+                - text: 若未接入扣子罗盘 SDK，
+                - link "请查看文档" [ref=f8e4194] [cursor=pointer]:
+                  - /url: /open/docs/cozeloop/sdk
+          - generic [ref=f8e4196]:
+            - generic [ref=f8e4197]: Agent 平均执行工具数
+            - generic [ref=f8e4206]:
+              - generic [ref=f8e4207]: 当前无数据上报，请修改时间范围。
+              - generic [ref=f8e4208]:
+                - text: 若未接入扣子罗盘 SDK，
+                - link "请查看文档" [ref=f8e4210] [cursor=pointer]:
+                  - /url: /open/docs/cozeloop/sdk
+          - generic [ref=f8e4212]:
+            - generic [ref=f8e4213]: Agent 平均调用模型次数
+            - generic [ref=f8e4222]:
+              - generic [ref=f8e4223]: 当前无数据上报，请修改时间范围。
+              - generic [ref=f8e4224]:
+                - text: 若未接入扣子罗盘 SDK，
+                - link "请查看文档" [ref=f8e4226] [cursor=pointer]:
+                  - /url: /open/docs/cozeloop/sdk
+        - generic [ref=f8e4227]: 服务调用
+        - generic [ref=f8e4229]:
+          - generic [ref=f8e4231]:
+            - generic [ref=f8e4232]: Trace 上报量
+            - generic [ref=f8e4241]:
+              - generic [ref=f8e4242]: 当前无数据上报，请修改时间范围。
+              - generic [ref=f8e4243]:
+                - text: 若未接入扣子罗盘 SDK，
+                - link "请查看文档" [ref=f8e4245] [cursor=pointer]:
+                  - /url: /open/docs/cozeloop/sdk
+          - generic [ref=f8e4247]:
+            - generic [ref=f8e4248]: 用户数
+            - generic [ref=f8e4257]:
+              - generic [ref=f8e4258]: 当前无数据上报，请修改时间范围。
+              - generic [ref=f8e4259]:
+                - text: 若未接入扣子罗盘 SDK，
+                - link "请查看文档" [ref=f8e4261] [cursor=pointer]:
+                  - /url: /open/docs/cozeloop/sdk
+          - generic [ref=f8e4263]:
+            - generic [ref=f8e4264]: 消息数
+            - generic [ref=f8e4273]:
+              - generic [ref=f8e4274]: 当前无数据上报，请修改时间范围。
+              - generic [ref=f8e4275]:
+                - text: 若未接入扣子罗盘 SDK，
+                - link "请查看文档" [ref=f8e4277] [cursor=pointer]:
+                  - /url: /open/docs/cozeloop/sdk
+          - generic [ref=f8e4279]:
+            - generic [ref=f8e4280]:
+              - generic [ref=f8e4281] [cursor=pointer]: 服务 QPS | QPM
+              - generic [ref=f8e4284]:
+                - combobox "selected" [ref=f8e4286] [cursor=pointer]:
+                  - generic [ref=f8e4287]: QPS
+                - combobox "selected" [ref=f8e4294] [cursor=pointer]:
+                  - generic [ref=f8e4295]: All
+            - generic [ref=f8e4306]:
+              - generic [ref=f8e4307]: 当前无数据上报，请修改时间范围。
+              - generic [ref=f8e4308]:
+                - text: 若未接入扣子罗盘 SDK，
+                - link "请查看文档" [ref=f8e4310] [cursor=pointer]:
+                  - /url: /open/docs/cozeloop/sdk
+          - generic [ref=f8e4312]:
+            - generic [ref=f8e4313]:
+              - generic [ref=f8e4314] [cursor=pointer]: 整体耗时
+              - combobox "selected" [ref=f8e4319] [cursor=pointer]:
+                - generic [ref=f8e4320]: Avg
+            - generic [ref=f8e4331]:
+              - generic [ref=f8e4332]: 当前无数据上报，请修改时间范围。
+              - generic [ref=f8e4333]:
+                - text: 若未接入扣子罗盘 SDK，
+                - link "请查看文档" [ref=f8e4335] [cursor=pointer]:
+                  - /url: /open/docs/cozeloop/sdk
+          - generic [ref=f8e4337]:
+            - generic [ref=f8e4338]: 服务请求成功率
+            - generic [ref=f8e4347]:
+              - generic [ref=f8e4348]: 当前无数据上报，请修改时间范围。
+              - generic [ref=f8e4349]:
+                - text: 若未接入扣子罗盘 SDK，
+                - link "请查看文档" [ref=f8e4351] [cursor=pointer]:
+                  - /url: /open/docs/cozeloop/sdk
