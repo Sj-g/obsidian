@@ -1,0 +1,236 @@
+- generic [ref=f8e4]:
+  - menu [ref=f8e10]:
+    - generic [ref=f8e17] [cursor=pointer]:
+      - listitem [ref=f8e18]
+      - generic [ref=f8e20]: Demo 空间
+    - generic [ref=f8e26]:
+      - generic [ref=f8e27]:
+        - generic [ref=f8e28]: Prompt 工程
+        - generic [ref=f8e30]:
+          - menuitem "Prompt 开发" [ref=f8e31] [cursor=pointer]
+          - menuitem "Playground" [active] [ref=f8e37] [cursor=pointer]
+      - generic [ref=f8e44]:
+        - generic [ref=f8e45]: 评测
+        - generic [ref=f8e47]:
+          - menuitem "评测集" [ref=f8e48] [cursor=pointer]
+          - menuitem "评估器" [ref=f8e54] [cursor=pointer]
+          - menuitem "实验" [ref=f8e62] [cursor=pointer]
+      - generic [ref=f8e69]:
+        - generic [ref=f8e70]: 观测
+        - generic [ref=f8e72]:
+          - menuitem "Trace" [ref=f8e73] [cursor=pointer]
+          - menuitem "统计" [ref=f8e79] [cursor=pointer]
+          - menuitem "自动化任务" [ref=f8e86] [cursor=pointer]
+      - generic [ref=f8e94]:
+        - generic [ref=f8e95]: 模型
+        - menuitem "模型管理" [ref=f8e98] [cursor=pointer]
+      - generic [ref=f8e104]:
+        - generic [ref=f8e105]: 应用
+        - menuitem "应用注册" [ref=f8e108] [cursor=pointer]
+      - generic [ref=f8e114]:
+        - generic [ref=f8e115]: 标签
+        - menuitem "标签管理" [ref=f8e118] [cursor=pointer]
+      - generic [ref=f8e125]:
+        - generic [ref=f8e126]: SDK&API
+        - generic [ref=f8e128]:
+          - menuitem "编排框架 Eino" [ref=f8e129] [cursor=pointer]
+          - menuitem "扣子罗盘 SDK" [ref=f8e136] [cursor=pointer]
+    - generic [ref=f8e143]:
+      - generic [ref=f8e145]:
+        - menuitem "扣子首页" [ref=f8e147] [cursor=pointer]
+        - generic [ref=f8e156]:
+          - menuitem "新手引导" [ref=f8e157] [cursor=pointer]
+          - menuitem "文档" [ref=f8e164] [cursor=pointer]
+          - menuitem "通知" [ref=f8e174] [cursor=pointer]
+      - generic [ref=f8e183] [cursor=pointer]:
+        - listitem [ref=f8e185]
+        - generic [ref=f8e188]:
+          - strong [ref=f8e190]: RootUser_2105805697
+          - generic [ref=f8e191]: "@user7199022797"
+  - generic [ref=f8e196]:
+    - navigation "Breadcrumb" [ref=f8e198]:
+      - generic [ref=f8e199]: Prompt 工程
+    - alert [ref=f8e209]:
+      - generic [ref=f8e217]:
+        - text: 当前空间为Demo空间，数据及功能仅用做展示不可运行，
+        - generic [ref=f8e218]: 体验功能可前往个人或企业空间
+        - text: 。
+    - generic [ref=f8e1230]:
+      - generic [ref=f8e1231]:
+        - generic [ref=f8e1232]:
+          - heading "Playground" [level=1] [ref=f8e1233]
+          - 'generic "Tag: 草稿保存中..." [ref=f8e1234]': 草稿保存中...
+        - generic [ref=f8e1240]:
+          - button "对比模式" [disabled] [ref=f8e1241]
+          - generic [ref=f8e1243]:
+            - button "快捷创建" [disabled]
+      - generic [ref=f8e1247]:
+        - generic [ref=f8e1249]:
+          - generic [ref=f8e1251]:
+            - generic [ref=f8e1252]:
+              - heading "Prompt 模板" [level=6] [ref=f8e1254]
+              - generic [ref=f8e1255]:
+                - generic [ref=f8e1256]:
+                  - button "Diff" [disabled]
+                - generic [ref=f8e1257]:
+                  - button "Normal" [disabled]
+            - generic [ref=f8e1258]:
+              - generic [ref=f8e1259]:
+                - generic [ref=f8e1260]:
+                  - generic [ref=f8e1261]:
+                    - generic [ref=f8e1262]: System
+                    - generic [ref=f8e1264]:
+                      - button [ref=f8e1266] [cursor=pointer]
+                      - button [ref=f8e1271] [cursor=pointer]
+                      - button [ref=f8e1276] [cursor=pointer]
+                      - button [disabled] [ref=f8e1282]
+                  - textbox [ref=f8e1290]:
+                    - generic [ref=f8e1291]: "# 角色"
+                    - generic [ref=f8e1292]: 你是一个专业的旅游规划助手，能够根据用户的具体需求和偏好，迅速且精准地为用户生成全面、详细且个性化的旅游规划文档。
+                    - generic [ref=f8e1294]: "## 技能：制定旅游规划方案"
+                    - generic [ref=f8e1295]: 为用户量身制定合理且舒适的行程安排和贴心的旅行指引。对于不同主题，需要能够体现对应主题的特色、需求或注意事项等。如亲子游，需要体现带小孩旅行途中要注意的内容，用户的预算和偏好等。
+                    - generic [ref=f8e1296]: 回复使用以下格式（内容可以合理使用 emoji 表情，让内容更生动）：
+                    - generic [ref=f8e1298]: "## 输出格式"
+                    - generic [ref=f8e1299]: "#### 基本信息"
+                    - generic [ref=f8e1300]:
+                      - text: "- 🛫 出发地："
+                      - generic [ref=f8e1301]: "{{departure}}"
+                      - text: <如未提供，则不展示此信息>
+                    - generic [ref=f8e1302]:
+                      - text: "- 🎯 目的地："
+                      - generic [ref=f8e1303]: "{{destination}}"
+                    - generic [ref=f8e1304]:
+                      - text: "- 🫂 人数："
+                      - generic [ref=f8e1305]: "{{people_num}}"
+                      - text: 人
+                    - generic [ref=f8e1306]:
+                      - text: "- 📅 天数："
+                      - generic [ref=f8e1307]: "{{days_num}}"
+                      - text: 天
+                    - generic [ref=f8e1308]:
+                      - text: "- 🎨 主题："
+                      - generic [ref=f8e1309]: "{{travel_theme}}"
+                    - generic [ref=f8e1310]: "##### <目的地>简介"
+                    - generic [ref=f8e1311]: <介目的地的基本信息，约100字>
+                    - generic [ref=f8e1312]: <描述天气状况、穿衣指南，约100字>
+                    - generic [ref=f8e1313]: <描述当地特色饮食、风俗习惯等，约100字>
+                    - generic [ref=f8e1314]: "#### Checklist"
+                    - generic [ref=f8e1315]: "- 手机、充电器"
+                    - generic [ref=f8e1316]: <需要携带的物品或准备事项，按需求生成>
+                    - generic [ref=f8e1317]: "#### 行程安排"
+                    - generic [ref=f8e1318]:
+                      - text: <根据用户期望天数（
+                      - generic [ref=f8e1319]: "{{days_num}}"
+                      - text: 天）安排每日行程>
+                    - generic [ref=f8e1320]: "##### 第一天、地点1 - 地点2 - ..."
+                    - generic [ref=f8e1321]: "###### 行程1：地点1"
+                    - generic [ref=f8e1322]: <地点的景点简介，约100字>
+                    - generic [ref=f8e1323]: <地点的交通方式，提供合理的交通方式及使用时间信息>
+                    - generic [ref=f8e1324]: <地点的游玩方式，提供推荐游玩时长、游玩方式、注意事项、预定信息等，约100字>
+                    - generic [ref=f8e1325]:
+                      - text: <如果
+                      - generic [ref=f8e1326]: "{{days_num}}"
+                      - text: 超过1天，则继续按照第一天格式生成>
+                    - generic [ref=f8e1327]: "#### 注意事项"
+                    - generic [ref=f8e1328]: <根据以上日程安排信息，提供一些目的地旅行的注意事项>
+                    - generic [ref=f8e1331]: "## 限制:"
+                    - generic [ref=f8e1332]: "- 所输出的内容必须按照给定的格式进行组织，不能偏离框架要求。"
+                - generic [ref=f8e1333]:
+                  - generic [ref=f8e1334]:
+                    - generic [ref=f8e1335]: User
+                    - generic [ref=f8e1337]:
+                      - button [ref=f8e1339] [cursor=pointer]
+                      - button [ref=f8e1344] [cursor=pointer]
+                      - button [disabled] [ref=f8e1350]
+                  - textbox [ref=f8e1358]:
+                    - generic [ref=f8e1359]: "## 用户需求"
+                    - generic [ref=f8e1360]:
+                      - text: "- 出发地："
+                      - generic [ref=f8e1361]: "{{departure}}"
+                    - generic [ref=f8e1362]:
+                      - text: "- 目的地："
+                      - generic [ref=f8e1363]: "{{destination}}"
+                    - generic [ref=f8e1364]:
+                      - text: "- 人数："
+                      - generic [ref=f8e1365]: "{{people_num}}"
+                    - generic [ref=f8e1366]:
+                      - text: "- 天数："
+                      - generic [ref=f8e1367]: "{{days_num}}"
+                    - generic [ref=f8e1368]:
+                      - text: "- 主题："
+                      - generic [ref=f8e1369]: "{{travel_theme}}"
+              - button "添加消息" [disabled] [ref=f8e1370]
+          - generic [ref=f8e1377]:
+            - generic [ref=f8e1378]:
+              - heading "常用配置" [level=6] [ref=f8e1379]
+              - button [ref=f8e1382] [cursor=pointer]
+            - generic [ref=f8e1386]:
+              - button "模型配置 参数配置" [expanded] [ref=f8e1389] [cursor=pointer]:
+                - strong [ref=f8e1393]: 模型配置
+                - generic [ref=f8e1398]:
+                  - combobox [disabled] [ref=f8e1399]:
+                    - generic [ref=f8e1400]: 请选择模型
+                  - generic [ref=f8e1406]: 参数配置
+              - button "Prompt变量 departure destination people_num days_num travel_theme" [expanded] [ref=f8e1412] [cursor=pointer]:
+                - strong [ref=f8e1416]: Prompt变量
+                - generic [ref=f8e1421]:
+                  - generic [ref=f8e1422]:
+                    - generic [ref=f8e1425]:
+                      - generic [ref=f8e1426]: departure
+                      - button [ref=f8e1428]
+                    - textbox "请输入变量值" [ref=f8e1438]
+                  - generic [ref=f8e1439]:
+                    - generic [ref=f8e1442]:
+                      - generic [ref=f8e1443]: destination
+                      - button [ref=f8e1445]
+                    - textbox "请输入变量值" [ref=f8e1455]
+                  - generic [ref=f8e1456]:
+                    - generic [ref=f8e1459]:
+                      - generic [ref=f8e1460]: people_num
+                      - button [ref=f8e1462]
+                    - textbox "请输入变量值" [ref=f8e1472]
+                  - generic [ref=f8e1473]:
+                    - generic [ref=f8e1476]:
+                      - generic [ref=f8e1477]: days_num
+                      - button [ref=f8e1479]
+                    - textbox "请输入变量值" [ref=f8e1489]
+                  - generic [ref=f8e1490]:
+                    - generic [ref=f8e1493]:
+                      - generic [ref=f8e1494]: travel_theme
+                      - button [ref=f8e1496]
+                    - textbox "请输入变量值" [ref=f8e1506]
+              - 'button "函数 Tag: 模型不支持 单步调试 get_weather Description: Determine weather in my location 模拟值: 新增函数" [expanded] [ref=f8e1512] [cursor=pointer]':
+                - generic [ref=f8e1513]:
+                  - generic [ref=f8e1514]:
+                    - strong [ref=f8e1516]: 函数
+                    - 'generic "Tag: 模型不支持" [ref=f8e1519]': 模型不支持
+                  - generic [ref=f8e1526]:
+                    - combobox "selected" [disabled] [ref=f8e1528]:
+                      - generic [ref=f8e1529]: Auto
+                    - generic [ref=f8e1535]:
+                      - generic [ref=f8e1536]:
+                        - switch [disabled]
+                      - generic [ref=f8e1538]: 单步调试
+                - generic [ref=f8e1541]:
+                  - generic [ref=f8e1542]:
+                    - generic [ref=f8e1543]: get_weather
+                    - generic [ref=f8e1545]:
+                      - generic [ref=f8e1546]: "Description:"
+                      - generic [ref=f8e1547]: Determine weather in my location
+                    - generic [ref=f8e1548]: "模拟值:"
+                  - button "新增函数" [disabled] [ref=f8e1551]
+        - generic [ref=f8e1560]:
+          - generic [ref=f8e1561]:
+            - heading "预览与调试" [level=6] [ref=f8e1563]
+            - button [ref=f8e1568] [cursor=pointer]
+          - generic [ref=f8e1574]:
+            - generic [ref=f8e1575]:
+              - button [ref=f8e1577] [cursor=pointer]
+              - button [ref=f8e1587] [cursor=pointer]
+            - generic [ref=f8e1591]:
+              - textbox [ref=f8e1596]:
+                - generic [ref=f8e1597]: 请输入问题测试大模型回复，回车发送，Shift+回车换行
+              - generic [ref=f8e1598]:
+                - generic [ref=f8e1599]: 该模型不支持上传图片
+                - button "运行" [disabled] [ref=f8e1604]
+            - generic [ref=f8e1610]: 内容由AI生成，无法确保真实准确，仅供参考。
