@@ -754,7 +754,7 @@
                           "fill": "$--muted-foreground",
                           "textGrowth": "fixed-width",
                           "width": "fill_container",
-                          "content": "多设备矩阵自动化群控子系统 · 6 菜单 / 14 页",
+                          "content": "多设备矩阵自动化群控子系统 · 6 菜单 / 13 页",
                           "fontFamily": "Inter",
                           "fontSize": 12,
                           "fontWeight": "normal"
@@ -1218,45 +1218,10 @@
                               "id": "SqAT5",
                               "name": "M执行审计",
                               "fill": "$--foreground",
-                              "content": "执行审计  (3)",
+                              "content": "执行审计  (2)",
                               "fontFamily": "Inter",
                               "fontSize": 12,
                               "fontWeight": "600"
-                            },
-                            {
-                              "type": "frame",
-                              "id": "WvbL8",
-                              "name": "Page MC-19",
-                              "width": "fill_container",
-                              "gap": 8,
-                              "padding": [
-                                2,
-                                0
-                              ],
-                              "children": [
-                                {
-                                  "type": "text",
-                                  "id": "erOsC",
-                                  "name": "MC-19 code",
-                                  "fill": "$--muted-foreground",
-                                  "content": "MC-19",
-                                  "fontFamily": "Inter",
-                                  "fontSize": 11,
-                                  "fontWeight": "500"
-                                },
-                                {
-                                  "type": "text",
-                                  "id": "H6T1Fn",
-                                  "name": "MC-19 name",
-                                  "fill": "$--foreground",
-                                  "textGrowth": "fixed-width",
-                                  "width": "fill_container",
-                                  "content": "执行网关熔断监控页",
-                                  "fontFamily": "Inter",
-                                  "fontSize": 12,
-                                  "fontWeight": "normal"
-                                }
-                              ]
                             },
                             {
                               "type": "frame",
@@ -5461,7 +5426,7 @@
       "type": "frame",
       "id": "y7j22v",
       "x": 4800,
-      "y": 11174,
+      "y": 10200,
       "name": "OCC-06 目标档案与状态管理页",
       "clip": true,
       "width": 1440,
@@ -8128,7 +8093,7 @@
     {
       "type": "frame",
       "id": "yZ9rJ",
-      "x": 7800,
+      "x": 7500,
       "y": 5100,
       "name": "MC-15 可视化工作流编排器",
       "clip": true,
@@ -9996,8 +9961,8 @@
     {
       "type": "frame",
       "id": "l8k1j",
-      "x": 4800,
-      "y": 6300,
+      "x": 6300,
+      "y": 2700,
       "name": "MC-17 单设备远控页",
       "clip": true,
       "width": 1440,
@@ -11164,8 +11129,8 @@
     {
       "type": "frame",
       "id": "rmvCb",
-      "x": 9300,
-      "y": 2700,
+      "x": 6300,
+      "y": 3900,
       "name": "MC-05 代理 IP 池与绑定",
       "clip": true,
       "width": 1440,
@@ -12800,8 +12765,8 @@
     {
       "type": "frame",
       "id": "DewpN",
-      "x": 6300,
-      "y": 2700,
+      "x": 4800,
+      "y": 7500,
       "name": "MC-03 终端分组与标签",
       "clip": true,
       "width": 1440,
@@ -18758,8 +18723,8 @@
     {
       "type": "frame",
       "id": "BQ7Ud",
-      "x": 6300,
-      "y": 7500,
+      "x": 4800,
+      "y": 6300,
       "name": "MC-20 动作审计与作业统计复盘",
       "clip": true,
       "width": 1440,
@@ -20052,8 +20017,8 @@
     {
       "type": "frame",
       "id": "iIf2Y",
-      "x": 7800,
-      "y": 7500,
+      "x": 6300,
+      "y": 6300,
       "name": "MC-21 智能体宿主同步状态",
       "clip": true,
       "width": 1440,
@@ -23419,8 +23384,8 @@
     {
       "type": "frame",
       "id": "j2WZlW",
-      "x": 6300,
-      "y": 6300,
+      "x": 7500,
+      "y": 2700,
       "name": "MC-18 多设备宫格同屏监控",
       "clip": true,
       "width": 1440,
@@ -24301,1486 +24266,8 @@
     },
     {
       "type": "frame",
-      "id": "vPZ1M",
-      "x": 4800,
-      "y": 7500,
-      "name": "MC-19 执行网关熔断监控",
-      "clip": true,
-      "width": 1440,
-      "height": 820,
-      "fill": "$--background",
-      "children": [
-        {
-          "id": "ThuVh",
-          "type": "ref",
-          "ref": "ZunpL",
-          "name": "Sidebar",
-          "height": "fill_container",
-          "descendants": {
-            "m1XT6": {
-              "enabled": true
-            },
-            "B5tTth": {
-              "fill": "$--muted"
-            },
-            "Q4OqGh": {
-              "fill": "$--foreground"
-            },
-            "e1f5r": {
-              "fontWeight": "600",
-              "fill": "$--foreground"
-            }
-          }
-        },
-        {
-          "type": "frame",
-          "id": "vRiKB",
-          "name": "Right",
-          "width": "fill_container",
-          "height": "fill_container",
-          "layout": "vertical",
-          "children": [
-            {
-              "id": "GCwQU",
-              "type": "ref",
-              "ref": "Zg915",
-              "name": "Topbar",
-              "width": "fill_container",
-              "descendants": {
-                "kRZLX": {
-                  "content": "MC"
-                },
-                "p17Ww": {
-                  "content": "执行审计"
-                },
-                "RfbUK": {
-                  "content": "MC-19 执行网关熔断监控"
-                }
-              }
-            },
-            {
-              "type": "frame",
-              "id": "Q2JlPE",
-              "name": "Content",
-              "width": "fill_container",
-              "height": "fill_container",
-              "layout": "vertical",
-              "gap": 14,
-              "padding": 20,
-              "children": [
-                {
-                  "type": "frame",
-                  "id": "FTbLs",
-                  "name": "Header",
-                  "width": "fill_container",
-                  "layout": "vertical",
-                  "gap": 4,
-                  "justifyContent": "space_between",
-                  "children": [
-                    {
-                      "type": "frame",
-                      "id": "n4rmH5",
-                      "name": "HT",
-                      "width": 600,
-                      "layout": "vertical",
-                      "gap": 3,
-                      "children": [
-                        {
-                          "type": "text",
-                          "id": "MaYYr",
-                          "name": "T",
-                          "fill": "$--foreground",
-                          "content": "执行网关熔断监控",
-                          "fontFamily": "Inter",
-                          "fontSize": 18,
-                          "fontWeight": "700"
-                        },
-                        {
-                          "type": "text",
-                          "id": "bET9a",
-                          "name": "D",
-                          "fill": "$--muted-foreground",
-                          "textGrowth": "fixed-width",
-                          "width": "fill_container",
-                          "content": "统一执行网关运行态、风控信号/异常频率熔断、过载优先级限流 · M-MC-05 · 一次采集两处消费(MC ClickHouse + OM)",
-                          "fontFamily": "Inter",
-                          "fontSize": 11,
-                          "fontWeight": "normal"
-                        }
-                      ]
-                    }
-                  ]
-                },
-                {
-                  "type": "frame",
-                  "id": "YkRFa",
-                  "name": "Toolbar",
-                  "width": "fill_container",
-                  "gap": 8,
-                  "alignItems": "center",
-                  "children": [
-                    {
-                      "type": "frame",
-                      "id": "y1FG7",
-                      "name": "Search",
-                      "width": 200,
-                      "height": 30,
-                      "fill": "$--card",
-                      "cornerRadius": 6,
-                      "stroke": "#d4d4d8",
-                      "strokeWidth": 1,
-                      "gap": 6,
-                      "padding": [
-                        0,
-                        10
-                      ],
-                      "alignItems": "center",
-                      "children": [
-                        {
-                          "type": "rectangle",
-                          "cornerRadius": 2,
-                          "id": "T7cME",
-                          "name": "IconPh",
-                          "fill": "$--muted-foreground",
-                          "width": 15,
-                          "height": 15
-                        },
-                        {
-                          "type": "text",
-                          "id": "IljsY",
-                          "name": "Ph",
-                          "fill": "$--muted-foreground",
-                          "content": "搜索 terminal_id",
-                          "fontFamily": "Inter",
-                          "fontSize": 11,
-                          "fontWeight": "normal"
-                        }
-                      ]
-                    },
-                    {
-                      "type": "frame",
-                      "id": "o2PrYz",
-                      "name": "Flt 状态 ▾",
-                      "fill": "$--card",
-                      "cornerRadius": 5,
-                      "stroke": "#d4d4d8",
-                      "strokeWidth": 1,
-                      "padding": [
-                        5,
-                        10
-                      ],
-                      "alignItems": "center",
-                      "children": [
-                        {
-                          "type": "text",
-                          "id": "QPtRk",
-                          "name": "L",
-                          "fill": "$--muted-foreground",
-                          "content": "状态 ▾",
-                          "fontFamily": "Inter",
-                          "fontSize": 11,
-                          "fontWeight": "normal"
-                        }
-                      ]
-                    },
-                    {
-                      "type": "frame",
-                      "id": "T3AR1",
-                      "name": "Flt 熔断原因 ▾",
-                      "fill": "$--card",
-                      "cornerRadius": 5,
-                      "stroke": "#d4d4d8",
-                      "strokeWidth": 1,
-                      "padding": [
-                        5,
-                        10
-                      ],
-                      "alignItems": "center",
-                      "children": [
-                        {
-                          "type": "text",
-                          "id": "JZGPv",
-                          "name": "L",
-                          "fill": "$--muted-foreground",
-                          "content": "熔断原因 ▾",
-                          "fontFamily": "Inter",
-                          "fontSize": 11,
-                          "fontWeight": "normal"
-                        }
-                      ]
-                    },
-                    {
-                      "type": "frame",
-                      "id": "mbPt1",
-                      "name": "TSpacer",
-                      "width": "fill_container",
-                      "height": 1
-                    },
-                    {
-                      "type": "frame",
-                      "id": "KCE8m",
-                      "name": "IcoBtn 调整限流",
-                      "width": 30,
-                      "height": 30,
-                      "fill": "$--card",
-                      "cornerRadius": 6,
-                      "stroke": "#d4d4d8",
-                      "strokeWidth": 1,
-                      "justifyContent": "center",
-                      "alignItems": "center",
-                      "children": [
-                        {
-                          "type": "rectangle",
-                          "cornerRadius": 2,
-                          "id": "GMDpP",
-                          "name": "IconPh",
-                          "fill": "$--muted-foreground",
-                          "width": 15,
-                          "height": 15
-                        }
-                      ]
-                    },
-                    {
-                      "type": "frame",
-                      "id": "Pi9fV",
-                      "name": "IcoBtn 导出日志",
-                      "width": 30,
-                      "height": 30,
-                      "fill": "$--card",
-                      "cornerRadius": 6,
-                      "stroke": "#d4d4d8",
-                      "strokeWidth": 1,
-                      "justifyContent": "center",
-                      "alignItems": "center",
-                      "children": [
-                        {
-                          "type": "rectangle",
-                          "cornerRadius": 2,
-                          "id": "DOw6g",
-                          "name": "IconPh",
-                          "fill": "$--muted-foreground",
-                          "width": 15,
-                          "height": 15
-                        }
-                      ]
-                    },
-                    {
-                      "type": "frame",
-                      "id": "FFWh8",
-                      "name": "IcoBtn 刷新",
-                      "width": 30,
-                      "height": 30,
-                      "fill": "$--card",
-                      "cornerRadius": 6,
-                      "stroke": "#d4d4d8",
-                      "strokeWidth": 1,
-                      "justifyContent": "center",
-                      "alignItems": "center",
-                      "children": [
-                        {
-                          "type": "rectangle",
-                          "cornerRadius": 2,
-                          "id": "z1bpJ",
-                          "name": "IconPh",
-                          "fill": "$--muted-foreground",
-                          "width": 15,
-                          "height": 15
-                        }
-                      ]
-                    },
-                    {
-                      "type": "frame",
-                      "id": "cg6Gf",
-                      "name": "Btn 手动解除熔断",
-                      "fill": "$--foreground",
-                      "cornerRadius": 5,
-                      "gap": 6,
-                      "padding": [
-                        7,
-                        14
-                      ],
-                      "justifyContent": "center",
-                      "alignItems": "center",
-                      "children": [
-                        {
-                          "type": "rectangle",
-                          "cornerRadius": 2,
-                          "id": "gfr4q",
-                          "name": "IconPh",
-                          "fill": "$--primary-foreground",
-                          "width": 14,
-                          "height": 14
-                        },
-                        {
-                          "type": "text",
-                          "id": "q3WlU7",
-                          "name": "L",
-                          "fill": "$--primary-foreground",
-                          "content": "手动解除熔断",
-                          "fontFamily": "Inter",
-                          "fontSize": 12,
-                          "fontWeight": "600"
-                        }
-                      ]
-                    }
-                  ]
-                },
-                {
-                  "type": "frame",
-                  "id": "d67uVZ",
-                  "name": "Metrics1",
-                  "width": "fill_container",
-                  "gap": 10,
-                  "children": [
-                    {
-                      "type": "frame",
-                      "id": "UEJsO",
-                      "name": "M 网关 QPS",
-                      "width": "fill_container",
-                      "fill": "$--card",
-                      "cornerRadius": 7,
-                      "stroke": "#e4e4e7",
-                      "strokeWidth": 1,
-                      "layout": "vertical",
-                      "gap": 3,
-                      "padding": 12,
-                      "children": [
-                        {
-                          "type": "text",
-                          "id": "TE6BH",
-                          "name": "T",
-                          "fill": "$--muted-foreground",
-                          "content": "网关 QPS",
-                          "fontFamily": "Inter",
-                          "fontSize": 10,
-                          "fontWeight": "normal"
-                        },
-                        {
-                          "type": "text",
-                          "id": "QE95v",
-                          "name": "V",
-                          "fill": "$--foreground",
-                          "content": "1,240",
-                          "fontFamily": "Inter",
-                          "fontSize": 18,
-                          "fontWeight": "700"
-                        }
-                      ]
-                    },
-                    {
-                      "type": "frame",
-                      "id": "iOR8P",
-                      "name": "M 平均动作延迟",
-                      "width": "fill_container",
-                      "fill": "$--card",
-                      "cornerRadius": 7,
-                      "stroke": "#e4e4e7",
-                      "strokeWidth": 1,
-                      "layout": "vertical",
-                      "gap": 3,
-                      "padding": 12,
-                      "children": [
-                        {
-                          "type": "text",
-                          "id": "XTGqc",
-                          "name": "T",
-                          "fill": "$--muted-foreground",
-                          "content": "平均动作延迟",
-                          "fontFamily": "Inter",
-                          "fontSize": 10,
-                          "fontWeight": "normal"
-                        },
-                        {
-                          "type": "text",
-                          "id": "MgU9F",
-                          "name": "V",
-                          "fill": "$--foreground",
-                          "content": "186ms",
-                          "fontFamily": "Inter",
-                          "fontSize": 18,
-                          "fontWeight": "700"
-                        }
-                      ]
-                    },
-                    {
-                      "type": "frame",
-                      "id": "tW9cA",
-                      "name": "M 熔断终端",
-                      "width": "fill_container",
-                      "fill": "$--card",
-                      "cornerRadius": 7,
-                      "stroke": "#e4e4e7",
-                      "strokeWidth": 1,
-                      "layout": "vertical",
-                      "gap": 3,
-                      "padding": 12,
-                      "children": [
-                        {
-                          "type": "text",
-                          "id": "lZHwj",
-                          "name": "T",
-                          "fill": "$--muted-foreground",
-                          "content": "熔断终端",
-                          "fontFamily": "Inter",
-                          "fontSize": 10,
-                          "fontWeight": "normal"
-                        },
-                        {
-                          "type": "text",
-                          "id": "P6QFd",
-                          "name": "V",
-                          "fill": "$--foreground",
-                          "content": "3",
-                          "fontFamily": "Inter",
-                          "fontSize": 18,
-                          "fontWeight": "700"
-                        }
-                      ]
-                    },
-                    {
-                      "type": "frame",
-                      "id": "ytzp7",
-                      "name": "M 限流触发",
-                      "width": "fill_container",
-                      "fill": "$--card",
-                      "cornerRadius": 7,
-                      "stroke": "#e4e4e7",
-                      "strokeWidth": 1,
-                      "layout": "vertical",
-                      "gap": 3,
-                      "padding": 12,
-                      "children": [
-                        {
-                          "type": "text",
-                          "id": "LTxWE",
-                          "name": "T",
-                          "fill": "$--muted-foreground",
-                          "content": "限流触发",
-                          "fontFamily": "Inter",
-                          "fontSize": 10,
-                          "fontWeight": "normal"
-                        },
-                        {
-                          "type": "text",
-                          "id": "emIxr",
-                          "name": "V",
-                          "fill": "$--foreground",
-                          "content": "12次",
-                          "fontFamily": "Inter",
-                          "fontSize": 18,
-                          "fontWeight": "700"
-                        }
-                      ]
-                    },
-                    {
-                      "type": "frame",
-                      "id": "UaVvA",
-                      "name": "M 鉴权拒绝",
-                      "width": "fill_container",
-                      "fill": "$--card",
-                      "cornerRadius": 7,
-                      "stroke": "#e4e4e7",
-                      "strokeWidth": 1,
-                      "layout": "vertical",
-                      "gap": 3,
-                      "padding": 12,
-                      "children": [
-                        {
-                          "type": "text",
-                          "id": "htRds",
-                          "name": "T",
-                          "fill": "$--muted-foreground",
-                          "content": "鉴权拒绝",
-                          "fontFamily": "Inter",
-                          "fontSize": 10,
-                          "fontWeight": "normal"
-                        },
-                        {
-                          "type": "text",
-                          "id": "pqIl9",
-                          "name": "V",
-                          "fill": "$--foreground",
-                          "content": "4",
-                          "fontFamily": "Inter",
-                          "fontSize": 18,
-                          "fontWeight": "700"
-                        }
-                      ]
-                    }
-                  ]
-                },
-                {
-                  "type": "frame",
-                  "id": "dFpKy",
-                  "name": "Body",
-                  "width": "fill_container",
-                  "layout": "vertical",
-                  "gap": 14,
-                  "children": [
-                    {
-                      "type": "frame",
-                      "id": "qKGCO",
-                      "name": "Left",
-                      "width": "fill_container",
-                      "layout": "vertical",
-                      "gap": 12,
-                      "children": [
-                        {
-                          "type": "frame",
-                          "id": "xbf62",
-                          "name": "LeftH",
-                          "width": "fill_container",
-                          "justifyContent": "space_between",
-                          "alignItems": "center",
-                          "children": [
-                            {
-                              "type": "text",
-                              "id": "zdxaG",
-                              "name": "T",
-                              "fill": "$--foreground",
-                              "content": "熔断/限流终端",
-                              "fontFamily": "Inter",
-                              "fontSize": 12,
-                              "fontWeight": "700"
-                            },
-                            {
-                              "type": "text",
-                              "id": "b9W031",
-                              "name": "Cnt",
-                              "fill": "$--muted-foreground",
-                              "content": "3 个",
-                              "fontFamily": "Inter",
-                              "fontSize": 11,
-                              "fontWeight": "normal"
-                            }
-                          ]
-                        },
-                        {
-                          "type": "frame",
-                          "id": "VMkgi",
-                          "name": "Table",
-                          "clip": true,
-                          "width": "fill_container",
-                          "fill": "$--card",
-                          "cornerRadius": 8,
-                          "stroke": "#e4e4e7",
-                          "strokeWidth": 1,
-                          "layout": "vertical",
-                          "children": [
-                            {
-                              "type": "frame",
-                              "id": "reHWh",
-                              "name": "Head",
-                              "width": "fill_container",
-                              "fill": "#f4f4f5",
-                              "alignItems": "center",
-                              "children": [
-                                {
-                                  "type": "frame",
-                                  "id": "A1sQhW",
-                                  "name": "HC 0",
-                                  "width": 120,
-                                  "padding": [
-                                    8,
-                                    10
-                                  ],
-                                  "alignItems": "center",
-                                  "children": [
-                                    {
-                                      "type": "text",
-                                      "id": "iqVhI",
-                                      "name": "T",
-                                      "fill": "$--muted-foreground",
-                                      "content": "terminal_id",
-                                      "fontFamily": "Inter",
-                                      "fontSize": 10,
-                                      "fontWeight": "600"
-                                    }
-                                  ]
-                                },
-                                {
-                                  "type": "frame",
-                                  "id": "h15j4W",
-                                  "name": "HC 1",
-                                  "width": 160,
-                                  "padding": [
-                                    8,
-                                    10
-                                  ],
-                                  "alignItems": "center",
-                                  "children": [
-                                    {
-                                      "type": "text",
-                                      "id": "m9K43n",
-                                      "name": "T",
-                                      "fill": "$--muted-foreground",
-                                      "content": "熔断原因",
-                                      "fontFamily": "Inter",
-                                      "fontSize": 10,
-                                      "fontWeight": "600"
-                                    }
-                                  ]
-                                },
-                                {
-                                  "type": "frame",
-                                  "id": "V4SrWN",
-                                  "name": "HC 2",
-                                  "width": 100,
-                                  "padding": [
-                                    8,
-                                    10
-                                  ],
-                                  "alignItems": "center",
-                                  "children": [
-                                    {
-                                      "type": "text",
-                                      "id": "CFM78",
-                                      "name": "T",
-                                      "fill": "$--muted-foreground",
-                                      "content": "限流计数",
-                                      "fontFamily": "Inter",
-                                      "fontSize": 10,
-                                      "fontWeight": "600"
-                                    }
-                                  ]
-                                },
-                                {
-                                  "type": "frame",
-                                  "id": "z9Hbc",
-                                  "name": "HC 3",
-                                  "width": 90,
-                                  "padding": [
-                                    8,
-                                    10
-                                  ],
-                                  "alignItems": "center",
-                                  "children": [
-                                    {
-                                      "type": "text",
-                                      "id": "e0mwa",
-                                      "name": "T",
-                                      "fill": "$--muted-foreground",
-                                      "content": "状态",
-                                      "fontFamily": "Inter",
-                                      "fontSize": 10,
-                                      "fontWeight": "600"
-                                    }
-                                  ]
-                                },
-                                {
-                                  "type": "frame",
-                                  "id": "LKCoK",
-                                  "name": "HC 4",
-                                  "width": 80,
-                                  "padding": [
-                                    8,
-                                    10
-                                  ],
-                                  "alignItems": "center",
-                                  "children": [
-                                    {
-                                      "type": "text",
-                                      "id": "m6p8i",
-                                      "name": "T",
-                                      "fill": "$--muted-foreground",
-                                      "content": "操作",
-                                      "fontFamily": "Inter",
-                                      "fontSize": 10,
-                                      "fontWeight": "600"
-                                    }
-                                  ]
-                                }
-                              ]
-                            },
-                            {
-                              "type": "frame",
-                              "id": "HJxAG",
-                              "name": "Row",
-                              "width": "fill_container",
-                              "fill": "$--card",
-                              "alignItems": "center",
-                              "children": [
-                                {
-                                  "type": "frame",
-                                  "id": "TtrWL",
-                                  "name": "C 0",
-                                  "width": 120,
-                                  "padding": [
-                                    8,
-                                    10
-                                  ],
-                                  "alignItems": "center",
-                                  "children": [
-                                    {
-                                      "type": "text",
-                                      "id": "QnRYT",
-                                      "name": "T",
-                                      "fill": "$--foreground",
-                                      "content": "T-7825",
-                                      "fontFamily": "Inter",
-                                      "fontSize": 11,
-                                      "fontWeight": "normal"
-                                    }
-                                  ]
-                                },
-                                {
-                                  "type": "frame",
-                                  "id": "iyJe7",
-                                  "name": "C 1",
-                                  "width": 160,
-                                  "padding": [
-                                    8,
-                                    10
-                                  ],
-                                  "alignItems": "center",
-                                  "children": [
-                                    {
-                                      "type": "text",
-                                      "id": "NhILr",
-                                      "name": "T",
-                                      "fill": "$--foreground",
-                                      "content": "风控信号",
-                                      "fontFamily": "Inter",
-                                      "fontSize": 11,
-                                      "fontWeight": "normal"
-                                    }
-                                  ]
-                                },
-                                {
-                                  "type": "frame",
-                                  "id": "B8oUEP",
-                                  "name": "C 2",
-                                  "width": 100,
-                                  "padding": [
-                                    8,
-                                    10
-                                  ],
-                                  "alignItems": "center",
-                                  "children": [
-                                    {
-                                      "type": "text",
-                                      "id": "y9hzi",
-                                      "name": "T",
-                                      "fill": "$--foreground",
-                                      "content": "mc:rate:128",
-                                      "fontFamily": "Inter",
-                                      "fontSize": 11,
-                                      "fontWeight": "normal"
-                                    }
-                                  ]
-                                },
-                                {
-                                  "type": "frame",
-                                  "id": "sSyzO",
-                                  "name": "C 3",
-                                  "width": 90,
-                                  "padding": [
-                                    8,
-                                    10
-                                  ],
-                                  "alignItems": "center",
-                                  "children": [
-                                    {
-                                      "type": "text",
-                                      "id": "zhFb4",
-                                      "name": "T",
-                                      "fill": "$--foreground",
-                                      "content": "熔断中",
-                                      "fontFamily": "Inter",
-                                      "fontSize": 11,
-                                      "fontWeight": "normal"
-                                    }
-                                  ]
-                                },
-                                {
-                                  "type": "frame",
-                                  "id": "SJzpd",
-                                  "name": "C 4",
-                                  "width": 80,
-                                  "padding": [
-                                    8,
-                                    10
-                                  ],
-                                  "alignItems": "center",
-                                  "children": [
-                                    {
-                                      "type": "text",
-                                      "id": "rOVOh",
-                                      "name": "T",
-                                      "fill": "$--foreground",
-                                      "content": "解除",
-                                      "fontFamily": "Inter",
-                                      "fontSize": 11,
-                                      "fontWeight": "normal"
-                                    }
-                                  ]
-                                }
-                              ]
-                            },
-                            {
-                              "type": "frame",
-                              "id": "jOAh8",
-                              "name": "Row",
-                              "width": "fill_container",
-                              "fill": "$--card",
-                              "alignItems": "center",
-                              "children": [
-                                {
-                                  "type": "frame",
-                                  "id": "cQYxm",
-                                  "name": "C 0",
-                                  "width": 120,
-                                  "padding": [
-                                    8,
-                                    10
-                                  ],
-                                  "alignItems": "center",
-                                  "children": [
-                                    {
-                                      "type": "text",
-                                      "id": "lJnKK",
-                                      "name": "T",
-                                      "fill": "$--foreground",
-                                      "content": "T-7850",
-                                      "fontFamily": "Inter",
-                                      "fontSize": 11,
-                                      "fontWeight": "normal"
-                                    }
-                                  ]
-                                },
-                                {
-                                  "type": "frame",
-                                  "id": "Hg0BK",
-                                  "name": "C 1",
-                                  "width": 160,
-                                  "padding": [
-                                    8,
-                                    10
-                                  ],
-                                  "alignItems": "center",
-                                  "children": [
-                                    {
-                                      "type": "text",
-                                      "id": "Jz0pX",
-                                      "name": "T",
-                                      "fill": "$--foreground",
-                                      "content": "异常频率",
-                                      "fontFamily": "Inter",
-                                      "fontSize": 11,
-                                      "fontWeight": "normal"
-                                    }
-                                  ]
-                                },
-                                {
-                                  "type": "frame",
-                                  "id": "RhwDs",
-                                  "name": "C 2",
-                                  "width": 100,
-                                  "padding": [
-                                    8,
-                                    10
-                                  ],
-                                  "alignItems": "center",
-                                  "children": [
-                                    {
-                                      "type": "text",
-                                      "id": "oJbGi",
-                                      "name": "T",
-                                      "fill": "$--foreground",
-                                      "content": "mc:rate:96",
-                                      "fontFamily": "Inter",
-                                      "fontSize": 11,
-                                      "fontWeight": "normal"
-                                    }
-                                  ]
-                                },
-                                {
-                                  "type": "frame",
-                                  "id": "QAEiC",
-                                  "name": "C 3",
-                                  "width": 90,
-                                  "padding": [
-                                    8,
-                                    10
-                                  ],
-                                  "alignItems": "center",
-                                  "children": [
-                                    {
-                                      "type": "text",
-                                      "id": "NPHfA",
-                                      "name": "T",
-                                      "fill": "$--foreground",
-                                      "content": "限流中",
-                                      "fontFamily": "Inter",
-                                      "fontSize": 11,
-                                      "fontWeight": "normal"
-                                    }
-                                  ]
-                                },
-                                {
-                                  "type": "frame",
-                                  "id": "A0GGPu",
-                                  "name": "C 4",
-                                  "width": 80,
-                                  "padding": [
-                                    8,
-                                    10
-                                  ],
-                                  "alignItems": "center",
-                                  "children": [
-                                    {
-                                      "type": "text",
-                                      "id": "K6qT8D",
-                                      "name": "T",
-                                      "fill": "$--foreground",
-                                      "content": "详情",
-                                      "fontFamily": "Inter",
-                                      "fontSize": 11,
-                                      "fontWeight": "normal"
-                                    }
-                                  ]
-                                }
-                              ]
-                            },
-                            {
-                              "type": "frame",
-                              "id": "olLe3",
-                              "name": "Row",
-                              "width": "fill_container",
-                              "fill": "$--card",
-                              "alignItems": "center",
-                              "children": [
-                                {
-                                  "type": "frame",
-                                  "id": "j1HnF",
-                                  "name": "C 0",
-                                  "width": 120,
-                                  "padding": [
-                                    8,
-                                    10
-                                  ],
-                                  "alignItems": "center",
-                                  "children": [
-                                    {
-                                      "type": "text",
-                                      "id": "CWYKR",
-                                      "name": "T",
-                                      "fill": "$--foreground",
-                                      "content": "T-7823",
-                                      "fontFamily": "Inter",
-                                      "fontSize": 11,
-                                      "fontWeight": "normal"
-                                    }
-                                  ]
-                                },
-                                {
-                                  "type": "frame",
-                                  "id": "qsPad",
-                                  "name": "C 1",
-                                  "width": 160,
-                                  "padding": [
-                                    8,
-                                    10
-                                  ],
-                                  "alignItems": "center",
-                                  "children": [
-                                    {
-                                      "type": "text",
-                                      "id": "HcDDL",
-                                      "name": "T",
-                                      "fill": "$--foreground",
-                                      "content": "登录异常",
-                                      "fontFamily": "Inter",
-                                      "fontSize": 11,
-                                      "fontWeight": "normal"
-                                    }
-                                  ]
-                                },
-                                {
-                                  "type": "frame",
-                                  "id": "sGAUB",
-                                  "name": "C 2",
-                                  "width": 100,
-                                  "padding": [
-                                    8,
-                                    10
-                                  ],
-                                  "alignItems": "center",
-                                  "children": [
-                                    {
-                                      "type": "text",
-                                      "id": "V1WHLU",
-                                      "name": "T",
-                                      "fill": "$--foreground",
-                                      "content": "mc:rate:64",
-                                      "fontFamily": "Inter",
-                                      "fontSize": 11,
-                                      "fontWeight": "normal"
-                                    }
-                                  ]
-                                },
-                                {
-                                  "type": "frame",
-                                  "id": "evD5E",
-                                  "name": "C 3",
-                                  "width": 90,
-                                  "padding": [
-                                    8,
-                                    10
-                                  ],
-                                  "alignItems": "center",
-                                  "children": [
-                                    {
-                                      "type": "text",
-                                      "id": "BepYa",
-                                      "name": "T",
-                                      "fill": "$--foreground",
-                                      "content": "限流中",
-                                      "fontFamily": "Inter",
-                                      "fontSize": 11,
-                                      "fontWeight": "normal"
-                                    }
-                                  ]
-                                },
-                                {
-                                  "type": "frame",
-                                  "id": "p27OWX",
-                                  "name": "C 4",
-                                  "width": 80,
-                                  "padding": [
-                                    8,
-                                    10
-                                  ],
-                                  "alignItems": "center",
-                                  "children": [
-                                    {
-                                      "type": "text",
-                                      "id": "nGlbG",
-                                      "name": "T",
-                                      "fill": "$--foreground",
-                                      "content": "详情",
-                                      "fontFamily": "Inter",
-                                      "fontSize": 11,
-                                      "fontWeight": "normal"
-                                    }
-                                  ]
-                                }
-                              ]
-                            }
-                          ]
-                        },
-                        {
-                          "type": "frame",
-                          "id": "IZLwY",
-                          "name": "ChannelChart",
-                          "width": "fill_container",
-                          "fill": "$--card",
-                          "cornerRadius": 8,
-                          "stroke": "#e4e4e7",
-                          "strokeWidth": 1,
-                          "layout": "vertical",
-                          "gap": 10,
-                          "padding": 14,
-                          "children": [
-                            {
-                              "type": "text",
-                              "id": "iqdHO",
-                              "name": "T",
-                              "fill": "$--foreground",
-                              "content": "通道动作占比",
-                              "fontFamily": "Inter",
-                              "fontSize": 12,
-                              "fontWeight": "700"
-                            },
-                            {
-                              "type": "frame",
-                              "id": "dyK8g",
-                              "name": "Ch adb",
-                              "width": "fill_container",
-                              "gap": 8,
-                              "alignItems": "center",
-                              "children": [
-                                {
-                                  "type": "text",
-                                  "id": "T4Mn5h",
-                                  "name": "L",
-                                  "fill": "$--muted-foreground",
-                                  "content": "adb",
-                                  "fontFamily": "Inter",
-                                  "fontSize": 11,
-                                  "fontWeight": "normal"
-                                },
-                                {
-                                  "type": "frame",
-                                  "id": "WFtHX",
-                                  "name": "Track",
-                                  "width": "fill_container",
-                                  "height": 8,
-                                  "fill": "$--muted",
-                                  "cornerRadius": 4,
-                                  "layout": "none",
-                                  "children": [
-                                    {
-                                      "type": "rectangle",
-                                      "cornerRadius": 4,
-                                      "id": "nWDg7",
-                                      "x": 0,
-                                      "y": 0,
-                                      "name": "Fill",
-                                      "fill": "$--foreground",
-                                      "width": 165,
-                                      "height": 8
-                                    }
-                                  ]
-                                },
-                                {
-                                  "type": "text",
-                                  "id": "l6dj2G",
-                                  "name": "V",
-                                  "fill": "$--foreground",
-                                  "content": "55%",
-                                  "fontFamily": "Inter",
-                                  "fontSize": 11,
-                                  "fontWeight": "600"
-                                }
-                              ]
-                            },
-                            {
-                              "type": "frame",
-                              "id": "rjq7D",
-                              "name": "Ch accessibility",
-                              "width": "fill_container",
-                              "gap": 8,
-                              "alignItems": "center",
-                              "children": [
-                                {
-                                  "type": "text",
-                                  "id": "DVQpL",
-                                  "name": "L",
-                                  "fill": "$--muted-foreground",
-                                  "content": "accessibility",
-                                  "fontFamily": "Inter",
-                                  "fontSize": 11,
-                                  "fontWeight": "normal"
-                                },
-                                {
-                                  "type": "frame",
-                                  "id": "q2sHku",
-                                  "name": "Track",
-                                  "width": "fill_container",
-                                  "height": 8,
-                                  "fill": "$--muted",
-                                  "cornerRadius": 4,
-                                  "layout": "none",
-                                  "children": [
-                                    {
-                                      "type": "rectangle",
-                                      "cornerRadius": 4,
-                                      "id": "EaasT",
-                                      "x": 0,
-                                      "y": 0,
-                                      "name": "Fill",
-                                      "fill": "$--foreground",
-                                      "width": 84.00000000000001,
-                                      "height": 8
-                                    }
-                                  ]
-                                },
-                                {
-                                  "type": "text",
-                                  "id": "phGI9",
-                                  "name": "V",
-                                  "fill": "$--foreground",
-                                  "content": "28%",
-                                  "fontFamily": "Inter",
-                                  "fontSize": 11,
-                                  "fontWeight": "600"
-                                }
-                              ]
-                            },
-                            {
-                              "type": "frame",
-                              "id": "Guwzg",
-                              "name": "Ch cdp",
-                              "width": "fill_container",
-                              "gap": 8,
-                              "alignItems": "center",
-                              "children": [
-                                {
-                                  "type": "text",
-                                  "id": "Y019Da",
-                                  "name": "L",
-                                  "fill": "$--muted-foreground",
-                                  "content": "cdp",
-                                  "fontFamily": "Inter",
-                                  "fontSize": 11,
-                                  "fontWeight": "normal"
-                                },
-                                {
-                                  "type": "frame",
-                                  "id": "B6AnXI",
-                                  "name": "Track",
-                                  "width": "fill_container",
-                                  "height": 8,
-                                  "fill": "$--muted",
-                                  "cornerRadius": 4,
-                                  "layout": "none",
-                                  "children": [
-                                    {
-                                      "type": "rectangle",
-                                      "cornerRadius": 4,
-                                      "id": "m2kN6o",
-                                      "x": 0,
-                                      "y": 0,
-                                      "name": "Fill",
-                                      "fill": "$--foreground",
-                                      "width": 51.00000000000001,
-                                      "height": 8
-                                    }
-                                  ]
-                                },
-                                {
-                                  "type": "text",
-                                  "id": "WkKAv",
-                                  "name": "V",
-                                  "fill": "$--foreground",
-                                  "content": "17%",
-                                  "fontFamily": "Inter",
-                                  "fontSize": 11,
-                                  "fontWeight": "600"
-                                }
-                              ]
-                            }
-                          ]
-                        }
-                      ]
-                    },
-                    {
-                      "type": "frame",
-                      "id": "nMpa2",
-                      "name": "Right",
-                      "width": "fill_container",
-                      "layout": "vertical",
-                      "gap": 12,
-                      "children": [
-                        {
-                          "type": "frame",
-                          "id": "e0THKj",
-                          "name": "Config",
-                          "width": "fill_container",
-                          "fill": "$--card",
-                          "cornerRadius": 8,
-                          "stroke": "#e4e4e7",
-                          "strokeWidth": 1,
-                          "layout": "vertical",
-                          "gap": 8,
-                          "padding": 14,
-                          "children": [
-                            {
-                              "type": "text",
-                              "id": "NMYpx",
-                              "name": "GT",
-                              "fill": "$--foreground",
-                              "content": "限流配置",
-                              "fontFamily": "Inter",
-                              "fontSize": 12,
-                              "fontWeight": "700"
-                            },
-                            {
-                              "type": "frame",
-                              "id": "hEGgn",
-                              "name": "F 单终端 MAX_RATE",
-                              "width": "fill_container",
-                              "padding": [
-                                4,
-                                0
-                              ],
-                              "justifyContent": "space_between",
-                              "alignItems": "center",
-                              "children": [
-                                {
-                                  "type": "text",
-                                  "id": "hU2bz",
-                                  "name": "L",
-                                  "fill": "$--muted-foreground",
-                                  "content": "单终端 MAX_RATE",
-                                  "fontFamily": "Inter",
-                                  "fontSize": 11,
-                                  "fontWeight": "normal"
-                                },
-                                {
-                                  "type": "text",
-                                  "id": "zDv9Z",
-                                  "name": "V",
-                                  "fill": "$--foreground",
-                                  "content": "60/min",
-                                  "fontFamily": "Inter",
-                                  "fontSize": 11,
-                                  "fontWeight": "600"
-                                }
-                              ]
-                            },
-                            {
-                              "type": "frame",
-                              "id": "ljhSl",
-                              "name": "F 滑动窗口",
-                              "width": "fill_container",
-                              "padding": [
-                                4,
-                                0
-                              ],
-                              "justifyContent": "space_between",
-                              "alignItems": "center",
-                              "children": [
-                                {
-                                  "type": "text",
-                                  "id": "SmScy",
-                                  "name": "L",
-                                  "fill": "$--muted-foreground",
-                                  "content": "滑动窗口",
-                                  "fontFamily": "Inter",
-                                  "fontSize": 11,
-                                  "fontWeight": "normal"
-                                },
-                                {
-                                  "type": "text",
-                                  "id": "M2J6N",
-                                  "name": "V",
-                                  "fill": "$--foreground",
-                                  "content": "60s",
-                                  "fontFamily": "Inter",
-                                  "fontSize": 11,
-                                  "fontWeight": "600"
-                                }
-                              ]
-                            },
-                            {
-                              "type": "frame",
-                              "id": "c7jzLa",
-                              "name": "F 过载保护策略",
-                              "width": "fill_container",
-                              "padding": [
-                                4,
-                                0
-                              ],
-                              "justifyContent": "space_between",
-                              "alignItems": "center",
-                              "children": [
-                                {
-                                  "type": "text",
-                                  "id": "OxWUu",
-                                  "name": "L",
-                                  "fill": "$--muted-foreground",
-                                  "content": "过载保护策略",
-                                  "fontFamily": "Inter",
-                                  "fontSize": 11,
-                                  "fontWeight": "normal"
-                                },
-                                {
-                                  "type": "text",
-                                  "id": "F8svyg",
-                                  "name": "V",
-                                  "fill": "$--foreground",
-                                  "content": "优先级限流",
-                                  "fontFamily": "Inter",
-                                  "fontSize": 11,
-                                  "fontWeight": "600"
-                                }
-                              ]
-                            },
-                            {
-                              "type": "frame",
-                              "id": "X1YoPs",
-                              "name": "F 熔断阈值",
-                              "width": "fill_container",
-                              "padding": [
-                                4,
-                                0
-                              ],
-                              "justifyContent": "space_between",
-                              "alignItems": "center",
-                              "children": [
-                                {
-                                  "type": "text",
-                                  "id": "I8YGh",
-                                  "name": "L",
-                                  "fill": "$--muted-foreground",
-                                  "content": "熔断阈值",
-                                  "fontFamily": "Inter",
-                                  "fontSize": 11,
-                                  "fontWeight": "normal"
-                                },
-                                {
-                                  "type": "text",
-                                  "id": "Qq6Kq",
-                                  "name": "V",
-                                  "fill": "$--foreground",
-                                  "content": ">MAX_RATE 持续3窗口",
-                                  "fontFamily": "Inter",
-                                  "fontSize": 11,
-                                  "fontWeight": "600"
-                                }
-                              ]
-                            }
-                          ]
-                        },
-                        {
-                          "type": "frame",
-                          "id": "ZYfAy",
-                          "name": "Note",
-                          "width": "fill_container",
-                          "fill": "$--muted",
-                          "cornerRadius": 8,
-                          "layout": "vertical",
-                          "gap": 4,
-                          "padding": 14,
-                          "children": [
-                            {
-                              "type": "text",
-                              "id": "Jayyn",
-                              "name": "GT",
-                              "fill": "$--foreground",
-                              "content": "指标采集",
-                              "fontFamily": "Inter",
-                              "fontSize": 11,
-                              "fontWeight": "700"
-                            },
-                            {
-                              "type": "text",
-                              "id": "i64ns",
-                              "name": "L",
-                              "fill": "$--foreground",
-                              "content": "一次采集两处消费：MC ClickHouse + OM",
-                              "fontFamily": "Inter",
-                              "fontSize": 10,
-                              "fontWeight": "normal"
-                            },
-                            {
-                              "type": "text",
-                              "id": "RffzP",
-                              "name": "L2",
-                              "fill": "$--foreground",
-                              "content": "breaker_hit: 0/1 · result: success/failed/denied",
-                              "fontFamily": "Inter",
-                              "fontSize": 10,
-                              "fontWeight": "normal"
-                            }
-                          ]
-                        }
-                      ]
-                    }
-                  ]
-                }
-              ]
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "type": "frame",
       "id": "Q57Ri",
-      "x": 9300,
+      "x": 9000,
       "y": 5100,
       "name": "MC-16 脚本开发与调试 IDE",
       "clip": true,
@@ -27711,40 +26198,6 @@
                     10
                   ],
                   "children": [
-                    {
-                      "type": "frame",
-                      "id": "B5tTth",
-                      "name": "Item-MC-19 网关熔断",
-                      "width": "fill_container",
-                      "fill": "$--muted",
-                      "gap": 6,
-                      "padding": [
-                        6,
-                        0
-                      ],
-                      "alignItems": "center",
-                      "children": [
-                        {
-                          "type": "rectangle",
-                          "cornerRadius": 2,
-                          "id": "Q4OqGh",
-                          "name": "Dot",
-                          "fill": "$--muted-foreground",
-                          "width": 13,
-                          "height": 13
-                        },
-                        {
-                          "type": "text",
-                          "id": "e1f5r",
-                          "name": "ILabel",
-                          "fill": "$--foreground",
-                          "content": "MC-19 网关熔断",
-                          "fontFamily": "Inter",
-                          "fontSize": 13,
-                          "fontWeight": "500"
-                        }
-                      ]
-                    },
                     {
                       "type": "frame",
                       "id": "xUV39",
@@ -29747,7 +28200,7 @@
       "type": "frame",
       "id": "vBRJg",
       "x": 4800,
-      "y": 16074,
+      "y": 14000,
       "name": "SWM-01 智能体总览首页",
       "clip": true,
       "width": 1440,
@@ -30311,8 +28764,8 @@
     {
       "type": "frame",
       "id": "ZgtME",
-      "x": 7800,
-      "y": 19674,
+      "x": 4800,
+      "y": 18800,
       "name": "SWM-12 蜂群记忆管理",
       "clip": true,
       "width": 1440,
@@ -31223,8 +29676,8 @@
     {
       "type": "frame",
       "id": "EGlW6",
-      "x": 6300,
-      "y": 17274,
+      "x": 4800,
+      "y": 15200,
       "name": "SWM-03 对话编写提示词",
       "clip": true,
       "width": 1440,
@@ -31863,7 +30316,7 @@
       "type": "frame",
       "id": "DzsKI",
       "x": 4800,
-      "y": 28674,
+      "y": 20200,
       "name": "OM-06 用户管理",
       "clip": true,
       "width": 1440,
@@ -32900,8 +31353,8 @@
     {
       "type": "frame",
       "id": "qqCpe",
-      "x": 7800,
-      "y": 28674,
+      "x": 7500,
+      "y": 20200,
       "name": "OM-08 组织成员管理",
       "clip": true,
       "width": 1440,
@@ -33703,7 +32156,7 @@
       "type": "frame",
       "id": "uONPi",
       "x": 6300,
-      "y": 29874,
+      "y": 21400,
       "name": "OM-10 令牌与会话审计",
       "clip": true,
       "width": 1440,
@@ -34715,7 +33168,7 @@
       "type": "frame",
       "id": "uPRz2",
       "x": 6300,
-      "y": 28674,
+      "y": 20200,
       "name": "OM-07 角色与权限管理",
       "clip": true,
       "width": 1440,
@@ -36096,7 +34549,7 @@
       "type": "frame",
       "id": "xU23x",
       "x": 4800,
-      "y": 29874,
+      "y": 21400,
       "name": "OM-09 登录策略与锁定管理",
       "clip": true,
       "width": 1440,
@@ -36641,7 +35094,7 @@
       "type": "frame",
       "id": "Rockb",
       "x": 4800,
-      "y": 8774,
+      "y": 9000,
       "name": "OCC-01 行动总览首页",
       "clip": true,
       "width": 1440,
@@ -37085,8 +35538,8 @@
     {
       "type": "frame",
       "id": "yj8aA",
-      "x": 7800,
-      "y": 13574,
+      "x": 4800,
+      "y": 12600,
       "name": "OCC-13 评估",
       "clip": true,
       "width": 1440,
@@ -37522,8 +35975,8 @@
     {
       "type": "frame",
       "id": "Tm6Nz",
-      "x": 6300,
-      "y": 12449,
+      "x": 4800,
+      "y": 11400,
       "name": "OCC-09 编排流程定义",
       "clip": true,
       "width": 1440,
@@ -38206,8 +36659,8 @@
     {
       "type": "frame",
       "id": "RPx05",
-      "x": 7800,
-      "y": 12449,
+      "x": 6300,
+      "y": 11400,
       "name": "OCC-10 编排实例执行跟踪",
       "clip": true,
       "width": 1440,
@@ -38456,7 +36909,7 @@
       "type": "frame",
       "id": "Of4Pe",
       "x": 4800,
-      "y": 18474,
+      "y": 16400,
       "name": "SWM-04 Prompt 开发列表(coze-loop)",
       "clip": true,
       "width": 1440,
@@ -39632,7 +38085,7 @@
       "type": "frame",
       "id": "w6SNm",
       "x": 6300,
-      "y": 18474,
+      "y": 16400,
       "name": "SWM-05 Prompt 详情·Playground(coze-loop)",
       "clip": true,
       "width": 1440,
@@ -40695,8 +39148,8 @@
     {
       "type": "frame",
       "id": "vKctf",
-      "x": 7800,
-      "y": 18474,
+      "x": 4800,
+      "y": 17600,
       "name": "SWM-06 评测集(coze-loop)",
       "clip": true,
       "width": 1440,
@@ -41710,8 +40163,8 @@
     {
       "type": "frame",
       "id": "p1v4N",
-      "x": 9300,
-      "y": 18474,
+      "x": 6300,
+      "y": 17600,
       "name": "SWM-07 评估器(coze-loop)",
       "clip": true,
       "width": 1440,
@@ -42558,8 +41011,8 @@
     {
       "type": "frame",
       "id": "cc6G1",
-      "x": 10800,
-      "y": 18474,
+      "x": 7500,
+      "y": 17600,
       "name": "SWM-08 实验(coze-loop)",
       "clip": true,
       "width": 1440,
