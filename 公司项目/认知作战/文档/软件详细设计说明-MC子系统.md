@@ -2,11 +2,11 @@
 
 | 项目 | 内容 |
 | --- | --- |
-| 项目名称 | 认知作战平台（v1.0） |
-| 文档版本 | V1.0 |
+| 项目名称 | 认知行动平台（v1.0） |
+| 文档版本 | V1.1 |
 | 密级 | 内部使用 |
 | 编制 | 石建国 |
-| 编制日期 | 2026-07-14 |
+| 编制日期 | 2026-07-17 |
 
 ---
 
@@ -14,7 +14,7 @@
 
 ### 1.1 标识
 
-本文件为「认知作战平台」（以下简称"系统"或"平台"）多设备矩阵自动化群控子系统（MC，软部件标识 M-MC-00）的软件详细设计说明（SDD）。它是《软件需求规格说明-MC子系统》V3.8 功能需求 R-MC-001 ~ R-MC-014（共 14 项）与《软件概要设计说明》V2.6 模块 M-MC-01 ~ M-MC-14（共 14 模块 / 63 功能点）的详细设计下沉，描述 MC 子系统各模块的内部结构、类与接口、数据结构、算法、状态机与部署单元，作为编码实现与单元测试的依据。
+本文件为「认知行动平台」（以下简称"系统"或"平台"）多设备矩阵自动化群控子系统（MC，软部件标识 M-MC-00）的软件详细设计说明（SDD）。它是《软件需求规格说明-MC子系统》V3.8 功能需求 R-MC-001 ~ R-MC-014（共 14 项）与《软件概要设计说明》V2.6 模块 M-MC-01 ~ M-MC-14（共 14 模块 / 63 功能点）的详细设计下沉，描述 MC 子系统各模块的内部结构、类与接口、数据结构、算法、状态机与部署单元，作为编码实现与单元测试的依据。
 
 ### 1.2 系统概述
 
@@ -23,7 +23,7 @@
 1. **执行终端统一管理**：管理移动端（真机 / 云手机 / ARM 板卡 / 虚拟化真机）与桌面端（指纹浏览器 Profile）两类执行终端的接入、台账、身份隔离（指纹固化）、风控分级与代理绑定，提供远程控制。
 2. **动作统一收口**：以**统一执行网关（M-MC-05）**作为所有执行终端动作的**唯一出口**，对动作鉴权、记录、熔断，保证动作可观测、可审计、可熔断、不裸奔（CON-07 动作收口）。提供脚本模式与智能体模式双执行引擎（CON-08 双执行模式、CON-10 推理与执行分离）。
 3. **账号资源平台级权威源**：唯一维护社交媒体账号主数据（凭据加密、平台、生命周期、风险评估、账号分类），经事件总线向 DC / SWM / OCC 分发 `account_id`；维护智能体账号分层分组、作业生命周期、`agent_id↔account_id` 绑定与封号资产迁移（CON-11 权威源唯一）。
-4. **智能体执行宿主**：接收并持存 SWM 同步来的提示词包（以 `agent_id` 为标识），任务执行时由 `agent-runtime` 运行（场景适配、动态调用提示词、读记忆、调 IRS 推理），并在执行前校验人设一致性。
+4. **智能体执行宿主**：接收并持存 SWM 同步来的提示词包（以 `agent_id` 为标识），任务执行时由 `agent-runtime` 运行（场景适配、动态调用提示词、读记忆、调 IRS 推理），并在执行前校验行为风格一致性。
 
 MC 采用「**单一微服务（mc-service）+ 独立媒体面（mc-sfu）+ 设备端 Agent**」三边界形态：
 
@@ -68,7 +68,7 @@ MC 子系统由 14 个模块组成（与 14 项功能需求 1:1 对应，共 63 
 | 控制通道 | 网关落地动作的底层通道：移动端采用 ADB 与无障碍服务（Android AccessibilityService），桌面端 Profile 采用 CDP（Chrome DevTools Protocol） |
 | Profile | 指纹浏览器中的浏览器实例分身，一 Profile 对应一套固化指纹与一个账号身份 |
 | 指纹固化 | 使终端长期呈现一致的、像真人的设备身份（移动端硬件/软件指纹、桌面端 Canvas/WebGL/字体/时区/Audio/UA 等 20+ 维渲染层指纹），降低被风控识别为异常的概率 |
-| 作战单元 | `agent_id : account_id : 终端 : 代理 IP = 1 : 1 : 1 : 1` 的四元绑定关系；移动端"一设备一账号一 IP"，桌面端"一 Profile 一账号一 IP" |
+| 行动单元 | `agent_id : account_id : 终端 : 代理 IP = 1 : 1 : 1 : 1` 的四元绑定关系；移动端"一设备一账号一 IP"，桌面端"一 Profile 一账号一 IP" |
 | agent-runtime | MC 内运行智能体的运行时子模块，承担运行时场景适配、动态调用提示词、读 SWM 记忆、调 IRS 推理产出动作指令；与执行网关逻辑隔离（推理不经网关，动作经网关） |
 | CDP | Chrome DevTools Protocol，Chrome 系浏览器自带的远程调试协议，mc-service 经它远程控制指纹浏览器 Profile（点击 / 输入 / 截图 / 页面注入） |
 | ADB | Android Debug Bridge，安卓官方远程调试工具，mc-service 经 II-02 下发指令到 Agent，由 Agent 执行 ADB 操作 |
@@ -220,7 +220,7 @@ MC 数据流分五类：
 1. **终端接入与控制流**：移动端 Agent 启动 → 向 mc-service 注册（II-02）→ 记终端台账（M-MC-01）→ 心跳上报状态指标（II-04 至 OM）。桌面端 Profile 经商用产品 API（EI-06）创建 / 启动 → 返回 CDP 端口 → mc-service 记台账。控制时：mc-service → ADB / 无障碍（经 Agent）/ CDP（直连 EI-06）。
 2. **动作执行流（核心）**：任务调度（M-MC-07）/ 编排（M-MC-08）/ 养号（M-MC-09）/ 智能体（M-MC-06 引擎 + M-MC-14 宿主）产出动作指令 → **执行网关（M-MC-05）** 鉴权 → 记录 → 熔断检测 → 路由到控制通道 → 落地到终端 → 回传执行结果 → 动作日志入 ClickHouse + 发 Kafka II-11 给 OM。
 3. **账号权威流**：账号运营人员注册账号（M-MC-11）→ 凭据 AES 加密入 PG → 验证探测 / 状态流转 → 状态变更发 `account.status.changed`（II-01a，Kafka）→ DC / SWM / OCC 订阅响应（停止任务等）。使用方经 II-01 引用 `account_id`。
-4. **智能体执行流**：SWM 经 II-14 同步提示词包（`agent_id` 为主键）→ M-MC-14 持存 → 任务执行前人设一致性校验 → agent-runtime 读 SWM 记忆 + 调 IRS 推理（II-08，不经网关）→ 产出动作指令 → 经执行网关落地。
+4. **智能体执行流**：SWM 经 II-14 同步提示词包（`agent_id` 为主键）→ M-MC-14 持存 → 任务执行前行为风格一致性校验 → agent-runtime 读 SWM 记忆 + 调 IRS 推理（II-08，不经网关）→ 产出动作指令 → 经执行网关落地。
 5. **可观测与统计流**：执行网关动作日志 → M-MC-10 写 ClickHouse `mc_analysis` → 多维统计（完成率 / 触达 / 互动 / 健康度）→ 任务复盘归因 → 效果数据回调回传 OCC（II-10）；同时动作日志经 Kafka II-11 上报 OM。
 
 ---
@@ -252,6 +252,8 @@ CREATE INDEX idx_mc_terminal_group ON mc.mc_terminal(group_id);
 CREATE INDEX idx_mc_terminal_status ON mc.mc_terminal(status, risk_level);
 CREATE INDEX idx_mc_terminal_org ON mc.mc_terminal(org_id);
 ```
+
+> V1.1（terminal_type 分类说明）：`terminal_type` 取值分移动端（`mobile_real`/`mobile_cloud`/`mobile_arm`/`mobile_virt`）与浏览器（`profile`）两类载体。任务与编排兼容两类载体——编排器（MC-15）/ 脚本 IDE（MC-16）经"载体切换控件"区分移动端 ADB / 无障碍通道与桌面端 CDP 通道，网关（M-MC-05）按 `terminal_type` 路由到对应 `ChannelAdapter`。
 
 #### 4.1.2 终端分组表 `mc_terminal_group`（M-MC-01 F-MC-01-03）
 
@@ -305,7 +307,7 @@ CREATE TABLE mc.mc_account (
     platform        VARCHAR(16) NOT NULL,         -- tiktok/facebook/instagram/youtube/x/...
     username        VARCHAR(128) NOT NULL,
     credential_enc  BYTEA NOT NULL,               -- 凭据AES-256-GCM加密(密码/cookie/token,可逆解密用于登录)
-    account_class   VARCHAR(16) NOT NULL,         -- crawler(爬虫,桌面端Profile) / combat(认知作战,移动端)
+    account_class   VARCHAR(16) NOT NULL,         -- crawler(爬虫,桌面端Profile) / combat(认知行动,移动端)
     lifecycle_state VARCHAR(16) NOT NULL,         -- 生命周期(六态): pending_login/normal/restricted/need_verify/banned/archived
     risk_score      INT,                          -- 风险评估分
     org_id          UUID NOT NULL,
@@ -319,7 +321,7 @@ CREATE INDEX idx_mc_account_org ON mc.mc_account(org_id);
 
 #### 4.1.6 ★ 四元绑定关系表 `mc_binding`（R-MC-003 / 009 / 013 单一物理存储）
 
-**设计要点**：R-MC-003（终端↔代理）、R-MC-009（账号↔终端↔代理）、R-MC-013（agent↔account↔终端↔代理 四元）共这一张表，三需求各自引用其不同侧面，**不各存各的**。一张记录即一个作战单元（`1:1:1:1`）。
+**设计要点**：R-MC-003（终端↔代理）、R-MC-009（账号↔终端↔代理）、R-MC-013（agent↔account↔终端↔代理 四元）共这一张表，三需求各自引用其不同侧面，**不各存各的**。一张记录即一个行动单元（`1:1:1:1`）。
 
 ```sql
 CREATE TABLE mc.mc_binding (
@@ -437,7 +439,7 @@ CREATE TABLE mc.mc_workflow (
 ```sql
 CREATE TABLE mc.mc_agent_def (
     agent_id      UUID PRIMARY KEY,               -- SWM分配,II-14同步,稳定逻辑标识
-    persona_tags  JSONB NOT NULL,                 -- 人设标签(用于人设一致性校验)
+    persona_tags  JSONB NOT NULL,                 -- 人设标签(用于行为风格一致性校验)
     prompt_pack   JSONB NOT NULL,                 -- 提示词包(提示词/作业策略)
     version       INT NOT NULL,                   -- 版本号(更新升版)
     synced_at     TIMESTAMPTZ NOT NULL DEFAULT now(),
@@ -626,6 +628,8 @@ classDiagram
 
 **设计要点**：一 Profile 对应一套固化指纹与一个账号身份；指纹模板存 `mc_fingerprint.fp_template`（JSONB），固化状态由商用产品回填。
 
+> V1.1（ADR-002）：前端管理页 MC-04 已删（指纹固化由 EI-06 商用产品承载、风控为系统底层能力），本模块设计保留为后端能力。
+
 #### 5.1.3 M-MC-03 终端风控分级与代理绑定（R-MC-003，4 功能点）
 
 **职责**：按指纹真实度对终端风控分级；识别平台风控信号并主动规避；为每个终端分配独立固定代理 IP（一终端一 IP），代理失效时才切换。
@@ -659,7 +663,9 @@ classDiagram
 - **RiskSignalDetector**：风控信号识别与规避（覆盖移动端与桌面端），持续触发时降级或暂停该终端任务。
 - **ProxyBinder**：代理固定绑定。为终端分配独立代理 IP（EI-02），默认随终端固定不变，仅在该 IP 失效（被封禁 / 不可用）时切换到新代理并重新固定绑定。绑定关系写 `mc_proxy`（`terminal_id` 唯一）。
 
-**设计要点**：代理绑定是四元作战单元的网络层侧面，写入 §4.1.4 `mc_proxy` 与 §4.1.6 `mc_binding` 的 `proxy_id` 字段。
+**设计要点**：代理绑定是四元行动单元的网络层侧面，写入 §4.1.4 `mc_proxy` 与 §4.1.6 `mc_binding` 的 `proxy_id` 字段。
+
+> V1.1（ADR-002）：前端管理页 MC-04 已删（风控为系统底层能力、无独立管理页），本模块设计保留为后端能力。
 
 #### 5.1.4 M-MC-04 远程控制（R-MC-004，4 功能点）
 
@@ -709,7 +715,7 @@ classDiagram
 
 本域职责：以统一执行网关（M-MC-05）为唯一收口，提供脚本 / 智能体双执行引擎，承载任务调度、自动化编排、养号。**本域是 MC 的核心枢纽**。
 
-> **★ agent-runtime 归属边界（设计强制切分）**：R-MC-006（双执行模式）与 R-MC-014（智能体执行宿主）在 SRS 中都提到 `agent-runtime`，边界未切清。本设计强制规定：**`agent-runtime` 作为运行时引擎只归属 M-MC-06**，承担"场景适配 → 读记忆 → 调 IRS 推理 → 产出动作指令"；**M-MC-014 负责 agent 静态资产**（提示词包持存、人设一致性校验、作为 OCC 节点来源），任务执行时由 M-MC-014 触发 M-MC-06 的 agent-runtime 引擎执行。`agent-runtime` 命名只出现在 M-MC-06，M-MC-014 调用引擎而非自带引擎。
+> **★ agent-runtime 归属边界（设计强制切分）**：R-MC-006（双执行模式）与 R-MC-014（智能体执行宿主）在 SRS 中都提到 `agent-runtime`，边界未切清。本设计强制规定：**`agent-runtime` 作为运行时引擎只归属 M-MC-06**，承担"场景适配 → 读记忆 → 调 IRS 推理 → 产出动作指令"；**M-MC-014 负责 agent 静态资产**（提示词包持存、行为风格一致性校验、作为 OCC 节点来源），任务执行时由 M-MC-014 触发 M-MC-06 的 agent-runtime 引擎执行。`agent-runtime` 命名只出现在 M-MC-06，M-MC-014 调用引擎而非自带引擎。
 
 #### 5.2.1 M-MC-05 统一执行网关（R-MC-005，5 功能点，⭐ 核心）
 
@@ -979,7 +985,7 @@ classDiagram
 
 #### 5.2.5 M-MC-09 账号操作编排与养号（R-MC-009，4 功能点）
 
-**职责**：承载养号、账号-终端-代理绑定自动化、登录状态维护等可自动化账号操作的执行编排，**内置养号拟人化节奏策略**。认知作战账号经移动端 ADB / 无障碍养号、爬虫账号经桌面端 CDP 养护。
+**职责**：承载养号、账号-终端-代理绑定自动化、登录状态维护等可自动化账号操作的执行编排，**内置养号拟人化节奏策略**。认知行动账号经移动端 ADB / 无障碍养号、爬虫账号经桌面端 CDP 养护。
 
 **类图**：
 
@@ -1010,12 +1016,14 @@ classDiagram
 ```
 
 **关键类说明**：
-- **NurtureOrchestrator**：养号编排门面。编排养号动作（发帖 / 关注 / 浏览等拟人化行为）→ 经 `HumanizationEngine` 注入节奏 → 经 `ExecutionGateway.submit()` 落地。认知作战账号经 ADB / 无障碍、爬虫账号经 CDP（由网关 ChannelRouter 路由）。
+- **NurtureOrchestrator**：养号编排门面。编排养号动作（发帖 / 关注 / 浏览等拟人化行为）→ 经 `HumanizationEngine` 注入节奏 → 经 `ExecutionGateway.submit()` 落地。认知行动账号经 ADB / 无障碍、爬虫账号经 CDP（由网关 ChannelRouter 路由）。
 - **HumanizationEngine**（★ 拟人化节奏内置）：策略模式，从 `PersonaStrategyRepo` 读节奏策略（浏览 / 停留 / 互动的概率分布、时间打散区间），运行时注入随机延时与行为。策略可配置不改代码（NR-M-02）。**养号节奏不再依赖蜂群智能体子系统**（CON 历史变更：拟人化从 SWM 迁至 MC）。
 - **BindingAutomator**：账号-终端-代理绑定自动化，写 §4.1.6 `mc_binding`（单一存储）。差异化绑定规则（CON-13）：移动端"一设备一账号一 IP"、桌面端"一 Profile 一账号一 IP"，已绑定未解绑前不可再绑（唯一索引保证）。账号状态变更（封禁 / 受限）时停止该账号养号并解绑。
 - **LoginStateTracker**：记录账号在终端上的登录状态及变化。
 
 **设计要点**：账号被封禁 / 受限时停止养号并解绑（联动 `mc_binding.status=released`）；养号触发平台验证时暂停并告警；账号登录失败记录原因并标记。
+
+> V1.1（ADR-005）：养号监控页 MC-11、节奏策略页 MC-12 已删（养号 / 拟人是模板与编排的结果，能力以模板形态并入 M-MC-08 编排体系），本模块设计保留为后端能力，留阶段二评估。
 
 ---
 
@@ -1131,18 +1139,20 @@ stateDiagram-v2
 
 **关键类说明**：
 - **AccountService**：账号服务门面，提供 II-01 账号查询 / 变更接口（使用方引用 `account_id`，不复制主数据）。
-- **CredentialVault**：凭据加密。AES-256-GCM 字段级加密（密码 / cookie / token），密钥经 K8s Secret 注入，可逆解密用于登录（区别于 COM 人登录密码 BCrypt 不可逆哈希，NR-S-03）。注册 / 验证动作落地经执行网关（爬虫账号经 CDP、认知作战账号经 ADB / 无障碍）。
+- **CredentialVault**：凭据加密。AES-256-GCM 字段级加密（密码 / cookie / token），密钥经 K8s Secret 注入，可逆解密用于登录（区别于 COM 人登录密码 BCrypt 不可逆哈希，NR-S-03）。注册 / 验证动作落地经执行网关（爬虫账号经 CDP、认知行动账号经 ADB / 无障碍）。
 - **RegistrationOrchestrator**：注册流程编排，支持邮箱 / 手机号接码（EI-03）/ 虚拟号注册；接码 / 验证失败回滚并记录。
 - **LifecycleManager**：六态生命周期状态机（待登录 / 正常 / 受限 / 需验证 / 封禁 / 归档）。
 - **StatusChangeEventPublisher**：状态变更发 `account.status.changed`（II-01a，Kafka `mc-account-status`），使用方订阅响应（停止任务 / 停止养号 / 休眠智能体 / 移除目标），保证被封账号全网即时失效。
 
 **设计要点**：使用方（DC / SWM / OCC）不复制主数据，仅引用 `account_id`（CON-11）；账号服务接口不可用时使用方降级为本地缓存只读并告警；事件广播失败重试。
 
+> V1.1（ADR-002）：账号注册页 MC-07 已删（注册由后端服务承担入口、前端无独立页面），本模块设计保留为后端能力，留阶段二评估。
+
 #### 5.4.2 M-MC-12 智能体账号分层分组（R-MC-012，2 功能点）
 
 **职责**：对智能体账号按业务目标 / 平台 / 地区 / 风险等级等维度分层分组，管理作业生命周期。
 
-> **设计要点（作业生命周期边界）**：SRS 中 R-MC-011（账号生命周期六态）与 R-MC-012（作业生命周期六态）都有"受限 / 封禁"，存在因果歧义。本设计明确：**R-MC-011 的账号生命周期是权威状态源**（账号在平台上的死活）；**R-MC-012 的作业生命周期是基于账号状态 + 是否分派作战任务的派生视图**（账号在作战里用没用），不独立维护状态机，由查询时实时派生。
+> **设计要点（作业生命周期边界）**：SRS 中 R-MC-011（账号生命周期六态）与 R-MC-012（作业生命周期六态）都有"受限 / 封禁"，存在因果歧义。本设计明确：**R-MC-011 的账号生命周期是权威状态源**（账号在平台上的死活）；**R-MC-012 的作业生命周期是基于账号状态 + 是否分派行动任务的派生视图**（账号在行动里用没用），不独立维护状态机，由查询时实时派生。
 
 **类图**：
 
@@ -1167,14 +1177,14 @@ classDiagram
 
 **关键类说明**：
 - **AgentGroupService**：分层分组管理，按业务目标 / 平台 / 地区 / 风险等级维度建组（树形），分配 agent。
-- **JobLifecycleView**：作业生命周期**派生视图**。六态（待激活 / 活跃 / 休眠 / 受限 / 封禁 / 回收）由"账号生命周期（R-MC-011 权威）+ 是否分派作战任务 + 当前是否在作业中"实时派生，不独立维护状态表，避免与 R-MC-011 双源失同步。
+- **JobLifecycleView**：作业生命周期**派生视图**。六态（待激活 / 活跃 / 休眠 / 受限 / 封禁 / 回收）由"账号生命周期（R-MC-011 权威）+ 是否分派行动任务 + 当前是否在作业中"实时派生，不独立维护状态表，避免与 R-MC-011 双源失同步。
 - **LifecycleTransition**：支持人工流转（如手动休眠 / 激活），底层联动账号状态与任务分派。
 
 **设计要点**：分组调整失败回滚；作业生命周期流转冲突按账号标识加锁（Redis `mc:lock:account:{account_id}`）。
 
 #### 5.4.3 M-MC-13 智能体账号绑定与资产迁移（R-MC-013，5 功能点）
 
-**职责**：维护 `agent_id↔account_id` 1:1 绑定（叠加四元作战单元）；账号封禁后支持人工发起资产迁移，将原 agent 的人设 / 提示词版本 / 记忆整体继承到新账号，延续人格。
+**职责**：维护 `agent_id↔account_id` 1:1 绑定（叠加四元行动单元）；账号封禁后支持人工发起资产迁移，将原 agent 的人设 / 提示词版本 / 记忆整体继承到新账号，延续人格。
 
 **类图**：
 
@@ -1182,7 +1192,7 @@ classDiagram
 classDiagram
     class AgentBindingService {
         +bind(agent_id, account_id)              %% agent↔account 1:1绑定
-        +get_quad(agent_id) QuadBinding          %% 四元作战单元(查mc_binding单一存储)
+        +get_quad(agent_id) QuadBinding          %% 四元行动单元(查mc_binding单一存储)
     }
     class AssetMigrationService {
         +migrate(source_agent_id, target_account_id) MigrationResult  %% 封号资产迁移
@@ -1199,7 +1209,7 @@ classDiagram
 ```
 
 **关键类说明**：
-- **AgentBindingService**：`agent_id↔account_id` 1:1 绑定维护，写 §4.1.6 `mc_binding`。四元作战单元（agent↔account↔terminal↔proxy）查询直接读 `mc_binding` 单一存储，不另存。
+- **AgentBindingService**：`agent_id↔account_id` 1:1 绑定维护，写 §4.1.6 `mc_binding`。四元行动单元（agent↔account↔terminal↔proxy）查询直接读 `mc_binding` 单一存储，不另存。
 - **AssetMigrationService**：封号资产迁移。流程：抽取原 agent 资产（人设标签 / 提示词版本 / 经 SWM 记忆服务抽记忆）→ 校验目标账号（须新注册且未绑定 agent、满足账号-终端绑定规则）→ 继承写入（新绑定激活、旧 agent↔旧账号解绑并休眠）。迁移由人工触发、内容整体继承，保证人格连贯、避免误迁。
 
 **设计要点**：
@@ -1212,7 +1222,7 @@ classDiagram
 
 #### 5.5.1 M-MC-14 智能体执行宿主与同步（R-MC-014，5 功能点）
 
-**职责**：作为智能体执行宿主，接收并持存 SWM 同步来的提示词包（`agent_id` 为主键），任务执行前校验人设一致性（最后一道闸），任务执行时**调用 M-MC-06 的 agent-runtime 引擎**运行，并作为 OCC 作战编排的智能体节点来源。
+**职责**：作为智能体执行宿主，接收并持存 SWM 同步来的提示词包（`agent_id` 为主键），任务执行前校验行为风格一致性（最后一道闸），任务执行时**调用 M-MC-06 的 agent-runtime 引擎**运行，并作为 OCC 行动编排的智能体节点来源。
 
 > **★ agent-runtime 归属（与 M-MC-006 的边界）**：本模块**不含运行时引擎**。运行时引擎 `agent-runtime` 归属 M-MC-06（§5.2.2），本模块负责 agent 静态资产（持存 / 校验 / OCC 节点来源），任务执行时调用 M-MC-06 的 `AgentRuntime.execute()`。
 
@@ -1225,8 +1235,8 @@ classDiagram
         +get(agent_id) AgentDef                  %% 取最新版本
         +update_on_new_version(agent_id, pack)   %% 更新升版本
     }
-    class PersonaConsistencyChecker {
-        +check(account_id, agent_id) CheckResult %% ★ 人设一致性校验(最后一道闸)
+    class BehaviorConsistencyChecker {
+        +check(account_id, agent_id) CheckResult %% ★ 行为风格一致性校验(最后一道闸)
     }
     class AgentNodeSource {
         +resolve(agent_id) AgentNodeInfo         %% 作为OCC编排智能体节点来源
@@ -1239,14 +1249,14 @@ classDiagram
         +resolve(agent_id) QuadBinding           %% 四元绑定(读mc_binding)
     }
     class AgentDefStore ..> AgentDefRepo : 写mc_agent_def
-    class PersonaConsistencyChecker ..> AgentDefStore
-    class PersonaConsistencyChecker ..> BindingRepo : 读account绑定人设
+    class BehaviorConsistencyChecker ..> AgentDefStore
+    class BehaviorConsistencyChecker ..> BindingRepo : 读account绑定人设
 ```
 
 **关键类说明**：
 - **AgentDefStore**：提示词包持存。经 II-14（Kafka `mc-agent-def-sync`）接收 SWM 同步的提示词包（`agent_id` / 人设标签 / 提示词 / 作业策略 / 版本），以 `agent_id` 为主键存 `mc_agent_def`。同一 `agent_id` 重新同步升版本号，取最新版本执行（SWM 同步失败保留上一可用版本并告警）。
-- **PersonaConsistencyChecker**（★ 最后一道闸）：任务执行前校验"当前 `account_id` 绑定的人设标签"与"`agent_id` 提示词包中的人设标签"是否一致（本地比对，标签均在 MC 本地：account 侧标签随 `mc_binding`、agent 侧标签随 `mc_agent_def`），一致方可调用 M-MC-06 引擎执行，不一致**拒绝执行 + 告警 + 审计**。
-- **AgentNodeSource**：作为 OCC 作战编排的智能体节点来源，OCC 以 `agent_id` 引用 MC 持存的提示词包（II-10）。
+- **BehaviorConsistencyChecker**（★ 最后一道闸）：任务执行前校验"当前 `account_id` 绑定的人设标签"与"`agent_id` 提示词包中的人设标签"是否一致（本地比对，标签均在 MC 本地：account 侧标签随 `mc_binding`、agent 侧标签随 `mc_agent_def`），一致方可调用 M-MC-06 引擎执行，不一致**拒绝执行 + 告警 + 审计**。
+- **AgentNodeSource**：作为 OCC 行动编排的智能体节点来源，OCC 以 `agent_id` 引用 MC 持存的提示词包（II-10）。
 - **QuadBindingResolver**：四元绑定解析，读 `mc_binding` 单一存储。
 
 **智能体执行宿主时序（F-MC-14-01~05）**：
@@ -1255,16 +1265,16 @@ classDiagram
 [OCC 编排引用 agent_id 触发执行]
   1. AgentDefStore.get(agent_id)            # 取最新提示词包
      若缺失 -> 降级脚本模式或人工介入
-  2. PersonaConsistencyChecker.check(account_id, agent_id)
+  2. BehaviorConsistencyChecker.check(account_id, agent_id)
      读 mc_account 人设标签 vs mc_agent_def.persona_tags
-     不一致 -> 拒绝执行 + audit_log(persona_mismatch) + 告警
+     不一致 -> 拒绝执行 + audit_log(behavior_mismatch) + 告警
   3. QuadBindingResolver.resolve(agent_id)  # 四元绑定缺失/冲突 -> 挂起并提示
   4. agentRuntime.execute(job)              # ★ 调用M-MC-06引擎(推理旁路、动作收口)
   5. AgentNodeSource.resolve(agent_id)      # 作为OCC节点来源
 ```
 
 **设计要点**：
-- 人设一致性收口于执行宿主，作为最后一道闸（CON-10 推理执行分离的延伸：不仅推理与执行分离，执行前还要校验人格一致）。
+- 行为风格一致性收口于执行宿主，作为最后一道闸（CON-10 推理执行分离的延伸：不仅推理与执行分离，执行前还要校验人格一致）。
 - `agent-runtime` 调用边界：本模块 → `AgentRuntime.execute()`（M-MC-06），引擎内部调 IRS（不经网关）+ 经 `ExecutionGateway.submit()` 落地动作。
 
 ---
@@ -1377,11 +1387,11 @@ agent-runtime 经 REST 调 IRS（**不经执行网关**，CON-10）：
 { "actions": [ { "action_type": "click", "params": {...} }, ... ] }
 ```
 
-#### 6.2.7 II-10 作战编排下发与执行回传（M-MC-04/10 ↔ OCC）
+#### 6.2.7 II-10 行动编排下发与执行回传（M-MC-04/10 ↔ OCC）
 
 | 方向 | 内容 |
 | --- | --- |
-| OCC → MC | 作战编排流程下发（智能体节点 / 脚本节点，以 `agent_id` 引用） |
+| OCC → MC | 行动编排流程下发（智能体节点 / 脚本节点，以 `agent_id` 引用） |
 | MC → OCC | 效果数据回调回传（触达 / 互动 / 完成率，供 OCC 效果评估闭环） |
 
 #### 6.2.8 II-11 执行网关日志上报（M-MC-05 → OM）
@@ -1421,13 +1431,13 @@ MC 持存后回同步确认与持存版本号。
 | IRS 推理失败 | 智能体模式降级为脚本模式或人工介入；记忆服务不可用降级无记忆运行并告警 |
 | SWM 同步失败 | 保留上一可用提示词包并告警；提示词包缺失降级脚本模式 |
 | 终端掉线 / CDP 断开 | 挂起任务待恢复续接；终端指标异常隔离并停止派发 |
-| 人设一致性校验不通过 | 拒绝执行 + 告警 + 审计（安全优先，fail-closed） |
+| 行为风格一致性校验不通过 | 拒绝执行 + 告警 + 审计（安全优先，fail-closed） |
 
 ### 7.2 动作收口与熔断（NR-S/NR-F）
 
 - **动作不裸奔**：所有动作经 `ExecutionGateway.submit()`，鉴权 → 熔断 → 路由 → 记录，禁止绕过（CON-07）。
 - **熔断**：检测风控信号或单终端异常频率（Redis 滑动窗口），触发熔断后该终端后续动作停止并告警。
-- **越权审计**：所有权限拒绝（403）、鉴权失败、人设不一致、熔断触发记 `mc_audit_log`（NR-S-06 可追溯）。
+- **越权审计**：所有权限拒绝（403）、鉴权失败、行为风格不一致、熔断触发记 `mc_audit_log`（NR-S-06 可追溯）。
 
 ### 7.3 幂等性
 
@@ -1529,7 +1539,7 @@ flowchart TB
 - mc-service / mc-sfu 自身日志经 stdout 由 FluentBit 采集入 OpenSearch（OM 自观测）。
 - mc-service 暴露 `/metrics`（任务吞吐、动作延迟、熔断次数、终端在线数、账号状态分布），由 Prometheus 采集。
 - 动作日志全量写 ClickHouse `mc_analysis` + 发 Kafka II-11 上报 OM。
-- 关键安全事件（鉴权失败、人设不一致、熔断、资产迁移）入 `mc_audit_log`，可供 OM 审计看板查询。
+- 关键安全事件（鉴权失败、行为风格不一致、熔断、资产迁移）入 `mc_audit_log`，可供 OM 审计看板查询。
 
 ---
 

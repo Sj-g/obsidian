@@ -14,13 +14,13 @@
 
 ### 1.1 标识
 
-本文件为「认知作战平台」（以下简称"系统"或"平台"）蜂群智能体子系统（SWM，软部件标识 M-SWM-00）的软件详细设计说明（SDD）。它是《软件需求规格说明-SWM子系统》V3.8 功能需求 R-SWM-001~005 与《软件概要设计说明》V2.7 模块 M-SWM-01/02/04/05/06/07 的详细设计下沉，描述 SWM 子系统各模块的内部结构、类与接口、数据结构、算法、状态机与部署单元，作为编码实现与单元测试的依据。
+本文件为「认知作战平台」（以下简称"系统"或"平台"）蜂群智能体子系统（SWM，软部件标识 M-SWM-00）的软件详细设计说明（SDD）。它是《软件需求规格说明-SWM子系统》V3.9 功能需求 R-SWM-001~005 与《软件概要设计说明》V2.7 模块 M-SWM-01/02/04/05/06/07 的详细设计下沉，描述 SWM 子系统各模块的内部结构、类与接口、数据结构、算法、状态机与部署单元，作为编码实现与单元测试的依据。
 
 **SWM 不含运行时**。原 M-SWM-03（提示词场景适配与动态调用 / 运行时引擎）已整体移至群控子系统（MC）的 agent-runtime 子模块（见 R-MC-006/014、CON-10），编号在 SWM 内废止。SWM 仅承担「生成提示词包 + 承载记忆 + 同步 MC + 评测迭代」四项职责；运行时（场景适配、动态调用提示词、读记忆注入、调 IRS 视觉推理）由 MC 的 agent-runtime 子模块执行——其中读记忆是 MC agent-runtime 远程调用 SWM 的 swm-memory 服务完成，SWM 不参与运行时。本文件不涉及 MC agent-runtime 的内部设计（属 MC 子系统详细设计范畴）。
 
 ### 1.2 系统概述
 
-蜂群智能体子系统（SWM）是执行层的「提示词生成与记忆中心」，根据人设（画像、账号属性）生成驱动智能体作业的提示词并管理记忆，将生成的提示词包（人设标签、提示词、作业策略）以 agent_id（稳定逻辑标识）同步至 MC 持存，由 MC 的 agent-runtime 子模块运行。本子系统**不直接操作设备**，所有动作收口于 MC 统一执行网关（CON-07）。
+蜂群智能体子系统（SWM）是执行层的「提示词生成与记忆中心」，生成驱动智能体作业的提示词并管理记忆（人设属性直接写进提示词文本），将生成的提示词包（提示词、作业策略）以 agent_id（稳定逻辑标识）同步至 MC 持存，由 MC 的 agent-runtime 子模块运行。本子系统**不直接操作设备**，所有动作收口于 MC 统一执行网关（CON-07）。
 
 SWM 采用「**集成层**」形态：提示词工程（模板库、版本管理、Playground 试运行、版本输出对比）与智能体评测（评测集、评估器、实验）能力以**魔改 coze-loop 作为 SWM 提示词工程与评测主体内核**（在开源项目 coze-loop 基础上定制开发，UI 层自研并与全平台统一控制台体验对齐，不再是旁挂外部黑盒）（CON-14，智能体域特例，仿 DC 采集域特例思路）；网关 swm-gw、记忆服务 swm-memory、提炼编排 swm-distill 采用 Java 17 + Spring Boot 3.x，与管控/业务微服务统一 Java 栈一致。魔改后的 coze-loop 作为 SWM 内核组件部署于 `swm` 命名空间，Java 侧经 HTTP/OpenAPI 调用其接口。
 
@@ -28,12 +28,12 @@ SWM 子系统由六个模块组成（对应 5 项功能需求与 22 个功能点
 
 | 模块 | 标识 | 对应需求 | 功能点 | 承载组件 |
 | --- | --- | --- | --- | --- |
-| 人设标签管理 | M-SWM-01 | R-SWM-001（人设） | F-SWM-01-01、F-SWM-01-02 | swm-gw（Java） |
+| 提示词管理 | M-SWM-01 | R-SWM-001（提示词） | F-SWM-01-01、F-SWM-01-02 | swm-gw（Java） |
 | 提示词模板库与版本管理 | M-SWM-02 | R-SWM-001（资产） | F-SWM-02-01、F-SWM-02-02、F-SWM-02-03、F-SWM-02-04 | 魔改 coze-loop 内核（prompt 模块） |
 | 蜂群记忆管理 | M-SWM-04 | R-SWM-002 | F-SWM-04-01、F-SWM-04-02、F-SWM-04-03、F-SWM-04-04 | swm-memory（Java） |
 | 智能体构建与提示词包下发 | M-SWM-05 | R-SWM-003 | F-SWM-05-01、F-SWM-05-02、F-SWM-05-03、F-SWM-05-04 | swm-gw / swm-distill（Java） |
 | 智能体评测与迭代决策 | M-SWM-06 | R-SWM-004 | F-SWM-06-01~06 | 魔改 coze-loop 内核（evaluation 模块） |
-| 按账号与画像自动生成提示词 | M-SWM-07 | R-SWM-005 | F-SWM-07-01、F-SWM-07-02、F-SWM-07-03 | 魔改 coze-loop 内核（工作流） |
+| 对话编写提示词 | M-SWM-07 | R-SWM-005 | F-SWM-07-01、F-SWM-07-02、F-SWM-07-03 | 魔改 coze-loop 内核（工作流） |
 
 > 说明：① R-SWM-001 原含运行时（提示词场景适配与动态调用，V3.7 前的模块 M-SWM-03、功能点 F-SWM-03-01/02），V3.7 起「SWM 结构性转向」整体移至 MC 的 agent-runtime 子模块（见 R-MC-006/014、CON-10/11），编号 M-SWM-03 / F-SWM-03-0x 随之废止，M-SWM-04 及以后保留原编号以稳定全文交叉引用（编号缺口在《版本变动记录》V3.7 明细中登记）。② SWM 为集成层：**魔改 coze-loop 内核**承载 M-SWM-02/06/07，Java 侧（swm-gw/swm-memory/swm-distill）承载 M-SWM-01/04/05；V1.1 起 coze-loop 由「外部旁挂黑盒」改为「SWM 主体内核（魔改定制）」，本文件对魔改内核按 SWM 内部组件描述（接口契约 + 适配层），对 Java 自研组件全粒度下沉（类/接口/算法/状态机/部署单元）。
 
@@ -47,8 +47,8 @@ SWM 子系统由六个模块组成（对应 5 项功能需求与 22 个功能点
 
 | 术语 | 说明 |
 | --- | --- |
-| coze-loop | 开源的 LLM 评测与可观测性平台（Go），本项目在其基础上魔改定制（V1.1 起由「旁挂外部黑盒」改为「SWM 主体内核」），以其 prompt 模块承载提示词工程、evaluation 模块承载智能体评测、工作流承载提示词自动生成，UI 层自研并与全平台统一控制台体验对齐，作为 SWM 内核组件部署于 `swm` 命名空间（CON-14） |
-| 提示词包 | SWM 生成的、用于驱动智能体作业的人设标签 + 提示词 + 作业策略的集合，以 agent_id（稳定逻辑标识）为索引、提示词版本为子属性；记忆不在其中，由记忆服务独立承载 |
+| coze-loop | 开源的 LLM 评测与可观测性平台（Go），本项目在其基础上魔改定制（V1.1 起由「旁挂外部黑盒」改为「SWM 主体内核」），以其 prompt 模块承载提示词工程、evaluation 模块承载智能体评测、工作流承载对话编写提示词，UI 层自研并与全平台统一控制台体验对齐，作为 SWM 内核组件部署于 `swm` 命名空间（CON-14） |
+| 提示词包 | SWM 生成的、用于驱动智能体作业的提示词 + 作业策略的集合（人设属性直接写进提示词文本，V1.2 起废除独立人设标签），以 agent_id（稳定逻辑标识）为索引、提示词版本为子属性；记忆不在其中，由记忆服务独立承载 |
 | agent_id | 智能体的稳定逻辑标识，不随提示词重新生成而变；提示词版本（version）作为 agent_id 下的子属性，每次重新生成升版本号；agent_id 与 account_id 严格 1:1 绑定 |
 | 评测集 / 评估器 / 实验 | R-SWM-004 离线评测的三类可管理实体：评测集承载测试用例，评估器承载可复用的打分逻辑，实验承载一次可追踪、可对比的评测运行；均承载于 coze-loop 的 evaluation 模块 |
 | swm-gw | SWM 的 Java 网关服务（Spring Boot），承担对外门面：接收构建请求、编排 coze-loop、经 II-14 同步 MC，承载 M-SWM-01/05 |
@@ -62,7 +62,7 @@ SWM 子系统由六个模块组成（对应 5 项功能需求与 22 个功能点
 
 | 文件 | 说明 |
 | --- | --- |
-| 《软件需求规格说明-SWM子系统》V3.8 | 上游需求，R-SWM-001~005、CON-06/07/10/11/14、II-01/01a/14/18、EI-05、DR-09 |
+| 《软件需求规格说明-SWM子系统》V3.9 | 上游需求，R-SWM-001~005、CON-06/07/10/11/14、II-01a/14、EI-05、DR-09 |
 | 《软件概要设计说明.md》V2.7 | 概要设计，§4.5 SWM 六模块职责/组成/关键设计、§4.2.6/§4.2.14 MC agent-runtime |
 | 《软件概要设计-架构图.md》V1.4 | §3 SWM 专属架构图与各模块功能架构图 |
 | 《软件概要设计-模块功能拆分-v2.xlsx》 | SWM 蜂群智能体子系统工作表（模块/功能点拆分） |
@@ -77,16 +77,16 @@ SWM 子系统由六个模块组成（对应 5 项功能需求与 22 个功能点
 
 ### 3.1 技术选型
 
-SWM 子系统技术栈遵循 CON-14 智能体域特例（仿 DC 采集域特例思路）：提示词工程（M-SWM-02 模板库/版本/Playground/版本对比）与智能体评测（M-SWM-06 评测集/评估器/实验）以 **魔改 coze-loop 作为 SWM 主体内核**（在开源 coze-loop 基础上定制开发，UI 层自研并与全平台统一控制台体验对齐，V1.1 起由「旁挂外部黑盒」改为「SWM 主体内核」）；网关 swm-gw、记忆服务 swm-memory、提炼编排 swm-distill 采用 **Java 17 + Spring Boot 3.x**，与管控/业务微服务统一 Java 栈一致。魔改后的 coze-loop 作为 SWM 内核组件部署于 `swm` 命名空间，Java 侧经 HTTP/OpenAPI 调用其接口。异构原因：coze-loop 原生覆盖提示词版本管理与评测集/评估器/实验体系，魔改后既复用其成熟能力又纳入 SWM 统一治理；其余智能体域逻辑（人设、记忆、构建同步、提炼编排）业务性强，用 Java 与 COM/OM 同栈便于复用 com-auth-lib 验签与统一运维。
+SWM 子系统技术栈遵循 CON-14 智能体域特例（仿 DC 采集域特例思路）：提示词工程（M-SWM-02 模板库/版本/Playground/版本对比）与智能体评测（M-SWM-06 评测集/评估器/实验）以 **魔改 coze-loop 作为 SWM 主体内核**（在开源 coze-loop 基础上定制开发，UI 层自研并与全平台统一控制台体验对齐，V1.1 起由「旁挂外部黑盒」改为「SWM 主体内核」）；网关 swm-gw、记忆服务 swm-memory、提炼编排 swm-distill 采用 **Java 17 + Spring Boot 3.x**，与管控/业务微服务统一 Java 栈一致。魔改后的 coze-loop 作为 SWM 内核组件部署于 `swm` 命名空间，Java 侧经 HTTP/OpenAPI 调用其接口。异构原因：coze-loop 原生覆盖提示词版本管理与评测集/评估器/实验体系，魔改后既复用其成熟能力又纳入 SWM 统一治理；其余智能体域逻辑（提示词、记忆、构建同步、提炼编排）业务性强，用 Java 与 COM/OM 同栈便于复用 com-auth-lib 验签与统一运维。
 
 | 维度 | 选型 | 说明 |
 | --- | --- | --- |
 | 网关/编排语言 | Java 17 + Spring Boot 3.x | swm-gw / swm-distill，与 COM/OM 同栈，复用 com-auth-lib 本地验签（JWT 无状态） |
 | 记忆服务语言 | Java 17 + Spring Boot 3.x | swm-memory，与 MC（agent-runtime 的读取方）同栈，便于跨服务调用 |
 | 提示词工程/评测引擎 | 魔改 coze-loop（Go） | SWM 主体内核（CON-14 智能体域特例，V1.1 起由旁挂外部黑盒改为主体内核），承载 M-SWM-02/06/07，Java 侧经 HTTP/OpenAPI 调用 |
-| 元数据库 | PostgreSQL | sw schema：agent_id/人设/模板版本/提示词包 |
+| 元数据库 | PostgreSQL | sw schema：agent_id/提示词/模板版本/提示词包 |
 | 记忆存储 | Milvus + PostgreSQL | Milvus 存向量记忆（轨迹层/经验层），PG 存记忆元数据；按 agent_id 隔离 |
-| 缓存 | Redis | 人设/提示词包/画像缓存 |
+| 缓存 | Redis | 提示词包缓存 |
 | 大模型推理 | IRS（本地大模型） | 经 EI-05 调用，严格私有化（CON-06），不经执行网关（CON-10） |
 | 鉴权 | com-auth-lib | COM 签发的 JWT 本地验签，coze-loop 侧经 swm-gw 代理鉴权（coze-loop 自带用户体系架空） |
 
@@ -120,47 +120,44 @@ flowchart TB
     DIST --> MEM
     LOOP --> LOOPPG & LOOPCH
     GW -.->|"II-14 提示词包同步"| MC["MC（外部）"]
-    GW -.->|"II-01 账号/II-18 画像"| EXT["MC/OCC（外部）"]
     GW -.->|"EI-05 推理（经coze-loop）"| IRS["IRS（外部）"]
     MEM -.->|"读记忆（远程）"| MC
 ```
 
 | 部署单元 | 语言/形态 | 副本 | 承载模块 | 职责 |
 | --- | --- | --- | --- | --- |
-| swm-gw | Java/Spring Boot | 2（HA） | M-SWM-01、M-SWM-05 | 对外门面：人设标签管理、提示词包构建与下发（II-14 同步 MC）、编排魔改 coze-loop 的自动生成与评测 |
+| swm-gw | Java/Spring Boot | 2（HA） | M-SWM-01、M-SWM-05 | 对外门面：提示词管理、提示词包构建与下发（II-14 同步 MC）、编排魔改 coze-loop 的对话编写与评测 |
 | swm-memory | Java/Spring Boot | 2（HA） | M-SWM-04 | 蜂群记忆存储/沉淀/复用/延续；被 MC agent-runtime 远程读取 |
 | swm-distill | Java/Spring Boot | 1（有状态编排） | M-SWM-05/06 编排 | 收魔改 coze-loop 评测打分，编排记忆提炼与迭代决策；持久化提炼任务状态 |
-| coze-loop | Go（魔改内核） | 1 | M-SWM-02、M-SWM-06、M-SWM-07 | SWM 主体内核：提示词工程（prompt 模块）、评测（evaluation 模块）、自动生成工作流 |
+| coze-loop | Go（魔改内核） | 1 | M-SWM-02、M-SWM-06、M-SWM-07 | SWM 主体内核：提示词工程（prompt 模块）、评测（evaluation 模块）、对话编写工作流 |
 
 ### 3.3 模块间调用关系
 
 ```mermaid
 flowchart LR
     subgraph SWM["SWM 子系统"]
-        SWM1["M-SWM-01 人设标签管理<br/>(swm-gw)"]
+        SWM1["M-SWM-01 提示词管理<br/>(swm-gw)"]
         SWM2["M-SWM-02 提示词模板库<br/>(coze-loop)"]
         SWM4["M-SWM-04 蜂群记忆<br/>(swm-memory)"]
         SWM5["M-SWM-05 构建与下发<br/>(swm-gw/distill)"]
         SWM6["M-SWM-06 评测迭代<br/>(coze-loop)"]
-        SWM7["M-SWM-07 自动生成<br/>(coze-loop)"]
-        SWM1 -->|"人设标签"| SWM5
+        SWM7["M-SWM-07 对话编写<br/>(coze-loop)"]
+        SWM1 -->|"提示词"| SWM5
         SWM2 -->|"提示词"| SWM5
-        SWM7 -->|"生成的提示词"| SWM5
+        SWM7 -->|"编写的提示词"| SWM5
         SWM6 -.->|"淘汰/迭代决策"| SWM2
         SWM6 -.->|"提示词包重建"| SWM5
         SWM5 -.->|"II-14 同步"| MC2["MC"]
         SWM4 -.->|"读记忆(远程)"| MC2
-        SWM7 -.->|"II-18 画像"| OCC["OCC"]
-        SWM7 -.->|"II-01 账号"| MC2
         SWM2 & SWM6 & SWM7 -.->|"EI-05 推理"| IRS["IRS"]
     end
 ```
 
 ### 3.4 数据流设计
 
-1. **提示词包装配流（正向，R-SWM-003）**：M-SWM-01 人设标签 + M-SWM-02 提示词（可由 M-SWM-07 自动生成）→ M-SWM-05 组装为提示词包（agent_id 稳定标识 + 版本号 + 人设/提示词/作业策略）→ 经 II-14 同步至 MC 持存。记忆不在提示词包内，由 MC agent-runtime 运行时向 swm-memory 读取注入。
+1. **提示词包装配流（正向，R-SWM-003）**：M-SWM-01 提示词 + M-SWM-02 提示词（可由 M-SWM-07 对话编写）→ M-SWM-05 组装为提示词包（agent_id 稳定标识 + 版本号 + 提示词/作业策略，人设属性直接写进提示词文本）→ 经 II-14 同步至 MC 持存。记忆不在提示词包内，由 MC agent-runtime 运行时向 swm-memory 读取注入。
 2. **评测迭代闭环（R-SWM-004 / R-SWM-002）**：MC 作业效果数据（R-MC-010）+ 离线评测集 → coze-loop evaluation 批量跑题（调 IRS EI-05）→ 评估器打分 → swm-distill 汇总决策（及格 60 / 淘汰 40）→ 反馈 M-SWM-02 提示词迭代 + M-SWM-05 提示词包重建 + swm-memory 记忆提炼。R-SWM-002 记忆有效性验收在此闭环内由 loop 评估器度量（达可用线）。
-3. **提示词自动生成流（R-SWM-005）**：触发（工程师/定时）→ swm-gw 经 II-01 拉 MC 账号主数据 + 经 II-18 拉 OCC 用户画像（R-OCC-004 全维度档案）→ coze-loop 工作流调 IRS（EI-05）生成提示词 → 版本化回写提示词库 → 可纳入 M-SWM-05 构建。
+3. **对话编写提示词流（R-SWM-005）**：触发（工程师上传素材+描述需求）→ swm-gw 解析上传素材 → coze-loop 工作流调 IRS（EI-05）对话式编写提示词 → 版本化回写提示词库 → 可纳入 M-SWM-05 构建。
 
 ---
 
@@ -187,9 +184,9 @@ SWM 数据分三类存储：元数据（PostgreSQL `sw` schema，Java 侧自管�
 | id | bigint PK | |
 | agent_id | bigint FK → sw_agent | 稳定标识 |
 | version | int | 版本号，同一 agent_id 下递增 |
-| prompt_text | text | 提示词正文（可由 M-SWM-07 自动生成或人工编写） |
+| prompt_text | text | 提示词正文（含写进文本的人设属性；可由 M-SWM-07 对话编写或人工编写） |
 | job_strategy | jsonb | 作业策略（目标/场景/边界） |
-| source | varchar | manual（人工）/ auto（M-SWM-07 自动生成） |
+| source | varchar | manual（人工）/ auto（M-SWM-07 对话编写） |
 | created_at | timestamp | |
 | unique(agent_id, version) | | 幂等键 |
 
@@ -210,7 +207,7 @@ SWM 数据分三类存储：元数据（PostgreSQL `sw` schema，Java 侧自管�
 
 - 提示词模板库 / Playground 调试记录 / 版本对比记录（M-SWM-02）
 - 评测集 / 评估器 / 实验 / 逐题评分（M-SWM-06）
-- 自动生成工作流执行记录（M-SWM-07）
+- 对话编写工作流执行记录（M-SWM-07）
 
 Java 侧通过 agent_id 与 coze-loop 侧实体关联（coze-loop 侧以 prompt_id / expt_id 为主键，Java 侧 sw_prompt_version.version 与之映射）。
 
@@ -232,22 +229,22 @@ Java 侧通过 agent_id 与 coze-loop 侧实体关联（coze-loop 侧以 prompt_
 写入方：MC 作业效果回流（R-MC-010）经 swm-distill 写入。
 读取方：MC agent-runtime 运行时按 agent_id + 当前场景相似检索注入。
 
-**4.2.2 场景经验层（procedural，驱动人设一致性）**
+**4.2.2 场景经验层（procedural，驱动行为风格一致性）**
 
 | 字段 | 类型 | 说明 |
 | --- | --- | --- |
 | id | bigint PK | |
 | agent_id | bigint | |
 | scene_tag | varchar | 场景 |
-| experience | text | 从轨迹层提炼的「场景→人设化行为」经验 |
+| experience | text | 从轨迹层提炼的「场景→行为风格化行为」经验 |
 | embedding | vector | |
-| score | float | 该经验对应的人设一致性评分（来自 M-SWM-06 loop 评估器） |
+| score | float | 该经验对应的行为风格一致性评分（来自 M-SWM-06 loop 评估器） |
 | refined_at | timestamp | |
 
 写入方：swm-distill 收 coze-loop 评测打分达阈值后，调 IRS 提炼写入。
 读取方：MC agent-runtime 运行时注入。
 
-> 说明：记忆有效性验收（R-SWM-002「人设一致性达 loop 评估器可用线」）**不在 swm-memory 内自验**，而由 M-SWM-06 的 loop 评估器度量（见 §5.5）。swm-memory 仅负责存取，不负责打分。
+> 说明：记忆有效性验收（R-SWM-002「行为风格一致性达 loop 评估器可用线」）**不在 swm-memory 内自验**，而由 M-SWM-06 的 loop 评估器度量（见 §5.5）。swm-memory 仅负责存取，不负责打分。
 
 ### 4.3 Redis Key 设计
 
@@ -398,7 +395,7 @@ classDiagram
 
 #### 5.3.2 关键类说明
 
-- **MemoryService**：记忆存取入口。`storeEpisode` 写作业轨迹（轨迹层 episode，保跨轮次连贯性）；`recall` 按场景相似检索记忆（供 MC agent-runtime 远程读取注入）；`refineExperience` 由 swm-distill 触发，从轨迹层提炼场景经验（经验层 procedural，驱动人设一致性）。
+- **MemoryService**：记忆存取入口。`storeEpisode` 写作业轨迹（轨迹层 episode，保跨轮次连贯性）；`recall` 按场景相似检索记忆（供 MC agent-runtime 远程读取注入）；`refineExperience` 由 swm-distill 触发，从轨迹层提炼场景经验（经验层 procedural，驱动行为风格一致性）。
 - **EpisodeMemory / ExperienceMemory**：分层记忆实体（§4.2），按 agent_id 隔离。
 - **VectorStore**：Milvus 客户端封装。
 
@@ -415,10 +412,10 @@ classDiagram
 1. 入参：agent_id, 当前场景描述 scene, topK
 2. 将 scene 向量化
 3. Milvus 在该 agent_id 记忆空间检索 topK 相似轨迹 + 经验
-4. 返回合并记忆（轨迹保连贯性、经验强化人设）
+4. 返回合并记忆（轨迹保连贯性、经验强化行为风格）
 ```
 
-> **边界声明**：记忆由 **MC 的 agent-runtime 运行时远程读取**注入提示词（经 swm-memory 暴露的 recall 接口），SWM 不参与运行时。**记忆有效性验收（R-SWM-002）不在本模块自验**——「人设一致性达 loop 评估器可用线」由 M-SWM-06 的 loop 评估器度量（见 §5.5），swm-memory 仅负责存取。
+> **边界声明**：记忆由 **MC 的 agent-runtime 运行时远程读取**注入提示词（经 swm-memory 暴露的 recall 接口），SWM 不参与运行时。**记忆有效性验收（R-SWM-002）不在本模块自验**——「行为风格一致性达 loop 评估器可用线」由 M-SWM-06 的 loop 评估器度量（见 §5.5），swm-memory 仅负责存取。
 
 ### 5.4 M-SWM-05 智能体构建与提示词包下发（对应需求 R-SWM-003）
 
@@ -435,7 +432,6 @@ classDiagram
     class PromptPackage {
         +Long agentId
         +int version
-        +List~PersonaTag~ persona
         +String prompt
         +JobStrategy strategy
     }
@@ -455,7 +451,7 @@ classDiagram
 
 #### 5.4.2 关键类说明
 
-- **PackageBuildService**：提示词包组装与同步入口。`build` 组装提示词包（人设标签 + 提示词 + 作业策略三项必填，缺一不可）；`syncToMC` 经 II-14 同步至 MC。
+- **PackageBuildService**：提示词包组装与同步入口。`build` 组装提示词包（提示词 + 作业策略两项必填，缺一不可；人设属性直接写进提示词文本）；`syncToMC` 经 II-14 同步至 MC。
 - **AgentRegistry**：agent_id 管理。**agent_id 为稳定逻辑标识，build 时不重新分配，仅 `bumpVersion` 升版本号**（P5）；`bindAccount` 引用 account_id（绑定关系记录由 MC R-MC-013 维护）。
 - **SyncClient**：II-14 HTTP 客户端，含重试与幂等。
 - **PromptPackage**：提示词包值对象，对应 II-14 输入字段（记忆不在其中）。
@@ -463,11 +459,11 @@ classDiagram
 #### 5.4.3 提示词包组装算法（F-SWM-05-01，P5 agent_id 稳定）
 
 ```
-输入：agent_id, prompt（可由 M-SWM-07 自动生成或人工编写）, job_strategy
-1. 校验三项必填要素：persona(从M-SWM-01取) + prompt + strategy，缺一拒绝
+输入：agent_id, prompt（可由 M-SWM-07 对话编写或人工编写，含写进文本的人设属性）, job_strategy
+1. 校验两项必填要素：prompt + strategy，缺一拒绝
 2. version = AgentRegistry.bumpVersion(agent_id)  // agent_id 不变，仅升版本
 3. 写 sw_prompt_version (agent_id, version, prompt, strategy, source)
-4. 组装 PromptPackage {agent_id, version, persona, prompt, strategy}
+4. 组装 PromptPackage {agent_id, version, prompt, strategy}
 5. 调 syncToMC(agent_id, version)
 ```
 
@@ -481,7 +477,7 @@ sequenceDiagram
     participant DB as sw_package_sync
     GW->>Lock: 获取 sw:sync:lock:{agent_id}:{version}
     alt 获锁
-        GW->>MC: POST /ii-14 提示词包(agent_id,version,persona,prompt,strategy,account_id)
+        GW->>MC: POST /ii-14 提示词包(agent_id,version,prompt,strategy,account_id)
         alt 同步成功
             MC-->>GW: 同步确认 + mc_version
             GW->>DB: 记录 sync_status=success, mc_version
@@ -536,8 +532,8 @@ classDiagram
 #### 5.5.2 关键类说明
 
 - **EvaluationAdapter**：Java 适配层，封装对 coze-loop evaluation 模块的调用：发起实验（F-SWM-06-03 批量跑题，逐题调 IRS EI-05 不经执行网关）、查询实验结果。
-- **DecisionService**：迭代/淘汰决策（F-SWM-06-06）。按 loop 评估器返回的人设一致性评分 + 线上有效性，决策 promote（>60 可用）/ iterate（40~60 迭代）/ eliminate（<40 淘汰），并反馈 M-SWM-02 提示词迭代 + M-SWM-05 提示词包重建 + swm-memory 经验提炼。
-- **ExperimentResult**：实验结果值对象，含人设一致性评分（**R-SWM-002 记忆有效性验收依据**）。
+- **DecisionService**：迭代/淘汰决策（F-SWM-06-06）。按 loop 评估器返回的行为风格一致性评分 + 线上有效性，决策 promote（>60 可用）/ iterate（40~60 迭代）/ eliminate（<40 淘汰），并反馈 M-SWM-02 提示词迭代 + M-SWM-05 提示词包重建 + swm-memory 经验提炼。
+- **ExperimentResult**：实验结果值对象，含行为风格一致性评分（**R-SWM-002 记忆有效性验收依据**）。
 
 #### 5.5.3 魔改 coze-loop evaluation OpenAPI 契约（内核接口边界）
 
@@ -577,7 +573,7 @@ stateDiagram-v2
    - promote 且 persona_score 达标 → swm-distill 触发 swm-memory 经验提炼
 ```
 
-> **R-SWM-002 记忆有效性验收入口在此**：loop 评估器返回的人设一致性评分达其设定的可用线，方判定记忆有效；该度量由 M-SWM-06 承担，swm-memory（M-SWM-04）不自验。
+> **R-SWM-002 记忆有效性验收入口在此**：loop 评估器返回的行为风格一致性评分达其设定的可用线，方判定记忆有效；该度量由 M-SWM-06 承担，swm-memory（M-SWM-04）不自验。
 
 ### 5.6 M-SWM-07 对话编写提示词（对应需求 R-SWM-005）
 
@@ -657,10 +653,10 @@ SWM 经此接口调用 IRS 本地大模型，用于四类推理，**均不经执
 
 | 用途 | 承载模块 | 输入 | 输出 |
 | --- | --- | --- | --- |
-| Playground 试运行 | M-SWM-02 | 提示词草稿 + 人设上下文 + 测试用例 | 试运行产出 |
+| Playground 试运行 | M-SWM-02 | 提示词草稿（含写进文本的人设属性） + 测试用例 | 试运行产出 |
 | 版本输出对比 | M-SWM-02 | 两版本提示词 + 相同测试用例 | 并排产出 |
 | 离线评测跑题 | M-SWM-06 | 评测集逐题 + 智能体定义 | 逐题推理结果 |
-| 提示词自动生成 | M-SWM-07 | 账号属性 + 用户画像 | 生成的提示词 |
+| 对话编写提示词 | M-SWM-07 | 用户上传素材解析上下文 + 需求描述 | 编写的提示词 |
 
 ### 6.2 内部接口
 
@@ -673,27 +669,20 @@ SWM（swm-gw）→ MC。承载 M-SWM-05（F-SWM-05-03）。
   {
     "agent_id": "<稳定逻辑标识，同步主键>",
     "version": <当前生效版本号，int>,
-    "persona_tags": [{"dimension":"identity","value":"..."}, ...],
-    "prompt": "<提示词正文>",
+    "prompt": "<提示词正文，人设属性直接写进文本>",
     "job_strategy": {"goal":"...","scene":"...","boundary":"..."},
     "account_id": "<绑定的账号标识>"
   }
   ```
-  **记忆不在提示词包内**——MC 的 agent-runtime 运行时向 swm-memory 读取（见 §5.3）。
+  **记忆不在提示词包内**——MC 的 agent-runtime 运行时向 swm-memory 读取（见 §5.3）。V1.2 起废除独立人设标签，提示词包不含 `persona_tags` 字段。
 - **输出（响应）**：`{ "sync_ack": "ok", "mc_version": "<MC持存版本号>" }`
 - **可靠性**：重试 + 幂等（键 `(agent_id, version)`），成功率 ≥99%（§5.4.4）。
 
-#### 6.2.2 II-01 账号服务（SWM 为消费方）
-
-MC → SWM。承载 M-SWM-005（F-SWM-07-01）按 account_id 拉取账号主数据作为自动生成提示词输入。**只引用标识不复制主数据**（CON-11）。响应缓存于 Redis `sw:account:{account_id}`。
-
-#### 6.2.3 II-18 用户画像查询（SWM 为消费方）
-
-OCC → SWM。承载 M-SWM-005（F-SWM-07-01）拉取用户画像（来源于 OCC R-OCC-004 全维度档案，含身份特征/立场倾向/兴趣领域等）。响应缓存于 Redis `sw:profile:{account_id}`。
-
-#### 6.2.4 II-01a 账号状态变更事件（SWM 为订阅方）
+#### 6.2.2 II-01a 账号状态变更事件（SWM 为订阅方）
 
 MC → 事件总线 → SWM。SWM 订阅 `account.status.changed` 事件：账号被封禁时，SWM 将对应 agent_id 置 `dormant`（休眠），保证被封账号的智能体全网即时失效（§4.1.1 status 字段）。
+
+> 说明：V1.2 起（ADR-001）R-SWM-005 改为「对话编写提示词」，SWM 不再经 II-01 拉取账号主数据、II-18 用户画像查询接口废止（孤儿接口），原 §6.2.2 II-01 账号服务、§6.2.3 II-18 用户画像查询两节随之删除。
 
 ---
 
@@ -712,7 +701,7 @@ MC → 事件总线 → SWM。SWM 订阅 `account.status.changed` 事件：账�
 
 魔改 coze-loop 作为 SWM 主体内核组件部署于 `swm` 命名空间，Java 侧经 HTTP/OpenAPI 调用（CON-14）。容错策略：
 - **读类操作**（模板库查询、实验结果查询）：魔改 coze-loop 故障时返回降级提示，不阻塞构建。
-- **写类操作**（Playground、发起实验、自动生成）：魔改 coze-loop 故障时任务排队，恢复后重放。
+- **写类操作**（Playground、发起实验、对话编写）：魔改 coze-loop 故障时任务排队，恢复后重放。
 - **健康检查**：swm-gw 对魔改 coze-loop 做存活探针，连续失败从负载均衡摘除。
 - **版本锁定**：魔改 coze-loop 部署版本固定，升级需回归测试（§10）。
 
@@ -720,7 +709,7 @@ MC → 事件总线 → SWM。SWM 订阅 `account.status.changed` 事件：账�
 
 - **提示词包同步**：以 `(agent_id, version)` 为幂等键（§4.1.4 unique 约束 + Redis 分布式锁），同一版本不重复同步。
 - **评测实验**：以实验 ID（expt_id）幂等，重复发起返回已存在实验。
-- **自动生成**：以 `(account_id, 触发请求ID)` 幂等，避免重复生成。
+- **对话编写**：以 `(agent_id, 编写请求ID)` 幂等，避免重复编写。
 
 ---
 
@@ -753,8 +742,8 @@ MC → 事件总线 → SWM。SWM 订阅 `account.status.changed` 事件：账�
 
 swm-gw / swm-memory / swm-distill 向运维监控子系统（OM）上报日志与指标（II-04）：
 - **指标**：II-14 同步成功率（目标≥99%）、魔改 coze-loop 调用延迟/失败率、评测实验吞吐、记忆 recall 延迟。
-- **日志**：提示词包同步审计、评测决策（promote/iterate/eliminate）、自动生成触发。
-- **关键动作全量留痕**：人设绑定、提示词包同步、评测淘汰决策。
+- **日志**：提示词包同步审计、评测决策（promote/iterate/eliminate）、对话编写触发。
+- **关键动作全量留痕**：提示词绑定、提示词包同步、评测淘汰决策。
 
 ---
 
@@ -764,11 +753,11 @@ swm-gw / swm-memory / swm-distill 向运维监控子系统（OM）上报日志�
 
 | 需求 | 模块 / 功能点 | 设计章节 |
 | --- | --- | --- |
-| R-SWM-001 提示词与人设管理 | M-SWM-01（F-SWM-01-01/02）；M-SWM-02（F-SWM-02-01~04） | §5.1、§5.2 |
+| R-SWM-001 提示词管理 | M-SWM-01（F-SWM-01-01/02）；M-SWM-02（F-SWM-02-01~04） | §5.1、§5.2 |
 | R-SWM-002 蜂群记忆管理 | M-SWM-04（F-SWM-04-01~04）；**有效性验收由 M-SWM-06 loop 评估器度量** | §5.3（存取）、§5.5（验收） |
 | R-SWM-003 智能体构建 | M-SWM-05（F-SWM-05-01~04） | §5.4 |
 | R-SWM-004 智能体评测 | M-SWM-06（F-SWM-06-01~06） | §5.5 |
-| R-SWM-005 提示词自动生成 | M-SWM-07（F-SWM-07-01~03） | §5.6 |
+| R-SWM-005 对话编写提示词 | M-SWM-07（F-SWM-07-01~03） | §5.6 |
 
 非功能与约束覆盖：NR-M-01（模块化服务化，§3.2 独立部署）、NR-M-02（配置化，§8.2）、NR-M-03/04（可观测，§8.3）、NR-R-02（重试幂等，§7.1/7.3）、CON-06（私有化推理，§3.1/6.1）、CON-07（动作收口，§1.1 不操作设备）、CON-10（推理与执行分离，运行时归 MC agent-runtime，§1.1/5.3）、CON-11（权威源引用，§5.1/6.2）、CON-14（智能体域特例，§3.1）。
 
@@ -779,7 +768,7 @@ swm-gw / swm-memory / swm-distill 向运维监控子系统（OM）上报日志�
 1. swm-memory 向量索引选型（Milvus IVF/HNSW）与 collection 分区策略的细化与压测。
 2. 魔改 coze-loop 部署版本锁定策略与升级回归测试用例集。
 3. II-14 提示词包同步在高峰并发下的压测与限流阈值。
-4. R-SWM-004 评测各维度（有效性/稳定性/合规性/人设一致性）按作业类型的门槛细化（SRS 已注明"详细设计阶段按作业类型细化"）。
-5. R-SWM-005 自动生成提示词所用的 IRS 本地模型选型与生成质量基线。
-6. swm-distill 记忆提炼的"达阈值"判定参数（场景轨迹条数、人设一致性评分阈值）细化。
+4. R-SWM-004 评测各维度（有效性/稳定性/合规性/行为风格一致性）按作业类型的门槛细化（SRS 已注明"详细设计阶段按作业类型细化"）。
+5. R-SWM-005 对话编写提示词所用的 IRS 本地模型选型与编写质量基线。
+6. swm-distill 记忆提炼的"达阈值"判定参数（场景轨迹条数、行为风格一致性评分阈值）细化。
 

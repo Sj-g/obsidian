@@ -436,41 +436,32 @@ aggregate_loop():
 
 ### 5.3 M-OM-03 告警引擎模块（R-OM-002 告警）
 
-#### 5.3.1 模块组成与类图
+> V1.2（ADR-004）：原告警只读观测（AlertObservationService/AlertmanagerClient）与前端告警观测 UI（OM-05）已删，告警规则查看、告警状态查看改由运维人员直连 KubeSphere Alertmanager 原生控制台完成。本模块**仅保留告警事件归档**（AlertEventReceiver）——暴露 webhook 端点接收 Alertmanager 告警回调，按 fingerprint 去重写入 PostgreSQL `alert_event`，供告警历史归档与处置追踪。
 
-只读化后，M-OM-03 职责为「**告警观测**」（查 Alertmanager 规则/告警状态 + webhook 接收归档），**不下发告警规则**（规则配置由运维人员经 KubeSphere 控制台操作）：
+#### 5.3.1 模块组成与类图（V1.2：仅保留事件归档）
 
 ```mermaid
 classDiagram
-    class AlertObservationService {
-        +list_alert_rules() list[AlertRuleView]
-        +list_alerts(status) list[AlertView]  %% firing/resolved
-        +get_alert_detail(fingerprint) AlertDetailView
-    }
     class AlertEventReceiver {
         +receive_webhook(payload)  %% Alertmanager webhook 回调
         +parse_and_persist(payload)
         +dedup_by_fingerprint(event)
-    }
-    class AlertmanagerClient {
-        +get_rules() list[AlertRule]
-        +get_alerts(status) list[Alert]
     }
     class AlertEventRepository {
         +save(event)
         +find_by_fingerprint(fp) AlertEvent
         +update_status(fp, status, resolved_at)
     }
-    class AlertObservationService ..> AlertmanagerClient : 只读观测
     class AlertEventReceiver ..> AlertEventRepository : 事件归档
+    note for AlertEventReceiver "V1.2（ADR-004）删除：AlertObservationService（告警规则/状态只读观测）/n+ AlertmanagerClient（Alertmanager API 代理）/n+ 前端告警观测 UI（OM-05）"
 ```
 
 #### 5.3.2 关键类说明
 
-- **AlertObservationService**：告警只读观测。封装 Alertmanager API（`/api/v2/rules`、`/api/v2/alerts`），查询当前生效告警规则与告警状态（firing/resolved），供 M-OM-04 看板与运维作业展示。
-- **AlertEventReceiver**：告警事件归档。暴露 `/api/v1/alerts/webhook` 端点接收 Alertmanager 告警回调，按 fingerprint 去重，写入 PostgreSQL `alert_event`，并更新状态（firing→resolved）。
+- ~~**AlertObservationService**（V1.2 已删）~~：原告警只读观测（封装 Alertmanager API 查询规则与告警状态），供 M-OM-04 看板与运维作业展示，ADR-004 后删除。告警规则与状态查看改由运维人员直连 KubeSphere Alertmanager。
+- **AlertEventReceiver（保留）**：告警事件归档。暴露 `/api/v1/alerts/webhook` 端点接收 Alertmanager 告警回调，按 fingerprint 去重，写入 PostgreSQL `alert_event`，并更新状态（firing→resolved）。
 
-#### 5.3.3 告警事件归档状态机
+#### 5.3.3 告警事件归档状态机（保留）
 
 ```mermaid
 stateDiagram-v2
@@ -482,91 +473,41 @@ stateDiagram-v2
     handled --> resolved: 处置后告警恢复
 ```
 
-#### 5.3.4 告警规则配置说明（只读观测边界）
+#### 5.3.4 告警规则配置说明（V1.2：观测入口交 KubeSphere）
 
-依据《软件需求规格说明-OM子系统》V3.8 R-OM-002，告警规则（阈值/异常检测）的**配置**由运维人员经 KubeSphere 控制台操作（在 Alertmanager/Prometheus Rule CRD 中定义），OM **不提供配置下发接口**，仅提供规则与告警事件的**只读观测**。多渠道通知（邮件/IM webhook）由 Alertmanager 原生接收器承担；电话/语音告警渠道当前不支持，入 §10 待补①。
+依据《软件需求规格说明-OM子系统》V3.9 R-OM-002，告警规则（阈值/异常检测）的**配置**由运维人员经 KubeSphere 控制台操作（在 Alertmanager/Prometheus Rule CRD 中定义）。V1.2（ADR-004）后，OM **既不提供配置下发接口，也不提供规则与告警事件的只读观测 UI**——规则查看、告警状态查看均由运维人员直连 KubeSphere Alertmanager 原生控制台完成。OM 仅保留**告警事件归档**（AlertEventReceiver 接收 webhook 落库）。多渠道通知（邮件/IM webhook）由 Alertmanager 原生接收器承担；电话/语音告警渠道当前不支持，入 §10 待补①。
 
 ### 5.4 M-OM-04 运维可视化与作业模块（R-OM-002 看板+运维）
 
-#### 5.4.1 模块组成与类图
+> V1.2（ADR-004）：本模块原承担「看板元数据镜像（DashboardMetaService/GrafanaClient）+ 只读运维作业（OpsJobService/InspectionRunner）」，对应前端看板与运维作业入口（OM-01 总览、OM-04 指标看板、运维作业页）。ADR-004 后前端入口全删：看板渲染与检索改由运维人员直连 KubeSphere Grafana 原生控制台；运维作业（巡检/故障定位/容量观测）改由运维人员经 KubeSphere 控制台或对接 Prometheus/Alertmanager 自助完成。**本模块 V1.2 起无运行时类保留**，仅 `ops_job` / `dashboard_meta` 两表定义留存（见 §4.2.2/§4.2.3，供历史记录审计追溯）。
 
-M-OM-04 职责为「**看板元数据镜像 + 只读运维作业**」（严格只读，不执行任何写运维操作）：
+#### 5.4.1 ~~模块组成与类图~~（V1.2 已删）
 
 ```mermaid
 classDiagram
-    class DashboardMetaService {
-        +list_dashboards(category) list[DashboardView]
-        +sync_from_grafana()  %% 定时拉取 Grafana 看板定义
-        +get_grafana_url(uid) String
+    note "V1.2（ADR-004）删除全部类：/n- DashboardMetaService（看板元数据镜像，前端看板 UI OM-01/04 已删）/n- GrafanaClient（Grafana API 拉取）/n- OpsJobService（巡检/故障定位/容量观测作业，前端运维作业入口已删）/n- InspectionRunner（巡检执行器）/n- OpsJobRepository（作业记录写库）/n本模块 V1.2 起无运行时类，仅 ops_job/dashboard_meta 表定义留存。"
+    class EmptyPlaceholder {
+        %% V1.2: 模块前端入口与运行时类全删
     }
-    class OpsJobService {
-        +run_inspection(params) JobResult  %% 巡检
-        +run_diagnosis(params) JobResult   %% 故障定位
-        +run_capacity_observation(params) JobResult  %% 容量观测
-        +list_job_history(type) list[JobRecord]
-    }
-    class GrafanaClient {
-        +search_dashboards() list[Dashboard]
-        +get_dashboard(uid) DashboardDef
-    }
-    class InspectionRunner {
-        +run_check_items() list[CheckResult]
-        +build_report(results) Report
-    }
-    class OpsJobRepository {
-        +save(job)
-        +find_by_id(id) OpsJob
-    }
-    class DashboardMetaService ..> GrafanaClient : 元数据镜像
-    class OpsJobService ..> InspectionRunner : 只读作业执行
-    class OpsJobService ..> OpsJobRepository : 作业记录
 ```
 
-#### 5.4.2 关键类说明
+#### 5.4.2 ~~关键类说明~~（V1.2 已删）
 
-- **DashboardMetaService**：看板元数据镜像。定时（每小时）从 Grafana API 拉取看板定义快照，写入 PostgreSQL `dashboard_meta`，供 OM 侧检索/引用。看板渲染本身由 Grafana 承担，OM 不自研看板 UI。
-- **OpsJobService**：只读运维作业。提供巡检（定时跑只读检查项）、故障定位（跨日志+指标+告警关联查询）、容量观测（指标趋势分析）三类作业，均为**只读分析**，不执行任何写操作。作业执行记录写 PostgreSQL `ops_job`。
-- **InspectionRunner**：巡检执行器。跑一组只读检查项（指标阈值/健康度/留存水位），产出巡检报告。
+- ~~**DashboardMetaService**（V1.2 已删）~~：原定时从 Grafana API 拉取看板定义快照写入 `dashboard_meta`，供 OM 侧看板检索/引用。ADR-004 后看板渲染与检索交 KubeSphere Grafana 原生控制台，本类删除（`dashboard_meta` 表定义留存，停止定时同步写入）。
+- ~~**OpsJobService**（V1.2 已删）~~：原只读运维作业（巡检/故障定位/容量观测），ADR-004 后前端运维作业入口删除，本类删除（`ops_job` 表定义留存，停止新写入）。
+- ~~**InspectionRunner**（V1.2 已删）~~：原巡检执行器，随 OpsJobService 一并删除。
 
-#### 5.4.3 运维作业只读边界（严格只读）
+#### 5.4.3 ~~运维作业只读边界（严格只读）~~（V1.2 已删）
 
-M-OM-04 所有运维操作（日志查询/故障定位/巡检/容量观测）均为**只读分析**，OM 不执行任何写运维操作（不重启服务、不扩缩容、不清理日志）。需要写操作时，OM 仅触发告警或产出建议，由人工经 KubeSphere 控制台或 MC 执行网关落地（遵循 CON-07 动作收口）。
+> V1.2（ADR-004）：本节原描述 M-OM-04 运维操作的只读边界（不执行写运维操作）。ADR-004 后 M-OM-04 运维作业整体删除，该边界不再适用。运维作业改由运维人员经 KubeSphere 控制台自助完成（遵循 CON-07 动作收口，写操作仍由人工经 KubeSphere 或 MC 执行网关落地）。
 
-#### 5.4.4 巡检作业算法
+#### 5.4.4 ~~巡检作业算法~~（V1.2 已删）
 
-```
-run_inspection(params):
-    job = create_ops_job(type=inspection, params)
-    results = []
-    for check in check_items:   # 预定义只读检查项
-        try:
-            value = query_metric(check.metric, check.window)  # 查 Prometheus
-            status = evaluate(value, check.threshold)   # ok/warn/critical
-            results.append({check, value, status})
-        except QueryError:
-            results.append({check, status: error})
-    report = build_report(results)
-    job.result_summary = report.summary
-    job.result_detail = report.detail
-    job.status = succeeded
-    save(job)
-    if any critical in results:
-        alert_service.notify(...)   # 触发告警(经 Alertmanager)
-```
+> V1.2（ADR-004）：本节原描述 `run_inspection` 巡检作业算法（查 Prometheus 指标、评估阈值、产出报告、触发告警）。ADR-004 后 OpsJobService/InspectionRunner 删除，该算法废止。巡检能力改由运维人员经 KubeSphere Prometheus + Grafana + Alertmanager 自助配置与执行。
 
-### 5.5 看板分类（R-OM-002 多维看板）
+### 5.5 ~~看板分类（R-OM-002 多维看板）~~（V1.2 已删）
 
-看板由 Grafana 渲染，OM 镜像元数据并按 R-OM-002 五维分类：
-
-| 看板类别 | dashboard_meta.category | 数据源 | 内容 |
-| --- | --- | --- | --- |
-| 总览 | overview | Prometheus + OpenSearch | 系统整体健康度、关键指标总览、告警概览 |
-| 设备 | device | Prometheus | 设备在线率、终端状态、Agent 连接状态 |
-| 任务 | task | Prometheus + ClickHouse | 任务成功率、任务执行趋势、队列积压 |
-| 爬虫 | crawler | Prometheus + ClickHouse | 爬虫吞吐量、采集成功率、封禁率 |
-| 异常 | anomaly | Alertmanager + OpenSearch | 告警事件、熔断记录、异常日志 |
-
-> 各看板的具体 Grafana 面板定义（PromQL/布局），待实施阶段配置（见 §10 待补⑤）。
+> V1.2（ADR-004）：本节原按 R-OM-002 五维（总览/设备/任务/爬虫/异常）列出 OM 镜像的 Grafana 看板分类。ADR-004 后看板元数据镜像（DashboardMetaService）删除，看板渲染与分类改由 KubeSphere Grafana 原生控制台承担。原五维看板分类表废止（`dashboard_meta.category` 字段定义留存于 §4.2.3）。
 
 ---
 
@@ -578,24 +519,26 @@ OM 不直接对接系统外部（EI），外部社交平台/代理服务等由 D
 
 ### 6.2 内部接口（OM 侧实现/消费）
 
-#### 6.2.1 II-04 日志与指标上报（OM 为消费方）
+> V1.2（ADR-004）：OM 作为消费方的 II-04（日志与指标上报）、II-11（执行网关日志上报）**保留**——各子系统→OM 上报业务数据，OM 消费分析入仓（供 MC 等子系统回查）。Alertmanager 告警事件 webhook（OM 为接收方）**保留**——用于告警事件归档。原 II-06 OM 管理 REST 接口（日志检索/指标查询/告警观测/看板/运维作业）**全部删除**——这些接口仅服务已删的 OM 前端观测/运维页，ADR-004 后前端入口交 KubeSphere 原生控制台。
+
+#### 6.2.1 II-04 日志与指标上报（OM 为消费方，保留）
 
 SRS 定义的 II-04 为「各子系统 → OM 上报日志与指标」。落地实现采用「**自动采集（Pull/采集）模型**」，数据流向仍为 各子系统→OM，但实现上：
 
-- **日志**：各子系统容器 stdout 由 KubeSphere FluentBit DaemonSet 自动采集入 OpenSearch（OM 配置采集规则，不需各子系统主动推）。
-- **指标**：各子系统暴露 `/metrics`（Prometheus exposition format），由 Prometheus 经 ServiceMonitor CRD 自动 Pull 抓取（OM 配置 scrape 规则，不需各子系统主动推）。
-- **业务数据入仓**：动作日志（II-11）与业务指标（II-04）经 FluentBit/采集器推 Kafka，OM 消费分析入 ClickHouse。
+- **日志**：各子系统容器 stdout 由 KubeSphere FluentBit DaemonSet 自动采集入 OpenSearch（OM 配置采集规则，不需各子系统主动推）。V1.2 后 OpenSearch 日志检索入口交 KubeSphere 原生控制台。
+- **指标**：各子系统暴露 `/metrics`（Prometheus exposition format），由 Prometheus 经 ServiceMonitor CRD 自动 Pull 抓取（OM 配置 scrape 规则，不需各子系统主动推）。V1.2 后 Prometheus 指标查询入口交 KubeSphere + Grafana 原生控制台。
+- **业务数据入仓（保留）**：动作日志（II-11）与业务指标（II-04）经 FluentBit/采集器推 Kafka，**OM 消费分析入 ClickHouse**（保留，供 MC 等子系统回查）。
 
-> 语义澄清：II-04「上报」描述的是数据流向（各子系统→OM），实现可为 Pull/采集模型，不违背需求。
+> 语义澄清：II-04「上报」描述的是数据流向（各子系统→OM），实现可为 Pull/采集模型，不违背需求。V1.2 后 OM 仅保留 Kafka 消费入仓这一消费路径，前端观测入口已删。
 
-#### 6.2.2 II-11 执行网关日志上报（OM 为消费方）
+#### 6.2.2 II-11 执行网关日志上报（OM 为消费方，保留）
 
 SRS 定义的 II-11 为「MC 执行网关 → OM 全量动作日志 + 熔断记录」。落地实现：
 
 - MC 执行网关将结构化动作日志以 **JSON 行写入 stdout**（含动作类型/终端/账号/结果/熔断标志等字段）。
 - FluentBit 采集 stdout，**双路 OUTPUT**：
-  - → OpenSearch（供运维全文检索，NR-P-06）
-  - → Kafka `om-action-log`（供 OM 消费分析入 ClickHouse `om_action_log`，审计）
+  - → OpenSearch（供 KubeSphere 控制台全文检索，NR-P-06；V1.2 起检索入口在 KubeSphere 原生控制台）
+  - → Kafka `om-action-log`（**供 OM 消费分析入 ClickHouse `om_action_log`**，审计，V1.2 保留）
 - MC 侧本地落盘文件 + FluentBit filesystem 缓冲兜底「全量不丢」（CON-07 可审计、R-MC-010 全量留痕）。
 
 动作日志 JSON 结构：
@@ -620,36 +563,18 @@ SRS 定义的 II-11 为「MC 执行网关 → OM 全量动作日志 + 熔断记�
 }
 ```
 
-#### 6.2.3 Alertmanager 告警事件 webhook（OM 为接收方）
+#### 6.2.3 Alertmanager 告警事件 webhook（OM 为接收方，保留）
 
-OM 暴露 webhook 端点接收 Alertmanager 告警回调：
+OM 暴露 webhook 端点接收 Alertmanager 告警回调（V1.2 保留，用于告警事件归档，非前端观测）：
 
 - 端点：`POST /api/v1/alerts/webhook`
 - 输入：Alertmanager 标准 webhook payload（version/groupKey/status/alerts[]）
 - 输出：HTTP 200（接收确认）
 - 处理：按 fingerprint 去重，写入 PostgreSQL `alert_event`，更新状态。
 
-#### 6.2.4 OM 管理 REST 接口（II-06，OM 为提供方）
+#### 6.2.4 ~~OM 管理 REST 接口（II-06，OM 为提供方）~~（V1.2 已删）
 
-OM 向前端/运维提供只读观测与运维作业 REST 接口：
-
-| 路径 | 方法 | 功能 |
-| --- | --- | --- |
-| `/api/v1/logs/search` | GET | 日志全文检索（M-OM-01） |
-| `/api/v1/logs/context/{event_id}` | GET | 日志上下文（M-OM-01） |
-| `/api/v1/metrics/query` | GET | 指标即时查询（M-OM-02） |
-| `/api/v1/metrics/range` | GET | 指标范围查询（M-OM-02） |
-| `/api/v1/alerts/rules` | GET | 告警规则只读观测（M-OM-03） |
-| `/api/v1/alerts` | GET | 告警状态只读观测（M-OM-03） |
-| `/api/v1/alerts/events` | GET | 告警历史事件查询（M-OM-03） |
-| `/api/v1/alerts/events/{id}/handle` | POST | 告警处置记录（M-OM-03） |
-| `/api/v1/dashboards` | GET | 看板列表（M-OM-04） |
-| `/api/v1/ops/jobs/inspection` | POST | 触发巡检作业（M-OM-04） |
-| `/api/v1/ops/jobs/diagnosis` | POST | 触发故障定位（M-OM-04） |
-| `/api/v1/ops/jobs/capacity` | POST | 触发容量观测（M-OM-04） |
-| `/api/v1/ops/jobs` | GET | 作业历史查询（M-OM-04） |
-
-> 所有接口经 COM 统一认证鉴权（NR-S-01），仅运维角色可访问。
+> V1.2（ADR-004）：本节原列 OM 向前端/运维提供的只读观测与运维作业 REST 接口（`/api/v1/logs/search` 日志检索、`/api/v1/metrics/query` 指标查询、`/api/v1/alerts/*` 告警观测、`/api/v1/dashboards` 看板、`/api/v1/ops/jobs/*` 运维作业）。这些接口**仅服务已删的 OM 前端观测/运维页（OM-01~05）**，ADR-004 后前端入口交 KubeSphere 原生控制台（OpenSearch / Grafana / Alertmanager），**本组接口全部删除**。OM 侧保留的对外端点仅剩 §6.2.3 的 Alertmanager 告警事件 webhook（归档用，非前端）。
 
 ---
 
@@ -687,19 +612,19 @@ OM 采用薄管控面定位，管控面（Spring Boot 单一微服务）与 Kube
 
 #### 8.1.1 部署架构图
 
-OM 部署于与 DC 同一 Kubernetes 集群，由 KubeSphere 纳管，复用 DC 的数据组件与 KubeSphere 可观测底座。
+OM 部署于与 DC 同一 Kubernetes 集群，由 KubeSphere 纳管，复用 DC 的数据组件与 KubeSphere 可观测底座。V1.2（ADR-004）后，前端观测入口由运维人员经 KubeSphere 管理面（KSUI）直连底座；om-service 仅保留 Kafka 消费入仓与告警事件归档后端。
 
 ```mermaid
 flowchart TB
     subgraph KS["KubeSphere 管理面（PaaS）"]
-        KSUI["控制台<br/>应用负载/监控告警/日志/看板"]
+        KSUI["控制台<br/>应用负载/监控告警/日志/看板<br/>V1.2: 运维观测前端入口在此"]
     end
 
     subgraph K8S["Kubernetes 集群"]
         KS -.纳管.-> K8S
 
         subgraph OM_NS["Namespace: om-app"]
-            OM_SVC["om-service<br/>Spring Boot Deployment ×1<br/>（V2 演进 ×N 多副本 HA）<br/>M-OM-01~04 同进程"]
+            OM_SVC["om-service<br/>Spring Boot Deployment ×1<br/>（V2 演进 ×N 多副本 HA）<br/>M-OM-01~04 同进程<br/>V1.2: 仅消费入仓+事件归档"]
         end
 
         subgraph KS_OBS["Namespace: kubesphere-monitoring（底座，复用）"]
@@ -726,6 +651,9 @@ flowchart TB
         SS["DC/SWM/OCC/IRS<br/>日志 stdout + /metrics"]
     end
 
+    OPS["运维人员<br/>V1.2: 直连 KubeSphere 控制台"]
+    OPS -.->|"日志检索/指标看板/告警观测"| KSUI
+
     MC -->|"stdout"| FB
     SS -->|"stdout"| FB
     SS -->|"/metrics"| PROM
@@ -734,26 +662,28 @@ flowchart TB
     FB --> OS
     FB --> KF
     PROM --> AM
-    AM -.->|"webhook"| OM_SVC
+    AM -.->|"webhook（事件归档）"| OM_SVC
 
-    OM_SVC --> OS & PROM & AM & GRAF & KF & CH & PG
+    OM_SVC -->|"V1.2 保留: 消费入仓+事件归档"| KF & CH & PG
+    note3["V1.2（ADR-004）删除：<br/>om-service→OpenSearch/Prometheus/<br/>Alertmanager/Grafana 的只读查询代理"]
+    OM_SVC -.->|"V1.2 已删"| note3
 ```
 
 #### 8.1.2 部署清单
 
 | 资源 | 类型 | 副本 | 说明 |
 | --- | --- | --- | --- |
-| om-service | Deployment | ×1（V2 演进 ×N） | Spring Boot 单一微服务，M-OM-01~04 同进程 |
-| om-service Service | Service | - | ClusterIP，供前端/网关访问 |
-| om-config | ConfigMap | - | OM 配置（KubeSphere 底座地址、Kafka topic、巡检检查项） |
-| om-secret | Secret | - | 底座组件凭据（OpenSearch/PG/CH 连接信息，NR-S-03 加密） |
+| om-service | Deployment | ×1（V2 演进 ×N） | Spring Boot 单一微服务，M-OM-01~04 同进程（V1.2：仅消费入仓 + 事件归档后端） |
+| om-service Service | Service | - | ClusterIP，供 Alertmanager webhook 回调与各子系统回查访问 |
+| om-config | ConfigMap | - | OM 配置（KubeSphere 底座地址、Kafka topic、告警 webhook 路径；V1.2 删巡检检查项） |
+| om-secret | Secret | - | 底座组件凭据（PG/CH 连接信息，NR-S-03 加密） |
 
-> 外部依赖（Prometheus/Alertmanager/Grafana/FluentBit/OpenSearch/Kafka/ClickHouse/PostgreSQL/Redis）由 KubeSphere 底座或 DC 部署，OM 仅消费。
+> 外部依赖（Prometheus/Alertmanager/Grafana/FluentBit/OpenSearch/Kafka/ClickHouse/PostgreSQL/Redis）由 KubeSphere 底座或 DC 部署，OM 仅消费。V1.2（ADR-004）后前端观测入口在 KubeSphere 管理面（KSUI），运维人员直连。
 
 ### 8.2 配置化（NR-M-02）
 
 - KubeSphere 底座地址（OpenSearch/Prometheus/Alertmanager/Grafana URL）经 ConfigMap 配置，不硬编码。
-- Kafka topic 名、消费组、巡检检查项、告警 webhook 路径经 ConfigMap 配置。
+- Kafka topic 名、消费组、告警 webhook 路径经 ConfigMap 配置（V1.2 删巡检检查项配置）。
 - 各子系统 `/metrics` 暴露与 ServiceMonitor 配置由运维人员经 KubeSphere 控制台管理。
 
 ### 8.3 可观测（NR-M-03/04）
@@ -770,10 +700,12 @@ OM 子系统需求双向追溯的明细以《软件需求跟踪矩阵.xlsx》（
 
 | 需求 | 模块/功能点 | 设计章节 |
 | --- | --- | --- |
-| R-OM-001 日志与指标汇聚 | M-OM-01 / F-OM-01-01~02；M-OM-02 / F-OM-02-01~02 | §5.1、§5.2 |
-| R-OM-002 告警与运维 | M-OM-03 / F-OM-03-01~02；M-OM-04 / F-OM-04-01~02 | §5.3、§5.4 |
+| R-OM-001 日志与指标汇聚 | M-OM-01 / F-OM-01-01~02；M-OM-02 / F-OM-02-01~02 | §5.1、§5.2（V1.2：仅后端消费入仓） |
+| R-OM-002 告警与运维 | M-OM-03 / F-OM-03-01~02；M-OM-04 / F-OM-04-01~02 | §5.3、§5.4（V1.2：仅事件归档；看板/运维作业已删） |
 
-非功能需求覆盖：NR-P-06（§5.1.4 日志检索≤3s）、NR-M-03/04（§8.3 全链路日志与仪表盘）、NR-F-04（§7.2 Kafka 消费容错）、NR-F-05（§7.1 降级，管控面与底座解耦）。NR-R-01/04 为 V2 目标（当前版本单副本，见 §3.2）。约束覆盖：CON-06（§3.1 私有化，复用 KubeSphere 开源版不依赖外部公有云）、CON-07（§5.4.3 运维作业只读，动作收口）。
+非功能需求覆盖：NR-P-06（~~§5.1.4~~ 日志检索≤3s，V1.2 起由 KubeSphere OpenSearch 底座原生保障，OM 不再代理检索）、NR-M-03/04（§8.3 全链路日志与仪表盘，V1.2 起仪表盘由 KubeSphere/Grafana 提供）、NR-F-04（§7.2 Kafka 消费容错）、NR-F-05（§7.1 降级，管控面与底座解耦）。NR-R-01/04 为 V2 目标（当前版本单副本，见 §3.2）。约束覆盖：CON-06（§3.1 私有化，复用 KubeSphere 开源版不依赖外部公有云）、CON-07（动作收口，V1.2 后运维作业删除，写操作由人工经 KubeSphere 控制台或 MC 执行网关落地）。
+
+> V1.2（ADR-004）追溯说明：R-OM-001/002 需求与 M-OM-01~04 / F-OM-01~04 编号**全程不变**。需求的前端观测/运维作业部分（日志检索 UI、指标看板 UI、告警观测 UI、运维作业）改由 KubeSphere 底座原生承担，OM 后端仅保留 II-04/II-11 消费入仓与告警事件归档。RTM xlsx 的追溯链不受影响（仍以 R-OM-001/002 → M-OM-01~04 为键）。
 
 ---
 
@@ -783,4 +715,5 @@ OM 子系统需求双向追溯的明细以《软件需求跟踪矩阵.xlsx》（
 2. **复杂异常检测**：当前告警以 PromQL 阈值表达（阈值告警），复杂异常检测（突变检测/异常序列/趋势预测）待后续基于 ClickHouse 长期数据实现。
 3. **多集群统一纳管**：当前基于 KubeSphere 开源版单集群，多集群统一监控告警需企业版 Whizard，待后续评估。
 4. **业务指标 metric 字段清单**：各子系统（DC/MC/SWM/OCC/IRS）`/metrics` 暴露的具体字段与 PromQL 定义，待与各子系统对齐后补充（见 §5.2.4）。
-5. **Grafana 五类看板模板**：总览/设备/任务/爬虫/异常五类看板的具体 Grafana 面板定义（PromQL/布局），待实施阶段配置（见 §5.5）。
+5. **Grafana 五类看板模板**：总览/设备/任务/爬虫/异常五类看板的具体 Grafana 面板定义（PromQL/布局），待实施阶段配置。V1.2（ADR-004）后看板分类与元数据镜像（原 §5.5）已删，看板配置改由运维人员在 KubeSphere Grafana 原生控制台直接完成。
+6. **V1.2 业务数据下沉（ADR-004 阶段二专项）**：原 OM 承载的业务可观测性（MC 动作审计、DC 采集健康度、IRS 推理调用日志等）计划下沉到各子系统自有页面（如 MC-20 动作审计、MC-19 熔断监控）。各子系统是否新增可观测页、OM 入仓数据（`om_action_log`/`om_metric_daily`）的回查消费方落点，待阶段二逐个子系统评估。
