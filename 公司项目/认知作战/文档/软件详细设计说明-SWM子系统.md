@@ -3,10 +3,10 @@
 | 项目 | 内容 |
 | --- | --- |
 | 项目名称 | 认知作战平台（v1.0） |
-| 文档版本 | V1.1 |
+| 文档版本 | V1.2 |
 | 密级 | 内部使用 |
 | 编制 | 石建国 |
-| 编制日期 | 2026-07-15 |
+| 编制日期 | 2026-07-17 |
 
 ---
 
@@ -193,17 +193,7 @@ SWM 数据分三类存储：元数据（PostgreSQL `sw` schema，Java 侧自管�
 | created_at | timestamp | |
 | unique(agent_id, version) | | 幂等键 |
 
-**4.1.3 人设标签表 `sw_persona_tag`**（M-SWM-01）
-
-| 字段 | 类型 | 说明 |
-| --- | --- | --- |
-| id | bigint PK | |
-| agent_id | bigint FK → sw_agent | 人设挂 agent_id（不挂 account_id） |
-| dimension | varchar | 维度：identity（身份）/ stance（立场）/ style（语言风格）/ interest（兴趣领域） |
-| tag_value | text | 标签值 |
-| created_at | timestamp | |
-
-**4.1.4 提示词包同步记录 `sw_package_sync`**（M-SWM-05，II-14 同步幂等与审计）
+**4.1.3 提示词包同步记录 `sw_package_sync`**（M-SWM-05，II-14 同步幂等与审计）
 
 | 字段 | 类型 | 说明 |
 | --- | --- | --- |
@@ -216,7 +206,7 @@ SWM 数据分三类存储：元数据（PostgreSQL `sw` schema，Java 侧自管�
 | synced_at | timestamp | |
 | unique(agent_id, version) | | 同步幂等键（同一 agent_id+version 不重复同步） |
 
-**4.1.5 魔改 coze-loop 内核侧契约字段**（Java 侧感知，物理存储在魔改 coze-loop 自带 MySQL）
+**4.1.4 魔改 coze-loop 内核侧契约字段**（Java 侧感知，物理存储在魔改 coze-loop 自带 MySQL）
 
 - 提示词模板库 / Playground 调试记录 / 版本对比记录（M-SWM-02）
 - 评测集 / 评估器 / 实验 / 逐题评分（M-SWM-06）
@@ -263,66 +253,61 @@ Java 侧通过 agent_id 与 coze-loop 侧实体关联（coze-loop 侧以 prompt_
 
 | Key 模式 | 用途 | TTL |
 | --- | --- | --- |
-| `sw:persona:{agent_id}` | 人设标签缓存 | 30min |
 | `sw:package:{agent_id}` | 当前生效提示词包缓存 | 10min |
-| `sw:profile:{account_id}` | OCC 用户画像缓存（II-18 拉取后） | 30min |
-| `sw:account:{account_id}` | MC 账号主数据缓存（II-01 拉取后） | 30min |
 | `sw:sync:lock:{agent_id}:{version}` | II-14 同步分布式锁 | 60s |
 
 ---
 
 ## 5 模块详细设计
 
-### 5.1 M-SWM-01 人设标签管理（对应需求 R-SWM-001 人设）
+### 5.1 M-SWM-01 提示词管理（对应需求 R-SWM-001 提示词）
 
-本模块由 Java 网关服务 swm-gw 承载，自研全粒度。
+本模块由 Java 网关服务 swm-gw 承载，自研全粒度。V1.2 起（ADR-001）废除「人设标签」作为独立数据实体：人设属性（身份/立场/语言风格/兴趣）直接写进提示词文本，不再以独立标签绑定到 agent_id；提示词包结构由（人设标签、提示词、作业策略）调整为（提示词、作业策略）。本模块保留提示词模板与版本管理的 Java 侧门面（人设标签相关类 PersonaService/PersonaTag/PersonaSystem/PersonaRepository 与表 `sw_persona_tag`、缓存 `sw:persona:{agent_id}` 一并废止），与 §5.2 魔改 coze-loop 内核的 prompt 模块协作完成提示词工程。
 
 #### 5.1.1 模块组成与类图
 
 ```mermaid
 classDiagram
-    class PersonaService {
-        +bindPersona(agent_id, tags) void
-        +getPersona(agent_id) List~PersonaTag~
-        +checkConflict(agent_id) ConflictResult
+    class PromptManageService {
+        +bindPrompt(agent_id, promptText) void
+        +getPrompt(agent_id) PromptVersion
+        +checkConsistency(agent_id) ConsistencyResult
     }
-    class PersonaTag {
+    class PromptVersion {
         +Long agentId
-        +String dimension
-        +String tagValue
+        +int version
+        +String promptText
     }
-    class PersonaSystem {
-        +defineDimension(name) void
-        +listDimensions() List~String~
+    class PromptTemplateSystem {
+        +defineTemplate(name) void
+        +listTemplates() List~String~
     }
-    class PersonaRepository {
-        +save(tag) void
-        +findByAgent(agent_id) List~PersonaTag~
+    class PromptRepository {
+        +save(version) void
+        +findByAgent(agent_id) PromptVersion
     }
-    PersonaService --> PersonaRepository
-    PersonaService --> PersonaTag
-    PersonaService --> PersonaSystem
+    PromptManageService --> PromptRepository
+    PromptManageService --> PromptVersion
+    PromptManageService --> PromptTemplateSystem
 ```
 
 #### 5.1.2 关键类说明
 
-- **PersonaService**：人设标签绑定与查询入口。`bindPersona` 为指定 agent_id 绑定人设标签（身份/立场/语言风格/兴趣领域），人设挂 agent_id（不挂 account_id），因 agent_id 与 account_id 1:1 绑定而间接对应账号；只维护人设标签，不复制账号主数据（CON-11）。
-- **PersonaTag**：人设标签实体，对应表 `sw_persona_tag`，维度 dimension 区分四类画像属性。
-- **PersonaSystem**：人设标签体系维护，支持维度定义与冲突人工裁定（F-SWM-01-02）。
-- **PersonaRepository**：持久化，读写 PostgreSQL `sw_persona_tag`，Redis 缓存（`sw:persona:{agent_id}`）。
+- **PromptManageService**：提示词绑定与查询入口。`bindPrompt` 为指定 agent_id 绑定提示词文本（人设属性直接写进提示词文本，不再以独立标签维护），agent_id 与 account_id 1:1 绑定而间接对应账号；只维护提示词，不复制账号主数据（CON-11）。
+- **PromptVersion**：提示词版本实体，对应表 `sw_prompt_version`，承载提示词正文（含写进文本的人设属性）。
+- **PromptTemplateSystem**：提示词模板体系维护（与 §5.2 魔改 coze-loop prompt 模块协作），支持模板分类与冲突人工裁定（F-SWM-01-02）。
+- **PromptRepository**：持久化，读写 PostgreSQL `sw_prompt_version`，Redis 缓存（`sw:package:{agent_id}`）。
 
-#### 5.1.3 人设标签绑定算法（F-SWM-01-01）
+#### 5.1.3 提示词绑定算法（F-SWM-01-01）
 
 ```
-输入：agent_id, 待绑定标签集合 tags
+输入：agent_id, 提示词文本 promptText
 1. 校验 agent_id 存在且 status=active（封号休眠的 agent_id 拒绝绑定）
-2. 按 dimension 分组 tags
-3. 对每个 dimension：
-   a. 查询该 agent_id 该 dimension 现有标签
-   b. 若存在冲突（同一 dimension 矛盾值）→ 标记 ConflictResult，转人工裁定
-   c. 否则 upsert（覆盖旧值）
-4. 失效 Redis 缓存 sw:persona:{agent_id}
-5. 提交事务，返回绑定结果
+2. 校验 promptText 非空（提示词含写进文本的人设属性，为人设唯一载体）
+3. version = AgentRegistry.bumpVersion(agent_id)  // agent_id 不变，仅升版本
+4. upsert sw_prompt_version (agent_id, version, prompt_text)
+5. 失效 Redis 缓存 sw:package:{agent_id}
+6. 提交事务，返回绑定结果（含版本号）
 ```
 
 ### 5.2 M-SWM-02 提示词模板库与版本管理（对应需求 R-SWM-001 资产）
@@ -594,65 +579,59 @@ stateDiagram-v2
 
 > **R-SWM-002 记忆有效性验收入口在此**：loop 评估器返回的人设一致性评分达其设定的可用线，方判定记忆有效；该度量由 M-SWM-06 承担，swm-memory（M-SWM-04）不自验。
 
-### 5.6 M-SWM-07 按账号与画像自动生成提示词（对应需求 R-SWM-005）
+### 5.6 M-SWM-07 对话编写提示词（对应需求 R-SWM-005）
 
-本模块的**生成工作流由魔改 coze-loop 内核承载**（CON-14）；账号/画像拉取由 Java 侧 swm-gw 完成后传入魔改 coze-loop。
+本模块的**对话编写工作流由魔改 coze-loop 内核承载**（CON-14）；素材解析与对话上下文由 Java 侧 swm-gw 完成后传入魔改 coze-loop。V1.2 起（ADR-001）R-SWM-005 由「按账号与画像自动生成」改为「对话编写提示词」：用户在对话页上传画像素材文件并描述需求，经 IRS 本地大模型对话式提炼编写提示词，不再经 II-01/II-18 拉取账号主数据与用户画像（II-18 废止、SWM 不再经 II-01 拉账号主数据，见 §6.2）。
 
 #### 5.6.1 模块组成与类图（Java 适配层）
 
 ```mermaid
 classDiagram
-    class AutoGenService {
-        +generate(account_id) PromptVersion
+    class ChatPromptService {
+        +chatWrite(agent_id, material, requirement) PromptVersion
+        +parseMaterial(material) MaterialContext
     }
-    class AccountClient {
-        <<II-01>>
-        +getAccount(account_id) Account
-    }
-    class ProfileClient {
-        <<II-18>>
-        +getProfile(target_id) Profile
+    class MaterialParser {
+        +parse(uploadFile) MaterialContext
     }
     class GenWorkflowClient {
         <<coze-loop workflow>>
-        +run(account, profile) String
+        +run(materialCtx, requirement) String
     }
-    AutoGenService --> AccountClient
-    AutoGenService --> ProfileClient
-    AutoGenService --> GenWorkflowClient
+    ChatPromptService --> MaterialParser
+    ChatPromptService --> GenWorkflowClient
 ```
 
 #### 5.6.2 关键类说明
 
-- **AutoGenService**：自动生成入口。拉账号（II-01）+ 画像（II-18）→ 调魔改 coze-loop 工作流（经 EI-05 调 IRS 生成）→ 版本化回写。
-- **AccountClient / ProfileClient**：II-01 / II-18 消费客户端，只引用标识不复制主数据（CON-11）。
-- **GenWorkflowClient**：魔改 coze-loop 工作流调用（SWM 内核组件），内部调 IRS 生成提示词。
+- **ChatPromptService**：对话编写入口。解析用户上传素材 + 接收需求描述 → 调魔改 coze-loop 工作流（经 EI-05 调 IRS 对话式编写）→ 版本化回写。
+- **MaterialParser**：用户上传画像素材文件解析器，将上传素材解析为可消化的上下文（文本/图像等）；素材仅用于本次对话编写，不复制外部主数据（CON-11）。
+- **GenWorkflowClient**：魔改 coze-loop 工作流调用（SWM 内核组件），内部调 IRS 对话式编写提示词。
 
-#### 5.6.3 自动生成时序（F-SWM-07-01~03）
+#### 5.6.3 对话编写时序（F-SWM-07-01~03）
 
 ```mermaid
 sequenceDiagram
     participant ENG as 提示词工程师
-    participant GW as swm-gw (AutoGenService)
-    participant MC as MC (II-01)
-    participant OCC as OCC (II-18)
+    participant GW as swm-gw (ChatPromptService)
     participant LOOP as coze-loop 工作流
     participant IRS as IRS (EI-05)
-    ENG->>GW: 触发生成(account_id)
-    GW->>MC: GET /ii-01 账号主数据
-    MC-->>GW: account 属性
-    GW->>OCC: GET /ii-18 用户画像
-    alt 画像存在
-        OCC-->>GW: 全维度档案(R-OCC-004)
-    else 画像缺失
-        OCC-->>GW: 空
-        GW->>GW: 降级：仅用账号属性生成
+    ENG->>GW: 上传画像素材文件+描述需求(agent_id)
+    GW->>GW: MaterialParser 解析上传素材
+    alt 解析失败
+        GW-->>ENG: 提示素材格式不支持，重新上传
+    else 解析成功
+        GW->>LOOP: POST /workflow/run(materialCtx, requirement)
+        LOOP->>IRS: 对话编写推理(EI-05, 不经执行网关)
+        alt 推理失败
+            IRS-->>LOOP: 错误
+            LOOP-->>GW: 失败，支持重试
+        else 推理成功
+            IRS-->>LOOP: 编写的提示词
+            LOOP-->>GW: prompt_text
+            GW->>GW: 版本化回写 sw_prompt_version(source=auto)
+        end
     end
-    GW->>LOOP: POST /workflow/run(account, profile)
-    LOOP->>IRS: 生成推理(EI-05, 不经执行网关)
-    IRS-->>LOOP: 生成的提示词
-    LOOP-->>GW: prompt_text
-    GW->>GW: 版本化回写 sw_prompt_version(source=auto)
     ENG->>GW: 审核微调 / 纳入 M-SWM-05 构建
 ```
 
@@ -660,12 +639,11 @@ sequenceDiagram
 
 | 异常 | 处理 |
 | --- | --- |
-| 账号主数据缺失（II-01） | 标注生成不完整并提示补充 |
-| 用户画像缺失（II-18） | 降级：仅用账号属性生成 |
-| IRS 生成推理失败（EI-05） | 标记失败并支持重试 |
-| 生成质量不达标 | 由工程师人工微调或重新触发 |
+| 上传素材解析失败 | 提示素材格式不支持并支持重新上传 |
+| IRS 对话编写推理失败（EI-05） | 标记失败并支持重试 |
+| 编写质量不达标 | 由工程师人工微调或重新对话编写 |
 
-> 生成过程不产生真实作业、不同步至 MC（R-SWM-005 业务规则）；严格私有化（CON-06，不得接入外部公有云）。
+> 编写过程不产生真实作业、不同步至 MC（R-SWM-005 业务规则）；严格私有化（CON-06，不得接入外部公有云）。
 
 ---
 

@@ -1,12 +1,12 @@
-# 软件详细设计说明 - OM 子系统
+# 软件详细设计说明 - OM 子系统（系统管理，原运维监控）
 
 | 项目 | 内容 |
 | --- | --- |
-| 项目名称 | 认知作战平台（v1.0） |
-| 文档版本 | V1.0 |
+| 项目名称 | 认知行动平台（v1.0） |
+| 文档版本 | V1.2 |
 | 密级 | 内部使用 |
 | 编制 | 石建国 |
-| 编制日期 | 2026-07-13 |
+| 编制日期 | 2026-07-17 |
 
 ---
 
@@ -14,28 +14,36 @@
 
 ### 1.1 标识
 
-本文件为「认知作战平台」（以下简称"系统"或"平台"）运维监控子系统（OM，软部件标识 M-OM-00）的软件详细设计说明（SDD）。它是《软件需求规格说明-OM子系统》V3.8 功能需求 R-OM-001/002 与《软件概要设计说明》V2.4 模块 M-OM-01~04 的详细设计下沉，描述 OM 子系统各模块的内部结构、类与接口、数据结构、算法、状态机与部署单元，作为编码实现与单元测试的依据。
+本文件为「认知行动平台」（以下简称"系统"或"平台"）系统管理子系统（原运维监控子系统，OM，软部件标识 M-OM-00）的软件详细设计说明（SDD）。它是《软件需求规格说明-OM子系统》V3.9 功能需求 R-OM-001/002 与《软件概要设计说明》V2.4 模块 M-OM-01~04 的详细设计下沉，描述 OM 子系统各模块的内部结构、类与接口、数据结构、算法、状态机与部署单元，作为编码实现与单元测试的依据。
+
+> 版本演进说明（V1.2 / ADR-004，2026-07-17）：原 OM 前端运维监控页（OM-01~05）已删除，平台可观测性交由 KubeSphere 底座原生控制台承担；OM 本体仅保留**后端能力**——消费各子系统经 II-04/II-11 上报的业务日志/指标，分析加工后入 ClickHouse 长期存储（供 MC 等子系统回查）。原与 OM 合用的运维管理控制台中 COM 系统管理（用户/角色/组织/认证，原 OM-06~10）独立为「系统管理」控制台。R-OM-001/002 需求与 M-OM-01~04 模块编号不变（前端观测/运维作业部分的设计章节大幅精简，保留后端入仓逻辑）。
 
 ### 1.2 系统概述
 
-运维监控子系统（OM）是基础设施层的运维数据底座，汇聚全系统日志与指标，支撑常态化运维与告警。OM 采用「**复用 KubeSphere 开源版可观测底座 + 薄分析层**」定位：日志/指标的采集、存储、告警引擎、看板渲染均复用 KubeSphere 自带能力（FluentBit / Prometheus / OpenSearch / Alertmanager / Grafana），OM 自身作为单一微服务（Java + Spring Boot），承担「**只读观测代理 + 业务数据分析入仓 + 运维作业**」三类职责，不重复实现采集/存储/告警引擎。
+> **V1.2 / ADR-004 定位变更**：OM 前端运维监控页（OM-01~05）已删除（ADR-004），可观测性交由 **KubeSphere 底座**（原生控制台：OpenSearch 日志检索 / Prometheus + Grafana 指标看板 / Alertmanager 告警）。本子系统**仅保留后端能力**：消费各子系统经 II-04/II-11 上报的业务日志/指标，分析加工后入 ClickHouse 长期存储（供 MC 等子系统回查）。COM 系统管理（用户/角色/组织/认证，原 OM-06~10）独立为**「系统管理」控制台**。本文件经 V1.2 大幅改写：删除原 M-OM-01~04 的前端观测/查询代理与运维作业部分，保留 Kafka 消费入仓、Alertmanager 事件归档与数据表定义（作为分析入仓存储）。
 
-OM 是一个**单一微服务**（不内部分拆为独立部署单元），M-OM-01~04 为 Java 包/模块级划分，同进程内调用。OM 与 DC（Python）语言异构，经 Kafka / REST 解耦。数据流上，OM 既消费 KubeSphere 底座的只读查询能力（OpenSearch / Prometheus / Alertmanager / Grafana），又消费 Kafka 总线上的业务数据（动作日志、业务指标）做分析加工后入 ClickHouse 长期存储。
+OM 子系统原定位为基础设施层的运维数据底座（复用 KubeSphere 开源版可观测底座 + 薄分析层），承担「只读观测代理 + 业务数据分析入仓 + 运维作业」三类职责。ADR-004 后，OM 前端观测/查询/运维作业入口全删，**仅保留后端分析入仓职责**：
 
-OM 子系统由四个模块组成（对应 2 项功能需求与 8 个功能点）：
+- **业务数据分析入仓（保留）**：MC 执行网关动作日志（II-11）与各子系统业务指标（II-04）→ FluentBit/采集器 → Kafka → om-service 消费 → 分析加工 → ClickHouse（`om_action_log` 审计明细 / `om_metric_daily` 长期聚合），供 MC（动作审计回查 MC-20 等）等子系统回查。
+- **告警事件归档（保留）**：Alertmanager 触发告警 → webhook 回调 om-service → 写 PostgreSQL `alert_event`（告警历史归档）。
+- **前端观测/查询代理/运维作业（删除）**：日志检索 UI、指标看板 UI、告警观测 UI、看板元数据镜像、运维作业（巡检/故障定位/容量观测）等前端与作业能力，全部交由 KubeSphere 原生控制台（OpenSearch / Prometheus + Grafana / Alertmanager）承担，OM 不再自研或代理。
 
-| 模块 | 标识 | 对应需求 | 功能点 |
-| --- | --- | --- | --- |
-| 日志汇聚与检索 | M-OM-01 | R-OM-001（日志） | F-OM-01-01~02 |
-| 指标采集与时序存储 | M-OM-02 | R-OM-001（指标） | F-OM-02-01~02 |
-| 告警引擎 | M-OM-03 | R-OM-002（告警） | F-OM-03-01~02 |
-| 运维可视化与作业 | M-OM-04 | R-OM-002（看板+运维） | F-OM-04-01~02 |
+OM 是一个**单一微服务**（不内部分拆为独立部署单元），M-OM-01~04 为 Java 包/模块级划分，同进程内调用。OM 与 DC（Python）语言异构，经 Kafka / REST 解耦。
 
-> 说明：基于「复用底座 + 只读观测」定位，M-OM-01~04 的实际职责为「**只读查询/观测代理 + 分析入仓 + 运维作业**」，采集、存储、告警引擎、看板渲染本身由 KubeSphere 底座承担（详见 §3.1、§5）。
+OM 子系统由四个模块组成（对应 2 项功能需求与 8 个功能点），V1.2 后各模块**仅保留后端入仓/归档职责**：
+
+| 模块 | 标识 | 对应需求 | 功能点 | V1.2 保留职责 |
+| --- | --- | --- | --- | --- |
+| 日志汇聚与检索 | M-OM-01 | R-OM-001（日志） | F-OM-01-01~02 | 动作日志消费入仓（ActionLogConsumer） |
+| 指标采集与时序存储 | M-OM-02 | R-OM-001（指标） | F-OM-02-01~02 | 业务指标消费聚合入仓（BusinessMetricConsumer） |
+| 告警引擎 | M-OM-03 | R-OM-002（告警） | F-OM-03-01~02 | 告警事件归档（AlertEventReceiver） |
+| 运维可视化与作业 | M-OM-04 | R-OM-002（看板+运维） | F-OM-04-01~02 | 前端看板/运维作业已删（仅保留 ops_job 表定义供审计追溯） |
+
+> 说明：V1.2 后 M-OM-01~04 实际职责为「**II-04/II-11 上报接口消费 + 分析入仓/事件归档**」，采集、存储、告警引擎、看板渲染、告警规则配置、运维作业 UI 均由 KubeSphere 底座承担（详见 §3.1、§5）。需求 R-OM-001/002 与模块/功能点编号不变。
 
 ### 1.3 文档概述
 
-本文件章节安排如下：第 2 章引用文件；第 3 章总体设计，给出 OM 技术栈、部署单元、模块间调用关系与数据流；第 4 章数据结构设计，给出核心数据模型与存储表结构；第 5 章按模块给出详细设计（类/接口/算法/状态机）；第 6 章接口详细设计；第 7 章错误处理与可靠性设计；第 8 章部署与运维设计。需求追溯以《软件需求跟踪矩阵.xlsx》为唯一权威源，本文件第 9 章仅做概要引用。
+本文件章节安排如下：第 2 章引用文件；第 3 章总体设计，给出 OM 技术栈、部署单元、模块间调用关系与数据流；第 4 章数据结构设计，给出核心数据模型与存储表结构（**分析入仓存储，V1.2 保留**）；第 5 章按模块给出详细设计（类/接口/算法/状态机，**V1.2 删除前端观测/查询代理与运维作业，仅保留后端消费入仓/事件归档**）；第 6 章接口详细设计（**V1.2 保留 II-04/II-11 上报消费方，删前端服务的 II-06 REST**）；第 7 章错误处理与可靠性设计；第 8 章部署与运维设计。需求追溯以《软件需求跟踪矩阵.xlsx》为唯一权威源，本文件第 9 章仅做概要引用。
 
 ### 1.4 术语和缩略语
 
@@ -51,6 +59,8 @@ OM 子系统由四个模块组成（对应 2 项功能需求与 8 个功能点�
 | consumer group | Kafka 消费者组机制，同组内消费者分摊分区，天然避免重复消费 |
 | 只读观测 | OM 管控面不向下发告警规则/采集配置/看板定义，仅查询展示底座状态；告警规则配置由运维人员经 KubeSphere 控制台操作 |
 | 选主 | 多副本场景下经分布式锁竞争 leader，仅 leader 执行定时任务；当前版本单副本无需选主，V2 演进多副本时启用 |
+| 系统管理控制台 | 原「运维管理控制台」（OM 运维监控 + COM 系统管理合用）。ADR-004 删 OM 前端后仅剩 COM 系统管理（用户/角色/组织/认证），独立为「系统管理」控制台 |
+| 分析入仓 | OM 后端消费 Kafka 业务数据（动作日志/业务指标），分析加工后入 ClickHouse 长期存储的职责，V1.2 起 OM 保留的唯一核心后端能力 |
 
 ---
 
@@ -58,12 +68,14 @@ OM 子系统由四个模块组成（对应 2 项功能需求与 8 个功能点�
 
 | 文件 | 说明 |
 | --- | --- |
-| 《软件需求规格说明-OM子系统》V3.8 | OM 功能需求 R-OM-001/002、非功能需求（NR-P-06 日志检索≤3s、NR-M-03/04、NR-F-05）、接口（II-04/II-11）的直接输入 |
+| 《软件需求规格说明-OM子系统》V3.9 | OM 功能需求 R-OM-001/002、非功能需求（NR-P-06 日志检索≤3s、NR-M-03/04、NR-F-05）、接口（II-04/II-11）的直接输入；V3.9 加注 ADR-004 说明（前端运维页已删，OM 后端留存） |
+| 《ADR-004-删除OM运维监控并独立COM为系统管理控制台》 | 本文件 V1.2 改写的直接依据：删 OM 前端、COM 独立、保留后端入仓 |
 | 《软件概要设计说明》V2.4 | OM 模块划分 M-OM-01~04、§4.3 OM 模块组成与关键设计、§3.7 环境部署 |
 | 《软件概要设计-架构图.md》 | OM 模块架构图与模块内功能架构图（§5 运维监控子系统） |
 | 《软件概要设计-模块功能拆分-v2.xlsx》 | OM 4 模块 8 功能点的权威依据 |
 | 《软件需求跟踪矩阵.xlsx》 | OM 需求双向追溯唯一权威源 |
 | 《软件详细设计说明-DC子系统.md》V1.2 | DC 部署单元、Kafka 总线、ClickHouse 集群、II-04 上报侧实现的参照依据 |
+| 《软件详细设计说明-COM子系统.md》V1.1 | 原 OM-06~10 系统管理页面独立为「系统管理」控制台（COM 承载）的参照依据 |
 
 ---
 
@@ -71,11 +83,11 @@ OM 子系统由四个模块组成（对应 2 项功能需求与 8 个功能点�
 
 ### 3.1 技术选型
 
-OM 子系统技术栈遵循「复用 KubeSphere 开源版可观测底座 + 单一微服务」定位，管控面语言为 **Java + Spring Boot**（与 DC 的 Python/FastAPI 异构，经 Kafka/REST 解耦；异构原因：OM 复用 KubeSphere/JVM 生态且团队 Java 栈成熟）。
+OM 子系统技术栈遵循「复用 KubeSphere 开源版可观测底座 + 单一微服务」定位，管控面语言为 **Java + Spring Boot**（与 DC 的 Python/FastAPI 异构，经 Kafka/REST 解耦；异构原因：OM 复用 KubeSphere/JVM 生态且团队 Java 栈成熟）。V1.2（ADR-004）后，前端观测/运维作业入口删除，om-service 仅保留 Kafka 消费入仓与 Alertmanager 事件归档后端能力。
 
 | 维度 | 选型 | 说明 |
 | --- | --- | --- |
-| 管控面语言/框架 | **Java 17 + Spring Boot 3.x** | OM 单一微服务，提供只读查询代理、告警观测 webhook、运维作业 API |
+| 管控面语言/框架 | **Java 17 + Spring Boot 3.x** | OM 单一微服务，V1.2 仅提供 Kafka 消费入仓（ActionLogConsumer/BusinessMetricConsumer）与告警事件归档 webhook |
 | 微服务治理 | **KubeSphere 微服务治理**（Spring Cloud Kubernetes） | 服务注册/发现/网关/配置复用 KubeSphere，不另起注册中心 |
 | 日志采集 | **FluentBit**（KubeSphere 自带 DaemonSet） | 采集容器 stdout（含 MC 动作日志 JSON 行），输出 OpenSearch 与 Kafka 双路 |
 | 日志后端 | **OpenSearch**（KubeSphere 4.x 默认） | 容器日志与动作日志全文检索（NR-P-06，近 7 日 ≤3s） |
@@ -90,17 +102,17 @@ OM 子系统技术栈遵循「复用 KubeSphere 开源版可观测底座 + 单�
 
 ### 3.2 部署单元
 
-OM 作为**单一微服务**部署于 K8s（KubeSphere 管理），当前版本**单副本**（V2 演进多副本 HA，对应 NR-R-01/04 的 V2 目标）。M-OM-01~04 为同进程内的 Java 包/模块，不拆独立 Pod。
+OM 作为**单一微服务**部署于 K8s（KubeSphere 管理），当前版本**单副本**（V2 演进多副本 HA，对应 NR-R-01/04 的 V2 目标）。M-OM-01~04 为同进程内的 Java 包/模块，不拆独立 Pod。V1.2（ADR-004）后，om-service 删去前端观测/运维作业，仅保留 Kafka 消费入仓与 Alertmanager 事件归档后端能力。
 
 ```mermaid
 flowchart TB
     subgraph K8s["Kubernetes 集群（KubeSphere 纳管）"]
         subgraph OM_NS["Namespace: om-app"]
-            OM_SVC["om-service<br/>Spring Boot Deployment ×1<br/>（V2 演进 ×N 多副本）<br/>M-OM-01~04 同进程"]
+            OM_SVC["om-service<br/>Spring Boot Deployment ×1<br/>（V2 演进 ×N 多副本）<br/>M-OM-01~04 同进程<br/>V1.2: 仅消费入仓+事件归档"]
         end
     end
 
-    KS_OBS["KubeSphere 可观测底座<br/>（复用，非 OM 部署）"]
+    KS_OBS["KubeSphere 可观测底座（前端观测入口）<br/>OpenSearch 日志检索 / Prometheus+Grafana 看板<br/>Alertmanager 告警（运维直连）"]
     FB["FluentBit DaemonSet<br/>日志采集"]
     PROM["Prometheus<br/>指标 Pull"]
     OS[("OpenSearch<br/>日志检索")]
@@ -122,67 +134,63 @@ flowchart TB
     FB -->|"日志"| OS
     FB -->|"动作日志"| KF
     PROM --> OS
-    AM -.->|"告警事件 webhook"| OM_SVC
+    AM -.->|"告警事件 webhook（事件归档）"| OM_SVC
 
-    OM_SVC -->|"只读查询代理"| OS & PROM & AM & GRAF
-    OM_SVC -->|"消费分析入仓"| KF & CH
-    OM_SVC --> PG
+    OM_SVC -->|"V1.2: 消费分析入仓（保留）"| KF & CH
+    OM_SVC -->|"事件归档"| PG
     OM_SVC -.-> RD
+    note1["V1.2（ADR-004）删除：<br/>om-service→OpenSearch/Prometheus/<br/>Alertmanager/Grafana 的只读查询代理"]
+    OM_SVC -.->|"V1.2 已删"| note1
 ```
 
 各部署单元职责：
 
 | 部署单元 | 实现 | 对应模块 | 副本 |
 | --- | --- | --- | --- |
-| om-service | Spring Boot 单一微服务 | M-OM-01~04（同进程内 Java 包划分） | ×1（V2 演进 ×N） |
+| om-service | Spring Boot 单一微服务（V1.2：仅消费入仓 + 事件归档后端） | M-OM-01~04（同进程内 Java 包划分） | ×1（V2 演进 ×N） |
 
-> 外部依赖（FluentBit/Prometheus/OpenSearch/Alertmanager/Grafana/Kafka/ClickHouse/PostgreSQL/Redis）均为 KubeSphere 底座或 DC 已有组件，OM 仅消费，不负责其部署运维。
+> 外部依赖（FluentBit/Prometheus/OpenSearch/Alertmanager/Grafana/Kafka/ClickHouse/PostgreSQL/Redis）均为 KubeSphere 底座或 DC 已有组件，OM 仅消费，不负责其部署运维。V1.2（ADR-004）后，前端日志检索/指标看板/告警观测/运维作业入口由运维人员直连 KubeSphere 原生控制台（OpenSearch / Grafana / Alertmanager）完成，om-service 不再代理。
 
 ### 3.3 模块间调用关系
 
-OM 内部 M-OM-01~04 同进程调用，外部与 KubeSphere 底座各组件交互：
+OM 内部 M-OM-01~04 同进程调用。V1.2（ADR-004）后，原 M-OM-01~04 与 OpenSearch/Prometheus/Alertmanager/Grafana 的只读查询/观测代理关系删除，仅保留与 Kafka（消费）、ClickHouse（入仓）、PostgreSQL（事件归档）的交互：
 
 ```mermaid
 flowchart LR
-    subgraph OM["om-service 单一微服务"]
-        M01["M-OM-01 日志检索代理"]
-        M02["M-OM-02 指标查询代理"]
-        M03["M-OM-03 告警观测"]
-        M04["M-OM-04 运维可视化与作业"]
-        M01 -.->|"日志检索结果"| M04
-        M02 -.->|"指标查询结果"| M04
-        M03 -.->|"告警状态/事件"| M04
+    subgraph OM["om-service 单一微服务（V1.2: 仅后端入仓/归档）"]
+        M01["M-OM-01 动作日志消费入仓<br/>(ActionLogConsumer)"]
+        M02["M-OM-02 业务指标消费聚合入仓<br/>(BusinessMetricConsumer)"]
+        M03["M-OM-03 告警事件归档<br/>(AlertEventReceiver)"]
+        M04["M-OM-04 运维作业表<br/>(ops_job, 前端作业已删)"]
     end
 
-    OS[("OpenSearch")] & PROM[("Prometheus")] & AM["Alertmanager"] & GRAF["Grafana"]
     KF[("Kafka")] & CH[("ClickHouse")] & PG[("PostgreSQL")]
 
-    M01 -->|"只读检索代理"| OS
-    M01 -->|"消费动作日志"| KF
+    M01 -->|"消费动作日志(II-11)"| KF
     M01 -->|"审计入仓"| CH
-    M02 -->|"只读查询代理"| PROM
-    M02 -->|"消费业务指标"| KF
+    M02 -->|"消费业务指标(II-04)"| KF
     M02 -->|"聚合入仓"| CH
-    M03 -->|"只读观测规则/告警"| AM
-    AM -.->|"告警事件 webhook"| M03
+    AM_EXT["Alertmanager<br/>(底座, 运维直连)"]
+    AM_EXT -.->|"告警事件 webhook（归档）"| M03
     M03 -->|"事件归档"| PG
-    M04 -->|"看板元数据镜像"| GRAF
-    M04 -->|"作业记录"| PG
+    M04 -.->|"表定义保留, 运维作业入口已删"| PG
+    note2["V1.2（ADR-004）删除：<br/>M-OM-01→OpenSearch 检索代理<br/>M-OM-02→Prometheus 查询代理<br/>M-OM-03→Alertmanager 规则/状态观测<br/>M-OM-04→Grafana 看板元数据镜像"]
+    OM -.->|"前端观测/作业链路已删"| note2
 ```
 
 ### 3.4 数据流设计
 
-OM 数据流分三类：
+V1.2（ADR-004）后，OM 数据流由原三类收窄为**后端两类**（只读查询流已删，前端入口交 KubeSphere 控制台）：
 
-1. **只读查询流**：运维人员经 om-service REST → M-OM-01 检索 OpenSearch 日志 / M-OM-02 查询 Prometheus 指标 / M-OM-03 观测 Alertmanager 告警 / M-OM-04 查 Grafana 看板。OM 仅作只读代理转发。
-2. **业务数据分析入仓流**：MC 动作日志（II-11，stdout JSON）与各子系统业务指标（II-04）→ FluentBit/采集器 → Kafka → om-service 消费 → 分析加工 → ClickHouse（`om_action_log` 审计明细 / `om_metric_daily` 长期聚合）。
-3. **告警事件归档流**：Alertmanager 触发告警 → webhook 回调 om-service → 写 PostgreSQL `alert_event`（告警历史归档与处置追踪）。
+1. ~~**只读查询流（V1.2 已删）**~~：原运维人员经 om-service REST → M-OM-01 检索 OpenSearch 日志 / M-OM-02 查询 Prometheus 指标 / M-OM-03 观测 Alertmanager 告警 / M-OM-04 查 Grafana 看板。**ADR-004 后删除**，运维人员直连 KubeSphere 原生控制台（OpenSearch / Grafana / Alertmanager）完成观测。
+2. **业务数据分析入仓流（保留）**：MC 动作日志（II-11，stdout JSON）与各子系统业务指标（II-04）→ FluentBit/采集器 → Kafka → om-service 消费 → 分析加工 → ClickHouse（`om_action_log` 审计明细 / `om_metric_daily` 长期聚合），供 MC（动作审计回查 MC-20 等）等子系统回查。
+3. **告警事件归档流（保留）**：Alertmanager 触发告警 → webhook 回调 om-service → 写 PostgreSQL `alert_event`（告警历史归档与处置追踪）。
 
 ---
 
 ## 4 数据结构设计
 
-OM 不重复存储原始日志/指标（由 OpenSearch/Prometheus 存储），仅存「OM 自身分析产出 + 管控面元数据」。存储分两层：ClickHouse 分析仓（`om_analysis` 库）与 PostgreSQL 元库（`om` schema）。
+OM 不重复存储原始日志/指标（由 OpenSearch/Prometheus 存储），仅存「OM 自身分析产出 + 管控面元数据」。存储分两层：ClickHouse 分析仓（`om_analysis` 库）与 PostgreSQL 元库（`om` schema）。**V1.2（ADR-004）保留全部数据表定义**，作为后端分析入仓的存储载体（消费 Kafka 业务数据后落库，供 MC 等子系统回查）。
 
 ### 4.1 分析仓（ClickHouse `om_analysis` 库）
 
@@ -259,6 +267,8 @@ CREATE INDEX idx_alert_event_status ON om.alert_event(status);
 
 #### 4.2.2 运维作业记录表 `ops_job`（M-OM-04，om-service 执行运维作业时写入）
 
+> V1.2（ADR-004）说明：M-OM-04 前端运维作业（巡检/故障定位/容量观测）入口已删，OpsJobService/InspectionRunner 不再执行（见 §5.4）。`ops_job` **表定义保留**（供历史作业记录审计追溯与未来恢复入口使用），但 V1.2 起新数据写入停止。
+
 ```sql
 CREATE TABLE om.ops_job (
     job_id          UUID PRIMARY KEY,
@@ -275,6 +285,8 @@ CREATE INDEX idx_ops_job_type_time ON om.ops_job(job_type, started_at);
 ```
 
 #### 4.2.3 看板元数据镜像表 `dashboard_meta`（M-OM-04，定时从 Grafana API 拉取）
+
+> V1.2（ADR-004）说明：M-OM-04 看板元数据镜像（DashboardMetaService）已删，看板渲染/检索交 KubeSphere Grafana 原生控制台。`dashboard_meta` **表定义保留**（仅作历史快照留存，V1.2 起停止定时同步写入）。
 
 ```sql
 CREATE TABLE om.dashboard_meta (
@@ -314,39 +326,30 @@ CREATE INDEX idx_dashboard_meta_category ON om.dashboard_meta(category);
 
 ### 5.1 M-OM-01 日志汇聚与检索模块（R-OM-001 日志）
 
-#### 5.1.1 模块组成与类图
+> V1.2（ADR-004）：原 OpenSearch 检索代理（LogSearchService/OpenSearchClient）与前端日志检索 UI（OM-02/03）已删，日志全文检索（NR-P-06）改由运维人员直连 KubeSphere OpenSearch 原生控制台完成。本模块**仅保留动作日志消费入仓**（ActionLogConsumer）——消费 MC 执行网关经 II-11 上报的动作日志，分析加工后入 ClickHouse `om_action_log`，供 MC 动作审计（MC-20）等子系统回查。
 
-只读化后，M-OM-01 职责为「**OpenSearch 检索代理 + 动作日志消费入仓**」：
+#### 5.1.1 模块组成与类图（V1.2：仅保留消费入仓）
 
 ```mermaid
 classDiagram
-    class LogSearchService {
-        +search(keyword, time_range, filters) SearchResult
-        +search_by_field(field, value) SearchResult
-        +get_log_context(event_id) LogContext
-    }
     class ActionLogConsumer {
         +consume(records)  %% 消费 Kafka om-action-log
         +parse_and_validate(raw) ActionLogEvent
         +sink_to_clickhouse(events)
     }
-    class OpenSearchClient {
-        +query(dsl) SearchResult
-        +build_dsl(keyword, filters) SearchDSL
-    }
     class ClickHouseSink {
         +batch_insert(table, rows)
     }
-    class LogSearchService ..> OpenSearchClient : 只读检索代理
     class ActionLogConsumer ..> ClickHouseSink : 审计入仓
+    note for ActionLogConsumer "V1.2（ADR-004）删除：LogSearchService（OpenSearch 检索代理）/n+ OpenSearchClient（全文检索/字段检索/上下文）/n+ 前端日志检索 UI（OM-02/03）"
 ```
 
 #### 5.1.2 关键类说明
 
-- **LogSearchService**：日志检索代理。封装 OpenSearch 查询，提供全文检索（NR-P-06，近 7 日 ≤3s）、字段检索、日志上下文（前后 N 行）能力。查询结果供 M-OM-04 运维作业与看板消费。
-- **ActionLogConsumer**：Kafka 消费者。消费 `om-action-log` topic（MC 动作日志），解析校验 JSON 结构化字段，批量写入 ClickHouse `om_action_log`。消费失败进入重试，耗尽记死信。
+- ~~**LogSearchService**（V1.2 已删）~~：原日志检索代理（封装 OpenSearch 查询，提供全文检索 NR-P-06、字段检索、日志上下文），ADR-004 后删除。日志检索改由运维人员直连 KubeSphere OpenSearch 原生控制台。
+- **ActionLogConsumer（保留）**：Kafka 消费者。消费 `om-action-log` topic（MC 动作日志，II-11），解析校验 JSON 结构化字段，批量写入 ClickHouse `om_action_log`。消费失败进入重试，耗尽记死信。
 
-#### 5.1.3 动作日志消费算法
+#### 5.1.3 动作日志消费算法（保留）
 
 ```
 consume_loop():
@@ -368,47 +371,36 @@ consume_loop():
     kafka.commit(om-action-log)
 ```
 
-#### 5.1.4 全文检索性能保障（NR-P-06）
+#### 5.1.4 ~~全文检索性能保障（NR-P-06）~~（V1.2 已删）
 
-- OpenSearch 索引按日滚动（`logstash-YYYY.MM.dd`），近 7 日索引常驻热节点。
-- 检索默认限定时间范围（近 7 日），超过 7 日的检索降级为冷查询（提示用户缩小范围）。
-- 检索结果分页（默认 100 条/页），避免大结果集拖慢响应。
+> V1.2（ADR-004）：本节原描述 OpenSearch 索引滚动、近 7 日热节点、分页检索等 OM 侧检索性能保障。ADR-004 后 OM 不再代理 OpenSearch 检索，NR-P-06（近 7 日日志检索 ≤3s）由 KubeSphere OpenSearch 底座原生保障，运维人员经 KubeSphere 控制台检索。原 OM 侧保障措施废止。
 
 ### 5.2 M-OM-02 指标采集与时序存储模块（R-OM-001 指标）
 
-#### 5.2.1 模块组成与类图
+> V1.2（ADR-004）：原 Prometheus 查询代理（MetricQueryService/PrometheusClient）与前端指标看板 UI（OM-04/05）已删，实时指标查询改由运维人员直连 KubeSphere Prometheus + Grafana 原生控制台完成。本模块**仅保留业务指标消费聚合入仓**（BusinessMetricConsumer）——消费各子系统经 II-04 上报的业务指标，按天聚合后入 ClickHouse `om_metric_daily`，供长期趋势分析与容量观测回查。
 
-只读化后，M-OM-02 职责为「**Prometheus 查询代理 + 业务指标消费聚合入仓**」：
+#### 5.2.1 模块组成与类图（V1.2：仅保留消费聚合入仓）
 
 ```mermaid
 classDiagram
-    class MetricQueryService {
-        +query_instant(promql) MetricResult
-        +query_range(promql, start, end, step) RangeMetricResult
-        +list_metrics(subsystem) list[MetricDef]
-    }
     class BusinessMetricConsumer {
         +consume(records)  %% 消费 Kafka om-business-metric
         +aggregate_daily(metric, window) DailyAgg
         +sink_to_clickhouse(agg)
     }
-    class PrometheusClient {
-        +query(promql) MetricResult
-        +query_range(promql, range) RangeMetricResult
-    }
     class ClickHouseSink {
         +batch_insert(table, rows)
     }
-    class MetricQueryService ..> PrometheusClient : 只读查询代理
     class BusinessMetricConsumer ..> ClickHouseSink : 聚合入仓
+    note for BusinessMetricConsumer "V1.2（ADR-004）删除：MetricQueryService（Prometheus 查询代理）/n+ PrometheusClient（即时/范围指标查询）/n+ 前端指标看板 UI（OM-04/05）"
 ```
 
 #### 5.2.2 关键类说明
 
-- **MetricQueryService**：指标查询代理。封装 Prometheus HTTP API（`/api/v1/query`、`/api/v1/query_range`），供 M-OM-04 看板与运维作业查询实时指标（设备在线率、任务成功率、爬虫吞吐量、队列积压）。
-- **BusinessMetricConsumer**：Kafka 消费者。消费 `om-business-metric` topic，按天窗口聚合业务指标（avg/max/min/count），写入 ClickHouse `om_metric_daily`。聚合游标记 Redis 防重复。
+- ~~**MetricQueryService**（V1.2 已删）~~：原指标查询代理（封装 Prometheus HTTP API），供 M-OM-04 看板与运维作业查询实时指标，ADR-004 后删除。实时指标查询改由运维人员直连 KubeSphere Prometheus + Grafana。
+- **BusinessMetricConsumer（保留）**：Kafka 消费者。消费 `om-business-metric` topic（II-04），按天窗口聚合业务指标（avg/max/min/count），写入 ClickHouse `om_metric_daily`。聚合游标记 Redis 防重复。
 
-#### 5.2.3 指标聚合算法
+#### 5.2.3 指标聚合算法（保留）
 
 ```
 aggregate_loop():
