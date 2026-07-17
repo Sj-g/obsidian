@@ -439,8 +439,7 @@ CREATE TABLE mc.mc_workflow (
 ```sql
 CREATE TABLE mc.mc_agent_def (
     agent_id      UUID PRIMARY KEY,               -- SWM分配,II-14同步,稳定逻辑标识
-    persona_tags  JSONB NOT NULL,                 -- 人设标签(用于行为风格一致性校验)
-    prompt_pack   JSONB NOT NULL,                 -- 提示词包(提示词/作业策略)
+    prompt_pack   JSONB NOT NULL,                 -- 提示词包(提示词/作业策略;V1.2起废除独立persona_tags,行为风格一致性基于提示词内容校验)
     version       INT NOT NULL,                   -- 版本号(更新升版)
     synced_at     TIMESTAMPTZ NOT NULL DEFAULT now(),
     org_id        UUID NOT NULL
@@ -1184,7 +1183,7 @@ classDiagram
 
 #### 5.4.3 M-MC-13 智能体账号绑定与资产迁移（R-MC-013，5 功能点）
 
-**职责**：维护 `agent_id↔account_id` 1:1 绑定（叠加四元行动单元）；账号封禁后支持人工发起资产迁移，将原 agent 的人设 / 提示词版本 / 记忆整体继承到新账号，延续人格。
+**职责**：维护 `agent_id↔account_id` 1:1 绑定（叠加四元行动单元）；账号封禁后支持人工发起资产迁移，将原 agent 的提示词版本 / 记忆整体继承到新账号，延续行为连贯。
 
 **类图**：
 
@@ -1196,7 +1195,7 @@ classDiagram
     }
     class AssetMigrationService {
         +migrate(source_agent_id, target_account_id) MigrationResult  %% 封号资产迁移
-        -extract_assets(agent_id) Assets         %% 抽取人设/提示词/记忆
+        -extract_assets(agent_id) Assets         %% 抽取提示词/记忆
         -validate_target(account_id) bool        %% 目标账号校验
         -inherit_write(target, assets)           %% 继承写入+绑定切换
     }
@@ -1210,7 +1209,7 @@ classDiagram
 
 **关键类说明**：
 - **AgentBindingService**：`agent_id↔account_id` 1:1 绑定维护，写 §4.1.6 `mc_binding`。四元行动单元（agent↔account↔terminal↔proxy）查询直接读 `mc_binding` 单一存储，不另存。
-- **AssetMigrationService**：封号资产迁移。流程：抽取原 agent 资产（人设标签 / 提示词版本 / 经 SWM 记忆服务抽记忆）→ 校验目标账号（须新注册且未绑定 agent、满足账号-终端绑定规则）→ 继承写入（新绑定激活、旧 agent↔旧账号解绑并休眠）。迁移由人工触发、内容整体继承，保证人格连贯、避免误迁。
+- **AssetMigrationService**：封号资产迁移。流程：抽取原 agent 资产（提示词版本 / 经 SWM 记忆服务抽记忆）→ 校验目标账号（须新注册且未绑定 agent、满足账号-终端绑定规则）→ 继承写入（新绑定激活、旧 agent↔旧账号解绑并休眠）。迁移由人工触发、内容整体继承，保证行为连贯、避免误迁。
 
 **设计要点**：
 - `agent_id` 由 SWM 分配并以 II-14 同步至 MC（见 §5.5）；绑定冲突（目标账号已绑其他 agent）拒绝并提示；目标账号不满足绑定规则拒绝并提示。
@@ -1250,12 +1249,12 @@ classDiagram
     }
     class AgentDefStore ..> AgentDefRepo : 写mc_agent_def
     class BehaviorConsistencyChecker ..> AgentDefStore
-    class BehaviorConsistencyChecker ..> BindingRepo : 读account绑定人设
+    class BehaviorConsistencyChecker ..> BindingRepo : 读account绑定提示词
 ```
 
 **关键类说明**：
-- **AgentDefStore**：提示词包持存。经 II-14（Kafka `mc-agent-def-sync`）接收 SWM 同步的提示词包（`agent_id` / 人设标签 / 提示词 / 作业策略 / 版本），以 `agent_id` 为主键存 `mc_agent_def`。同一 `agent_id` 重新同步升版本号，取最新版本执行（SWM 同步失败保留上一可用版本并告警）。
-- **BehaviorConsistencyChecker**（★ 最后一道闸）：任务执行前校验"当前 `account_id` 绑定的人设标签"与"`agent_id` 提示词包中的人设标签"是否一致（本地比对，标签均在 MC 本地：account 侧标签随 `mc_binding`、agent 侧标签随 `mc_agent_def`），一致方可调用 M-MC-06 引擎执行，不一致**拒绝执行 + 告警 + 审计**。
+- **AgentDefStore**：提示词包持存。经 II-14（Kafka `mc-agent-def-sync`）接收 SWM 同步的提示词包（`agent_id` / 提示词 / 作业策略 / 版本），以 `agent_id` 为主键存 `mc_agent_def`。同一 `agent_id` 重新同步升版本号，取最新版本执行（SWM 同步失败保留上一可用版本并告警）。
+- **BehaviorConsistencyChecker**（★ 最后一道闸）：任务执行前校验"当前 `account_id` 绑定的提示词"与"`agent_id` 提示词包中的提示词"行为风格是否一致（本地比对，提示词均在 MC 本地：account 侧提示词随 `mc_binding`、agent 侧提示词随 `mc_agent_def`），一致方可调用 M-MC-06 引擎执行，不一致**拒绝执行 + 告警 + 审计**。
 - **AgentNodeSource**：作为 OCC 行动编排的智能体节点来源，OCC 以 `agent_id` 引用 MC 持存的提示词包（II-10）。
 - **QuadBindingResolver**：四元绑定解析，读 `mc_binding` 单一存储。
 
@@ -1266,7 +1265,7 @@ classDiagram
   1. AgentDefStore.get(agent_id)            # 取最新提示词包
      若缺失 -> 降级脚本模式或人工介入
   2. BehaviorConsistencyChecker.check(account_id, agent_id)
-     读 mc_account 人设标签 vs mc_agent_def.persona_tags
+     读 mc_account 提示词 vs mc_agent_def.prompt_pack
      不一致 -> 拒绝执行 + audit_log(behavior_mismatch) + 告警
   3. QuadBindingResolver.resolve(agent_id)  # 四元绑定缺失/冲突 -> 挂起并提示
   4. agentRuntime.execute(job)              # ★ 调用M-MC-06引擎(推理旁路、动作收口)
@@ -1405,7 +1404,6 @@ agent-runtime 经 REST 调 IRS（**不经执行网关**，CON-10）：
 ```json
 {
   "agent_id": "...",
-  "persona_tags": ["人设A", "标签B"],
   "prompt_pack": { "prompts": [...], "strategy": {...} },
   "version": 3,
   "synced_at": "2026-07-14T10:00:00Z"
