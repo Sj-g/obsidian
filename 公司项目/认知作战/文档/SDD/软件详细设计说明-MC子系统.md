@@ -3,7 +3,7 @@
 | 项目 | 内容 |
 | --- | --- |
 | 项目名称 | 认知行动平台（v1.0） |
-| 文档版本 | V1.1 |
+| 文档版本 | V1.2 |
 | 密级 | 内部使用 |
 | 编制 | 石建国 |
 | 编制日期 | 2026-07-17 |
@@ -253,7 +253,7 @@ CREATE INDEX idx_mc_terminal_status ON mc.mc_terminal(status, risk_level);
 CREATE INDEX idx_mc_terminal_org ON mc.mc_terminal(org_id);
 ```
 
-> V1.1（terminal_type 分类说明）：`terminal_type` 取值分移动端（`mobile_real`/`mobile_cloud`/`mobile_arm`/`mobile_virt`）与浏览器（`profile`）两类载体。任务与编排兼容两类载体——编排器（MC-15）/ 脚本 IDE（MC-16）经"载体切换控件"区分移动端 ADB / 无障碍通道与桌面端 CDP 通道，网关（M-MC-05）按 `terminal_type` 路由到对应 `ChannelAdapter`。
+> V1.1（terminal_type 分类说明）：`terminal_type` 取值分移动端（`mobile_real`/`mobile_cloud`/`mobile_arm`/`mobile_virt`）与浏览器（`profile`）两类载体。任务与编排兼容两类载体——编排器（MC-15）/ 脚本 IDE（MC-16）经"载体切换控件"区分移动端 ADB / 无障碍通道与桌面端 CDP 通道，网关（M-MC-05）按 `terminal_type` 路由到对应**设备类型 SDK**（真机/云手机/ARM/虚拟化真机/Profile 五类，见 §5.2.1）。
 
 #### 4.1.2 终端分组表 `mc_terminal_group`（M-MC-01 F-MC-01-03）
 
@@ -593,7 +593,7 @@ classDiagram
 - **BatchOperator**：批量操作（移动端安装 / 卸载 App、重启、截图；桌面端 Profile 创建 / 启动 / 关闭、截图），文件经 MinIO（EI-04）临时链接上传下载，部分失败记录失败项支持重试。
 - **ProfileClient**：EI-06 商用指纹浏览器 API 客户端，封装 Profile 创建 / 启动 / 关闭 / 画面预览请求。
 
-**设计要点**：移动端注册后建立长连接（II-02）；桌面端 Profile 创建后由商用产品返回 CDP 端点供 M-MC-05 通道适配器使用。终端指标异常（过热 / 存储满 / 内存超限）时隔离（status=`isolated`）并停止派发任务。
+**设计要点**：移动端注册后建立长连接（II-02）；桌面端 Profile 创建后由商用产品返回 CDP 端点，供 M-MC-05 的 **Profile SDK**（CDP 通道）使用。终端指标异常（过热 / 存储满 / 内存超限）时隔离（status=`isolated`）并停止派发任务。
 
 #### 5.1.2 M-MC-02 终端身份与环境隔离（R-MC-002，3 功能点）
 
@@ -739,38 +739,58 @@ classDiagram
         +check(terminal_id) bool                %% 熔断检测(风控信号/异常频率)
         +trip(terminal_id, reason)              %% 触发熔断
     }
-    class ChannelRouter {
-        +route(action) ChannelAdapter           %% 按terminal_type路由
+    class DeviceChannelRouter {
+        +route(action) DeviceSdk                %% 按 terminal_type 路由到设备SDK
     }
-    class ChannelAdapter {
+    class DeviceSdk {
         <<interface>>
-        +execute(action) Result
+        +click(terminal_id, params) Result
+        +input(terminal_id, params) Result
+        +screenshot(terminal_id) Result
+        +install(terminal_id, pkg_ref) Result
+        +execute(action) Result                 %% ★ 向网关提供的统一服务接口
     }
-    class AdbAdapter {
-        +execute(action)                        %% 移动端ADB(经II-02下发Agent)
+    class RealDeviceSdk {
+        %% 真机 mobile_real: USB/TCP ADB + 无障碍
     }
-    class AccessibilityAdapter {
-        +execute(action)                        %% 移动端无障碍
+    class CloudPhoneSdk {
+        %% 云手机 mobile_cloud: 厂商API + ADB
     }
-    class CdpAdapter {
-        +execute(action)                        %% 桌面端CDP(直连EI-06)
+    class ArmBoardSdk {
+        %% ARM板卡 mobile_arm: 网络ADB + 无障碍
+    }
+    class VirtualDeviceSdk {
+        %% 虚拟化真机 mobile_virt: ADB + 无障碍
+    }
+    class ProfileSdk {
+        %% 指纹浏览器Profile profile: CDP直连EI-06(无设备端Agent)
     }
     class ExecutionGateway ..> ActionAuthorizer
     class ExecutionGateway ..> ActionRecorder
     class ExecutionGateway ..> CircuitBreaker
-    class ExecutionGateway ..> ChannelRouter
-    class ChannelRouter ..> ChannelAdapter
-    class ChannelAdapter <|-- AdbAdapter
-    class ChannelAdapter <|-- AccessibilityAdapter
-    class ChannelAdapter <|-- CdpAdapter
+    class ExecutionGateway ..> DeviceChannelRouter
+    class DeviceChannelRouter ..> DeviceSdk
+    class DeviceSdk <|-- RealDeviceSdk
+    class DeviceSdk <|-- CloudPhoneSdk
+    class DeviceSdk <|-- ArmBoardSdk
+    class DeviceSdk <|-- VirtualDeviceSdk
+    class DeviceSdk <|-- ProfileSdk
 ```
+
+> **V1.2（执行网关通道 SDK 化）**：M-MC-05 的通道适配由原「`ChannelAdapter` 接口 + ADB/无障碍/CDP 三 Adapter（策略模式）」澄清为「**设备类型 SDK 包族**」——一个 `DeviceSdk` 统一接口 + 真机/云手机/ARM/虚拟化真机/Profile 五个独立 SDK 包（jar 依赖，同进程，非独立服务），每个包适配一种 `terminal_type`，向网关提供 `click/input/screenshot/install/execute` 等统一服务接口，把协议细节（ADB 命令拼装、无障碍事件协议、CDP 报文）全屏蔽。网关面向 `DeviceSdk` 接口编程，`DeviceChannelRouter` 按 `terminal_type` 路由到对应 SDK。HLD 的 F-MC-05-05「控制通道适配」功能点语义不变，本次为其下实现细化。
 
 **关键类说明**：
 - **ExecutionGateway**：网关门面，提供唯一的 `submit(action)` 入口。所有动作（脚本 / 智能体 / 养号 / 远控外的作业）都经此入口。流程：鉴权 → 熔断检测 → 路由通道 → 落地 → 记录。
 - **ActionAuthorizer**：动作鉴权，校验动作来源（调用方权限）与目标终端合法性（账号 / 终端是否归属同 org、是否在绑定关系内）。
 - **ActionRecorder**：动作记录，写动作日志到 ClickHouse `mc_analysis.mc_action_log`（供 M-MC-10 统计）**同时**发 Kafka `mc-action-log`（II-11 全量上报 OM）。
 - **CircuitBreaker**：熔断。检测风控信号或单终端异常频率（Redis `mc:rate:gateway:{terminal_id}` 滑动窗口计数），触发熔断后该终端后续动作停止并告警。
-- **ChannelRouter + ChannelAdapter**：通道适配（策略模式）。按 `terminal_type` 路由到 `AdbAdapter`（移动端 ADB，经 II-02 下发 Agent 执行）/ `AccessibilityAdapter`（移动端无障碍）/ `CdpAdapter`（桌面端 CDP，直连 EI-06），控制通道对上层透明。
+- **DeviceChannelRouter + DeviceSdk 设备 SDK 包族**：通道适配。网关下挂**多个设备类型 SDK 包**（独立 jar 依赖，同进程，非独立服务），每个包适配一种 `terminal_type`，向网关提供统一服务接口 `DeviceSdk`（`click` / `input` / `screenshot` / `install` / `execute`），把协议细节全屏蔽。`DeviceChannelRouter` 按 `terminal_type` 路由到对应 SDK，控制通道对上层透明。五个设备 SDK：
+    - **`RealDeviceSdk`**（真机 `mobile_real`）：USB/TCP ADB + 无障碍；指令经 II-02 下发设备端 Agent 执行。
+    - **`CloudPhoneSdk`**（云手机 `mobile_cloud`）：厂商 HTTP API + ADB；同样经 II-02 落地。
+    - **`ArmBoardSdk`**（ARM 板卡 `mobile_arm`）：网络 ADB + 无障碍；经 II-02 落地。
+    - **`VirtualDeviceSdk`**（虚拟化真机 `mobile_virt`）：ADB + 无障碍；经 II-02 落地。
+    - **`ProfileSdk`**（指纹浏览器 Profile `profile`）：封装 CDP 协议直连 EI-06 调试端口，**无设备端 Agent**（指纹浏览器本身承担"Agent"角色）。
+  > **共享底层协议库**：移动端 4 个 SDK（真机/云手机/ARM/虚拟化真机）组合使用 ADB + 无障碍，**共用一份底层协议库**（`common-adb-protocol` / `common-accessibility-protocol` + `agent-transport-sdk` 封 II-02 长连接），避免协议封装重复；各自只封装设备类型差异（传输方式、厂商 API 适配）。SDK 来源混合（自研 / 开源库 / 厂商提供），可独立演进。
 
 **动作执行算法（F-MC-05-01~05）**：
 
@@ -794,8 +814,8 @@ ExecutionGateway.submit(action):
         raise CircuitOpenError("异常频率熔断")
 
     # 4. 通道路由与落地
-    adapter = router.route(action.terminal_type)   # adb/accessibility/cdp
-    result = adapter.execute(action)
+    sdk = router.route(action.terminal_type)        # 5类设备SDK(真机/云手机/ARM/虚拟化真机/Profile)
+    result = sdk.execute(action)
 
     # 5. 记录与上报(单一采集点,两处消费)
     recorder.record(action, result)                 # 写ClickHouse mc_analysis
