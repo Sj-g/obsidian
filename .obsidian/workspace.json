@@ -27,12 +27,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "公司项目/认知作战/文档/MVP版本规划.md",
+                "file": "公司项目/认知作战/文档/软件详细设计说明-OM子系统.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "MVP版本规划"
+              "title": "软件详细设计说明-OM子系统"
             }
           }
         ],
@@ -181,13 +181,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "公司项目/认知作战/文档/MVP版本规划.md",
+                "file": "公司项目/认知作战/文档/软件详细设计说明-OM子系统.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "MVP版本规划 的大纲"
+              "title": "软件详细设计说明-OM子系统 的大纲"
             }
           },
           {
@@ -221,8 +221,9 @@
       "obsidian-excalidraw-plugin:新建绘图文件": false
     }
   },
-  "active": "7893c6c91b70ba0a",
+  "active": "2f86a8ef10798e94",
   "lastOpenFiles": [
+    "公司项目/认知作战/文档/MVP版本规划.md",
     "公司项目/认知作战/文档/ADR/ADR-004-删除OM运维监控并独立COM为系统管理控制台.md",
     "公司项目/认知作战/文档/ADR/ADR-004-删除OM运维监控并独立COM为系统管理控制台.md.tmp.3133846.3cf45ef404d6",
     "公司项目/认知作战/文档/ADR/ADR-003-OCC控制台精简与作战改行动.md",
@@ -238,7 +239,6 @@
     "公司项目/认知作战/文档/文档目录.md.tmp.3133846.696c0b4994ee",
     "公司项目/认知作战/文档/系统页面清单.md",
     "公司项目/认知作战/文档/版本变动记录/版本变动记录.md.tmp.3133846.c39ff576eb9a",
-    "公司项目/认知作战/文档/MVP版本规划.md",
     "公司项目/认知作战/文档/文档目录.md",
     "公司项目/认知作战/文档/软件概要设计-架构图.md",
     "公司项目/认知作战/文档/软件概要设计说明.md",
