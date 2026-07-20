@@ -3,10 +3,10 @@
 | 项目 | 内容 |
 | --- | --- |
 | 项目名称 | 认知行动平台（v1.0） |
-| 文档版本 | V1.2 |
+| 文档版本 | V1.3 |
 | 密级 | 内部使用 |
 | 编制 | 石建国 |
-| 编制日期 | 2026-07-17 |
+| 编制日期 | 2026-07-20 |
 
 ---
 
@@ -99,15 +99,15 @@ MC 子系统由 14 个模块组成（与 14 项功能需求 1:1 对应，共 63 
 
 ### 3.1 技术选型
 
-MC 子系统技术栈遵循全平台「**管控 / 业务微服务统一 Java（Spring Boot）；数据采集与分析用 Python；两者经 Kafka/REST 解耦**」原则（DC 整体归 Python 为采集域特例）。MC 与 OM / COM 同为 Java / Spring Boot 栈。设备端 Agent 为 Android 程序，远控媒体面为 Node.js，二者为运行时形态特例（非业务微服务）。
+MC 子系统技术栈遵循全平台「**管控 / 业务微服务统一 Java（Spring Boot）；数据采集与分析用 Python；两者经 Kafka/REST 解耦**」原则（DC 整体归 Python 为采集域特例）。MC 与 OM / COM 同为 Java / Spring Boot 栈。真机 Agent 主机进程（M-MC-15.a）同为 Java / Spring Boot 栈（独立部署单元），远控媒体面 mc-sfu 为 Node.js，二者为运行时形态特例（非业务微服务）。
 
 | 维度 | 选型 | 说明 |
 | --- | --- | --- |
-| 微服务语言/框架 | **Java 17 + Spring Boot 3.x** | mc-service 单一微服务，14 模块同进程 Java 包；Spring Security + com-auth-lib 鉴权 |
+| 微服务语言/框架 | **Java 17 + Spring Boot 3.x** | mc-service 单一微服务，**15 模块**（M-MC-01~14 + M-MC-15.c）同进程 Java 包；Spring Security + com-auth-lib 鉴权 |
 | 远控媒体面 | **mediasoup（Node.js，自建开源 WebRTC SFU）** | mc-sfu 独立部署单元，转发移动端远控 RTP 画面流；私有化部署，不依赖外部公有云 SFU（CON-06） |
-| 设备端 Agent | **Android（Java/Kotlin）** | 移动端执行终端上运行的设备端程序，经 II-02 长连接通信 |
+| **真机 Agent 主机进程（M-MC-15.a）** | **Java 17 + Spring Boot 3.x**（独立部署单元，借鉴 sonic-agent，Apache 2.0） | 每个插真机的 Linux/Mac 主机一台的独立进程，唯一触碰真机的进程（CON-15）；承载 ddmlib（ADB 通道）+ sonic-driver-core（uia2 无障碍通道）+ scrcpy 客户端（画面源），经 II-02 WS 与 mc-service 通信 |
 | 浏览器控制 | **CDP（Chrome DevTools Protocol）** | 经 EI-06 商用指纹浏览器暴露的 CDP 调试端口控制桌面端 Profile |
-| 移动端控制 | **ADB + Android 无障碍服务** | 经 II-02 下发到 Agent，由 Agent 执行 ADB 与无障碍操作 |
+| 移动端控制 | **ADB（ddmlib）+ Android 无障碍服务（uiautomator2-server）+ scrcpy** | 经 II-02 下发到 M-MC-15.a，由 Agent 执行 ADB（install / pressKey / reboot / screenshot）、无障碍（find / click / sendKeys / swipe）、scrcpy（H.264 画面源） |
 | 脚本沙箱 | **GraalVM 多语言沙箱（JS 为主）** | R-MC-008 第三阶段脚本开发与调试的运行时；JVM 内嵌、同进程、资源限制 + API 白名单隔离；支持 JS/Python polyglot；越权访问拦截（NR-S-05） |
 | 微服务治理 | **KubeSphere 微服务治理**（Spring Cloud Kubernetes） | 服务注册 / 发现 / 配置复用 KubeSphere，不另起注册中心，与 OM / COM 一致 |
 | 元数据库 | **PostgreSQL**（复用 DC 实例，独立 schema `mc`） | 终端台账、账号主数据（凭据加密）、任务 / 实例、脚本 / 工作流、绑定关系、审计日志（OLTP 事务） |
@@ -120,19 +120,21 @@ MC 子系统技术栈遵循全平台「**管控 / 业务微服务统一 Java（S
 
 ### 3.2 部署单元
 
-MC 部署为「**一微服务 + 一媒体面 + 设备端 Agent（集群外）+ 商用指纹浏览器（集群外）**」四边界。当前版本 mc-service **单副本**、mc-sfu **单副本**（V2 演进多副本 HA，对应 NR-R-01/04 的 V2 目标）。14 模块为 mc-service 同进程内的 Java 包，不拆独立 Pod。
+MC 部署为「**一微服务 + 一媒体面 + 真机 Agent 主机（集群外，独立进程）+ 商用指纹浏览器（集群外）**」四边界。当前版本 mc-service **单副本**、mc-sfu **单副本**（V2 演进多副本 HA，对应 NR-R-01/04 的 V2 目标）。**15 模块**中，M-MC-01~14 为 mc-service 同进程内的 Java 包（不拆独立 Pod）；**M-MC-15 双形态**——中心侧 Agent 编排器是 mc-service 同进程 Java 包（M-MC-15.c），设备主机侧 Agent 运行时是独立部署单元（M-MC-15.a，每个插设备的 Linux/Mac 主机一台的 Java 进程，借鉴 SonicCloudOrg/sonic-agent，Apache 2.0）。
 
 ```mermaid
 flowchart TB
     subgraph K8S["Kubernetes 集群（KubeSphere 纳管）"]
         subgraph MC_NS["Namespace: mc-app"]
-            MCS["mc-service<br/>Spring Boot Deployment ×1<br/>（V2 演进 ×N）<br/>M-MC-01~14 同进程"]
+            MCS["mc-service<br/>Spring Boot Deployment ×1<br/>（V2 演进 ×N）<br/>M-MC-01~14 + M-MC-15.c 同进程"]
             SFU["mc-sfu<br/>mediasoup Deployment ×1<br/>（V2 演进 ×N）<br/>移动端远控媒体面"]
         end
     end
 
-    subgraph DEV["设备端（集群外，MC 边界内）"]
-        AGENT["移动端 Agent<br/>真机/云手机/ARM板卡/虚拟化真机"]
+    subgraph DEV["设备主机（集群外，MC 边界内）"]
+        AGENT["M-MC-15.a 真机 Agent 运行时<br/>Spring Boot 独立进程<br/>每主机一台 · 唯一触真机的进程<br/>ddmlib+uia2+scrcpy"]
+        DEV2["真机集群<br/>USB 接入 Android 3-8 台"]
+        AGENT --- DEV2
     end
 
     subgraph EXT["外部商用（集群外）"]
@@ -145,8 +147,8 @@ flowchart TB
     CH[("ClickHouse<br/>mc_analysis 库")]
     MN[("MinIO<br/>EI-04")]
 
-    AGENT <-->|"II-02 指令/日志/截图"| MCS
-    AGENT -->|"RTP 画面流"| SFU
+    AGENT <-->|"II-02 WebSocket<br/>(注册/心跳/指令/日志/截图/媒体面协商)"| MCS
+    AGENT -->|"scrcpy H.264 推流"| SFU
     SFU -->|"信令"| MCS
     MCS <-->|"CDP 控制"| FB
     MCS --> PG & RD & CH
@@ -158,21 +160,21 @@ flowchart TB
 
 | 部署单元 | 实现 | 对应模块 | 副本 |
 | --- | --- | --- | --- |
-| mc-service | Spring Boot 单一微服务（14 模块为同进程 Java 包） | M-MC-01 ~ M-MC-14 全部 | ×1（V2 演进 ×N） |
-| mc-sfu | mediasoup 自建 SFU | M-MC-04 远程控制（媒体面） | ×1（V2 演进 ×N） |
-| 移动端 Agent | Android 设备端程序 | M-MC-01 接入 / M-MC-05 通道（移动端落地执行） | 随设备规模 |
+| mc-service | Spring Boot 单一微服务（M-MC-01~14 + M-MC-15.c 中心侧编排器，共 15 模块同进程） | M-MC-01 ~ M-MC-15.c | ×1（V2 演进 ×N） |
+| mc-sfu | mediasoup 自建 SFU | M-MC-04 远程控制（媒体面转发） | ×1（V2 演进 ×N） |
+| **真机 Agent 主机**（M-MC-15.a） | Spring Boot 独立进程（借鉴 sonic-agent，Apache 2.0） | **M-MC-15 真机 Agent 运行时与编排（设备主机侧形态）** | 随设备主机规模（MVP 单主机） |
 | 指纹浏览器（EI-06） | 外部商用产品 | M-MC-01 Profile 创建 / M-MC-02 指纹固化 / M-MC-05 通道（桌面端落地执行） | 外部 |
 
 > PostgreSQL / Redis / Kafka / ClickHouse / MinIO 由 DC 部署或为 KubeSphere 基础设施，MC 仅消费（独立 schema `mc`、独立 ClickHouse 库 `mc_analysis`、独立 Redis Key 前缀 `mc:`、独立 Kafka topic 前缀 `mc-`）。
 
 ### 3.3 模块间调用关系
 
-mc-service 内部 14 模块同进程调用，分四类协作关系：
+mc-service 内部 15 模块同进程调用（M-MC-01~14 + M-MC-15.c 中心侧编排器），M-MC-15.a 设备主机侧 Agent 经 II-02 WS 跨进程通信，分五类协作关系：
 
 ```mermaid
 flowchart LR
     subgraph TERM["终端资源与远控域"]
-        M01["M-MC-01 接入台账"]
+        M01["M-MC-01 台账"]
         M02["M-MC-02 指纹隔离"]
         M03["M-MC-03 风控代理"]
         M04["M-MC-04 远控"]
@@ -195,10 +197,17 @@ flowchart LR
     subgraph AGENT_R["智能体执行宿主域"]
         M14["M-MC-14 执行宿主"]
     end
+    subgraph DEV_R["真机 Agent 运行时域"]
+        M15C["M-MC-15.c 中心侧编排器"]
+        M15A["M-MC-15.a 设备主机侧 Agent<br/>(独立进程,集群外)"]
+    end
 
     M02 & M03 --> M01
     M07 & M08 & M06 & M09 & M04 -->|"动作收口"| M05
-    M05 --> M01
+    M05 -->|"RealDeviceSdk 调用"| M15C
+    M15C <-->|"II-02 WS<br/>(注册/心跳/占用/指令/媒体面)"| M15A
+    M15C -.->|"terminal_registered/offline 事件"| M01
+    M04 -.->|"startScrcpy 协商"| M15C
     M05 -->|"动作日志"| M10
     M10 -->|"效果回传"| M11
     M11 -.->|"account_id 引用"| M12 & M13
@@ -206,18 +215,19 @@ flowchart LR
     M13 -.->|"agent↔account 绑定"| M14
 ```
 
-**四类协作关系**：
+**五类协作关系**：
 
-1. **动作收口流（核心）**：M-MC-07 / 08 / 06 / 09 / 04 / 14 → M-MC-05（执行网关）→ M-MC-01（终端）。所有产出动作的模块都经网关落地，网关按 terminal_type 路由到 M-MC-01 管理的终端。
-2. **终端资源支撑**：M-MC-02（指纹 / 隔离）、M-MC-03（风控 / 代理）→ M-MC-01（终端）。为终端台账附加身份与网络属性。
-3. **账号权威源分发**：M-MC-11 维护账号主数据 → event bus `account.status.changed` → DC / SWM / OCC；M-MC-12 分层分组、M-MC-13 绑定与迁移引用 `account_id`；M-MC-13 的 `agent_id↔account_id` 绑定供 M-MC-14 引用。
-4. **可观测闭环**：M-MC-05 动作日志 → M-MC-10（统计复盘）→ OCC（效果评估）。
+1. **动作收口流（核心）**：M-MC-07 / 08 / 06 / 09 / 04 / 14 → M-MC-05（执行网关）→ **按 terminal_type 路由**：真机动作 → M-MC-15.c（中心侧编排器）→ II-02 → M-MC-15.a（设备主机侧 Agent）→ ADB / 无障碍 / scrcpy 落地。所有产出动作的模块只调 `ExecutionGateway.submit()`，不直接碰 M-MC-15。
+2. **Agent 生命周期与台账联动**：M-MC-15.c 持 II-02 WS endpoint，全权管 Agent 注册 / 心跳 / 占用锁 / 媒体面协商；**设备上下线事件**（`terminal_registered` / `terminal_offline`）推 M-MC-01 写台账 + 更新在线状态（M-MC-01 回归纯台账持有方，不再持 endpoint）。
+3. **远控媒体面分工**：M-MC-04（mc-sfu）持 WebRTC 转发与远控体验；**画面源**（scrcpy server 启动 + H.264 产出）归 M-MC-15.a，经 `startScrcpy` 协商后 Agent 直接推流到 mc-sfu 端口（不经 mc-service 转发，避免 server 成瓶颈）。
+4. **账号权威源分发**：M-MC-11 维护账号主数据 → event bus `account.status.changed` → DC / SWM / OCC；M-MC-12 分层分组、M-MC-13 绑定与迁移引用 `account_id`；M-MC-13 的 `agent_id↔account_id` 绑定供 M-MC-14 引用。
+5. **可观测闭环**：M-MC-05 动作日志（单一采集点）→ M-MC-10（统计复盘）→ OCC（效果评估）；Agent 自身日志经 II-02 回传 M-MC-15.c → M-MC-10。
 
 ### 3.4 数据流设计
 
 MC 数据流分五类：
 
-1. **终端接入与控制流**：移动端 Agent 启动 → 向 mc-service 注册（II-02）→ 记终端台账（M-MC-01）→ 心跳上报状态指标（II-04 至 OM）。桌面端 Profile 经商用产品 API（EI-06）创建 / 启动 → 返回 CDP 端口 → mc-service 记台账。控制时：mc-service → ADB / 无障碍（经 Agent）/ CDP（直连 EI-06）。
+1. **终端接入与控制流**：真机 Agent（M-MC-15.a，设备主机侧独立进程）启动 → 经 II-02 WS 连 M-MC-15.c（中心侧编排器）→ agentKey 鉴权 + 设备清单上报（`deviceDetail`）→ M-MC-15.c 发 `terminal_registered` 事件给 M-MC-01 写台账 → Agent 周期心跳（`heartBeat`）→ M-MC-15.c 判在线掉线、推 `terminal_offline` 给 M-MC-01 更新台账状态。桌面端 Profile 经商用产品 API（EI-06）创建 / 启动 → 返回 CDP 端口 → M-MC-01 记台账。控制时：mc-service → 经 M-MC-15.c → II-02 → M-MC-15.a → ADB / 无障碍（真机）；或 mc-service → CDP 直连（EI-06 桌面端）。
 2. **动作执行流（核心）**：任务调度（M-MC-07）/ 编排（M-MC-08）/ 养号（M-MC-09）/ 智能体（M-MC-06 引擎 + M-MC-14 宿主）产出动作指令 → **执行网关（M-MC-05）** 鉴权 → 记录 → 熔断检测 → 路由到控制通道 → 落地到终端 → 回传执行结果 → 动作日志入 ClickHouse + 发 Kafka II-11 给 OM。
 3. **账号权威流**：账号运营人员注册账号（M-MC-11）→ 凭据 AES 加密入 PG → 验证探测 / 状态流转 → 状态变更发 `account.status.changed`（II-01a，Kafka）→ DC / SWM / OCC 订阅响应（停止任务等）。使用方经 II-01 引用 `account_id`。
 4. **智能体执行流**：SWM 经 II-14 同步提示词包（`agent_id` 为主键）→ M-MC-14 持存 → 任务执行前行为风格一致性校验 → agent-runtime 读 SWM 记忆 + 调 IRS 推理（II-08，不经网关）→ 产出动作指令 → 经执行网关落地。
@@ -551,26 +561,26 @@ TTL stat_date + INTERVAL 24 MONTH;
 
 本域职责：管理执行终端的接入台账、身份隔离（指纹固化）、风控分级与代理绑定、远程控制。本域模块为执行收口域提供"终端资源池"，动作落地时按 `terminal_type` 路由到对应终端。
 
-#### 5.1.1 M-MC-01 执行终端接入与台账（R-MC-001，4 功能点）
+#### 5.1.1 M-MC-01 执行终端台账（R-MC-001，4 功能点）
 
-**职责**：统一管理移动端（真机 / 云手机 / ARM 板卡 / 虚拟化真机）与桌面端（指纹浏览器 Profile）的接入注册、台账维护、分组标签、状态监控与批量操作。
+**职责**：维护移动端（真机 / 云手机 / ARM 板卡 / 虚拟化真机）与桌面端（指纹浏览器 Profile）的**台账数据库与状态查询**——终端元数据 CRUD、分组标签、批量操作编排、REST 查询。**V1.3（V3.10）边界调整**：原"接入注册 + 心跳判定在线"语义经 CON-15 划归 **M-MC-15**（M-MC-15.c 持 II-02 WS endpoint，全权管 Agent 生命周期）；M-MC-01 回归**纯台账持有方**——订阅 M-MC-15.c 的 `terminal_registered` / `terminal_offline` 事件写库与更新状态，不再持 WS endpoint、不再主动判定在线。桌面端 Profile 的创建 / 启动（调 EI-06）仍归 M-MC-01。
 
 **类图**：
 
 ```mermaid
 classDiagram
     class TerminalRegistry {
-        +register_mobile(agent_info) terminal_id
-        +register_profile(profile_req) terminal_id
+        +register_profile(profile_req) terminal_id   %% 桌面端Profile创建(调EI-06)
+        +on_terminal_registered(event)               %% 订阅M-MC-15.c事件 → 写台账
+        +on_terminal_offline(event)                  %% 订阅M-MC-15.c事件 → 更新状态
         +get(terminal_id) Terminal
         +list_by_group(group_id) list[Terminal]
     }
     class TerminalMonitor {
-        +heartbeat(terminal_id, metrics)
-        +get_status(terminal_id) TerminalStatus
+        +get_status(terminal_id) TerminalStatus      %% 只读查询(状态由M-MC-15.c推)
     }
     class BatchOperator {
-        +batch_op(terminal_ids[], op) BatchResult   %% 安装/卸载/重启/截图/创建/启动/关闭
+        +batch_op(terminal_ids[], op) BatchResult    %% 转发经M-MC-05→M-MC-15落地
     }
     class ProfileClient {
         +create_profile(req) ProfileInfo
@@ -583,17 +593,17 @@ classDiagram
     }
     class TerminalRegistry ..> ProfileClient : Profile创建
     class TerminalRegistry ..> TerminalRepo : 台账写库
-    class TerminalMonitor ..> TerminalRepo : 状态更新
+    class TerminalRegistry ..> M15C : 订阅上下线事件
     class BatchOperator ..> TerminalRepo : 批量查询
 ```
 
 **关键类说明**：
-- **TerminalRegistry**：终端注册门面。移动端 Agent 启动后上报注册信息（设备类型 / 版本 / 型号）→ 记台账；桌面端 Profile 经 `ProfileClient` 调 EI-06 商用产品创建 / 启动 → 返回 CDP 端点 → 记台账。
-- **TerminalMonitor**：接收移动端 Agent 心跳与桌面端 Profile 状态，更新在线状态（Redis `mc:terminal:online`）与指标（上报 OM）。掉线标记 offline 并告警。
-- **BatchOperator**：批量操作（移动端安装 / 卸载 App、重启、截图；桌面端 Profile 创建 / 启动 / 关闭、截图），文件经 MinIO（EI-04）临时链接上传下载，部分失败记录失败项支持重试。
+- **TerminalRegistry**：终端台账门面。桌面端 Profile 经 `ProfileClient` 调 EI-06 创建 / 启动 → 返回 CDP 端点 → 记台账；移动端终端通过订阅 M-MC-15.c 的注册事件写入台账（不再自己接 Agent 注册）。
+- **TerminalMonitor**：只读状态查询；在线状态由 M-MC-15.c 心跳判定后推送，本类仅对外暴露查询接口（Redis `mc:terminal:online`）。
+- **BatchOperator**：批量操作（移动端安装 / 卸载 App、重启、截图；桌面端 Profile 创建 / 启动 / 关闭、截图），**动作经 M-MC-05 网关 → M-MC-15 → Agent 落地**（M-MC-01 不直接发指令给 Agent）；文件经 MinIO（EI-04）临时链接上传下载。
 - **ProfileClient**：EI-06 商用指纹浏览器 API 客户端，封装 Profile 创建 / 启动 / 关闭 / 画面预览请求。
 
-**设计要点**：移动端注册后建立长连接（II-02）；桌面端 Profile 创建后由商用产品返回 CDP 端点，供 M-MC-05 的 **Profile SDK**（CDP 通道）使用。终端指标异常（过热 / 存储满 / 内存超限）时隔离（status=`isolated`）并停止派发任务。
+**设计要点**：M-MC-01 与 M-MC-15 是**事件驱动边界**——M-MC-15.c 是设备上下线事件的生产者，M-MC-01 是消费者；M-MC-01 不持 WS endpoint，与 Agent 无直接连接。桌面端 Profile 创建后由商用产品返回 CDP 端点，供 M-MC-05 的 **Profile SDK**（CDP 通道）使用。终端指标异常（过热 / 存储满 / 内存超限）时隔离（status=`isolated`）并停止派发任务（V1.2 由 M-MC-15 上报指标触发，V1.3 MVP 暂不做自动隔离）。
 
 #### 5.1.2 M-MC-02 终端身份与环境隔离（R-MC-002，3 功能点）
 
@@ -777,7 +787,13 @@ classDiagram
     class DeviceSdk <|-- ProfileSdk
 ```
 
-> **V1.2（执行网关通道 SDK 化）**：M-MC-05 的通道适配由原「`ChannelAdapter` 接口 + ADB/无障碍/CDP 三 Adapter（策略模式）」澄清为「**设备类型 SDK 包族**」——一个 `DeviceSdk` 统一接口 + 真机/云手机/ARM/虚拟化真机/Profile 五个独立 SDK 包（jar 依赖，同进程，非独立服务），每个包适配一种 `terminal_type`，向网关提供 `click/input/screenshot/install/execute` 等统一服务接口，把协议细节（ADB 命令拼装、无障碍事件协议、CDP 报文）全屏蔽。网关面向 `DeviceSdk` 接口编程，`DeviceChannelRouter` 按 `terminal_type` 路由到对应 SDK。HLD 的 F-MC-05-05「控制通道适配」功能点语义不变，本次为其下实现细化。
+> **V1.3（V3.10，真机通道 SDK 实现下沉 M-MC-15）**：M-MC-05 的通道适配由原「`ChannelAdapter` 接口 + ADB/无障碍/CDP 三 Adapter（策略模式）」演化为「**DeviceSdk 接口 + DeviceChannelRouter 路由（M-MC-05 持）+ 设备类型 SDK 实现（独立模块）**」的接口/实现分离：
+> - **M-MC-05（本模块）只持接口层**——`DeviceSdk` 统一接口（`click` / `input` / `screenshot` / `install` / `execute`）+ `DeviceChannelRouter` 按 `terminal_type` 路由。对应功能点 **F-MC-05-05（V1.3 收缩为接口与路由薄层，3 人天）**。
+> - **真机 SDK 实现（`RealDeviceSdk`）下沉新模块 M-MC-15**——M-MC-15.c 中心侧编排器是 `RealDeviceSdk` 的实现方，内部经 II-02 WS 把动作送到 M-MC-15.a 设备主机侧 Agent 执行（ADB / 无障碍 / scrcpy）。
+> - **其余 4 个 SDK**（云手机 `CloudPhoneSdk` / ARM `ArmBoardSdk` / 虚拟化真机 `VirtualDeviceSdk` / 桌面端 Profile `ProfileSdk`）**留 V1.2**——其中 ProfileSdk 是 CDP 直连 EI-06 的同进程实现（无设备端 Agent），其余 3 个移动端 SDK 同样经 M-MC-15 落地。
+> - 动作路径：调用方 → `ExecutionGateway.submit()` → 鉴权 / 记录 / 熔断 → `DeviceChannelRouter.route(terminal_type)` → `DeviceSdk` 实现方（真机 → M-MC-15.c → II-02 → M-MC-15.a → ADB/无障碍）。
+>
+> **接口/实现分离的好处**：M-MC-05 的"统一动作收口"语义保持稳定（CON-07 不破），真机通道的复杂度（ddmlib / uia2 / scrcpy / 占用锁 / 媒体面协商）封装在 M-MC-15 内，网关面向 `DeviceSdk` 抽象编程，未来增加 iOS / 云手机 / ARM 等实现不影响网关。
 
 **关键类说明**：
 - **ExecutionGateway**：网关门面，提供唯一的 `submit(action)` 入口。所有动作（脚本 / 智能体 / 养号 / 远控外的作业）都经此入口。流程：鉴权 → 熔断检测 → 路由通道 → 落地 → 记录。
@@ -785,7 +801,7 @@ classDiagram
 - **ActionRecorder**：动作记录，写动作日志到 ClickHouse `mc_analysis.mc_action_log`（供 M-MC-10 统计）**同时**发 Kafka `mc-action-log`（II-11 全量上报 OM）。
 - **CircuitBreaker**：熔断。检测风控信号或单终端异常频率（Redis `mc:rate:gateway:{terminal_id}` 滑动窗口计数），触发熔断后该终端后续动作停止并告警。
 - **DeviceChannelRouter + DeviceSdk 设备 SDK 包族**：通道适配。网关下挂**多个设备类型 SDK 包**（独立 jar 依赖，同进程，非独立服务），每个包适配一种 `terminal_type`，向网关提供统一服务接口 `DeviceSdk`（`click` / `input` / `screenshot` / `install` / `execute`），把协议细节全屏蔽。`DeviceChannelRouter` 按 `terminal_type` 路由到对应 SDK，控制通道对上层透明。五个设备 SDK：
-    - **`RealDeviceSdk`**（真机 `mobile_real`）：USB/TCP ADB + 无障碍；指令经 II-02 下发设备端 Agent 执行。
+    - **`RealDeviceSdk`**（真机 `mobile_real`）：USB/TCP ADB + 无障碍；**V1.3（V3.10）实现下沉 M-MC-15**——M-MC-15.c 中心侧编排器作为 `RealDeviceSdk` 实现方，动作经 II-02 下发 M-MC-15.a 设备主机侧 Agent 执行。
     - **`CloudPhoneSdk`**（云手机 `mobile_cloud`）：厂商 HTTP API + ADB；同样经 II-02 落地。
     - **`ArmBoardSdk`**（ARM 板卡 `mobile_arm`）：网络 ADB + 无障碍；经 II-02 落地。
     - **`VirtualDeviceSdk`**（虚拟化真机 `mobile_virt`）：ADB + 无障碍；经 II-02 落地。
@@ -1296,6 +1312,244 @@ classDiagram
 - 行为风格一致性收口于执行宿主，作为最后一道闸（CON-10 推理执行分离的延伸：不仅推理与执行分离，执行前还要校验人格一致）。
 - `agent-runtime` 调用边界：本模块 → `AgentRuntime.execute()`（M-MC-06），引擎内部调 IRS（不经网关）+ 经 `ExecutionGateway.submit()` 落地动作。
 
+### 5.6 真机 Agent 运行时域（V1.3 / V3.10 新增）
+
+本域职责：承载**真机 Agent 运行时与编排**——M-MC-15 一个模块两形态（设备主机侧 Agent 运行时 + 中心侧 Agent 编排器），是 MC 唯一触碰真机的执行终端，借鉴 SonicCloudOrg（已 archived，Apache 2.0 可 fork 自维护）。本域为 V1.3（V3.10）新增，落地 CON-15（Agent 独立部署单元）。
+
+> **★ 为什么单独立域（V3.10 设计决策）**：原 F-MC-05-05「设备策略适配（10 人天）」把整套真机通道（ddmlib / uia2 / scrcpy / 占用锁 / 媒体面 / Agent 生命周期）当一个"策略实现"塞在 M-MC-05 下，Agent 内部设计长期是空白。V1.3 把真机通道炸开为独立模块 M-MC-15，原因：(1) **Agent 是独立部署单元**（CON-15），物理上与 mc-service 分离，单独立模块反映这一事实；(2) **职责单一**——M-MC-15 全权管"Agent 进程 + 真机落地"，M-MC-05 回归"动作收口"本职，M-MC-01 回归"台账"本职；(3) **借鉴 Sonic 架构**——sonic-agent + TransportServer 一体两面是 Sonic 的核心设计，M-MC-15 双形态对齐这一架构。
+
+#### 5.6.1 M-MC-15 真机 Agent 运行时与编排（R-MC-015，6 功能点，V1.3 新增⭐）
+
+**职责**：作为所有真机动作的**物理落地单元**和 Agent 连接的生命周期管理者。双形态：
+- **M-MC-15.c 中心侧编排器**（mc-service 同进程 Java 包）：持 II-02 WebSocket endpoint，全权管 Agent 注册 / 心跳 / 占用锁 / 媒体面协商；作为 `RealDeviceSdk` 的实现方接收 M-MC-05 网关下发的动作，经 II-02 路由到对应 Agent。同时是设备上下线事件的生产者（推 M-MC-01 写台账）。
+- **M-MC-15.a 设备主机侧 Agent 运行时**（**独立部署单元**，每个插设备的 Linux/Mac 主机一台的 Spring Boot 进程）：是 MC 体系内**唯一触碰真机的进程**。承载 ddmlib（ADB 通道）、uiautomator2-server 客户端（无障碍通道）、scrcpy 客户端（远控画面源）。Agent 启动时读配置文件里的 `agentKey` 与 udId 清单，连出 mc-service 注册，之后常驻等待指令。
+
+**类图**（M-MC-15.c 中心侧编排器）：
+
+```mermaid
+classDiagram
+    class AgentTransportServer {
+        +on_open(session, agentKey)                %% WS endpoint: /agent/{agentKey}
+        +on_message(session, msg)                  %% 按 msg 字段分发
+        +on_close(session)
+        +send(agent_id, msg)                       %% 下发消息到 Agent
+    }
+    class AgentRegistry {
+        +auth(agentKey, version, capabilities) AuthResult
+        +register(agent_id, session)
+        +unregister(agent_id)
+        +is_online(agent_id) bool
+    }
+    class SessionMap {
+        %% agentId → WebSocket Session 路由表
+        +get(agent_id) Session
+        +put(agent_id, session)
+    }
+    class HeartbeatMonitor {
+        +on_heartbeat(agent_id, ts)
+        +check_timeout()                           %% 周期扫描,90s超时判掉线
+    }
+    class DeviceLockManager {
+        +occupy(ud_id, token, session_type) bool   %% 内存锁(MVP 单副本)
+        +release(ud_id, token)
+        +is_locked(ud_id) bool
+    }
+    class RealDeviceSdkImpl {
+        +click(terminal_id, params) Result         %% 实现 M-MC-05 的 DeviceSdk 接口
+        +input(terminal_id, params) Result
+        +screenshot(terminal_id) Result
+        +install(terminal_id, pkg_ref) Result
+        +execute(action) Result                    %% 经 II-02 下发 Agent
+    }
+    class TerminalEventPublisher {
+        +publish_registered(terminal_info)         %% 推 M-MC-01 写台账
+        +publish_offline(terminal_id)
+    }
+    class MediaNegotiator {
+        +start_scrcpy(ud_id, sfu_port)             %% 协商 Agent → mc-sfu 推流
+        +stop_scrcpy(ud_id)
+    }
+    class AgentTransportServer ..> AgentRegistry
+    class AgentTransportServer ..> SessionMap
+    class AgentTransportServer ..> HeartbeatMonitor
+    class RealDeviceSdkImpl ..> AgentTransportServer : runAction 下发
+    class RealDeviceSdkImpl ..> DeviceLockManager : 动作前占用检查
+    class RealDeviceSdkImpl ..> MediaNegotiator : 远控时启 scrcpy
+    class HeartbeatMonitor ..> TerminalEventPublisher : 超时推 offline
+    class AgentRegistry ..> TerminalEventPublisher : 注册推 registered
+```
+
+**类图**（M-MC-15.a 设备主机侧 Agent 运行时）：
+
+```mermaid
+classDiagram
+    class AgentClient {
+        +connect(agentKey, server_url)             %% WebSocket 出站连接
+        +send(msg)                                 %% 发消息给中心
+        +on_message(msg)                           %% 按 msg 分发到各 Handler
+        +reconnect()                               %% 指数退避重连
+    }
+    class AdbBridge {
+        +execute(ud_id, adb_cmd) Result            %% ddmlib 封装
+        +install(ud_id, apk_path)
+        +press_key(ud_id, key_code)
+        +reboot(ud_id)
+        +screenshot(ud_id) bytes
+    }
+    class Uia2Driver {
+        +find(ud_id, locator) Element              %% sonic-driver-core 封装
+        +click(ud_id, element_or_xy)
+        +send_keys(ud_id, element, text)
+        +swipe(ud_id, start_xy, end_xy)
+    }
+    class ScrcpyClient {
+        +start(ud_id, sfu_host, sfu_port)          %% 启动 scrcpy server + 推流
+        +stop(ud_id)
+    }
+    class ConfigLoader {
+        +load_agent_key() string                   %% 配置文件读
+        +load_device_list() list[udId]             %% 配置文件写死的设备清单(MVP)
+    }
+    class AgentClient ..> ConfigLoader : 启动加载
+    class AgentClient ..> AdbBridge : runAction(install/pressKey/...)
+    class AgentClient ..> Uia2Driver : runAction(tap/input/swipe/...)
+    class AgentClient ..> ScrcpyClient : startScrcpy
+```
+
+**关键类说明（M-MC-15.c）**：
+- **AgentTransportServer**：II-02 WS endpoint 的服务端实现（Spring `@ServerEndpoint` 或 Spring WebSocket `Handler`），路径 `/agent/{agentKey}`。所有 Agent 消息在此按 `msg` 字段分发。
+- **AgentRegistry / SessionMap**：Agent 路由表（`agentId → Session`），对应 Sonic 的 `BytesTool.agentSessionMap`。注册成功后建立映射，断线时清理。
+- **HeartbeatMonitor**：周期扫描（默认 30s 一次），90s 内未收到 `heartBeat` 的 Agent 判掉线，关 session、推 `terminal_offline` 事件给 M-MC-01。
+- **DeviceLockManager**：设备占用锁（MVP 内存实现，单 mc-service 副本）。同一台设备同时只让一个会话用（远控 / 自动化互斥）。V1.2 演进 Redis 分布式锁。
+- **RealDeviceSdkImpl**：实现 M-MC-05 的 `DeviceSdk` 接口（真机 `mobile_real` 终端类型）。`execute(action)` 把动作封装为 `runAction` 消息，按 `agentId` 经 `AgentTransportServer.send()` 下发。**动作路径**：M-MC-05 → RealDeviceSdkImpl → AgentTransportServer → II-02 → M-MC-15.a → AdbBridge / Uia2Driver。
+- **TerminalEventPublisher**：设备上下线事件生产者，推 Spring 事件总线或 Kafka `mc-terminal-event`，M-MC-01 订阅写台账。
+- **MediaNegotiator**：远控媒体面协商。M-MC-04 mc-sfu 需要某设备画面时，调本类 → `startScrcpy` 消息下发 Agent → Agent 把 H.264 推到 mc-sfu 指定端口。
+
+**关键类说明（M-MC-15.a）**：
+- **AgentClient**：WebSocket 客户端（出站连接），启动时连 mc-service，鉴权后常驻。断线指数退避重连（1s/2s/5s/10s/30s 封顶）。
+- **AdbBridge**：ddmlib（`com.android.tools.ddmlib`）封装，对应 Sonic `AndroidDeviceBridgeTool`。提供 install / pressKey / reboot / screenshot 等系统级动作（不做交互式 shell 终端）。
+- **Uia2Driver**：基于 `io.github.soniccloudorg:sonic-driver-core`（Maven jar，Apache 2.0）封装 uiautomator2-server 协议，对应 Sonic `AndroidStepHandler`。提供 find / click / send_keys / swipe 四类动作（断言类步骤全砍）。uia2 协议本身是 Appium 体系、稳定，jar 不再更新风险可接受。
+- **ScrcpyClient**：scrcpy 客户端，**抄 Sonic** `ScrcpyInputSocketThread` / `ScrcpyOutputSocketThread` 两个类（Apache 2.0），启动 scrcpy server 后把 H.264 流推到 mc-sfu 指定端口。
+- **ConfigLoader**：从配置文件读 `agentKey` 和设备清单（udId 列表）。MVP 不做热插拔，演示前拔插设备要重启 Agent。
+
+**Agent 启动与鉴权算法（F-MC-15-01）**：
+
+```
+Agent 启动:
+    cfg = ConfigLoader.load()                       # agentKey, server_url, device_list
+    session = AgentClient.connect(cfg.server_url + "/agent/" + cfg.agentKey)
+    AgentClient.send({
+        msg: "auth",
+        agentKey: cfg.agentKey,
+        version: AGENT_VERSION,
+        capabilities: ["adb", "uia2", "scrcpy"]
+    })
+    # 等待 authResult
+    auth = AgentClient.recv()
+    if not auth.ok:
+        log.error(auth.rejectReason); exit(1)
+    agent_id = auth.agentId
+    # 一次性上报设备清单(MVP 无热插拔)
+    for ud_id in cfg.device_list:
+        info = AdbBridge.get_device_detail(ud_id)
+        AgentClient.send({msg: "deviceDetail", udId: ud_id, platform: "android",
+                          model: info.model, androidVersion: info.version,
+                          battery: info.battery})
+    # 启动心跳循环
+    schedule_every(30s, () -> AgentClient.send({msg: "heartBeat", agentId: agent_id, ...}))
+```
+
+**动作执行算法（F-MC-15-04/05，M-MC-05 → M-MC-15.c → M-MC-15.a）**：
+
+```
+# 中心侧 M-MC-15.c: RealDeviceSdkImpl.execute(action)
+def execute(action):
+    # 1. 占用检查(自动化任务自己已 occupy,这里只校验)
+    if not DeviceLockManager.is_locked_by(action.udId, action.token):
+        return Result(ok=False, error="device not occupied by this session")
+
+    # 2. 找 Agent session
+    agent_id = TerminalRepo.get_agent_of(action.udId)
+    session = SessionMap.get(agent_id)
+    if session is None:
+        return Result(ok=False, error="agent offline")
+
+    # 3. 经 II-02 下发 runAction
+    actionId = uuid()
+    AgentTransportServer.send(agent_id, {
+        msg: "runAction",
+        udId: action.udId,
+        actionType: action.action_type,             # tap/input/swipe/find 走 uia2; install/pressKey/reboot/screenshot 走 ADB
+        params: action.params,
+        actionId: actionId
+    })
+
+    # 4. 等待 actionResult(带超时,默认 30s)
+    result = wait_for_action_result(actionId, timeout=30s)
+    return result
+
+# 设备侧 M-MC-15.a: AgentClient.on_message
+def on_message(msg):
+    if msg.msg == "runAction":
+        try:
+            if msg.actionType in ["tap", "input", "swipe", "find", "sendKeys"]:
+                result = Uia2Driver.dispatch(msg.udId, msg.actionType, msg.params)
+            else:  # install, pressKey, reboot, screenshot
+                result = AdbBridge.dispatch(msg.udId, msg.actionType, msg.params)
+            AgentClient.send({msg: "actionResult", actionId: msg.actionId, ok: True, result: result})
+        except Exception as e:
+            AgentClient.send({msg: "actionResult", actionId: msg.actionId, ok: False, error: str(e)})
+```
+
+**远控媒体面算法（F-MC-15-06，M-MC-04 → M-MC-15.c → M-MC-15.a → mc-sfu）**：
+
+```
+# M-MC-04 mc-sfu 收到浏览器打开远控请求
+def open_remote(udId):
+    token = DeviceLockManager.occupy(udId, session_type="remote")
+    if token is None:
+        return Error("device locked by other session")
+    sfu_port = mc_sfu.allocate_port()
+    M_MC_15c.MediaNegotiator.start_scrcpy(udId, sfu_port)
+    return WebRTC_offer(sfu_port)
+
+# M-MC-15.c: MediaNegotiator.start_scrcpy
+def start_scrcpy(udId, sfu_port):
+    agent_id = TerminalRepo.get_agent_of(udId)
+    AgentTransportServer.send(agent_id, {
+        msg: "startScrcpy", udId: udId, streamPort: sfu_port
+    })
+    # 等 scrcpyReady
+
+# M-MC-15.a: AgentClient.on_message("startScrcpy")
+def on_start_scrcpy(msg):
+    ScrcpyClient.start(msg.udId, mc_sfu_host, msg.streamPort)  # H.264 → mc-sfu
+    AgentClient.send({msg: "scrcpyReady", udId: msg.udId, ok: True})
+```
+
+**设备占用锁状态机（F-MC-15-03）**：
+
+```
+状态: FREE → LOCKED(remote) → FREE
+状态: FREE → LOCKED(task) → FREE
+# MVP: 远控和自动化互斥(不区分优先级)
+# 转换:
+#   occupy(token, type): FREE → LOCKED(type), 返回 token
+#                        LOCKED → 拒绝(返回 failReason="locked")
+#   release(token):      LOCKED → FREE
+# 超时:                  LOCKED → FREE(会话断开自动释放)
+```
+
+**设计要点**：
+
+- **唯一触真机进程**（CON-15）：mc-service 不直接调 ADB / uia2 / scrcpy，所有真机操作经 II-02 由 M-MC-15.a 落地。这样 mc-service 重启不影响设备连接、Agent 可横向扩展到多主机（V1.2 演进）。
+- **Agent 是独立部署单元**（CON-15）：每个插设备的 Linux/Mac 主机一台 Spring Boot 进程，与 mc-service 经 WebSocket 通信。MVP 单主机跑一台 Agent + mc-service 就够，V1.2 多主机扩展不改架构。
+- **接口 / 实现分离**：M-MC-05 持 `DeviceSdk` 接口（F-MC-05-05 薄层，3 人天），M-MC-15.c 持 `RealDeviceSdkImpl`（V1.3 新增）。未来 ProfileSdk（CDP 直连 EI-06）留 M-MC-05 同进程实现，云手机 / ARM / 虚拟化真机 SDK 留 V1.2 经 M-MC-15 同模式落地。
+- **借鉴 Sonic 的稳定性**：scrcpy 集成（`ScrcpyInputSocketThread` / `OutputSocketThread`）、ddmlib 用法、uia2 协议封装都直接抄 Sonic（Apache 2.0），Sonic 跑了几年成熟度高；archived 风险靠 fork 自维护对冲。
+- **MVP 砍掉的能力**（V1.2 补）：iOS 设备控制（WDA + sib，需 Mac + Xcode）、设备热插拔（ddmlib `AndroidDeviceStatusListener`）、设备保护（温升 / 低电 / 存储满自动隔离）、远程升级（Agent OTA）、Groovy 扩展脚本（本平台有 GraalVM JS + agent-runtime 两引擎，不需要第三引擎）。
+- **与 M-MC-01 的边界**：M-MC-15.c 是设备上下线事件生产者，M-MC-01 是消费者（写台账 + 查询）。M-MC-01 不持 WS endpoint、不判定在线状态、不发指令给 Agent，回归纯台账持有方。
+- **与 M-MC-04 的边界**：M-MC-04 / mc-sfu 持 WebRTC 远控体验（画面转发、宫格、键鼠映射），**画面源**（scrcpy server 启动 + H.264 产出）归 M-MC-15.a。Agent → mc-sfu 端口直推，不经 mc-service WS 转发（避免 server 成视频瓶颈）。
+
 ---
 
 ## 6 接口详细设计
@@ -1354,14 +1608,39 @@ MC 对接的外部接口（EI）均为商用或基础设施服务：
 
 消费方（DC / SWM / OCC）订阅后立即响应（停止任务 / 停止养号 / 休眠智能体 / 移除目标）。
 
-#### 6.2.3 II-02 Agent 指令与日志接口（M-MC-01/05 ↔ 移动端 Agent）
+#### 6.2.3 II-02 Agent 长连接协议（M-MC-15 ↔ 真机 Agent，★ V1.3 / V3.10 提供方调整）
 
-移动端 Agent 与 mc-service 间的长连接协议（WebSocket / gRPC 双向流）：
+**V1.3（V3.10）变更**：II-02 的提供方由原「M-MC-01/05 ↔ 移动端 Agent」调整为「**M-MC-15 ↔ 真机 Agent（M-MC-15.a）**」。M-MC-15.c 中心侧编排器持 WebSocket endpoint（`ws://{mc-service}/agent/{agentKey}`），全权管 Agent 生命周期（注册 / 心跳 / 占用锁）、控制动作下发、日志 / 截图回传、远控媒体面协商。M-MC-01 不再持 endpoint（改订阅 M-MC-15.c 的设备上下线事件维护台账），M-MC-05 不直接连 Agent（动作经 M-MC-15.c 编排）。物理上**一根 WebSocket 承载所有消息类型**（鉴权一次、断线重连一次），消息靠 `msg` 字段区分——对齐 SonicCloudOrg 的 `TransportServer` 设计（Apache 2.0 借鉴）。
 
-| 方向 | 消息类型 | 内容 |
-| --- | --- | --- |
-| mc-service → Agent | 指令下发 | 任务实例（M-MC-07）、控制动作（M-MC-05 ADB / 无障碍通道） |
-| Agent → mc-service | 日志回传 | 任务执行日志、关键步骤截图、终端指标心跳、动作执行结果 |
+**传输**：WebSocket 文本帧（JSON over WS，MVP 不引入 protobuf）；二进制帧仅用于截图回传（可选，亦可 base64 嵌文本）。Agent 主动连出（出站连接，穿越 NAT 友好），鉴权用 path 参数 `agentKey`（配置文件读，不做密钥轮换）。
+
+**MVP 消息字典（V1.3 核心，对应 6 个功能点 F-MC-15-01~06）**：
+
+| `msg` 类型 | 方向 | 对应功能点 | 时机 | 关键字段 |
+| --- | --- | --- | --- | --- |
+| `auth` | Agent → Server | F-MC-15-01 | 连接建立后首次 | `agentKey`, `version`, `capabilities` |
+| `authResult` | Server → Agent | F-MC-15-01 | 鉴权回应 | `ok`, `agentId`, `rejectReason` |
+| `deviceDetail` | Agent → Server | F-MC-15-01 | 注册成功后一次性上报 | `udId`, `platform`, `model`, `androidVersion`, `battery`（MVP 无热插拔，清单在 Agent 配置文件写死） |
+| `heartBeat` | Agent → Server | F-MC-15-02 | 周期（默认 30s） | `agentId`, `timestamp`, `deviceCount` |
+| `heartBeatAck` | Server → Agent | F-MC-15-02 | 心跳回应 | `serverTime` |
+| `occupy` | Server → Agent | F-MC-15-03 | 远控 / 任务占用设备 | `udId`, `token`, `sessionType`（`remote` / `task`） |
+| `occupyResult` | Agent → Server | F-MC-15-03 | 占用回应 | `ok`, `failReason`（`locked` / `offline`） |
+| `release` | Server → Agent | F-MC-15-03 | 释放占用 | `udId`, `token` |
+| `runAction` | Server → Agent | F-MC-15-04/05 | 执行 ADB / 无障碍动作 | `udId`, `actionType`（`tap` / `input` / `swipe` / `find` / `sendKeys` 走 uia2；`install` / `pressKey` / `reboot` / `screenshot` 走 ADB），`params`, `actionId` |
+| `actionResult` | Agent → Server | F-MC-15-04/05 | 动作结果 | `actionId`, `ok`, `result`（截图 base64 / 输出文本）, `error` |
+| `startScrcpy` | Server → Agent | F-MC-15-06 | 启动远控画面源 | `udId`, `streamPort`（mc-sfu 指定端口） |
+| `scrcpyReady` | Agent → Server | F-MC-15-06 | scrcpy 就绪 | `udId`, `ok`, `videoPort` |
+| `agentLog` | Agent → Server | F-MC-15-02（顺带） | Agent 自身日志 | `level`, `message`, `timestamp` |
+
+**关键设计点**：
+
+1. **`runAction` 统一封装 ADB + 无障碍**（不拆 `runAdb` / `runUia2` 两条）——`actionType` 字段区分走哪条通道。**对 M-MC-05 网关透明**：网关只 submit 动作（II-07），不关心走 ADB 还是 uia2；通道选择在 Agent 内部按 `actionType` 分发（F-MC-15-04 ADB 控制器 / F-MC-15-05 无障碍控制器）。
+2. **`deviceDetail` 只在注册时上报一次**——MVP 不做热插拔（F-MC-15-03 砍掉改手动配置），演示前拔插设备要重启 Agent。V1.2 加 `devicePlugIn` / `devicePlugOut` 消息做热插拔。
+3. **媒体面 Agent → mc-sfu 端口直推**——`startScrcpy` 让 Agent 把 H.264 推到 mc-sfu 指定端口，**不经 mc-service WS 转发**（避免 server 成视频瓶颈，对齐 Sonic 媒体面设计）。要求 Agent 与 mc-sfu 网络可达（同 k8s 集群或同主机）。WebRTC 转 RTP → 浏览器由 M-MC-04 / mc-sfu 承担。
+4. **占用锁简单互斥**——MVP 内存锁（单 mc-service 副本，`ConcurrentHashMap<udId, token>`），同一台设备同时只让一个会话用（远控 / 自动化互斥），不做优先级抢占。V1.2 演进 Redis 分布式锁支持多副本。
+5. **超时与重连**——心跳超时默认 90s（3 个周期）判掉线，M-MC-15.c 关闭 WS、推 `terminal_offline` 给 M-MC-01；Agent 端指数退避重连（1s / 2s / 5s / 10s / 30s 封顶）。重连后重新走 `auth` + `deviceDetail`。
+
+**V1.2 待补充消息**（MVP 不实现，预留）：`battery`（设备保护 F-MC-15-09 原 03/09 砍掉）、`settings`（配置下发）、`upgrade`（远程升级，砍掉）、`reboot`（设备重启）、`findSteps` / `generateStep`（Sonic 零代码步骤生成，本平台不做）。
 
 #### 6.2.4 II-03 远控画面传输（M-MC-04，MC 为提供方）
 
@@ -1535,13 +1814,13 @@ flowchart TB
 
 | 资源 | 类型 | 副本 | 说明 |
 | --- | --- | --- | --- |
-| mc-service | Deployment | ×1（V2 演进 ×N） | Spring Boot 单一微服务，M-MC-01~14 同进程 |
+| mc-service | Deployment | ×1（V2 演进 ×N） | Spring Boot 单一微服务，M-MC-01~14 + M-MC-15.c 共 15 模块同进程 |
 | mc-service Service | Service | - | ClusterIP，供前端 / 各子系统访问 |
 | mc-sfu | Deployment | ×1（V2 演进 ×N） | mediasoup WebRTC SFU，移动端远控媒体面 |
 | mc-sfu Service | Service | - | ClusterIP + UDP（RTP 端口范围） |
 | mc-config | ConfigMap | - | WebRTC 信令配置、Kafka topic、限流阈值、拟人化策略默认值、Cron 调度参数 |
 | mc-secret | Secret | - | 账号凭据 AES 密钥、JWT 密钥（与 com-auth-lib 一致）、PG/Redis 连接凭据（NR-S-03 加密） |
-| 移动端 Agent | 设备端程序 | 随设备规模 | Android 程序，非 K8s 资源 |
+| **mc-agent（M-MC-15.a）** | **设备主机进程**（非 K8s 资源） | 随设备主机规模（MVP 单主机） | Spring Boot 独立进程，部署在插真机的 Linux/Mac 主机上，经 II-02 WS 连 mc-service。**唯一触碰真机的进程**（CON-15） |
 
 > PostgreSQL / Redis / Kafka / ClickHouse / MinIO 由 DC 部署或为 KubeSphere 基础设施，MC 仅消费（独立 schema / 库 / Key 前缀 / topic 前缀）。
 
@@ -1563,7 +1842,7 @@ flowchart TB
 
 ## 9 需求追溯（概要引用）
 
-MC 子系统需求双向追溯的明细以《软件需求跟踪矩阵.xlsx》（RTM，GJB 438C）为唯一权威源。本文件设计对 14 项需求的覆盖概要如下：
+MC 子系统需求双向追溯的明细以《软件需求跟踪矩阵.xlsx》（RTM，GJB 438C）为唯一权威源。本文件设计对 15 项需求的覆盖概要如下：
 
 | 需求 | 模块 | 设计章节 |
 | --- | --- | --- |
@@ -1581,8 +1860,9 @@ MC 子系统需求双向追溯的明细以《软件需求跟踪矩阵.xlsx》（
 | R-MC-012 智能体账号分层分组 | M-MC-12 / F-MC-12-01~02 | §5.4.2 |
 | R-MC-013 智能体账号绑定与资产迁移 | M-MC-13 / F-MC-13-01~05 | §5.4.3 |
 | R-MC-014 智能体执行宿主与同步 | M-MC-14 / F-MC-14-01~05 | §5.5.1 |
+| R-MC-015 真机 Agent 运行时与编排（V1.3 新增） | M-MC-15 / F-MC-15-01~06 | §5.6.1 |
 
-非功能需求覆盖：NR-S-01（§7.4 鉴权）、NR-S-03（§4.1.5 凭据 AES 加密、§7.4）、NR-S-05（§5.2.4 脚本沙箱、§7.4）、NR-S-06（§4.1.11 审计日志、§5.3.1 越权审计）、NR-C-01（com-auth-lib org_id 隔离）、NR-P-01/05（§5.1.4 远控延迟 ≤300ms）、NR-P-04（§5.2.3 任务入队到分发 ≤2s）、NR-R-01/04（§3.2 当前单副本，V2 演进多副本）。约束覆盖：CON-06（§3.1 私有化 mediasoup / GraalVM 不依赖外部公有云）、CON-07（§5.2.1 动作收口）、CON-08（§5.2.2 双执行模式）、CON-09（§5.1.3 风控分级选用）、CON-10（§5.2.2 推理执行分离）、CON-11（§5.4.1 账号权威源）、CON-12（§5.1.2 指纹固化由 EI-06 商用产品负责）、CON-13（§4.1.6 绑定规则、§5.2.5 差异化绑定）。CON-14 为智能体域特例（coze-loop Go 旁挂于 SWM），不直接约束 MC。
+非功能需求覆盖：NR-S-01（§7.4 鉴权）、NR-S-03（§4.1.5 凭据 AES 加密、§7.4）、NR-S-05（§5.2.4 脚本沙箱、§7.4）、NR-S-06（§4.1.11 审计日志、§5.3.1 越权审计）、NR-C-01（com-auth-lib org_id 隔离）、NR-P-01/05（§5.1.4 远控延迟 ≤300ms）、NR-P-04（§5.2.3 任务入队到分发 ≤2s）、NR-R-01/04（§3.2 当前单副本，V2 演进多副本）。约束覆盖：CON-06（§3.1 私有化 mediasoup / GraalVM 不依赖外部公有云）、CON-07（§5.2.1 动作收口）、CON-08（§5.2.2 双执行模式）、CON-09（§5.1.3 风控分级选用）、CON-10（§5.2.2 推理执行分离）、CON-11（§5.4.1 账号权威源）、CON-12（§5.1.2 指纹固化由 EI-06 商用产品负责）、CON-13（§4.1.6 绑定规则、§5.2.5 差异化绑定）、**CON-15（§5.6.1 Agent 独立部署单元，V1.3 / V3.10 新增）**。CON-14 为智能体域特例（coze-loop Go 旁挂于 SWM），不直接约束 MC。
 
 ---
 
