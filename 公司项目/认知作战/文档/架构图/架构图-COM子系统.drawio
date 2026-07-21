@@ -4,107 +4,155 @@
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="title" value="COM 公共功能架构图 · V3.0 / V3.10 · 2026-07-21 · 对应 SRS-COM 分册 + HLD §4.4" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontColor=#000000;fontSize=14;fontFamily=Microsoft YaHei;fontStyle=1;" vertex="1" parent="1">
-          <mxGeometry x="20" y="10" width="900" height="30" as="geometry" />
+        <mxCell id="title" value="COM 公共功能架构图 · V4.2 / V3.1（CON-16 若依化）· 2026-07-21 · 对应 SRS-COM 分册 + HLD §4.4" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontColor=#000000;fontSize=14;fontFamily=Microsoft YaHei;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="20" y="10" width="1000" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="sub_caption" value="职责：身份认证 + 权限与组织管理（RBAC），向所有子系统下沉共享验签库 com-auth-lib（本地 JWT 验签 + 组织行级过滤）。技术栈：Java 17 + Spring Boot 3.x。" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontColor=#666666;fontSize=11;fontFamily=Microsoft YaHei;" vertex="1" parent="1">
+        <mxCell id="sub_caption" value="职责：基于若依（RuoYi-Vue-Plus）原生框架的统一认证 + 权限与部门管理（RBAC + @DataScope）。有状态令牌（uuid+Base64 用户信息存共享 Redis），各子系统查共享 Redis 校验。废弃 JWT/com-auth-lib/org_id 多组织（V3.1/V4.2）。" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontColor=#666666;fontSize=11;fontFamily=Microsoft YaHei;" vertex="1" parent="1">
           <mxGeometry x="20" y="40" width="1300" height="20" as="geometry" />
         </mxCell>
-        <mxCell id="com_container" value="COM 公共功能 M-COM-00（com-service · Java 17 + Spring Boot 3.x）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#666666;dashed=1;fontSize=13;fontFamily=Microsoft YaHei;fontStyle=1;verticalAlign=top;align=left;spacingLeft=15;spacingTop=10;" vertex="1" parent="1">
-          <mxGeometry x="400" y="200" width="500" height="280" as="geometry" />
+        <mxCell id="com_container" value="COM 公共功能 M-COM-00（com-service · Java 17 + Spring Boot 3.x · 以若依 RuoYi-Vue-Plus 为底座，CON-16）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#666666;dashed=1;fontSize=13;fontFamily=Microsoft YaHei;fontStyle=1;verticalAlign=top;align=left;spacingLeft=15;spacingTop=10;" vertex="1" parent="1">
+          <mxGeometry x="280" y="180" width="640" height="500" as="geometry" />
         </mxCell>
-        <mxCell id="m_com_01" value="M-COM-01&#10;身份认证（身份守门人）&#10;&#10;• 登录 / 登出 / 令牌刷新&#10;• JWT 无状态令牌签发&#10;  （user_id / org_id / roles）&#10;• 多组织 / LDAP 支持可选" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontSize=11;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="430" y="260" width="210" height="180" as="geometry" />
+        <mxCell id="ruoyi_box" value="若依（RuoYi-Vue-Plus）原生框架底座（不自研鉴权组件，CON-16）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#9673A6;dashed=1;fontSize=11;fontFamily=Microsoft YaHei;fontStyle=1;verticalAlign=top;align=left;spacingLeft=10;spacingTop=8;" vertex="1" parent="1">
+          <mxGeometry x="300" y="220" width="600" height="380" as="geometry" />
         </mxCell>
-        <mxCell id="m_com_02" value="M-COM-02&#10;权限与组织管理&#10;（权限决策与组织隔离）&#10;&#10;• 用户 / 角色 / 组织 CRUD&#10;• 账号解锁&#10;• RBAC 权限点查询&#10;• 数据范围（@DataScope）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontSize=11;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="660" y="260" width="210" height="180" as="geometry" />
+        <mxCell id="m_com_01" value="M-COM-01&#10;身份认证（身份守门人）&#10;&#10;基于若依原生登录：&#10;• /login + /getInfo + /getRouters&#10;• 有状态令牌：uuid + Base64 用户信息&#10;  存共享 Redis login_tokens:{uuid}&#10;  （含 user_id / dept_id / roles）&#10;• 5 次错误锁定 + 令牌黑名单 + 登出吊销" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontSize=10;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="320" y="260" width="270" height="180" as="geometry" />
+        </mxCell>
+        <mxCell id="m_com_02" value="M-COM-02&#10;权限与部门管理&#10;（权限决策 + 数据权限隔离）&#10;&#10;基于若依原生 RBAC：&#10;• 功能权限 @PreAuthorize&#10;  （多角色 + role_key + 菜单/按钮权限点）&#10;• 数据权限 @DataScope + dept_id&#10;  （全部 / 本部门 / 本部门及以下 / 仅本人）&#10;• 系统管理控制台 11 页" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontSize=10;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="610" y="260" width="270" height="180" as="geometry" />
         </mxCell>
         <mxCell id="e_01_02" value="权限决策" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#000000;fontSize=10;fontFamily=Microsoft YaHei;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="m_com_01" target="m_com_02">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="store_pg" value="PostgreSQL / MySQL&#10;用户 / 角色 / 组织 / 菜单&#10;DR-07（与 MC 共享审计与风险）" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;fillColor=#F8CECC;strokeColor=#B85450;fontSize=11;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="500" y="520" width="300" height="80" as="geometry" />
+        <mxCell id="sys_mgmt" value="系统管理控制台 11 页（若依原生 sys_user / sys_role / sys_dept / sys_menu / sys_dict 等表承载）&#10;用户 / 角色 / 部门 / 登录策略 / 登录日志 / 菜单 / 岗位 / 字典 / 参数 / 通知 / 操作日志" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF2CC;strokeColor=#D6B656;fontSize=10;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="320" y="470" width="560" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="e_02_sys" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#000000;" edge="1" parent="1" source="m_com_02" target="sys_mgmt">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="shared_redis" value="共享 Redis&#10;login_tokens:{uuid}&#10;（有状态令牌存储 + SSO 共享）" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;fillColor=#F8CECC;strokeColor=#B85450;fontSize=11;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="970" y="200" width="240" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="store_pg" value="PostgreSQL / MySQL&#10;若依原生表（sys_user/sys_role/sys_dept&#10;sys_menu/sys_dict/sys_config 等）&#10;DR-07（与 MC 共享审计与风险）" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;fillColor=#F8CECC;strokeColor=#B85450;fontSize=10;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="450" y="700" width="300" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="e_01_redis" value="读写令牌" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#000000;fontSize=10;fontFamily=Microsoft YaHei;labelBackgroundColor=#FFFFFF;strokeWidth=2;" edge="1" parent="1" source="m_com_01" target="shared_redis">
+          <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="e_02_pg" value="读写" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#000000;fontSize=10;fontFamily=Microsoft YaHei;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="m_com_02" target="store_pg">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="auth_lib" value="com-auth-lib（共享 Java 库，下沉各子系统本地执行）&#10;&#10;• JWT 本地验签（无网络开销）&#10;• org_id 行级过滤（多组织隔离）&#10;• @PreAuthorize / @DataScope 切面&#10;• 与 com-service 密钥一致" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFE6CC;strokeColor=#D79B00;strokeWidth=2;fontSize=11;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="400" y="640" width="500" height="100" as="geometry" />
+        <mxCell id="fe" value="前端（Vue3 + TS + Element Plus）&#10;4 控制台（MC/OCC/SWM/系统管理）+ 5 横切通用页&#10;localStorage 存令牌 · 跨控制台 SSO" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F5F5F5;strokeColor=#999999;dashed=1;fontSize=11;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="970" y="340" width="280" height="80" as="geometry" />
         </mxCell>
-        <mxCell id="e_01_lib" value="密钥/规则同步" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#999999;dashed=1;fontSize=10;fontFamily=Microsoft YaHei;labelBackgroundColor=#FFFFFF;fontColor=#666666;" edge="1" parent="1" source="m_com_01" target="auth_lib">
+        <mxCell id="e_fe_01" value="登录 + 5 次锁定 + SSO&#10;II-16" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#000000;fontSize=10;fontFamily=Microsoft YaHei;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="fe" target="m_com_01">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="fe" value="前端（4 控制台 + 5 横切通用页）&#10;登录 / 系统管理控制台" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F5F5F5;strokeColor=#999999;dashed=1;fontSize=11;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="950" y="260" width="280" height="80" as="geometry" />
-        </mxCell>
-        <mxCell id="e_fe_01" value="登录/刷新&#10;II-16" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#000000;fontSize=10;fontFamily=Microsoft YaHei;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="fe" target="m_com_01">
+        <mxCell id="e_fe_02" value="@PreAuthorize / @DataScope / 11 页 CRUD&#10;II-17" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#000000;fontSize=10;fontFamily=Microsoft YaHei;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="fe" target="m_com_02">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e_fe_02" value="权限点查询 / 组织 CRUD&#10;II-17" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#000000;fontSize=10;fontFamily=Microsoft YaHei;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="fe" target="m_com_02">
-          <mxGeometry relative="1" as="geometry" />
+        <mxCell id="dc_node" value="DC 子系统&#10;（查共享 Redis 校验令牌）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F5F5F5;strokeColor=#999999;dashed=1;fontSize=10;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="20" y="200" width="230" height="50" as="geometry" />
         </mxCell>
-        <mxCell id="dc_node" value="DC 子系统&#10;（含 com-auth-lib）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F5F5F5;strokeColor=#999999;dashed=1;fontSize=11;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="40" y="260" width="160" height="50" as="geometry" />
+        <mxCell id="mc_node" value="MC 子系统&#10;（查共享 Redis 校验令牌）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F5F5F5;strokeColor=#999999;dashed=1;fontSize=10;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="20" y="270" width="230" height="50" as="geometry" />
         </mxCell>
-        <mxCell id="mc_node" value="MC 子系统&#10;（含 com-auth-lib）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F5F5F5;strokeColor=#999999;dashed=1;fontSize=11;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="40" y="330" width="160" height="50" as="geometry" />
+        <mxCell id="swm_node" value="SWM 子系统&#10;（查共享 Redis 校验令牌）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F5F5F5;strokeColor=#999999;dashed=1;fontSize=10;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="20" y="340" width="230" height="50" as="geometry" />
         </mxCell>
-        <mxCell id="swm_node" value="SWM 子系统&#10;（含 com-auth-lib）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F5F5F5;strokeColor=#999999;dashed=1;fontSize=11;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="40" y="400" width="160" height="50" as="geometry" />
+        <mxCell id="occ_node" value="OCC 子系统&#10;（查共享 Redis 校验令牌）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F5F5F5;strokeColor=#999999;dashed=1;fontSize=10;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="20" y="410" width="230" height="50" as="geometry" />
         </mxCell>
-        <mxCell id="occ_node" value="OCC 子系统&#10;（含 com-auth-lib）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F5F5F5;strokeColor=#999999;dashed=1;fontSize=11;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="40" y="470" width="160" height="50" as="geometry" />
+        <mxCell id="om_node" value="OM 子系统&#10;（查共享 Redis 校验令牌）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F5F5F5;strokeColor=#999999;dashed=1;fontSize=10;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="20" y="480" width="230" height="50" as="geometry" />
         </mxCell>
-        <mxCell id="om_node" value="OM 子系统&#10;（含 com-auth-lib）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F5F5F5;strokeColor=#999999;dashed=1;fontSize=11;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="40" y="540" width="160" height="50" as="geometry" />
+        <mxCell id="e_neigh_redis" value="查共享 Redis 校验令牌&#10;（不经 com-auth-lib 本地验签，V4.2 改）" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#D79B00;fontSize=10;fontFamily=Microsoft YaHei;labelBackgroundColor=#FFFFFF;fontColor=#D79B00;strokeWidth=2;" edge="1" parent="1" source="dc_node" target="shared_redis">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="255" y="225" />
+              <mxPoint x="255" y="180" />
+              <mxPoint x="1090" y="180" />
+            </Array>
+          </mxGeometry>
         </mxCell>
-        <mxCell id="e_auth_all" value="本地 JWT 验签 + 组织行级过滤（无网络开销）" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#D79B00;fontSize=10;fontFamily=Microsoft YaHei;labelBackgroundColor=#FFFFFF;fontColor=#D79B00;strokeWidth=2;" edge="1" parent="1" source="auth_lib" target="dc_node">
-          <mxGeometry relative="1" as="geometry" />
+        <mxCell id="e_mc_redis" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#D79B00;strokeWidth=2;dashed=1;" edge="1" parent="1" source="mc_node" target="shared_redis">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="265" y="295" />
+              <mxPoint x="265" y="190" />
+              <mxPoint x="1080" y="190" />
+            </Array>
+          </mxGeometry>
         </mxCell>
-        <mxCell id="constraint_note" value="约束标注：&#10;• 部署单元：com-service 单一 Java/Spring Boot 微服务（当前单副本）&#10;• com-auth-lib 是部署工件（jar 依赖），不是独立服务——下沉到每个子系统进程内执行&#10;• 数据所有权：DR-07 审计与风险数据（与 MC 共享：COM 审计日志、MC 风险事件）&#10;• 对外接口：II-16 认证服务（出）/ II-17 权限与组织管理（出）&#10;• 无 COM 专属 CON（架构底线是 CON-11 权威源 + 统一 Java 栈原则）&#10;• 角色体系：超级管理员 / 运营主管 / 运营人员 / 脚本开发者 / 审核人员 / 只读观察员" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF2CC;strokeColor=#D6B656;fontSize=11;fontFamily=Microsoft YaHei;align=left;verticalAlign=top;spacingLeft=10;spacingTop=8;" vertex="1" parent="1">
-          <mxGeometry x="950" y="380" width="400" height="170" as="geometry" />
+        <mxCell id="e_swm_redis" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#D79B00;strokeWidth=2;dashed=1;" edge="1" parent="1" source="swm_node" target="shared_redis">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="275" y="365" />
+              <mxPoint x="275" y="200" />
+              <mxPoint x="1070" y="200" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_occ_redis" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#D79B00;strokeWidth=2;dashed=1;" edge="1" parent="1" source="occ_node" target="shared_redis">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="285" y="435" />
+              <mxPoint x="285" y="210" />
+              <mxPoint x="1060" y="210" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_om_redis" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#D79B00;strokeWidth=2;dashed=1;" edge="1" parent="1" source="om_node" target="shared_redis">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="295" y="505" />
+              <mxPoint x="295" y="220" />
+              <mxPoint x="1050" y="220" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="constraint_note" value="约束标注：&#10;• ⭐ CON-16（V3.1/V4.2 新增 · 核心）：以若依（RuoYi-Vue-Plus）原生框架为底座，不自研鉴权组件&#10;• 部署单元：com-service 单一 Java/Spring Boot 微服务（当前单副本）&#10;• ⚠️ V3.1/V4.2 废弃技术路线：JWT 无状态令牌 / com-auth-lib 共享验签库 / org_id 多组织隔离 / 多租户隔离（全部清除）&#10;• V3.1/V4.2 新技术路线：有状态令牌（uuid+Base64 用户信息存共享 Redis）/ 跨 4 控制台 SSO / @PreAuthorize 完整 RBAC / @DataScope + dept_id 四级数据权限&#10;• 数据所有权：DR-07 审计与风险数据（与 MC 共享）&#10;• 对外接口：II-16 认证服务（出）/ II-17 权限与部门管理（出）&#10;• 角色体系（若依多角色）：超级管理员 / 运营主管 / 运营人员 / 脚本开发者 / 审核人员 / 只读观察员&#10;• 各子系统校验令牌方式：查共享 Redis login_tokens:{uuid}，不经本地验签库" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF2CC;strokeColor=#D6B656;fontSize=11;fontFamily=Microsoft YaHei;align=left;verticalAlign=top;spacingLeft=10;spacingTop=8;" vertex="1" parent="1">
+          <mxGeometry x="970" y="450" width="400" height="220" as="geometry" />
         </mxCell>
         <mxCell id="legend_box" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#999999;" vertex="1" parent="1">
-          <mxGeometry x="950" y="640" width="400" height="200" as="geometry" />
+          <mxGeometry x="970" y="690" width="400" height="180" as="geometry" />
         </mxCell>
         <mxCell id="legend_title" value="图例" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=12;fontFamily=Microsoft YaHei;fontStyle=1;fontColor=#000000;" vertex="1" parent="1">
-          <mxGeometry x="960" y="645" width="60" height="20" as="geometry" />
+          <mxGeometry x="980" y="695" width="60" height="20" as="geometry" />
         </mxCell>
         <mxCell id="lg_mod" value="业务模块" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontSize=10;fontFamily=Microsoft YaHei;" vertex="1" parent="1">
-          <mxGeometry x="960" y="670" width="80" height="24" as="geometry" />
+          <mxGeometry x="980" y="720" width="80" height="24" as="geometry" />
         </mxCell>
         <mxCell id="lg_mod_t" value="M-COM-01/02 子系统自有模块" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=10;fontFamily=Microsoft YaHei;" vertex="1" parent="1">
-          <mxGeometry x="1050" y="670" width="290" height="24" as="geometry" />
+          <mxGeometry x="1070" y="720" width="290" height="24" as="geometry" />
         </mxCell>
-        <mxCell id="lg_dep" value="部署工件" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFE6CC;strokeColor=#D79B00;strokeWidth=2;fontSize=10;fontFamily=Microsoft YaHei;" vertex="1" parent="1">
-          <mxGeometry x="960" y="700" width="80" height="24" as="geometry" />
+        <mxCell id="lg_ruoyi" value="若依底座" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#9673A6;dashed=1;fontSize=10;fontFamily=Microsoft YaHei;" vertex="1" parent="1">
+          <mxGeometry x="980" y="750" width="80" height="24" as="geometry" />
         </mxCell>
-        <mxCell id="lg_dep_t" value="com-service / com-auth-lib（共享库）" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=10;fontFamily=Microsoft YaHei;" vertex="1" parent="1">
-          <mxGeometry x="1050" y="700" width="290" height="24" as="geometry" />
+        <mxCell id="lg_ruoyi_t" value="RuoYi-Vue-Plus 原生框架范围" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=10;fontFamily=Microsoft YaHei;" vertex="1" parent="1">
+          <mxGeometry x="1070" y="750" width="290" height="24" as="geometry" />
         </mxCell>
         <mxCell id="lg_data" value="数据" style="shape=cylinder3;whiteSpace=wrap;html=1;fillColor=#F8CECC;strokeColor=#B85450;fontSize=10;fontFamily=Microsoft YaHei;" vertex="1" parent="1">
-          <mxGeometry x="960" y="730" width="80" height="24" as="geometry" />
+          <mxGeometry x="980" y="780" width="80" height="24" as="geometry" />
         </mxCell>
-        <mxCell id="lg_data_t" value="PostgreSQL/MySQL（DR-07 与 MC 共享）" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=10;fontFamily=Microsoft YaHei;" vertex="1" parent="1">
-          <mxGeometry x="1050" y="730" width="290" height="24" as="geometry" />
+        <mxCell id="lg_data_t" value="共享 Redis（令牌）+ PG/MySQL（DR-07）" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=10;fontFamily=Microsoft YaHei;" vertex="1" parent="1">
+          <mxGeometry x="1070" y="780" width="290" height="24" as="geometry" />
         </mxCell>
         <mxCell id="lg_neigh" value="邻接子系统" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F5F5F5;strokeColor=#999999;dashed=1;fontSize=10;fontFamily=Microsoft YaHei;" vertex="1" parent="1">
-          <mxGeometry x="960" y="760" width="80" height="24" as="geometry" />
+          <mxGeometry x="980" y="810" width="80" height="24" as="geometry" />
         </mxCell>
-        <mxCell id="lg_neigh_t" value="DC / MC / SWM / OCC / OM（com-auth-lib 下沉方）" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=10;fontFamily=Microsoft YaHei;" vertex="1" parent="1">
-          <mxGeometry x="1050" y="760" width="290" height="24" as="geometry" />
+        <mxCell id="lg_neigh_t" value="DC/MC/SWM/OCC/OM（查共享 Redis 校验令牌）" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=10;fontFamily=Microsoft YaHei;" vertex="1" parent="1">
+          <mxGeometry x="1070" y="810" width="290" height="24" as="geometry" />
         </mxCell>
-        <mxCell id="lg_note" value="约束块" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF2CC;strokeColor=#D6B656;fontSize=10;fontFamily=Microsoft YaHei;" vertex="1" parent="1">
-          <mxGeometry x="960" y="790" width="80" height="24" as="geometry" />
-        </mxCell>
-        <mxCell id="lg_note_t" value="设计要点 / DR / 角色体系" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=10;fontFamily=Microsoft YaHei;" vertex="1" parent="1">
-          <mxGeometry x="1050" y="790" width="290" height="24" as="geometry" />
+        <mxCell id="lg_note" value="11 页系统管理" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF2CC;strokeColor=#D6B656;fontSize=10;fontFamily=Microsoft YaHei;" vertex="1" parent="1">
+          <mxGeometry x="980" y="840" width="80" height="24" as="geometry" />
         </mxCell>
         <mxCell id="lg_edge_solid" value="──▶ 实线：同步调用（II）" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=10;fontFamily=Microsoft YaHei;fontColor=#000000;" vertex="1" parent="1">
-          <mxGeometry x="960" y="823" width="200" height="16" as="geometry" />
+          <mxGeometry x="1070" y="840" width="200" height="24" as="geometry" />
         </mxCell>
-        <mxCell id="lg_edge_orange" value="━━ 橙粗：com-auth-lib 下沉（本地调用）" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=10;fontFamily=Microsoft YaHei;fontColor=#D79B00;" vertex="1" parent="1">
-          <mxGeometry x="1170" y="823" width="220" height="16" as="geometry" />
+        <mxCell id="lg_edge_orange" value="━━ 橙粗：共享 Redis 令牌校验（V4.2 新）" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=10;fontFamily=Microsoft YaHei;fontColor=#D79B00;" vertex="1" parent="1">
+          <mxGeometry x="980" y="870" width="300" height="16" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
