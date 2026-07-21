@@ -1,0 +1,136 @@
+<mxfile host="app.diagrams.net" modified="2026-07-21T00:00:00.000Z" agent="认知行动平台文档" version="24.0.0" type="device">
+  <diagram name="OM子系统架构图" id="om-arch">
+    <mxGraphModel dx="1400" dy="900" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1400" pageHeight="900" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title" value="OM 运维监控子系统架构图 · V3.0 / V3.10 · 2026-07-21 · 对应 SRS-OM 分册 + HLD §4.3（ADR-004 大幅改写）" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontColor=#000000;fontSize=14;fontFamily=Microsoft YaHei;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="20" y="10" width="1000" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="sub_caption" value="职责：复用 KubeSphere 开源可观测底座 + 单一 Java/Spring Boot 微服务，汇聚各子系统日志/指标，做分析入仓与告警事件归档。前端运维页已删，可观测交 KubeSphere 原生控制台。" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontColor=#666666;fontSize=11;fontFamily=Microsoft YaHei;" vertex="1" parent="1">
+          <mxGeometry x="20" y="40" width="1300" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="om_container" value="OM 运维监控子系统 M-OM-00（om-service · Java/Spring Boot · 4 模块同进程）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#666666;dashed=1;fontSize=13;fontFamily=Microsoft YaHei;fontStyle=1;verticalAlign=top;align=left;spacingLeft=15;spacingTop=10;" vertex="1" parent="1">
+          <mxGeometry x="320" y="230" width="600" height="340" as="geometry" />
+        </mxCell>
+        <mxCell id="m_om_01" value="M-OM-01&#10;日志汇聚与检索&#10;（日志数据底座）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontSize=11;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="360" y="280" width="160" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="m_om_02" value="M-OM-02&#10;指标采集与时序存储&#10;（指标数据底座）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontSize=11;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="540" y="280" width="160" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="m_om_03" value="M-OM-03&#10;告警引擎&#10;（告警观测）&#10;只读观测 Alertmanager" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontSize=11;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="380" y="420" width="140" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="m_om_04" value="M-OM-04&#10;运维可视化与作业&#10;（运维作业台）&#10;只读查询代理 + 入仓" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontSize=11;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="540" y="420" width="160" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="e_01_03" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#000000;" edge="1" parent="1" source="m_om_01" target="m_om_03">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_02_03" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#000000;" edge="1" parent="1" source="m_om_02" target="m_om_03">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_01_04" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#000000;" edge="1" parent="1" source="m_om_01" target="m_om_04">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_02_04" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#000000;" edge="1" parent="1" source="m_om_02" target="m_om_04">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ks_base" value="KubeSphere 开源可观测底座（外部依赖，非 OM 自有部署单元）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#9673A6;dashed=1;fontSize=11;fontFamily=Microsoft YaHei;fontStyle=1;verticalAlign=top;align=left;spacingLeft=10;spacingTop=8;" vertex="1" parent="1">
+          <mxGeometry x="320" y="610" width="600" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="ks_prom" value="Prometheus&#10;时序指标" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;fillColor=#F8CECC;strokeColor=#B85450;fontSize=10;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="335" y="645" width="120" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="ks_es" value="OpenSearch / ES / Loki&#10;日志检索" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;fillColor=#F8CECC;strokeColor=#B85450;fontSize=10;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="465" y="645" width="150" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="ks_alert" value="Alertmanager&#10;告警规则/通知&#10;（KubeSphere 控制台配置）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E1D5E7;strokeColor=#9673A6;fontSize=10;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="625" y="645" width="140" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="ks_grafana" value="Grafana / KubeSphere 看板&#10;（前端运维可视化）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E1D5E7;strokeColor=#9673A6;fontSize=10;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="775" y="645" width="135" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="e_om02_prom" value="读时序指标" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#999999;dashed=1;fontSize=10;fontFamily=Microsoft YaHei;labelBackgroundColor=#FFFFFF;fontColor=#666666;" edge="1" parent="1" source="m_om_02" target="ks_prom">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_om01_es" value="读日志" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#999999;dashed=1;fontSize=10;fontFamily=Microsoft YaHei;labelBackgroundColor=#FFFFFF;fontColor=#666666;" edge="1" parent="1" source="m_om_01" target="ks_es">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_om03_alert" value="只读观测" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#999999;dashed=1;fontSize=10;fontFamily=Microsoft YaHei;labelBackgroundColor=#FFFFFF;fontColor=#666666;" edge="1" parent="1" source="m_om_03" target="ks_alert">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="reporters" value="各上报方子系统" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#999999;dashed=1;fontSize=11;fontFamily=Microsoft YaHei;fontStyle=1;verticalAlign=top;align=left;spacingLeft=10;spacingTop=8;" vertex="1" parent="1">
+          <mxGeometry x="20" y="230" width="270" height="340" as="geometry" />
+        </mxCell>
+        <mxCell id="r_dc" value="DC 数据爬取子系统" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F5F5F5;strokeColor=#999999;dashed=1;fontSize=11;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="40" y="270" width="230" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="r_mc" value="MC 多设备矩阵自动化群控子系统" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F5F5F5;strokeColor=#999999;dashed=1;fontSize=11;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="40" y="320" width="230" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="r_swm" value="SWM 蜂群智能体子系统" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F5F5F5;strokeColor=#999999;dashed=1;fontSize=11;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="40" y="370" width="230" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="r_occ" value="OCC 舆情行动业务子系统" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F5F5F5;strokeColor=#999999;dashed=1;fontSize=11;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="40" y="420" width="230" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="r_irs" value="IRS 私有化大模型部署" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F5F5F5;strokeColor=#999999;dashed=1;fontSize=11;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="40" y="470" width="230" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="e_rep_om" value="日志/指标上报 II-04&#10;（MC 另有动作日志 II-11）" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#000000;fontSize=10;fontFamily=Microsoft YaHei;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="reporters" target="om_container">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="om_archive" value="告警事件归档库&#10;（webhook 落 om-service 库）" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;fillColor=#F8CECC;strokeColor=#B85450;fontSize=11;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="970" y="280" width="240" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="e_03_archive" value="归档" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#000000;fontSize=10;fontFamily=Microsoft YaHei;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="m_om_03" target="om_archive">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="constraint_note" value="约束标注：&#10;• ADR-004（V3.9）：OM 不自建前端运维页（OM-01~05 删），可观测交 KubeSphere 原生控制台&#10;• 部署单元：om-service 单一 Java/Spring Boot 微服务（4 模块同进程，当前单副本）&#10;• KubeSphere 底座是外部依赖，非 OM 自有部署单元（Prometheus/ES/Alertmanager/Grafana 均由 KubeSphere 提供）&#10;• 数据所有权：OM 无独立主数据权威源；告警事件归档落 om-service 库&#10;• 对外接口：无对外提供接口；OM 是 II-04 / II-11 的消费方（V2.4 备注：OM 只读观测 + 事件归档，无配置下发接口）&#10;• 无 OM 专属 CON" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF2CC;strokeColor=#D6B656;fontSize=11;fontFamily=Microsoft YaHei;align=left;verticalAlign=top;spacingLeft=10;spacingTop=8;" vertex="1" parent="1">
+          <mxGeometry x="970" y="380" width="400" height="190" as="geometry" />
+        </mxCell>
+        <mxCell id="legend_box" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#999999;" vertex="1" parent="1">
+          <mxGeometry x="970" y="600" width="400" height="180" as="geometry" />
+        </mxCell>
+        <mxCell id="legend_title" value="图例" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=12;fontFamily=Microsoft YaHei;fontStyle=1;fontColor=#000000;" vertex="1" parent="1">
+          <mxGeometry x="980" y="605" width="60" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="lg_mod" value="业务模块" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontSize=10;fontFamily=Microsoft YaHei;" vertex="1" parent="1">
+          <mxGeometry x="980" y="630" width="80" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="lg_mod_t" value="M-OM-01~04 子系统自有模块" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=10;fontFamily=Microsoft YaHei;" vertex="1" parent="1">
+          <mxGeometry x="1070" y="630" width="290" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="lg_data" value="数据" style="shape=cylinder3;whiteSpace=wrap;html=1;fillColor=#F8CECC;strokeColor=#B85450;fontSize=10;fontFamily=Microsoft YaHei;" vertex="1" parent="1">
+          <mxGeometry x="980" y="660" width="80" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="lg_data_t" value="归档库 + KubeSphere 底座（Prom/ES）" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=10;fontFamily=Microsoft YaHei;" vertex="1" parent="1">
+          <mxGeometry x="1070" y="660" width="290" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="lg_ext" value="外部依赖" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E1D5E7;strokeColor=#9673A6;fontSize=10;fontFamily=Microsoft YaHei;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="980" y="690" width="80" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="lg_ext_t" value="Alertmanager / Grafana（KubeSphere 提供）" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=10;fontFamily=Microsoft YaHei;" vertex="1" parent="1">
+          <mxGeometry x="1070" y="690" width="290" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="lg_neigh" value="邻接子系统" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F5F5F5;strokeColor=#999999;dashed=1;fontSize=10;fontFamily=Microsoft YaHei;" vertex="1" parent="1">
+          <mxGeometry x="980" y="720" width="80" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="lg_neigh_t" value="DC/MC/SWM/OCC/IRS（日志/指标上报方）" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=10;fontFamily=Microsoft YaHei;" vertex="1" parent="1">
+          <mxGeometry x="1070" y="720" width="290" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="lg_note" value="约束块" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF2CC;strokeColor=#D6B656;fontSize=10;fontFamily=Microsoft YaHei;" vertex="1" parent="1">
+          <mxGeometry x="980" y="750" width="80" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="lg_edge_solid" value="──▶ 实线：上报 / 归档" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=10;fontFamily=Microsoft YaHei;fontColor=#000000;" vertex="1" parent="1">
+          <mxGeometry x="980" y="783" width="200" height="16" as="geometry" />
+        </mxCell>
+        <mxCell id="lg_edge_dashed" value="┄┄▶ 虚线：只读观测" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=10;fontFamily=Microsoft YaHei;fontColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="1180" y="783" width="180" height="16" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
