@@ -1,5 +1,5 @@
 <mxfile host="Electron" agent="认知行动平台文档" pages="4">
-  <diagram id="20ybknfIJE05bF8hSJ7_" name="第 2 页">
+  <diagram id="20ybknfIJE05bF8hSJ7_" name="总体系统">
     <mxGraphModel dx="1367" dy="835" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
@@ -29,150 +29,117 @@
     </mxGraphModel>
   </diagram>
   <diagram name="MC子系统架构图" id="mc-arch">
-    <mxGraphModel dx="1800" dy="1200" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1800" pageHeight="1200" math="0" shadow="0">
+    <mxGraphModel dx="2103" dy="1285" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1800" pageHeight="1200" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="title" value="MC 多设备矩阵自动化群控子系统架构图 · V3.0 / V3.10 · 2026-07-21 · 对应 SRS-MC 分册 + HLD §4.2（含 V3.0 新增 M-MC-15 + CON-15）" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontColor=#000000;fontSize=14;fontFamily=Microsoft YaHei;fontStyle=1;" vertex="1" parent="1">
-          <mxGeometry x="20" y="10" width="1200" height="30" as="geometry" />
+        <mxCell id="mc_service_box" parent="1" style="rounded=1;whiteSpace=wrap;html=1;strokeWidth=2;dashed=1;fontSize=19;fontFamily=Microsoft YaHei;fontStyle=1;verticalAlign=top;align=left;spacingLeft=15;spacingTop=10;" value="" vertex="1">
+          <mxGeometry height="830" width="960" x="20" y="90" as="geometry" />
         </mxCell>
-        <mxCell id="sub_caption" value="职责：统一自动化执行引擎 + 多终端执行网关；账号平台级权威源；智能体执行宿主。15 模块，4 部署单元（mc-service / mc-sfu / mc-agent 主机进程 / 商用指纹浏览器）。借鉴 SonicCloudOrg（archived, Apache 2.0）。" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontColor=#666666;fontSize=11;fontFamily=Microsoft YaHei;" vertex="1" parent="1">
-          <mxGeometry x="20" y="40" width="1700" height="20" as="geometry" />
+        <mxCell id="grp_term" parent="1" style="rounded=1;whiteSpace=wrap;html=1;dashed=1;fontSize=19;fontFamily=Microsoft YaHei;fontStyle=1;verticalAlign=top;align=left;spacingLeft=8;spacingTop=6;" value="① 终端资源与远控域" vertex="1">
+          <mxGeometry height="244" width="860" x="70" y="106" as="geometry" />
         </mxCell>
-        <mxCell id="mc_service_box" value="部署单元 ① mc-service（中心服务端 · Java/Spring Boot · 单副本 · 含 M-MC-01~14 + M-MC-15.c 同进程）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#D79B00;strokeWidth=2;dashed=1;fontSize=12;fontFamily=Microsoft YaHei;fontStyle=1;verticalAlign=top;align=left;spacingLeft=15;spacingTop=10;" vertex="1" parent="1">
-          <mxGeometry x="30" y="180" width="1240" height="730" as="geometry" />
+        <mxCell id="m_mc_01" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fontSize=19;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" value="执行终端接入与台账&lt;div&gt;&lt;br&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="60" width="170" x="100" y="166" as="geometry" />
         </mxCell>
-        <mxCell id="grp_term" value="① 终端资源与远控域" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#6C8EBF;dashed=1;fontSize=11;fontFamily=Microsoft YaHei;fontStyle=1;verticalAlign=top;align=left;spacingLeft=8;spacingTop=6;" vertex="1" parent="1">
-          <mxGeometry x="50" y="220" width="580" height="290" as="geometry" />
+        <mxCell id="m_mc_02" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fontSize=19;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" value="终端身份与环境隔离" vertex="1">
+          <mxGeometry height="60" width="170" x="290" y="166" as="geometry" />
         </mxCell>
-        <mxCell id="m_mc_01" value="执行终端接入与台账&#xa;（V3.10 回归纯台账持有方）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontSize=10;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="70" y="260" width="170" height="60" as="geometry" />
+        <mxCell id="m_mc_03" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fontSize=19;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" value="终端风控分级与代理绑定" vertex="1">
+          <mxGeometry height="60" width="170" x="480" y="166" as="geometry" />
         </mxCell>
-        <mxCell id="m_mc_02" value="终端身份与环境隔离" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontSize=10;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="260" y="260" width="170" height="60" as="geometry" />
+        <mxCell id="m_mc_04" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fontSize=19;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" value="远程控制&lt;div&gt;&lt;br&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="70" width="170" x="100" y="266" as="geometry" />
         </mxCell>
-        <mxCell id="m_mc_03" value="终端风控分级与代理绑定" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontSize=10;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="450" y="260" width="170" height="60" as="geometry" />
+        <mxCell id="grp_exec" parent="1" style="rounded=1;whiteSpace=wrap;html=1;dashed=1;fontSize=19;fontFamily=Microsoft YaHei;fontStyle=1;verticalAlign=top;align=left;spacingLeft=8;spacingTop=6;" value="② 执行收口与编排域" vertex="1">
+          <mxGeometry height="150" width="530" x="50" y="360" as="geometry" />
         </mxCell>
-        <mxCell id="m_mc_04" value="远程控制&#xa;（WebRTC SFU 转发）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontSize=10;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="70" y="410" width="170" height="70" as="geometry" />
+        <mxCell id="m_mc_05" parent="1" style="rounded=1;whiteSpace=wrap;html=1;strokeWidth=2;fontSize=19;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;fontStyle=1;" value="统一执行网关&lt;div&gt;&lt;br&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="80" width="260" x="90" y="405" as="geometry" />
         </mxCell>
-        <mxCell id="grp_exec" value="② 执行收口与编排域（核心 · CON-07 动作收口）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#82B366;dashed=1;fontSize=11;fontFamily=Microsoft YaHei;fontStyle=1;verticalAlign=top;align=left;spacingLeft=8;spacingTop=6;" vertex="1" parent="1">
-          <mxGeometry x="650" y="220" width="600" height="290" as="geometry" />
+        <mxCell id="m_mc_06" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fontSize=19;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" value="双执行模式&lt;div&gt;&lt;br&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="80" width="160" x="290" y="261" as="geometry" />
         </mxCell>
-        <mxCell id="m_mc_05" value="统一执行网关&#xa;（动作收口核心 · 唯一入口）&#xa;V3.10 收缩为接口薄层" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D5E8D4;strokeColor=#82B366;strokeWidth=2;fontSize=10;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;fontStyle=1;" vertex="1" parent="1">
-          <mxGeometry x="670" y="260" width="260" height="80" as="geometry" />
+        <mxCell id="m_mc_07" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fontSize=19;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" value="任务管理&lt;div&gt;&lt;br&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="80" width="120" x="480" y="256" as="geometry" />
         </mxCell>
-        <mxCell id="m_mc_06" value="双执行模式&#xa;（脚本 GraalVM JS +&#xa;智能体 agent-runtime）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontSize=10;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="950" y="260" width="160" height="80" as="geometry" />
+        <mxCell id="m_mc_08" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fontSize=19;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" value="自动化编排能力" vertex="1">
+          <mxGeometry height="70" width="170" x="630" y="261" as="geometry" />
         </mxCell>
-        <mxCell id="m_mc_07" value="任务管理&#xa;（任务调度中枢）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontSize=10;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="1120" y="260" width="120" height="80" as="geometry" />
+        <mxCell id="m_mc_15c" parent="1" style="rounded=1;whiteSpace=wrap;html=1;strokeWidth=2;fontSize=19;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;fontStyle=1;" value="真机 Agent 运行时与编排" vertex="1">
+          <mxGeometry height="80" width="200" x="370" y="405" as="geometry" />
         </mxCell>
-        <mxCell id="m_mc_08" value="自动化编排能力&#xa;（模板/工作流/脚本 IDE）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontSize=10;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="670" y="410" width="170" height="70" as="geometry" />
+        <mxCell id="grp_obs" parent="1" style="rounded=1;whiteSpace=wrap;html=1;dashed=1;fontSize=19;fontFamily=Microsoft YaHei;fontStyle=1;verticalAlign=top;align=left;spacingLeft=8;spacingTop=6;" value="③ 可观测域" vertex="1">
+          <mxGeometry height="150" width="340" x="590" y="360" as="geometry" />
         </mxCell>
-        <mxCell id="m_mc_09" value="账号操作编排与养号&#xa;（拟人化节奏内置）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontSize=10;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="860" y="410" width="170" height="70" as="geometry" />
+        <mxCell id="m_mc_10" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fontSize=19;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" value="可观测性与作业统计复盘&lt;div&gt;&lt;br&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="80" width="240" x="610" y="400" as="geometry" />
         </mxCell>
-        <mxCell id="m_mc_15c" value="真机 Agent 运行时与编排（中心侧编排器）&#xa;⭐ V3.10 新增 · CON-15 · 持 II-02 WS endpoint&#xa;RealDeviceSdk 实现方 · 借鉴 Sonic" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D5E8D4;strokeColor=#82B366;strokeWidth=2;fontSize=10;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;fontStyle=1;" vertex="1" parent="1">
-          <mxGeometry x="1050" y="410" width="200" height="80" as="geometry" />
+        <mxCell id="grp_acct" parent="1" style="rounded=1;whiteSpace=wrap;html=1;dashed=1;fontSize=19;fontFamily=Microsoft YaHei;fontStyle=1;verticalAlign=top;align=left;spacingLeft=8;spacingTop=6;" value="④ 账号权威源域" vertex="1">
+          <mxGeometry height="130" width="540" x="50" y="540" as="geometry" />
         </mxCell>
-        <mxCell id="grp_obs" value="③ 可观测域" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#6C8EBF;dashed=1;fontSize=11;fontFamily=Microsoft YaHei;fontStyle=1;verticalAlign=top;align=left;spacingLeft=8;spacingTop=6;" vertex="1" parent="1">
-          <mxGeometry x="50" y="530" width="280" height="130" as="geometry" />
+        <mxCell id="m_mc_11" parent="1" style="rounded=1;whiteSpace=wrap;html=1;strokeWidth=2;fontSize=19;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;fontStyle=1;" value="账号主数据管理" vertex="1">
+          <mxGeometry height="80" width="170" x="70" y="575" as="geometry" />
         </mxCell>
-        <mxCell id="m_mc_10" value="可观测性与作业统计复盘&#xa;（动作留痕 + 任务日志 + 效果回传）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontSize=10;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="70" y="565" width="240" height="80" as="geometry" />
+        <mxCell id="m_mc_12" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fontSize=19;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" value="智能体账号分层分组" vertex="1">
+          <mxGeometry height="80" width="150" x="260" y="575" as="geometry" />
         </mxCell>
-        <mxCell id="grp_acct" value="④ 账号权威源域（CON-11 平台级权威源）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#82B366;dashed=1;fontSize=11;fontFamily=Microsoft YaHei;fontStyle=1;verticalAlign=top;align=left;spacingLeft=8;spacingTop=6;" vertex="1" parent="1">
-          <mxGeometry x="350" y="530" width="540" height="130" as="geometry" />
+        <mxCell id="m_mc_13" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fontSize=19;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" value="智能体账号绑定与资产迁移&lt;div&gt;&lt;br&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="80" width="150" x="430" y="575" as="geometry" />
         </mxCell>
-        <mxCell id="m_mc_11" value="账号主数据管理&#xa;（账号资源权威源 · DR-02M）&#xa;凭据 AES-256-GCM 加密" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D5E8D4;strokeColor=#82B366;strokeWidth=2;fontSize=10;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;fontStyle=1;" vertex="1" parent="1">
-          <mxGeometry x="370" y="565" width="170" height="80" as="geometry" />
+        <mxCell id="grp_host" parent="1" style="rounded=1;whiteSpace=wrap;html=1;dashed=1;fontSize=19;fontFamily=Microsoft YaHei;fontStyle=1;verticalAlign=top;align=left;spacingLeft=8;spacingTop=6;" value="⑤ 智能体执行宿主域" vertex="1">
+          <mxGeometry height="130" width="340" x="610" y="540" as="geometry" />
         </mxCell>
-        <mxCell id="m_mc_12" value="智能体账号分层分组" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontSize=10;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="560" y="565" width="150" height="80" as="geometry" />
+        <mxCell id="m_mc_14" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fontSize=19;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" value="智能体执行宿主与同步" vertex="1">
+          <mxGeometry height="80" width="300" x="630" y="575" as="geometry" />
         </mxCell>
-        <mxCell id="m_mc_13" value="智能体账号绑定与资产迁移&#xa;（行动关系 1:N:1:1）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontSize=10;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="730" y="565" width="150" height="80" as="geometry" />
+        <mxCell id="grp_data" parent="1" style="rounded=1;whiteSpace=wrap;html=1;dashed=1;fontSize=19;fontFamily=Microsoft YaHei;fontStyle=1;verticalAlign=top;align=left;spacingLeft=8;spacingTop=6;" value="数据与基础设施" vertex="1">
+          <mxGeometry height="200" width="900" x="50" y="690" as="geometry" />
         </mxCell>
-        <mxCell id="grp_host" value="⑤ 智能体执行宿主域" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#6C8EBF;dashed=1;fontSize=11;fontFamily=Microsoft YaHei;fontStyle=1;verticalAlign=top;align=left;spacingLeft=8;spacingTop=6;" vertex="1" parent="1">
-          <mxGeometry x="910" y="530" width="340" height="130" as="geometry" />
+        <mxCell id="d_pg" parent="1" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;fontSize=19;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" value="PostgreSQL&lt;div&gt;&lt;br&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="90" width="140" x="60" y="750" as="geometry" />
         </mxCell>
-        <mxCell id="m_mc_14" value="智能体执行宿主与同步&#xa;（持存提示词包 + 行为风格一致性校验 + 调 agent-runtime）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontSize=10;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="930" y="565" width="300" height="80" as="geometry" />
+        <mxCell id="d_redis" parent="1" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;fontSize=19;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" value="Redis&lt;div&gt;&lt;br&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="95" width="145" x="245" y="750" as="geometry" />
         </mxCell>
-        <mxCell id="grp_data" value="数据与基础设施（独立部署，mc-service 复用）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#B85450;dashed=1;fontSize=11;fontFamily=Microsoft YaHei;fontStyle=1;verticalAlign=top;align=left;spacingLeft=8;spacingTop=6;" vertex="1" parent="1">
-          <mxGeometry x="50" y="690" width="1200" height="200" as="geometry" />
+        <mxCell id="d_kafka" parent="1" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;fontSize=19;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" value="Kafka&lt;div&gt;&lt;br&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="95" width="140" x="430" y="750" as="geometry" />
         </mxCell>
-        <mxCell id="d_pg" value="PostgreSQL&#xa;DR-01 终端 / DR-02M 账号&#xa;DR-04 任务 / DR-05 脚本&#xa;DR-07 审计 / DR-08 代理指纹&#xa;mc_binding 四元绑定" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;fillColor=#F8CECC;strokeColor=#B85450;fontSize=10;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="80" y="730" width="240" height="140" as="geometry" />
+        <mxCell id="d_ch" parent="1" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;fontSize=19;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" value="ClickHouse mc_analysis&lt;div&gt;&lt;br&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="90" width="120" x="600" y="752.5" as="geometry" />
         </mxCell>
-        <mxCell id="d_redis" value="Redis&#xa;任务优先级 ZSet / 在线状态&#xa;限流计数 / 占用锁(内存)" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;fillColor=#F8CECC;strokeColor=#B85450;fontSize=10;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="340" y="730" width="220" height="140" as="geometry" />
+        <mxCell id="d_minio" parent="1" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;fontSize=19;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" value="MinIO（EI-04）&lt;div&gt;&lt;br&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="80" width="120" x="750" y="757.5" as="geometry" />
         </mxCell>
-        <mxCell id="d_kafka" value="Kafka&#xa;II-01a 账号事件&#xa;II-11 动作日志→OM&#xa;任务分发 mc-task-dispatch" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;fillColor=#F8CECC;strokeColor=#B85450;fontSize=10;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="580" y="730" width="220" height="140" as="geometry" />
+        <mxCell id="ext_ei02" parent="1" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;fontSize=19;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" value="代理 IP 服务&#xa;EI-02" vertex="1">
+          <mxGeometry height="50" width="130" x="1010" y="450" as="geometry" />
         </mxCell>
-        <mxCell id="d_ch" value="ClickHouse mc_analysis&#xa;动作明细（高频）&#xa;作业统计多维聚合" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;fillColor=#F8CECC;strokeColor=#B85450;fontSize=10;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="820" y="730" width="200" height="140" as="geometry" />
+        <mxCell id="ext_ei03" parent="1" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;fontSize=19;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" value="接码与虚拟号&#xa;EI-03" vertex="1">
+          <mxGeometry height="50" width="130" x="1160" y="450" as="geometry" />
         </mxCell>
-        <mxCell id="d_minio" value="MinIO（EI-04）&#xa;截图/录屏/脚本文件&#xa;内容素材临时链接" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;fillColor=#F8CECC;strokeColor=#B85450;fontSize=10;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="1040" y="730" width="200" height="140" as="geometry" />
+        <mxCell id="neigh_swm" parent="1" style="rounded=1;whiteSpace=wrap;html=1;dashed=1;fontSize=19;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" value="SWM 蜂群智能体" vertex="1">
+          <mxGeometry height="50" width="280" x="1010" y="530" as="geometry" />
         </mxCell>
-        <mxCell id="mc_sfu" value="部署单元 ② mc-sfu&#xa;mediasoup 自建 WebRTC SFU（Node.js）&#xa;远控画面转发 · 单副本" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFE6CC;strokeColor=#D79B00;strokeWidth=2;fontSize=11;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="1300" y="220" width="280" height="80" as="geometry" />
+        <mxCell id="neigh_occ" parent="1" style="rounded=1;whiteSpace=wrap;html=1;dashed=1;fontSize=19;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" value="OCC 舆情行动" vertex="1">
+          <mxGeometry height="50" width="280" x="1010" y="600" as="geometry" />
         </mxCell>
-        <mxCell id="browser" value="部署单元 ④ 商用指纹浏览器（EI-06 外部产品）&#xa;经 HTTP API 创建/管理 Profile · 启动后返回 CDP 端口&#xa;一个 Profile = 一套固定指纹 + 一个账号身份（CON-12）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E1D5E7;strokeColor=#9673A6;shadow=1;fontSize=11;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="1300" y="340" width="280" height="90" as="geometry" />
+        <mxCell id="neigh_irs" parent="1" style="rounded=1;whiteSpace=wrap;html=1;dashed=1;fontSize=19;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" value="IRS 私有化大模型" vertex="1">
+          <mxGeometry height="50" width="280" x="1010" y="670" as="geometry" />
         </mxCell>
-        <mxCell id="ext_ei02" value="代理 IP 服务&#xa;EI-02" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E1D5E7;strokeColor=#9673A6;shadow=1;fontSize=11;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="1300" y="460" width="130" height="50" as="geometry" />
+        <mxCell id="neigh_om" parent="1" style="rounded=1;whiteSpace=wrap;html=1;dashed=1;fontSize=19;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" value="OM 运维监控" vertex="1">
+          <mxGeometry height="50" width="280" x="1010" y="740" as="geometry" />
         </mxCell>
-        <mxCell id="ext_ei03" value="接码与虚拟号&#xa;EI-03" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E1D5E7;strokeColor=#9673A6;shadow=1;fontSize=11;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="1450" y="460" width="130" height="50" as="geometry" />
+        <mxCell id="neigh_dcswmocc" parent="1" style="rounded=1;whiteSpace=wrap;html=1;dashed=1;fontSize=19;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" value="DC / SWM / OCC&#xa;（account_id 分发消费方）" vertex="1">
+          <mxGeometry height="50" width="280" x="1010" y="810" as="geometry" />
         </mxCell>
-        <mxCell id="neigh_swm" value="SWM 蜂群智能体&#xa;（提示词包同步）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F5F5F5;strokeColor=#999999;dashed=1;fontSize=11;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="1300" y="540" width="280" height="50" as="geometry" />
+        <mxCell id="agent_host_box" parent="1" style="rounded=1;whiteSpace=wrap;html=1;strokeWidth=2;dashed=1;fontSize=19;fontFamily=Microsoft YaHei;fontStyle=1;verticalAlign=top;align=left;spacingLeft=15;spacingTop=10;" value=" " vertex="1">
+          <mxGeometry height="200" width="970" x="30" y="940" as="geometry" />
         </mxCell>
-        <mxCell id="neigh_occ" value="OCC 舆情行动&#xa;（行动编排 / 效果回传）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F5F5F5;strokeColor=#999999;dashed=1;fontSize=11;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="1300" y="610" width="280" height="50" as="geometry" />
+        <mxCell id="agent_client" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fontSize=19;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" value="AgentClient&lt;div&gt;&lt;br&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="70" width="450" x="170" y="990" as="geometry" />
         </mxCell>
-        <mxCell id="neigh_irs" value="IRS 私有化大模型&#xa;（agent-runtime 视觉推理 · 旁路）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F5F5F5;strokeColor=#999999;dashed=1;fontSize=11;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="1300" y="680" width="280" height="50" as="geometry" />
-        </mxCell>
-        <mxCell id="neigh_om" value="OM 运维监控&#xa;（动作日志/指标上报）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F5F5F5;strokeColor=#999999;dashed=1;fontSize=11;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="1300" y="750" width="280" height="50" as="geometry" />
-        </mxCell>
-        <mxCell id="neigh_dcswmocc" value="DC / SWM / OCC&#xa;（account_id 分发消费方）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F5F5F5;strokeColor=#999999;dashed=1;fontSize=11;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="1300" y="820" width="280" height="50" as="geometry" />
-        </mxCell>
-        <mxCell id="agent_host_box" value="部署单元 ③ 真机 Agent 主机进程 M-MC-15.a（⭐ V3.10 新增 · CON-15 · 独立部署单元 · 每台插真机的 Linux/Mac 主机一台 Spring Boot 进程 · MC 内唯一触碰真机的进程 · 借鉴 SonicCloudOrg sonic-agent）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#D79B00;strokeWidth=2;dashed=1;fontSize=12;fontFamily=Microsoft YaHei;fontStyle=1;verticalAlign=top;align=left;spacingLeft=15;spacingTop=10;" vertex="1" parent="1">
-          <mxGeometry x="30" y="940" width="1240" height="200" as="geometry" />
-        </mxCell>
-        <mxCell id="agent_adb" value="AdbBridge&#xa;ddmlib 封装&#xa;install/pressKey/reboot/screenshot" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontSize=10;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="60" y="990" width="220" height="70" as="geometry" />
-        </mxCell>
-        <mxCell id="agent_uia2" value="Uia2Driver&#xa;sonic-driver-core 封装 uia2&#xa;find/click/sendKeys/swipe" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontSize=10;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="300" y="990" width="220" height="70" as="geometry" />
-        </mxCell>
-        <mxCell id="agent_scrcpy" value="ScrcpyClient&#xa;抄 Sonic Input/OutputSocketThread&#xa;启动 scrcpy server · H.264 推流" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontSize=10;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="540" y="990" width="240" height="70" as="geometry" />
-        </mxCell>
-        <mxCell id="agent_client" value="AgentClient&#xa;WS 出站连接 · 鉴权 · 心跳 30s · 重连指数退避&#xa;ConfigLoader：agentKey + udId 清单（无热插拔）&#xa;DeviceLock：内存锁（远控/自动化互斥）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontSize=10;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="800" y="990" width="450" height="70" as="geometry" />
-        </mxCell>
-        <mxCell id="real_devices" value="真机集群（Android 3-8 台）&#xa;USB 接入" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E1D5E7;strokeColor=#9673A6;shadow=1;fontSize=11;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="800" y="1075" width="220" height="50" as="geometry" />
-        </mxCell>
-        <mxCell id="constraint_note" value="约束标注（CON-01~15 共 11 条与 MC 相关）：&#xa;• CON-01 MVP 优先云手机+真机 · CON-02 不自研云手机内核&#xa;• CON-07（核心）所有终端动作经 MC 网关收口，禁止绕过&#xa;• CON-08 双执行模式（脚本 GraalVM JS + 智能体 agent-runtime）&#xa;• CON-09 终端风控分级（养号优先真机/ARM）&#xa;• CON-10 agent-runtime 调 IRS 视觉推理不经网关（推理旁路）&#xa;• CON-11 MC = 终端+账号主数据+智能体宿主归属&#xa;• CON-12 商用指纹浏览器（EI-06），不自建内核&#xa;• CON-13 账号分类+差异化绑定（一设备一账号一IP / 一 Profile 一账号一IP）&#xa;• ⭐ CON-15（V3.10 新增）真机 Agent 独立部署单元 · 唯一触碰真机的进程 · 借鉴 SonicCloudOrg (archived, Apache 2.0)&#xa;其他：动作路径 M-MC-05 → M-MC-15.c → II-02 → M-MC-15.a → ADB/uia2/scrcpy；F-MC-05-05 收缩为 DeviceSdk 接口薄层；M-MC-01 回归纯台账持有方" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF2CC;strokeColor=#D6B656;fontSize=11;fontFamily=Microsoft YaHei;align=left;verticalAlign=top;spacingLeft=10;spacingTop=8;" vertex="1" parent="1">
-          <mxGeometry x="1300" y="890" width="480" height="250" as="geometry" />
-        </mxCell>
-        <mxCell id="legend_box" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#999999;" vertex="1" parent="1">
-          <mxGeometry x="1300" y="1150" width="480" height="40" as="geometry" />
-        </mxCell>
-        <mxCell id="lg_title" value="图例（同其他 6 图）：蓝=模块 / 绿=权威源/核心 / 橙=部署单元 / 红=数据 / 紫=外部产品 / 灰虚=邻接 / 黄=约束；粗橙=II-02 主链路" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=10;fontFamily=Microsoft YaHei;fontColor=#000000;" vertex="1" parent="1">
-          <mxGeometry x="1310" y="1155" width="470" height="30" as="geometry" />
+        <mxCell id="real_devices" parent="1" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;fontSize=19;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" value="真机集群（Android 3-8 台）&#xa;USB 接入" vertex="1">
+          <mxGeometry height="50" width="380" x="240" y="1075" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
@@ -182,53 +149,32 @@
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="FgpdEmg4tbeTqCXODCCs-1" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontColor=#000000;fontSize=14;fontFamily=Microsoft YaHei;fontStyle=1;" value="OCC 舆情行动业务子系统架构图 · V3.0 / V3.10 · 2026-07-21 · 对应 SRS-OCC 分册 + HLD §4.7" vertex="1">
-          <mxGeometry height="30" width="1000" x="290" y="680" as="geometry" />
+        <mxCell id="FgpdEmg4tbeTqCXODCCs-3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#666666;dashed=1;fontSize=13;fontFamily=Microsoft YaHei;fontStyle=1;verticalAlign=top;align=left;spacingLeft=15;spacingTop=10;" value="&amp;nbsp;xxxx业务子系统" vertex="1">
+          <mxGeometry height="620" width="960" x="500" y="850" as="geometry" />
         </mxCell>
-        <mxCell id="FgpdEmg4tbeTqCXODCCs-2" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontColor=#666666;fontSize=11;fontFamily=Microsoft YaHei;" value="职责：全链路指挥大脑——构建「目标识别 → 数据分析与情报 → 行动编排 → 效果评估」行动闭环，并承担内容资源统一管理（唯一权威源 CON-11）。后端 Java/Spring Boot。" vertex="1">
-          <mxGeometry height="20" width="1500" x="290" y="710" as="geometry" />
+        <mxCell id="FgpdEmg4tbeTqCXODCCs-4" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#6C8EBF;dashed=1;fontSize=11;fontFamily=Microsoft YaHei;fontStyle=1;verticalAlign=top;align=left;spacingLeft=10;spacingTop=8;" value="数据分析与情报大脑" vertex="1">
+          <mxGeometry height="160" width="860" x="550" y="1230" as="geometry" />
         </mxCell>
-        <mxCell id="FgpdEmg4tbeTqCXODCCs-3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#666666;dashed=1;fontSize=13;fontFamily=Microsoft YaHei;fontStyle=1;verticalAlign=top;align=left;spacingLeft=15;spacingTop=10;" value="OCC 舆情行动业务子系统 M-OCC-00（occ-service · Java/Spring Boot）" vertex="1">
-          <mxGeometry height="620" width="950" x="510" y="850" as="geometry" />
+        <mxCell id="FgpdEmg4tbeTqCXODCCs-5" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontSize=11;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" value="数据分析与情报" vertex="1">
+          <mxGeometry height="60" width="340" x="550" y="1270" as="geometry" />
         </mxCell>
-        <mxCell id="FgpdEmg4tbeTqCXODCCs-4" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#6C8EBF;dashed=1;fontSize=11;fontFamily=Microsoft YaHei;fontStyle=1;verticalAlign=top;align=left;spacingLeft=10;spacingTop=8;" value="数据分析与情报大脑（M-OCC-02 · V3.3 由 DC 移入）" vertex="1">
-          <mxGeometry height="100" width="380" x="540" y="890" as="geometry" />
+        <mxCell id="FgpdEmg4tbeTqCXODCCs-6" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontSize=11;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" value="目标档案与状态管理" vertex="1">
+          <mxGeometry height="70" width="160" x="560" y="1040" as="geometry" />
         </mxCell>
-        <mxCell id="FgpdEmg4tbeTqCXODCCs-5" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontSize=11;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" value="数据分析与情报&#xa;（情报分析大脑）&#xa;&#xa;• 群体下钻（自研规则树+sklearn）&#xa;• 关系图谱（查 DC NebulaGraph）&#xa;• 实体检索与档案&#xa;• 文本智能分析（IRS）" vertex="1">
-          <mxGeometry height="60" width="340" x="560" y="920" as="geometry" />
+        <mxCell id="FgpdEmg4tbeTqCXODCCs-7" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontSize=11;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" value="目标关联网络" vertex="1">
+          <mxGeometry height="70" width="160" x="740" y="1040" as="geometry" />
         </mxCell>
-        <mxCell id="FgpdEmg4tbeTqCXODCCs-6" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontSize=11;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" value="目标档案与状态管理&#xa;（目标数据管家）" vertex="1">
-          <mxGeometry height="70" width="160" x="560" y="1030" as="geometry" />
+        <mxCell id="FgpdEmg4tbeTqCXODCCs-8" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontSize=11;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" value="行动方案规划" vertex="1">
+          <mxGeometry height="70" width="160" x="970" y="960" as="geometry" />
         </mxCell>
-        <mxCell id="FgpdEmg4tbeTqCXODCCs-7" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontSize=11;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" value="目标关联网络&#xa;（目标关系图谱）" vertex="1">
-          <mxGeometry height="70" width="160" x="740" y="1030" as="geometry" />
+        <mxCell id="FgpdEmg4tbeTqCXODCCs-9" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontSize=11;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" value="编排执行引擎" vertex="1">
+          <mxGeometry height="70" width="180" x="1160" y="960" as="geometry" />
         </mxCell>
-        <mxCell id="FgpdEmg4tbeTqCXODCCs-8" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontSize=11;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" value="行动方案规划&#xa;（行动参谋）" vertex="1">
-          <mxGeometry height="70" width="160" x="950" y="1030" as="geometry" />
-        </mxCell>
-        <mxCell id="FgpdEmg4tbeTqCXODCCs-9" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontSize=11;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" value="编排执行引擎&#xa;（行动编排下发 · Flowable/BPMN）" vertex="1">
-          <mxGeometry height="70" width="180" x="1130" y="1030" as="geometry" />
-        </mxCell>
-        <mxCell id="FgpdEmg4tbeTqCXODCCs-10" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontSize=11;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" value="效果评估&#xa;（行动复盘官）" vertex="1">
-          <mxGeometry height="60" width="160" x="950" y="1130" as="geometry" />
+        <mxCell id="FgpdEmg4tbeTqCXODCCs-10" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontSize=11;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" value="效果评估" vertex="1">
+          <mxGeometry height="60" width="160" x="990" y="1120" as="geometry" />
         </mxCell>
         <mxCell id="FgpdEmg4tbeTqCXODCCs-11" parent="1" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;size=15;fillColor=#FFF2CC;strokeColor=#D6B656;fontSize=11;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" value="舆论作业策略库&#xa;（策略资产库）" vertex="1">
-          <mxGeometry height="60" width="160" x="750" y="1130" as="geometry" />
-        </mxCell>
-        <mxCell id="FgpdEmg4tbeTqCXODCCs-12" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#82B366;dashed=1;fontSize=11;fontFamily=Microsoft YaHei;fontStyle=1;verticalAlign=top;align=left;spacingLeft=10;spacingTop=8;" value="内容资源权威源（M-OCC-08/09 · CON-11 唯一权威源）" vertex="1">
-          <mxGeometry height="120" width="900" x="540" y="1230" as="geometry" />
-        </mxCell>
-        <mxCell id="FgpdEmg4tbeTqCXODCCs-13" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D5E8D4;strokeColor=#82B366;strokeWidth=2;fontSize=11;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;fontStyle=1;" value="内容主数据与排期&#xa;（内容资源权威源 · DR-03M）" vertex="1">
-          <mxGeometry height="70" width="220" x="580" y="1270" as="geometry" />
-        </mxCell>
-        <mxCell id="FgpdEmg4tbeTqCXODCCs-14" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontSize=11;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" value="内容审核与敏感词风控&#xa;（内容合规守门人）" vertex="1">
-          <mxGeometry height="70" width="220" x="830" y="1270" as="geometry" />
-        </mxCell>
-        <mxCell id="FgpdEmg4tbeTqCXODCCs-15" parent="1" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;fillColor=#F8CECC;strokeColor=#B85450;fontSize=10;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" value="DR-11 舆情行动数据&#xa;目标/传播/画像/编排节点关系/&#xa;策略库版本/评估记录" vertex="1">
-          <mxGeometry height="70" width="220" x="1070" y="1270" as="geometry" />
-        </mxCell>
-        <mxCell id="FgpdEmg4tbeTqCXODCCs-16" parent="1" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;fillColor=#F8CECC;strokeColor=#B85450;fontSize=10;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" value="DR-03M&#xa;内容主数据&#xa;（素材/分类/审核/来源）" vertex="1">
-          <mxGeometry height="70" width="130" x="1300" y="1270" as="geometry" />
+          <mxGeometry height="60" width="160" x="1190" y="1120" as="geometry" />
         </mxCell>
         <mxCell id="FgpdEmg4tbeTqCXODCCs-17" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F5F5F5;strokeColor=#999999;dashed=1;fontSize=11;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" value="DC 数据爬取子系统&#xa;（原始数据 + NebulaGraph 关系图谱）" vertex="1">
           <mxGeometry height="60" width="200" x="290" y="890" as="geometry" />
@@ -239,6 +185,9 @@
         <mxCell id="FgpdEmg4tbeTqCXODCCs-19" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F5F5F5;strokeColor=#999999;dashed=1;fontSize=11;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" value="SWM 蜂群智能体子系统&#xa;（智能体节点来源 + 内容使用方）" vertex="1">
           <mxGeometry height="60" width="200" x="290" y="1270" as="geometry" />
         </mxCell>
+        <mxCell id="2J65F7dxyklh5f96boA--1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#6C8EBF;dashed=1;fontSize=11;fontFamily=Microsoft YaHei;fontStyle=1;verticalAlign=top;align=left;spacingLeft=10;spacingTop=8;" value="策划" vertex="1">
+          <mxGeometry height="310" width="440" x="960" y="905" as="geometry" />
+        </mxCell>
         <mxCell id="FgpdEmg4tbeTqCXODCCs-20" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F5F5F5;strokeColor=#999999;dashed=1;fontSize=11;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" value="IRS 私有化大模型&#xa;（文本分析/立场情感）" vertex="1">
           <mxGeometry height="60" width="200" x="290" y="1030" as="geometry" />
         </mxCell>
@@ -248,56 +197,8 @@
         <mxCell id="FgpdEmg4tbeTqCXODCCs-22" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E1D5E7;strokeColor=#9673A6;fontSize=11;fontFamily=Microsoft YaHei;shadow=1;align=center;verticalAlign=middle;" value="MinIO / 阿里云 OSS&#xa;EI-04 对象存储&#xa;（内容素材）" vertex="1">
           <mxGeometry height="60" width="260" x="1500" y="890" as="geometry" />
         </mxCell>
-        <mxCell id="FgpdEmg4tbeTqCXODCCs-23" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF2CC;strokeColor=#D6B656;fontSize=11;fontFamily=Microsoft YaHei;align=left;verticalAlign=top;spacingLeft=10;spacingTop=8;" value="约束标注：&#xa;• CON-04（核心）：OCC 是核心闭环链路的指挥大脑（识别→情报→编排→评估）&#xa;• CON-11：OCC = 内容资源唯一权威源（M-OCC-08 + DR-03M）；MC = 账号权威源；二者对偶&#xa;• CON-06：调 IRS 文本模型做分类/立场/情感分析，模型不可用回退关键词规则匹配&#xa;• CON-07：编排落地由 MC 网关收口，OCC 不直接操作终端&#xa;• 部署单元：occ-service 单一 Java/Spring Boot 微服务&#xa;• 数据所有权：DR-03M 内容主数据（权威源）/ DR-11 舆情行动数据&#xa;• V3.3 起 M-OCC-02 数据分析与情报由 DC 移入 OCC（不重复采集，DC 只做采集与清洗）&#xa;• 本期暂不实现（V1.2+）：情报线索侦察自动化 / 全维度画像 / 抓手挖掘自动化 / 风险定级与对冲 / 仿真发声 / 全媒体投送 / 线下态势联动" vertex="1">
-          <mxGeometry height="190" width="340" x="1500" y="1110" as="geometry" />
-        </mxCell>
-        <mxCell id="FgpdEmg4tbeTqCXODCCs-24" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#999999;" value="" vertex="1">
-          <mxGeometry height="150" width="1290" x="510" y="1500" as="geometry" />
-        </mxCell>
-        <mxCell id="FgpdEmg4tbeTqCXODCCs-25" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=12;fontFamily=Microsoft YaHei;fontStyle=1;fontColor=#000000;" value="图例" vertex="1">
-          <mxGeometry height="20" width="60" x="530" y="1505" as="geometry" />
-        </mxCell>
-        <mxCell id="FgpdEmg4tbeTqCXODCCs-26" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontSize=10;fontFamily=Microsoft YaHei;" value="业务模块" vertex="1">
-          <mxGeometry height="24" width="80" x="530" y="1530" as="geometry" />
-        </mxCell>
-        <mxCell id="FgpdEmg4tbeTqCXODCCs-27" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=10;fontFamily=Microsoft YaHei;" value="~06/09 自有模块" vertex="1">
-          <mxGeometry height="24" width="240" x="620" y="1530" as="geometry" />
-        </mxCell>
-        <mxCell id="FgpdEmg4tbeTqCXODCCs-28" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D5E8D4;strokeColor=#82B366;strokeWidth=2;fontSize=10;fontFamily=Microsoft YaHei;fontStyle=1;" value="权威源模块" vertex="1">
-          <mxGeometry height="24" width="80" x="890" y="1530" as="geometry" />
-        </mxCell>
-        <mxCell id="FgpdEmg4tbeTqCXODCCs-29" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=10;fontFamily=Microsoft YaHei;" value="内容主数据（CON-11 唯一权威源）" vertex="1">
-          <mxGeometry height="24" width="320" x="980" y="1530" as="geometry" />
-        </mxCell>
-        <mxCell id="FgpdEmg4tbeTqCXODCCs-30" parent="1" style="shape=cylinder3;whiteSpace=wrap;html=1;fillColor=#F8CECC;strokeColor=#B85450;fontSize=10;fontFamily=Microsoft YaHei;" value="数据" vertex="1">
-          <mxGeometry height="24" width="60" x="1350" y="1530" as="geometry" />
-        </mxCell>
-        <mxCell id="FgpdEmg4tbeTqCXODCCs-31" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=10;fontFamily=Microsoft YaHei;" value="DR-03M / DR-11 / 策略库" vertex="1">
-          <mxGeometry height="24" width="240" x="1420" y="1530" as="geometry" />
-        </mxCell>
-        <mxCell id="FgpdEmg4tbeTqCXODCCs-32" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E1D5E7;strokeColor=#9673A6;fontSize=10;fontFamily=Microsoft YaHei;shadow=1;" value="外部产品" vertex="1">
-          <mxGeometry height="24" width="80" x="1690" y="1530" as="geometry" />
-        </mxCell>
-        <mxCell id="FgpdEmg4tbeTqCXODCCs-33" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F5F5F5;strokeColor=#999999;dashed=1;fontSize=10;fontFamily=Microsoft YaHei;" value="邻接子系统" vertex="1">
-          <mxGeometry height="24" width="80" x="530" y="1565" as="geometry" />
-        </mxCell>
-        <mxCell id="FgpdEmg4tbeTqCXODCCs-34" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=10;fontFamily=Microsoft YaHei;" value="DC / MC / SWM / IRS / OM" vertex="1">
-          <mxGeometry height="24" width="240" x="620" y="1565" as="geometry" />
-        </mxCell>
-        <mxCell id="FgpdEmg4tbeTqCXODCCs-35" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF2CC;strokeColor=#D6B656;fontSize=10;fontFamily=Microsoft YaHei;" value="约束块" vertex="1">
-          <mxGeometry height="24" width="80" x="890" y="1565" as="geometry" />
-        </mxCell>
-        <mxCell id="FgpdEmg4tbeTqCXODCCs-36" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=10;fontFamily=Microsoft YaHei;fontColor=#666666;" value="┄ □ 子模块组（按职责分组）" vertex="1">
-          <mxGeometry height="24" width="240" x="980" y="1565" as="geometry" />
-        </mxCell>
-        <mxCell id="FgpdEmg4tbeTqCXODCCs-37" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=10;fontFamily=Microsoft YaHei;fontColor=#000000;" value="──▶ 实线：调用 / 接口（II/EI）" vertex="1">
-          <mxGeometry height="20" width="260" x="530" y="1605" as="geometry" />
-        </mxCell>
-        <mxCell id="FgpdEmg4tbeTqCXODCCs-38" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=10;fontFamily=Microsoft YaHei;fontColor=#666666;" value="┄┄▶ 虚线：事件分发 / 反馈" vertex="1">
-          <mxGeometry height="20" width="260" x="810" y="1605" as="geometry" />
-        </mxCell>
-        <mxCell id="FgpdEmg4tbeTqCXODCCs-39" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=10;fontFamily=Microsoft YaHei;fontColor=#000000;" value="━━ 粗实线：跨子系统核心数据流（II-10/II-12 等）" vertex="1">
-          <mxGeometry height="20" width="400" x="1090" y="1605" as="geometry" />
+        <mxCell id="2J65F7dxyklh5f96boA--2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#6C8EBF;dashed=1;fontSize=11;fontFamily=Microsoft YaHei;fontStyle=1;verticalAlign=top;align=left;spacingLeft=10;spacingTop=8;" value="画像" vertex="1">
+          <mxGeometry height="310" width="440" x="510" y="910" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
@@ -307,92 +208,47 @@
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="x48R5TT5wmDH4lDLe8wK-1" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontColor=#000000;fontSize=14;fontFamily=Microsoft YaHei;fontStyle=1;" value="SWM 蜂群智能体子系统架构图 · V3.0 / V3.10 · 2026-07-21 · 对应 SRS-SWM 分册 + HLD §4.5（CON-14 智能体域特例）" vertex="1">
-          <mxGeometry height="30" width="1000" x="280" y="310" as="geometry" />
-        </mxCell>
-        <mxCell id="x48R5TT5wmDH4lDLe8wK-2" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontColor=#666666;fontSize=11;fontFamily=Microsoft YaHei;" value="职责：提示词生成与记忆中心——编写/版本化/评测提示词包，记忆按 account_id 沉淀；同步至 MC 持存，运行时归 MC agent-runtime。混合栈：魔改 coze-loop（Go 内核）+ Java（Spring Boot）+ swm-memory。" vertex="1">
-          <mxGeometry height="20" width="1300" x="280" y="340" as="geometry" />
-        </mxCell>
-        <mxCell id="x48R5TT5wmDH4lDLe8wK-3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#666666;dashed=1;fontSize=13;fontFamily=Microsoft YaHei;fontStyle=1;verticalAlign=top;align=left;spacingLeft=15;spacingTop=10;" value="SWM 蜂群智能体子系统 M-SWM-00" vertex="1">
+        <mxCell id="x48R5TT5wmDH4lDLe8wK-3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;dashed=1;fontSize=17;fontFamily=Microsoft YaHei;fontStyle=1;verticalAlign=top;align=left;spacingLeft=15;spacingTop=10;" value="SWM 蜂群智能体子系统&amp;nbsp;" vertex="1">
           <mxGeometry height="490" width="780" x="500" y="480" as="geometry" />
         </mxCell>
-        <mxCell id="x48R5TT5wmDH4lDLe8wK-4" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#D79B00;dashed=1;fontSize=11;fontFamily=Microsoft YaHei;fontStyle=1;verticalAlign=top;align=left;spacingLeft=10;spacingTop=8;" value="魔改 coze-loop 内核（Go · CON-14 智能体域特例 · 主体内核）" vertex="1">
+        <mxCell id="x48R5TT5wmDH4lDLe8wK-4" parent="1" style="rounded=1;whiteSpace=wrap;html=1;dashed=1;fontSize=17;fontFamily=Microsoft YaHei;fontStyle=1;verticalAlign=top;align=left;spacingLeft=10;spacingTop=8;" value="prompt 测试" vertex="1">
           <mxGeometry height="170" width="720" x="530" y="520" as="geometry" />
         </mxCell>
-        <mxCell id="x48R5TT5wmDH4lDLe8wK-5" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontSize=11;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" value="提示词管理&#xa;（V3.9 改：去人设标签）" vertex="1">
+        <mxCell id="x48R5TT5wmDH4lDLe8wK-5" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fontSize=17;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" value="提示词管理" vertex="1">
           <mxGeometry height="70" width="160" x="550" y="560" as="geometry" />
         </mxCell>
-        <mxCell id="x48R5TT5wmDH4lDLe8wK-6" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontSize=11;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" value="提示词模板库与版本管理&#xa;（Playground/版本对比）" vertex="1">
+        <mxCell id="x48R5TT5wmDH4lDLe8wK-6" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fontSize=17;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" value="提示词模板库与版本管理" vertex="1">
           <mxGeometry height="70" width="180" x="725" y="560" as="geometry" />
         </mxCell>
-        <mxCell id="x48R5TT5wmDH4lDLe8wK-7" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontSize=11;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" value="智能体评测与迭代决策&#xa;（评测集/评估器/实验）" vertex="1">
+        <mxCell id="x48R5TT5wmDH4lDLe8wK-7" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fontSize=17;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" value="智能体评测与迭代决策" vertex="1">
           <mxGeometry height="70" width="160" x="920" y="560" as="geometry" />
         </mxCell>
-        <mxCell id="x48R5TT5wmDH4lDLe8wK-8" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontSize=11;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" value="对话编写提示词&#xa;（对话编写引擎 · 画像素材）" vertex="1">
+        <mxCell id="x48R5TT5wmDH4lDLe8wK-8" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fontSize=17;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" value="对话编写提示词" vertex="1">
           <mxGeometry height="70" width="140" x="1095" y="560" as="geometry" />
         </mxCell>
-        <mxCell id="x48R5TT5wmDH4lDLe8wK-9" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#6C8EBF;dashed=1;fontSize=11;fontFamily=Microsoft YaHei;fontStyle=1;verticalAlign=top;align=left;spacingLeft=10;spacingTop=8;" value="Java（Spring Boot · 与管控/业务微服务统一 Java 栈）" vertex="1">
+        <mxCell id="x48R5TT5wmDH4lDLe8wK-9" parent="1" style="rounded=1;whiteSpace=wrap;html=1;dashed=1;fontSize=17;fontFamily=Microsoft YaHei;fontStyle=1;verticalAlign=top;align=left;spacingLeft=10;spacingTop=8;" value="单体信息" vertex="1">
           <mxGeometry height="240" width="720" x="530" y="710" as="geometry" />
         </mxCell>
-        <mxCell id="x48R5TT5wmDH4lDLe8wK-10" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontSize=11;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" value="蜂群记忆管理（智能体记忆中枢）&#xa;&#xa;swm-memory（独立 Java 服务）&#xa;account_id 主键索引&#xa;账号级 1:1 归属" vertex="1">
+        <mxCell id="x48R5TT5wmDH4lDLe8wK-10" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fontSize=17;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" value="蜂群记忆管理（智能体记忆中枢）&lt;div&gt;&lt;br&gt;&lt;/div&gt;" vertex="1">
           <mxGeometry height="120" width="220" x="550" y="750" as="geometry" />
         </mxCell>
-        <mxCell id="x48R5TT5wmDH4lDLe8wK-11" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontSize=11;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" value="智能体构建与提示词包下发&#xa;（智能体装配工厂）&#xa;&#xa;agent_id（模板共性）&#xa;+ account_id（动态实例个性）&#xa;组合主键" vertex="1">
+        <mxCell id="x48R5TT5wmDH4lDLe8wK-11" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fontSize=17;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" value="智能体构建与提示词包下发" vertex="1">
           <mxGeometry height="120" width="220" x="790" y="750" as="geometry" />
         </mxCell>
-        <mxCell id="x48R5TT5wmDH4lDLe8wK-12" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFE6CC;strokeColor=#D79B00;strokeWidth=2;fontSize=10;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" value="swm-gw（网关）&#xa;+ swm-distill（编排提炼）&#xa;Java/Spring Boot" vertex="1">
-          <mxGeometry height="60" width="200" x="1030" y="750" as="geometry" />
+        <mxCell id="x48R5TT5wmDH4lDLe8wK-13" parent="1" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;fontSize=17;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" value="蜂群智能体数据&lt;div&gt;&lt;br&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="100" width="200" x="1030" y="770" as="geometry" />
         </mxCell>
-        <mxCell id="x48R5TT5wmDH4lDLe8wK-13" parent="1" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;fillColor=#F8CECC;strokeColor=#B85450;fontSize=10;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" value="DR-09 蜂群智能体数据&#xa;提示词模板（agent_id） /&#xa;agent_id↔account_id 1:N 绑定 /&#xa;按 account_id 1:1 动态实例 /&#xa;提示词模板版本" vertex="1">
-          <mxGeometry height="100" width="200" x="1030" y="830" as="geometry" />
-        </mxCell>
-        <mxCell id="x48R5TT5wmDH4lDLe8wK-14" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F5F5F5;strokeColor=#999999;dashed=1;fontSize=11;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" value="IRS 私有化大模型&#xa;（推理底座）" vertex="1">
+        <mxCell id="x48R5TT5wmDH4lDLe8wK-14" parent="1" style="rounded=1;whiteSpace=wrap;html=1;dashed=1;fontSize=17;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" value="IRS 私有化大模型&#xa;（推理底座）" vertex="1">
           <mxGeometry height="60" width="240" x="1310" y="520" as="geometry" />
         </mxCell>
-        <mxCell id="x48R5TT5wmDH4lDLe8wK-15" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F5F5F5;strokeColor=#999999;dashed=1;fontSize=11;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" value="MC 多设备矩阵自动化群控子系统&#xa;（智能体执行宿主 + agent-runtime）" vertex="1">
+        <mxCell id="x48R5TT5wmDH4lDLe8wK-15" parent="1" style="rounded=1;whiteSpace=wrap;html=1;dashed=1;fontSize=17;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" value="MC 多设备矩阵自动化群控子系统&#xa;（智能体执行宿主 + agent-runtime）" vertex="1">
           <mxGeometry height="60" width="280" x="1310" y="750" as="geometry" />
         </mxCell>
-        <mxCell id="x48R5TT5wmDH4lDLe8wK-16" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F5F5F5;strokeColor=#999999;dashed=1;fontSize=11;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" value="MC（账号事件订阅）&#xa;account.status.changed" vertex="1">
+        <mxCell id="x48R5TT5wmDH4lDLe8wK-16" parent="1" style="rounded=1;whiteSpace=wrap;html=1;dashed=1;fontSize=17;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" value="MC（账号事件订阅）&#xa;account.status.changed" vertex="1">
           <mxGeometry height="60" width="180" x="300" y="750" as="geometry" />
         </mxCell>
-        <mxCell id="x48R5TT5wmDH4lDLe8wK-17" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F5F5F5;strokeColor=#999999;dashed=1;fontSize=11;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" value="OCC（内容事件订阅）&#xa;content.status.changed" vertex="1">
+        <mxCell id="x48R5TT5wmDH4lDLe8wK-17" parent="1" style="rounded=1;whiteSpace=wrap;html=1;dashed=1;fontSize=17;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" value="OCC（内容事件订阅）&#xa;content.status.changed" vertex="1">
           <mxGeometry height="60" width="180" x="300" y="840" as="geometry" />
-        </mxCell>
-        <mxCell id="x48R5TT5wmDH4lDLe8wK-18" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF2CC;strokeColor=#D6B656;fontSize=11;fontFamily=Microsoft YaHei;align=left;verticalAlign=top;spacingLeft=10;spacingTop=8;" value="约束标注：&#xa;• CON-14（核心 · 智能体域特例）：魔改 coze-loop（Go）做提示词工程+评测主体内核；其余组件（网关/记忆/提炼）用 Java/Spring Boot 与统一 Java 栈一致；仿 DC 采集域 Python 特例思路&#xa;• CON-10：调 IRS 推理（EI-05）不经执行网关，推理旁路&#xa;• CON-11：SWM 只生成提示词包，运行时归 MC agent-runtime（职责分工）&#xa;• CON-06：私有化推理，依赖 IRS 本地大模型&#xa;• 部署单元：swm-service（Java/Spring Boot）+ 魔改 coze-loop（Go）+ swm-memory（Java 记忆服务）&#xa;• 数据所有权：DR-09 蜂群智能体数据；扩展 DR-02E2 提示词包人设&#xa;• V3.9（ADR-001）：废除人设标签实体，人设属性直接写进提示词文本；M-SWM-03 运行时引擎删（归 MC agent-runtime）；新增 M-SWM-07 对话编写提示词" vertex="1">
-          <mxGeometry height="220" width="320" x="1310" y="600" as="geometry" />
-        </mxCell>
-        <mxCell id="x48R5TT5wmDH4lDLe8wK-19" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#999999;" value="" vertex="1">
-          <mxGeometry height="160" width="320" x="1310" y="1000" as="geometry" />
-        </mxCell>
-        <mxCell id="x48R5TT5wmDH4lDLe8wK-20" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=12;fontFamily=Microsoft YaHei;fontStyle=1;fontColor=#000000;" value="图例" vertex="1">
-          <mxGeometry height="20" width="60" x="1320" y="1005" as="geometry" />
-        </mxCell>
-        <mxCell id="x48R5TT5wmDH4lDLe8wK-21" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontSize=10;fontFamily=Microsoft YaHei;" value="业务模块" vertex="1">
-          <mxGeometry height="24" width="80" x="1320" y="1030" as="geometry" />
-        </mxCell>
-        <mxCell id="x48R5TT5wmDH4lDLe8wK-22" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFE6CC;strokeColor=#D79B00;strokeWidth=2;fontSize=10;fontFamily=Microsoft YaHei;" value="部署单元" vertex="1">
-          <mxGeometry height="24" width="80" x="1420" y="1030" as="geometry" />
-        </mxCell>
-        <mxCell id="x48R5TT5wmDH4lDLe8wK-23" parent="1" style="shape=cylinder3;whiteSpace=wrap;html=1;fillColor=#F8CECC;strokeColor=#B85450;fontSize=10;fontFamily=Microsoft YaHei;" value="数据" vertex="1">
-          <mxGeometry height="24" width="80" x="1520" y="1030" as="geometry" />
-        </mxCell>
-        <mxCell id="x48R5TT5wmDH4lDLe8wK-24" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F5F5F5;strokeColor=#999999;dashed=1;fontSize=10;fontFamily=Microsoft YaHei;" value="邻接子系统" vertex="1">
-          <mxGeometry height="24" width="100" x="1320" y="1065" as="geometry" />
-        </mxCell>
-        <mxCell id="x48R5TT5wmDH4lDLe8wK-25" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF2CC;strokeColor=#D6B656;fontSize=10;fontFamily=Microsoft YaHei;" value="约束块" vertex="1">
-          <mxGeometry height="24" width="80" x="1440" y="1065" as="geometry" />
-        </mxCell>
-        <mxCell id="x48R5TT5wmDH4lDLe8wK-26" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#D79B00;dashed=1;fontSize=9;fontFamily=Microsoft YaHei;" value="Go 栈分组&#xa;（coze-loop）" vertex="1">
-          <mxGeometry height="34" width="90" x="1540" y="1060" as="geometry" />
-        </mxCell>
-        <mxCell id="x48R5TT5wmDH4lDLe8wK-27" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#6C8EBF;dashed=1;fontSize=9;fontFamily=Microsoft YaHei;" value="Java 栈分组" vertex="1">
-          <mxGeometry height="24" width="90" x="1320" y="1100" as="geometry" />
-        </mxCell>
-        <mxCell id="x48R5TT5wmDH4lDLe8wK-28" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=10;fontFamily=Microsoft YaHei;fontColor=#000000;" value="──▶ 实线：调用 / 同步" vertex="1">
-          <mxGeometry height="24" width="200" x="1430" y="1100" as="geometry" />
-        </mxCell>
-        <mxCell id="x48R5TT5wmDH4lDLe8wK-29" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=10;fontFamily=Microsoft YaHei;fontColor=#666666;" value="┄┄▶ 虚线：事件 / 评估反馈" vertex="1">
-          <mxGeometry height="20" width="300" x="1320" y="1130" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
