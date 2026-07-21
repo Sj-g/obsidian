@@ -10,104 +10,68 @@
         <mxCell id="sub_caption" value="职责：统一自动化执行引擎 + 多终端执行网关；账号平台级权威源；智能体执行宿主。15 模块，4 部署单元（mc-service / mc-sfu / mc-agent 主机进程 / 商用指纹浏览器）。借鉴 SonicCloudOrg（archived, Apache 2.0）。" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontColor=#666666;fontSize=11;fontFamily=Microsoft YaHei;" vertex="1" parent="1">
           <mxGeometry x="20" y="40" width="1700" height="20" as="geometry" />
         </mxCell>
-        <mxCell id="mc_service_box" value="部署单元 ①  mc-service（中心服务端 · Java/Spring Boot · 单副本 · 含 M-MC-01~14 + M-MC-15.c 同进程）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#D79B00;strokeWidth=2;dashed=1;fontSize=12;fontFamily=Microsoft YaHei;fontStyle=1;verticalAlign=top;align=left;spacingLeft=15;spacingTop=10;" vertex="1" parent="1">
+        <mxCell id="mc_service_box" value="部署单元 ① mc-service（中心服务端 · Java/Spring Boot · 单副本 · 含 M-MC-01~14 + M-MC-15.c 同进程）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#D79B00;strokeWidth=2;dashed=1;fontSize=12;fontFamily=Microsoft YaHei;fontStyle=1;verticalAlign=top;align=left;spacingLeft=15;spacingTop=10;" vertex="1" parent="1">
           <mxGeometry x="30" y="180" width="1240" height="730" as="geometry" />
         </mxCell>
         <mxCell id="grp_term" value="① 终端资源与远控域" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#6C8EBF;dashed=1;fontSize=11;fontFamily=Microsoft YaHei;fontStyle=1;verticalAlign=top;align=left;spacingLeft=8;spacingTop=6;" vertex="1" parent="1">
           <mxGeometry x="50" y="220" width="580" height="290" as="geometry" />
         </mxCell>
-        <mxCell id="m_mc_01" value="M-MC-01&#10;执行终端接入与台账&#10;（V3.10 回归纯台账持有方）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontSize=10;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" vertex="1" parent="1">
+        <mxCell id="m_mc_01" value="执行终端接入与台账&#10;（V3.10 回归纯台账持有方）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontSize=10;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" vertex="1" parent="1">
           <mxGeometry x="70" y="260" width="170" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="m_mc_02" value="M-MC-02&#10;终端身份与环境隔离" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontSize=10;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" vertex="1" parent="1">
+        <mxCell id="m_mc_02" value="终端身份与环境隔离" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontSize=10;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" vertex="1" parent="1">
           <mxGeometry x="260" y="260" width="170" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="m_mc_03" value="M-MC-03&#10;终端风控分级与代理绑定" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontSize=10;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" vertex="1" parent="1">
+        <mxCell id="m_mc_03" value="终端风控分级与代理绑定" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontSize=10;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" vertex="1" parent="1">
           <mxGeometry x="450" y="260" width="170" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="m_mc_04" value="M-MC-04&#10;远程控制&#10;（WebRTC SFU 转发）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontSize=10;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" vertex="1" parent="1">
+        <mxCell id="m_mc_04" value="远程控制&#10;（WebRTC SFU 转发）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontSize=10;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" vertex="1" parent="1">
           <mxGeometry x="70" y="410" width="170" height="70" as="geometry" />
         </mxCell>
         <mxCell id="grp_exec" value="② 执行收口与编排域（核心 · CON-07 动作收口）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#82B366;dashed=1;fontSize=11;fontFamily=Microsoft YaHei;fontStyle=1;verticalAlign=top;align=left;spacingLeft=8;spacingTop=6;" vertex="1" parent="1">
           <mxGeometry x="650" y="220" width="600" height="290" as="geometry" />
         </mxCell>
-        <mxCell id="m_mc_05" value="M-MC-05 ⭐&#10;统一执行网关&#10;（动作收口核心 · 唯一入口）&#10;V3.10 F-MC-05-05 收缩为接口薄层" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D5E8D4;strokeColor=#82B366;strokeWidth=2;fontSize=10;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;fontStyle=1;" vertex="1" parent="1">
+        <mxCell id="m_mc_05" value="统一执行网关&#10;（动作收口核心 · 唯一入口）&#10;V3.10 收缩为接口薄层" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D5E8D4;strokeColor=#82B366;strokeWidth=2;fontSize=10;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;fontStyle=1;" vertex="1" parent="1">
           <mxGeometry x="670" y="260" width="260" height="80" as="geometry" />
         </mxCell>
-        <mxCell id="m_mc_06" value="M-MC-06&#10;双执行模式&#10;（脚本 GraalVM JS +&#10;智能体 agent-runtime）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontSize=10;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" vertex="1" parent="1">
+        <mxCell id="m_mc_06" value="双执行模式&#10;（脚本 GraalVM JS +&#10;智能体 agent-runtime）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontSize=10;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" vertex="1" parent="1">
           <mxGeometry x="950" y="260" width="160" height="80" as="geometry" />
         </mxCell>
-        <mxCell id="m_mc_07" value="M-MC-07&#10;任务管理&#10;（任务调度中枢）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontSize=10;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" vertex="1" parent="1">
+        <mxCell id="m_mc_07" value="任务管理&#10;（任务调度中枢）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontSize=10;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" vertex="1" parent="1">
           <mxGeometry x="1120" y="260" width="120" height="80" as="geometry" />
         </mxCell>
-        <mxCell id="m_mc_08" value="M-MC-08&#10;自动化编排能力&#10;（模板/工作流/脚本 IDE）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontSize=10;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" vertex="1" parent="1">
+        <mxCell id="m_mc_08" value="自动化编排能力&#10;（模板/工作流/脚本 IDE）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontSize=10;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" vertex="1" parent="1">
           <mxGeometry x="670" y="410" width="170" height="70" as="geometry" />
         </mxCell>
-        <mxCell id="m_mc_09" value="M-MC-09&#10;账号操作编排与养号&#10;（拟人化节奏内置）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontSize=10;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" vertex="1" parent="1">
+        <mxCell id="m_mc_09" value="账号操作编排与养号&#10;（拟人化节奏内置）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontSize=10;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" vertex="1" parent="1">
           <mxGeometry x="860" y="410" width="170" height="70" as="geometry" />
         </mxCell>
-        <mxCell id="m_mc_15c" value="M-MC-15.c&#10;真机 Agent 运行时与编排（中心侧编排器）&#10;⭐ V3.10 新增 · CON-15 · 持 II-02 WS endpoint&#10;RealDeviceSdk 实现方 · 借鉴 Sonic" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D5E8D4;strokeColor=#82B366;strokeWidth=2;fontSize=10;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;fontStyle=1;" vertex="1" parent="1">
+        <mxCell id="m_mc_15c" value="真机 Agent 运行时与编排（中心侧编排器）&#10;⭐ V3.10 新增 · CON-15 · 持 II-02 WS endpoint&#10;RealDeviceSdk 实现方 · 借鉴 Sonic" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D5E8D4;strokeColor=#82B366;strokeWidth=2;fontSize=10;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;fontStyle=1;" vertex="1" parent="1">
           <mxGeometry x="1050" y="410" width="200" height="80" as="geometry" />
-        </mxCell>
-        <mxCell id="e_engines_gw" value="动作收口" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#000000;fontSize=9;fontFamily=Microsoft YaHei;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="m_mc_06" target="m_mc_05">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="e_07_gw" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#000000;" edge="1" parent="1" source="m_mc_07" target="m_mc_05">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="e_08_gw" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#000000;" edge="1" parent="1" source="m_mc_08" target="m_mc_05">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="e_09_gw" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#000000;" edge="1" parent="1" source="m_mc_09" target="m_mc_05">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="e_04_gw" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#000000;" edge="1" parent="1" source="m_mc_04" target="m_mc_05">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="e_gw_15c" value="真机动作路由&#10;RealDeviceSdk" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#000000;fontSize=9;fontFamily=Microsoft YaHei;labelBackgroundColor=#FFFFFF;strokeWidth=2;" edge="1" parent="1" source="m_mc_05" target="m_mc_15c">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="e_15c_01" value="terminal_registered/offline 事件" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#999999;dashed=1;fontSize=9;fontFamily=Microsoft YaHei;labelBackgroundColor=#FFFFFF;fontColor=#666666;" edge="1" parent="1" source="m_mc_15c" target="m_mc_01">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="e_04_15c" value="startScrcpy 协商" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#999999;dashed=1;fontSize=9;fontFamily=Microsoft YaHei;labelBackgroundColor=#FFFFFF;fontColor=#666666;" edge="1" parent="1" source="m_mc_04" target="m_mc_15c">
-          <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="grp_obs" value="③ 可观测域" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#6C8EBF;dashed=1;fontSize=11;fontFamily=Microsoft YaHei;fontStyle=1;verticalAlign=top;align=left;spacingLeft=8;spacingTop=6;" vertex="1" parent="1">
           <mxGeometry x="50" y="530" width="280" height="130" as="geometry" />
         </mxCell>
-        <mxCell id="m_mc_10" value="M-MC-10&#10;可观测性与作业统计复盘&#10;（动作留痕 + 任务日志 + 效果回传）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontSize=10;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" vertex="1" parent="1">
+        <mxCell id="m_mc_10" value="可观测性与作业统计复盘&#10;（动作留痕 + 任务日志 + 效果回传）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontSize=10;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" vertex="1" parent="1">
           <mxGeometry x="70" y="565" width="240" height="80" as="geometry" />
         </mxCell>
         <mxCell id="grp_acct" value="④ 账号权威源域（CON-11 平台级权威源）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#82B366;dashed=1;fontSize=11;fontFamily=Microsoft YaHei;fontStyle=1;verticalAlign=top;align=left;spacingLeft=8;spacingTop=6;" vertex="1" parent="1">
           <mxGeometry x="350" y="530" width="540" height="130" as="geometry" />
         </mxCell>
-        <mxCell id="m_mc_11" value="M-MC-11 ⭐&#10;账号主数据管理&#10;（账号资源权威源 · DR-02M）&#10;凭据 AES-256-GCM 加密" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D5E8D4;strokeColor=#82B366;strokeWidth=2;fontSize=10;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;fontStyle=1;" vertex="1" parent="1">
+        <mxCell id="m_mc_11" value="账号主数据管理&#10;（账号资源权威源 · DR-02M）&#10;凭据 AES-256-GCM 加密" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D5E8D4;strokeColor=#82B366;strokeWidth=2;fontSize=10;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;fontStyle=1;" vertex="1" parent="1">
           <mxGeometry x="370" y="565" width="170" height="80" as="geometry" />
         </mxCell>
-        <mxCell id="m_mc_12" value="M-MC-12&#10;智能体账号分层分组" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontSize=10;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" vertex="1" parent="1">
+        <mxCell id="m_mc_12" value="智能体账号分层分组" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontSize=10;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" vertex="1" parent="1">
           <mxGeometry x="560" y="565" width="150" height="80" as="geometry" />
         </mxCell>
-        <mxCell id="m_mc_13" value="M-MC-13&#10;智能体账号绑定与资产迁移&#10;（行动关系 1:N:1:1）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontSize=10;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" vertex="1" parent="1">
+        <mxCell id="m_mc_13" value="智能体账号绑定与资产迁移&#10;（行动关系 1:N:1:1）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontSize=10;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" vertex="1" parent="1">
           <mxGeometry x="730" y="565" width="150" height="80" as="geometry" />
         </mxCell>
         <mxCell id="grp_host" value="⑤ 智能体执行宿主域" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#6C8EBF;dashed=1;fontSize=11;fontFamily=Microsoft YaHei;fontStyle=1;verticalAlign=top;align=left;spacingLeft=8;spacingTop=6;" vertex="1" parent="1">
           <mxGeometry x="910" y="530" width="340" height="130" as="geometry" />
         </mxCell>
-        <mxCell id="m_mc_14" value="M-MC-14&#10;智能体执行宿主与同步&#10;（持存提示词包 + 行为风格一致性校验 + 调 agent-runtime）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontSize=10;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" vertex="1" parent="1">
+        <mxCell id="m_mc_14" value="智能体执行宿主与同步&#10;（持存提示词包 + 行为风格一致性校验 + 调 agent-runtime）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontSize=10;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" vertex="1" parent="1">
           <mxGeometry x="930" y="565" width="300" height="80" as="geometry" />
-        </mxCell>
-        <mxCell id="e_14_06" value="调用 agent-runtime" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#000000;fontSize=9;fontFamily=Microsoft YaHei;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="m_mc_14" target="m_mc_06">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="e_05_10" value="动作日志（单一采集点）" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#999999;dashed=1;fontSize=9;fontFamily=Microsoft YaHei;labelBackgroundColor=#FFFFFF;fontColor=#666666;" edge="1" parent="1" source="m_mc_05" target="m_mc_10">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="e_11_12" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#999999;dashed=1;" edge="1" parent="1" source="m_mc_11" target="m_mc_12">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="e_11_13" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#999999;dashed=1;" edge="1" parent="1" source="m_mc_11" target="m_mc_13">
-          <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="grp_data" value="数据与基础设施（独立部署，mc-service 复用）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#B85450;dashed=1;fontSize=11;fontFamily=Microsoft YaHei;fontStyle=1;verticalAlign=top;align=left;spacingLeft=8;spacingTop=6;" vertex="1" parent="1">
           <mxGeometry x="50" y="690" width="1200" height="200" as="geometry" />
@@ -127,10 +91,10 @@
         <mxCell id="d_minio" value="MinIO（EI-04）&#10;截图/录屏/脚本文件&#10;内容素材临时链接" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;fillColor=#F8CECC;strokeColor=#B85450;fontSize=10;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" vertex="1" parent="1">
           <mxGeometry x="1040" y="730" width="200" height="140" as="geometry" />
         </mxCell>
-        <mxCell id="mc_sfu" value="部署单元 ②  mc-sfu&#10;mediasoup 自建 WebRTC SFU（Node.js）&#10;远控画面转发 · 单副本" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFE6CC;strokeColor=#D79B00;strokeWidth=2;fontSize=11;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" vertex="1" parent="1">
+        <mxCell id="mc_sfu" value="部署单元 ② mc-sfu&#10;mediasoup 自建 WebRTC SFU（Node.js）&#10;远控画面转发 · 单副本" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFE6CC;strokeColor=#D79B00;strokeWidth=2;fontSize=11;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" vertex="1" parent="1">
           <mxGeometry x="1300" y="220" width="280" height="80" as="geometry" />
         </mxCell>
-        <mxCell id="browser" value="部署单元 ④  商用指纹浏览器（EI-06 外部产品）&#10;经 HTTP API 创建/管理 Profile · 启动后返回 CDP 端口&#10;一个 Profile = 一套固定指纹 + 一个账号身份（CON-12）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E1D5E7;strokeColor=#9673A6;shadow=1;fontSize=11;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" vertex="1" parent="1">
+        <mxCell id="browser" value="部署单元 ④ 商用指纹浏览器（EI-06 外部产品）&#10;经 HTTP API 创建/管理 Profile · 启动后返回 CDP 端口&#10;一个 Profile = 一套固定指纹 + 一个账号身份（CON-12）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E1D5E7;strokeColor=#9673A6;shadow=1;fontSize=11;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" vertex="1" parent="1">
           <mxGeometry x="1300" y="340" width="280" height="90" as="geometry" />
         </mxCell>
         <mxCell id="ext_ei02" value="代理 IP 服务&#10;EI-02" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E1D5E7;strokeColor=#9673A6;shadow=1;fontSize=11;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" vertex="1" parent="1">
@@ -154,65 +118,23 @@
         <mxCell id="neigh_dcswmocc" value="DC / SWM / OCC&#10;（account_id 分发消费方）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F5F5F5;strokeColor=#999999;dashed=1;fontSize=11;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" vertex="1" parent="1">
           <mxGeometry x="1300" y="820" width="280" height="50" as="geometry" />
         </mxCell>
-        <mxCell id="e_06_irs" value="视觉推理（不经网关，CON-10）&#10;II-08 / EI-05" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#000000;fontSize=9;fontFamily=Microsoft YaHei;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="m_mc_06" target="neigh_irs">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="e_swm_14" value="提示词包同步&#10;II-14（agent_id+account_id）" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#000000;fontSize=9;fontFamily=Microsoft YaHei;labelBackgroundColor=#FFFFFF;strokeWidth=2;" edge="1" parent="1" source="neigh_swm" target="m_mc_14">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="e_occ_05" value="行动编排&#10;II-10" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#000000;fontSize=9;fontFamily=Microsoft YaHei;labelBackgroundColor=#FFFFFF;strokeWidth=2;" edge="1" parent="1" source="neigh_occ" target="m_mc_05">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="e_05_occ" value="效果数据回传&#10;II-10 回传方向" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#999999;dashed=1;fontSize=9;fontFamily=Microsoft YaHei;labelBackgroundColor=#FFFFFF;fontColor=#666666;" edge="1" parent="1" source="m_mc_10" target="neigh_occ">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="e_03_ei02" value="EI-02" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#000000;fontSize=9;fontFamily=Microsoft YaHei;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="m_mc_03" target="ext_ei02">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="e_11_ei03" value="EI-03" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#000000;fontSize=9;fontFamily=Microsoft YaHei;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="m_mc_11" target="ext_ei03">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="e_mc_om" value="动作日志全量上报&#10;II-04 / II-11" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#999999;dashed=1;fontSize=9;fontFamily=Microsoft YaHei;labelBackgroundColor=#FFFFFF;fontColor=#666666;" edge="1" parent="1" source="m_mc_10" target="neigh_om">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="e_11_neigh" value="account_id 分发&#10;II-01 / II-01a" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#999999;dashed=1;fontSize=9;fontFamily=Microsoft YaHei;labelBackgroundColor=#FFFFFF;fontColor=#666666;" edge="1" parent="1" source="m_mc_11" target="neigh_dcswmocc">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="e_02_browser" value="Profile 创建/指纹固化&#10;EI-06（CON-12）" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#000000;fontSize=9;fontFamily=Microsoft YaHei;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="m_mc_02" target="browser">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="e_sfu_04" value="WebRTC 画面&#10;II-03" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#000000;fontSize=9;fontFamily=Microsoft YaHei;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="mc_sfu" target="m_mc_04">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="agent_host_box" value="部署单元 ③  真机 Agent 主机进程 M-MC-15.a（⭐ V3.10 新增 · CON-15 · 独立部署单元 · 每台插真机的 Linux/Mac 主机一台 Spring Boot 进程 · MC 内唯一触碰真机的进程 · 借鉴 SonicCloudOrg sonic-agent）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#D79B00;strokeWidth=2;dashed=1;fontSize=12;fontFamily=Microsoft YaHei;fontStyle=1;verticalAlign=top;align=left;spacingLeft=15;spacingTop=10;" vertex="1" parent="1">
+        <mxCell id="agent_host_box" value="部署单元 ③ 真机 Agent 主机进程 M-MC-15.a（⭐ V3.10 新增 · CON-15 · 独立部署单元 · 每台插真机的 Linux/Mac 主机一台 Spring Boot 进程 · MC 内唯一触碰真机的进程 · 借鉴 SonicCloudOrg sonic-agent）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#D79B00;strokeWidth=2;dashed=1;fontSize=12;fontFamily=Microsoft YaHei;fontStyle=1;verticalAlign=top;align=left;spacingLeft=15;spacingTop=10;" vertex="1" parent="1">
           <mxGeometry x="30" y="940" width="1240" height="200" as="geometry" />
         </mxCell>
-        <mxCell id="agent_adb" value="AdbBridge（F-MC-15-04）&#10;ddmlib 封装&#10;install/pressKey/reboot/screenshot" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontSize=10;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" vertex="1" parent="1">
+        <mxCell id="agent_adb" value="AdbBridge&#10;ddmlib 封装&#10;install/pressKey/reboot/screenshot" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontSize=10;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" vertex="1" parent="1">
           <mxGeometry x="60" y="990" width="220" height="70" as="geometry" />
         </mxCell>
-        <mxCell id="agent_uia2" value="Uia2Driver（F-MC-15-05）&#10;sonic-driver-core 封装 uia2&#10;find/click/sendKeys/swipe" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontSize=10;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" vertex="1" parent="1">
+        <mxCell id="agent_uia2" value="Uia2Driver&#10;sonic-driver-core 封装 uia2&#10;find/click/sendKeys/swipe" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontSize=10;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" vertex="1" parent="1">
           <mxGeometry x="300" y="990" width="220" height="70" as="geometry" />
         </mxCell>
-        <mxCell id="agent_scrcpy" value="ScrcpyClient（F-MC-15-06）&#10;抄 Sonic Input/OutputSocketThread&#10;启动 scrcpy server · H.264 推流" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontSize=10;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" vertex="1" parent="1">
+        <mxCell id="agent_scrcpy" value="ScrcpyClient&#10;抄 Sonic Input/OutputSocketThread&#10;启动 scrcpy server · H.264 推流" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontSize=10;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" vertex="1" parent="1">
           <mxGeometry x="540" y="990" width="240" height="70" as="geometry" />
         </mxCell>
-        <mxCell id="agent_client" value="AgentClient（F-MC-15-01/02/03）&#10;WS 出站连接 · 鉴权 · 心跳 30s · 重连指数退避&#10;ConfigLoader：agentKey + udId 清单（无热插拔）&#10;DeviceLock：内存锁（远控/自动化互斥）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontSize=10;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" vertex="1" parent="1">
+        <mxCell id="agent_client" value="AgentClient&#10;WS 出站连接 · 鉴权 · 心跳 30s · 重连指数退避&#10;ConfigLoader：agentKey + udId 清单（无热插拔）&#10;DeviceLock：内存锁（远控/自动化互斥）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontSize=10;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" vertex="1" parent="1">
           <mxGeometry x="800" y="990" width="450" height="70" as="geometry" />
         </mxCell>
         <mxCell id="real_devices" value="真机集群（Android 3-8 台）&#10;USB 接入" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E1D5E7;strokeColor=#9673A6;shadow=1;fontSize=11;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" vertex="1" parent="1">
           <mxGeometry x="800" y="1075" width="220" height="50" as="geometry" />
-        </mxCell>
-        <mxCell id="e_agent_real" value="USB / ADB / uia2 / scrcpy" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#000000;fontSize=9;fontFamily=Microsoft YaHei;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="agent_client" target="real_devices">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="e_15c_15a" value="II-02 WebSocket（注册/心跳/占用/指令/媒体面协商）&#10;⭐ V3.10 提供方调整为 M-MC-15（原 M-MC-01/05）" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#D79B00;fontSize=10;fontFamily=Microsoft YaHei;labelBackgroundColor=#FFFFFF;fontColor=#D79B00;strokeWidth=3;" edge="1" parent="1" source="m_mc_15c" target="agent_client">
-          <mxGeometry relative="1" as="geometry">
-            <mxPoint x="1150" y="950" as="sourcePoint" />
-            <mxPoint x="1025" y="950" as="targetPoint" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="e_scrcpy_sfu" value="H.264 推流（端口直推 · 不经 mc-service）" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#000000;fontSize=9;fontFamily=Microsoft YaHei;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="agent_scrcpy" target="mc_sfu">
-          <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="constraint_note" value="约束标注（CON-01~15 共 11 条与 MC 相关）：&#10;• CON-01 MVP 优先云手机+真机 · CON-02 不自研云手机内核&#10;• CON-07（核心）所有终端动作经 MC 网关收口，禁止绕过&#10;• CON-08 双执行模式（脚本 GraalVM JS + 智能体 agent-runtime）&#10;• CON-09 终端风控分级（养号优先真机/ARM）&#10;• CON-10 agent-runtime 调 IRS 视觉推理不经网关（推理旁路）&#10;• CON-11 MC = 终端+账号主数据+智能体宿主归属&#10;• CON-12 商用指纹浏览器（EI-06），不自建内核&#10;• CON-13 账号分类+差异化绑定（一设备一账号一IP / 一 Profile 一账号一IP）&#10;• ⭐ CON-15（V3.10 新增）真机 Agent 独立部署单元 · 唯一触碰真机的进程 · 借鉴 SonicCloudOrg (archived, Apache 2.0)&#10;其他：动作路径 M-MC-05 → M-MC-15.c → II-02 → M-MC-15.a → ADB/uia2/scrcpy；F-MC-05-05 收缩为 DeviceSdk 接口薄层；M-MC-01 回归纯台账持有方" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF2CC;strokeColor=#D6B656;fontSize=11;fontFamily=Microsoft YaHei;align=left;verticalAlign=top;spacingLeft=10;spacingTop=8;" vertex="1" parent="1">
           <mxGeometry x="1300" y="890" width="480" height="250" as="geometry" />

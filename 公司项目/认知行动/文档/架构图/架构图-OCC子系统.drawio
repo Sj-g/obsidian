@@ -16,34 +16,34 @@
         <mxCell id="brain_group" value="数据分析与情报大脑（M-OCC-02 · V3.3 由 DC 移入）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#6C8EBF;dashed=1;fontSize=11;fontFamily=Microsoft YaHei;fontStyle=1;verticalAlign=top;align=left;spacingLeft=10;spacingTop=8;" vertex="1" parent="1">
           <mxGeometry x="270" y="220" width="380" height="100" as="geometry" />
         </mxCell>
-        <mxCell id="m_occ_02" value="M-OCC-02&#10;数据分析与情报&#10;（情报分析大脑）&#10;&#10;• 群体下钻（自研规则树+sklearn）&#10;• 关系图谱（查 DC NebulaGraph）&#10;• 实体检索与档案&#10;• 文本智能分析（IRS）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontSize=11;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" vertex="1" parent="1">
+        <mxCell id="m_occ_02" value="数据分析与情报&#10;（情报分析大脑）&#10;&#10;• 群体下钻（自研规则树+sklearn）&#10;• 关系图谱（查 DC NebulaGraph）&#10;• 实体检索与档案&#10;• 文本智能分析（IRS）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontSize=11;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" vertex="1" parent="1">
           <mxGeometry x="290" y="250" width="340" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="m_occ_01" value="M-OCC-01&#10;目标档案与状态管理&#10;（目标数据管家）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontSize=11;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" vertex="1" parent="1">
+        <mxCell id="m_occ_01" value="目标档案与状态管理&#10;（目标数据管家）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontSize=11;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" vertex="1" parent="1">
           <mxGeometry x="290" y="360" width="160" height="70" as="geometry" />
         </mxCell>
-        <mxCell id="m_occ_03" value="M-OCC-03&#10;目标关联网络&#10;（目标关系图谱）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontSize=11;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" vertex="1" parent="1">
+        <mxCell id="m_occ_03" value="目标关联网络&#10;（目标关系图谱）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontSize=11;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" vertex="1" parent="1">
           <mxGeometry x="470" y="360" width="160" height="70" as="geometry" />
         </mxCell>
-        <mxCell id="m_occ_04" value="M-OCC-04&#10;行动方案规划&#10;（行动参谋）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontSize=11;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" vertex="1" parent="1">
+        <mxCell id="m_occ_04" value="行动方案规划&#10;（行动参谋）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontSize=11;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" vertex="1" parent="1">
           <mxGeometry x="680" y="360" width="160" height="70" as="geometry" />
         </mxCell>
-        <mxCell id="m_occ_05" value="M-OCC-05&#10;编排执行引擎&#10;（编排执行引擎 · Flowable/BPMN）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontSize=11;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" vertex="1" parent="1">
+        <mxCell id="m_occ_05" value="编排执行引擎&#10;（编排执行引擎 · Flowable/BPMN）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontSize=11;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" vertex="1" parent="1">
           <mxGeometry x="860" y="360" width="180" height="70" as="geometry" />
         </mxCell>
-        <mxCell id="m_occ_06" value="M-OCC-06&#10;效果评估&#10;（行动复盘官）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontSize=11;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" vertex="1" parent="1">
+        <mxCell id="m_occ_06" value="效果评估&#10;（行动复盘官）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontSize=11;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" vertex="1" parent="1">
           <mxGeometry x="680" y="460" width="160" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="m_occ_07" value="M-OCC-07&#10;舆论作业策略库&#10;（策略资产库）" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;size=15;fillColor=#FFF2CC;strokeColor=#D6B656;fontSize=11;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" vertex="1" parent="1">
+        <mxCell id="m_occ_07" value="舆论作业策略库&#10;（策略资产库）" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;size=15;fillColor=#FFF2CC;strokeColor=#D6B656;fontSize=11;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" vertex="1" parent="1">
           <mxGeometry x="480" y="460" width="160" height="60" as="geometry" />
         </mxCell>
         <mxCell id="content_group" value="内容资源权威源（M-OCC-08/09 · CON-11 唯一权威源）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#82B366;dashed=1;fontSize=11;fontFamily=Microsoft YaHei;fontStyle=1;verticalAlign=top;align=left;spacingLeft=10;spacingTop=8;" vertex="1" parent="1">
           <mxGeometry x="270" y="560" width="900" height="120" as="geometry" />
         </mxCell>
-        <mxCell id="m_occ_08" value="M-OCC-08&#10;内容主数据与排期&#10;（内容资源权威源 · DR-03M）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D5E8D4;strokeColor=#82B366;strokeWidth=2;fontSize=11;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;fontStyle=1;" vertex="1" parent="1">
+        <mxCell id="m_occ_08" value="内容主数据与排期&#10;（内容资源权威源 · DR-03M）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D5E8D4;strokeColor=#82B366;strokeWidth=2;fontSize=11;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;fontStyle=1;" vertex="1" parent="1">
           <mxGeometry x="310" y="600" width="220" height="70" as="geometry" />
         </mxCell>
-        <mxCell id="m_occ_09" value="M-OCC-09&#10;内容审核与敏感词风控&#10;（内容合规守门人）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontSize=11;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" vertex="1" parent="1">
+        <mxCell id="m_occ_09" value="内容审核与敏感词风控&#10;（内容合规守门人）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontSize=11;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" vertex="1" parent="1">
           <mxGeometry x="560" y="600" width="220" height="70" as="geometry" />
         </mxCell>
         <mxCell id="store_dr11" value="DR-11 舆情行动数据&#10;目标/传播/画像/编排节点关系/&#10;策略库版本/评估记录" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;fillColor=#F8CECC;strokeColor=#B85450;fontSize=10;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" vertex="1" parent="1">
@@ -51,30 +51,6 @@
         </mxCell>
         <mxCell id="store_dr03m" value="DR-03M&#10;内容主数据&#10;（素材/分类/审核/来源）" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;fillColor=#F8CECC;strokeColor=#B85450;fontSize=10;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" vertex="1" parent="1">
           <mxGeometry x="1030" y="600" width="130" height="70" as="geometry" />
-        </mxCell>
-        <mxCell id="e_02_01" value="分析产出融合" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#000000;fontSize=10;fontFamily=Microsoft YaHei;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="m_occ_02" target="m_occ_01">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="e_01_04" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#000000;" edge="1" parent="1" source="m_occ_01" target="m_occ_04">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="e_03_04" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#000000;" edge="1" parent="1" source="m_occ_03" target="m_occ_04">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="e_07_04" value="策略" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#000000;fontSize=10;fontFamily=Microsoft YaHei;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="m_occ_07" target="m_occ_04">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="e_04_05" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#000000;" edge="1" parent="1" source="m_occ_04" target="m_occ_05">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="e_08_09" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#000000;" edge="1" parent="1" source="m_occ_08" target="m_occ_09">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="e_09_08" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#000000;" edge="1" parent="1" source="m_occ_09" target="m_occ_08">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="e_08_store" value="读写" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#000000;fontSize=10;fontFamily=Microsoft YaHei;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="m_occ_08" target="store_dr03m">
-          <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="dc_node" value="DC 数据爬取子系统&#10;（原始数据 + NebulaGraph 关系图谱）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F5F5F5;strokeColor=#999999;dashed=1;fontSize=11;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" vertex="1" parent="1">
           <mxGeometry x="20" y="220" width="200" height="60" as="geometry" />
@@ -94,36 +70,6 @@
         <mxCell id="ext_ei04" value="MinIO / 阿里云 OSS&#10;EI-04 对象存储&#10;（内容素材）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E1D5E7;strokeColor=#9673A6;fontSize=11;fontFamily=Microsoft YaHei;shadow=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
           <mxGeometry x="1230" y="220" width="260" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="e_dc_02" value="原始舆情/传播数据&#10;II-13" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#000000;fontSize=10;fontFamily=Microsoft YaHei;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="dc_node" target="m_occ_02">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="e_02_dc" value="情报回注&#10;II-15" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#999999;dashed=1;fontSize=10;fontFamily=Microsoft YaHei;labelBackgroundColor=#FFFFFF;fontColor=#666666;" edge="1" parent="1" source="m_occ_02" target="dc_node">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="e_irs_02" value="文本分析&#10;EI-05" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#000000;fontSize=10;fontFamily=Microsoft YaHei;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="irs_node" target="m_occ_02">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="e_05_mc" value="行动编排（节点下发）&#10;II-10" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#000000;fontSize=10;fontFamily=Microsoft YaHei;labelBackgroundColor=#FFFFFF;strokeWidth=2;" edge="1" parent="1" source="m_occ_05" target="mc_node">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="e_mc_06" value="效果数据回传&#10;II-10 回传方向" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#999999;dashed=1;fontSize=10;fontFamily=Microsoft YaHei;labelBackgroundColor=#FFFFFF;fontColor=#666666;" edge="1" parent="1" source="mc_node" target="m_occ_06">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="e_06_07" value="策略迭代反馈" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#999999;dashed=1;fontSize=10;fontFamily=Microsoft YaHei;labelBackgroundColor=#FFFFFF;fontColor=#666666;" edge="1" parent="1" source="m_occ_06" target="m_occ_07">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="e_08_swm" value="content_id 分发&#10;II-12 / II-12a" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#999999;dashed=1;fontSize=10;fontFamily=Microsoft YaHei;labelBackgroundColor=#FFFFFF;fontColor=#666666;" edge="1" parent="1" source="m_occ_08" target="swm_node">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="e_08_mc" value="content_id 分发&#10;II-12 / II-12a" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#999999;dashed=1;fontSize=10;fontFamily=Microsoft YaHei;labelBackgroundColor=#FFFFFF;fontColor=#666666;" edge="1" parent="1" source="m_occ_08" target="mc_node">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="e_08_ei04" value="素材上传/下载&#10;EI-04" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#000000;fontSize=10;fontFamily=Microsoft YaHei;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="m_occ_08" target="ext_ei04">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="e_occ_om" value="日志/指标&#10;II-04" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#999999;dashed=1;fontSize=10;fontFamily=Microsoft YaHei;labelBackgroundColor=#FFFFFF;fontColor=#666666;" edge="1" parent="1" source="occ_container" target="om_node">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
         <mxCell id="constraint_note" value="约束标注：&#10;• CON-04（核心）：OCC 是核心闭环链路的指挥大脑（识别→情报→编排→评估）&#10;• CON-11：OCC = 内容资源唯一权威源（M-OCC-08 + DR-03M）；MC = 账号权威源；二者对偶&#10;• CON-06：调 IRS 文本模型做分类/立场/情感分析，模型不可用回退关键词规则匹配&#10;• CON-07：编排落地由 MC 网关收口，OCC 不直接操作终端&#10;• 部署单元：occ-service 单一 Java/Spring Boot 微服务&#10;• 数据所有权：DR-03M 内容主数据（权威源）/ DR-11 舆情行动数据&#10;• V3.3 起 M-OCC-02 数据分析与情报由 DC 移入 OCC（不重复采集，DC 只做采集与清洗）&#10;• 本期暂不实现（V1.2+）：情报线索侦察自动化 / 全维度画像 / 抓手挖掘自动化 / 风险定级与对冲 / 仿真发声 / 全媒体投送 / 线下态势联动" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF2CC;strokeColor=#D6B656;fontSize=11;fontFamily=Microsoft YaHei;align=left;verticalAlign=top;spacingLeft=10;spacingTop=8;" vertex="1" parent="1">
           <mxGeometry x="1230" y="440" width="340" height="190" as="geometry" />
         </mxCell>
@@ -136,13 +82,13 @@
         <mxCell id="lg_mod" value="业务模块" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontSize=10;fontFamily=Microsoft YaHei;" vertex="1" parent="1">
           <mxGeometry x="260" y="860" width="80" height="24" as="geometry" />
         </mxCell>
-        <mxCell id="lg_mod_t" value="M-OCC-01~06/09 自有模块" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=10;fontFamily=Microsoft YaHei;" vertex="1" parent="1">
+        <mxCell id="lg_mod_t" value="~06/09 自有模块" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=10;fontFamily=Microsoft YaHei;" vertex="1" parent="1">
           <mxGeometry x="350" y="860" width="240" height="24" as="geometry" />
         </mxCell>
         <mxCell id="lg_auth" value="权威源模块" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D5E8D4;strokeColor=#82B366;strokeWidth=2;fontSize=10;fontFamily=Microsoft YaHei;fontStyle=1;" vertex="1" parent="1">
           <mxGeometry x="620" y="860" width="80" height="24" as="geometry" />
         </mxCell>
-        <mxCell id="lg_auth_t" value="M-OCC-08 内容主数据（CON-11 唯一权威源）" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=10;fontFamily=Microsoft YaHei;" vertex="1" parent="1">
+        <mxCell id="lg_auth_t" value="内容主数据（CON-11 唯一权威源）" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=10;fontFamily=Microsoft YaHei;" vertex="1" parent="1">
           <mxGeometry x="710" y="860" width="320" height="24" as="geometry" />
         </mxCell>
         <mxCell id="lg_data" value="数据" style="shape=cylinder3;whiteSpace=wrap;html=1;fillColor=#F8CECC;strokeColor=#B85450;fontSize=10;fontFamily=Microsoft YaHei;" vertex="1" parent="1">

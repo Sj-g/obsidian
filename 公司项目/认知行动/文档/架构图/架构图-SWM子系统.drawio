@@ -16,25 +16,25 @@
         <mxCell id="coze_loop_box" value="魔改 coze-loop 内核（Go · CON-14 智能体域特例 · 主体内核）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#D79B00;dashed=1;fontSize=11;fontFamily=Microsoft YaHei;fontStyle=1;verticalAlign=top;align=left;spacingLeft=10;spacingTop=8;" vertex="1" parent="1">
           <mxGeometry x="270" y="220" width="720" height="170" as="geometry" />
         </mxCell>
-        <mxCell id="m_swm_01" value="M-SWM-01&#10;提示词管理&#10;（V3.9 改：去人设标签）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontSize=11;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" vertex="1" parent="1">
+        <mxCell id="m_swm_01" value="提示词管理&#10;（V3.9 改：去人设标签）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontSize=11;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" vertex="1" parent="1">
           <mxGeometry x="290" y="260" width="160" height="70" as="geometry" />
         </mxCell>
-        <mxCell id="m_swm_02" value="M-SWM-02&#10;提示词模板库与版本管理&#10;（Playground/版本对比）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontSize=11;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" vertex="1" parent="1">
+        <mxCell id="m_swm_02" value="提示词模板库与版本管理&#10;（Playground/版本对比）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontSize=11;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" vertex="1" parent="1">
           <mxGeometry x="465" y="260" width="180" height="70" as="geometry" />
         </mxCell>
-        <mxCell id="m_swm_06" value="M-SWM-06&#10;智能体评测与迭代决策&#10;（评测集/评估器/实验）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontSize=11;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" vertex="1" parent="1">
+        <mxCell id="m_swm_06" value="智能体评测与迭代决策&#10;（评测集/评估器/实验）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontSize=11;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" vertex="1" parent="1">
           <mxGeometry x="660" y="260" width="160" height="70" as="geometry" />
         </mxCell>
-        <mxCell id="m_swm_07" value="M-SWM-07&#10;对话编写提示词&#10;（对话编写引擎 · 画像素材）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontSize=11;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" vertex="1" parent="1">
+        <mxCell id="m_swm_07" value="对话编写提示词&#10;（对话编写引擎 · 画像素材）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontSize=11;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" vertex="1" parent="1">
           <mxGeometry x="835" y="260" width="140" height="70" as="geometry" />
         </mxCell>
         <mxCell id="java_box" value="Java（Spring Boot · 与管控/业务微服务统一 Java 栈）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#6C8EBF;dashed=1;fontSize=11;fontFamily=Microsoft YaHei;fontStyle=1;verticalAlign=top;align=left;spacingLeft=10;spacingTop=8;" vertex="1" parent="1">
           <mxGeometry x="270" y="410" width="720" height="240" as="geometry" />
         </mxCell>
-        <mxCell id="m_swm_04" value="M-SWM-04&#10;蜂群记忆管理（智能体记忆中枢）&#10;&#10;swm-memory（独立 Java 服务）&#10;account_id 主键索引&#10;账号级 1:1 归属" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontSize=11;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" vertex="1" parent="1">
+        <mxCell id="m_swm_04" value="蜂群记忆管理（智能体记忆中枢）&#10;&#10;swm-memory（独立 Java 服务）&#10;account_id 主键索引&#10;账号级 1:1 归属" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontSize=11;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" vertex="1" parent="1">
           <mxGeometry x="290" y="450" width="220" height="120" as="geometry" />
         </mxCell>
-        <mxCell id="m_swm_05" value="M-SWM-05&#10;智能体构建与提示词包下发&#10;（智能体装配工厂）&#10;&#10;agent_id（模板共性）&#10;+ account_id（动态实例个性）&#10;组合主键" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontSize=11;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" vertex="1" parent="1">
+        <mxCell id="m_swm_05" value="智能体构建与提示词包下发&#10;（智能体装配工厂）&#10;&#10;agent_id（模板共性）&#10;+ account_id（动态实例个性）&#10;组合主键" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontSize=11;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" vertex="1" parent="1">
           <mxGeometry x="530" y="450" width="220" height="120" as="geometry" />
         </mxCell>
         <mxCell id="swm_gw" value="swm-gw（网关）&#10;+ swm-distill（编排提炼）&#10;Java/Spring Boot" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFE6CC;strokeColor=#D79B00;strokeWidth=2;fontSize=10;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" vertex="1" parent="1">
@@ -42,24 +42,6 @@
         </mxCell>
         <mxCell id="store_dr09" value="DR-09 蜂群智能体数据&#10;提示词模板（agent_id） /&#10;agent_id↔account_id 1:N 绑定 /&#10;按 account_id 1:1 动态实例 /&#10;提示词模板版本" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;fillColor=#F8CECC;strokeColor=#B85450;fontSize=10;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" vertex="1" parent="1">
           <mxGeometry x="770" y="530" width="200" height="100" as="geometry" />
-        </mxCell>
-        <mxCell id="e_01_05" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#000000;" edge="1" parent="1" source="m_swm_01" target="m_swm_05">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="e_02_05" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#000000;" edge="1" parent="1" source="m_swm_02" target="m_swm_05">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="e_04_05" value="记忆注入" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#000000;fontSize=10;fontFamily=Microsoft YaHei;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="m_swm_04" target="m_swm_05">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="e_07_05" value="生成提示词" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#000000;fontSize=10;fontFamily=Microsoft YaHei;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="m_swm_07" target="m_swm_05">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="e_06_02" value="淘汰/迭代" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#999999;dashed=1;fontSize=10;fontFamily=Microsoft YaHei;labelBackgroundColor=#FFFFFF;fontColor=#666666;" edge="1" parent="1" source="m_swm_06" target="m_swm_02">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="e_05_store" value="读写" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#000000;fontSize=10;fontFamily=Microsoft YaHei;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="m_swm_05" target="store_dr09">
-          <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="irs_node" value="IRS 私有化大模型&#10;（推理底座）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F5F5F5;strokeColor=#999999;dashed=1;fontSize=11;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" vertex="1" parent="1">
           <mxGeometry x="1050" y="220" width="240" height="60" as="geometry" />
@@ -72,27 +54,6 @@
         </mxCell>
         <mxCell id="occ_node" value="OCC（内容事件订阅）&#10;content.status.changed" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F5F5F5;strokeColor=#999999;dashed=1;fontSize=11;fontFamily=Microsoft YaHei;align=center;verticalAlign=middle;" vertex="1" parent="1">
           <mxGeometry x="40" y="540" width="180" height="60" as="geometry" />
-        </mxCell>
-        <mxCell id="e_02_irs" value="Playground/版本对比/离线跑题&#10;EI-05（不经执行网关，CON-10）" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#000000;fontSize=10;fontFamily=Microsoft YaHei;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="m_swm_02" target="irs_node">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="e_06_irs" value="离线跑题&#10;EI-05" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#000000;fontSize=10;fontFamily=Microsoft YaHei;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="m_swm_06" target="irs_node">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="e_07_irs" value="对话编写推理&#10;EI-05" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#000000;fontSize=10;fontFamily=Microsoft YaHei;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="m_swm_07" target="irs_node">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="e_05_mc" value="提示词包同步&#10;II-14（agent_id+account_id 组合）" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#000000;fontSize=10;fontFamily=Microsoft YaHei;labelBackgroundColor=#FFFFFF;strokeWidth=2;" edge="1" parent="1" source="m_swm_05" target="mc_node">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="e_mc_06" value="效果数据（评测来源）&#10;II-10 回传方向" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#999999;dashed=1;fontSize=10;fontFamily=Microsoft YaHei;labelBackgroundColor=#FFFFFF;fontColor=#666666;" edge="1" parent="1" source="mc_node" target="m_swm_06">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="e_mc_swmgw" value="账号状态变更&#10;II-01a" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#999999;dashed=1;fontSize=10;fontFamily=Microsoft YaHei;labelBackgroundColor=#FFFFFF;fontColor=#666666;" edge="1" parent="1" source="mc_node2" target="swm_gw">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="e_occ_swmgw" value="内容变更&#10;II-12a" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#999999;dashed=1;fontSize=10;fontFamily=Microsoft YaHei;labelBackgroundColor=#FFFFFF;fontColor=#666666;" edge="1" parent="1" source="occ_node" target="swm_gw">
-          <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="constraint_note" value="约束标注：&#10;• CON-14（核心 · 智能体域特例）：魔改 coze-loop（Go）做提示词工程+评测主体内核；其余组件（网关/记忆/提炼）用 Java/Spring Boot 与统一 Java 栈一致；仿 DC 采集域 Python 特例思路&#10;• CON-10：调 IRS 推理（EI-05）不经执行网关，推理旁路&#10;• CON-11：SWM 只生成提示词包，运行时归 MC agent-runtime（职责分工）&#10;• CON-06：私有化推理，依赖 IRS 本地大模型&#10;• 部署单元：swm-service（Java/Spring Boot）+ 魔改 coze-loop（Go）+ swm-memory（Java 记忆服务）&#10;• 数据所有权：DR-09 蜂群智能体数据；扩展 DR-02E2 提示词包人设&#10;• V3.9（ADR-001）：废除人设标签实体，人设属性直接写进提示词文本；M-SWM-03 运行时引擎删（归 MC agent-runtime）；新增 M-SWM-07 对话编写提示词" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF2CC;strokeColor=#D6B656;fontSize=11;fontFamily=Microsoft YaHei;align=left;verticalAlign=top;spacingLeft=10;spacingTop=8;" vertex="1" parent="1">
           <mxGeometry x="1050" y="300" width="320" height="220" as="geometry" />
