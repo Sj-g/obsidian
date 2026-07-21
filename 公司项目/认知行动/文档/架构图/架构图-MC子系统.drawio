@@ -1,10 +1,10 @@
 <mxfile host="Electron" agent="认知行动平台文档" pages="4">
   <diagram id="20ybknfIJE05bF8hSJ7_" name="总体系统">
-    <mxGraphModel dx="1367" dy="835" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="1139" dy="696" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="GCBXbXiP77fkqIlZDUVb-1" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fontSize=17;" value="xxx行动系统" vertex="1">
+        <mxCell id="GCBXbXiP77fkqIlZDUVb-1" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fontSize=17;" value="OCC行动系统" vertex="1">
           <mxGeometry height="50" width="306" x="470" y="500" as="geometry" />
         </mxCell>
         <mxCell id="GCBXbXiP77fkqIlZDUVb-2" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fontSize=17;" value="多设备群控" vertex="1">
