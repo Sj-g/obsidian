@@ -1,0 +1,20 @@
+- generic [ref=f25e1]:
+  - generic:
+    - region "Notifications"
+  - main [ref=f25e3]:
+    - generic [ref=f25e7]:
+      - button "y yangzhi" [ref=f25e22] [cursor=pointer]:
+        - generic [ref=f25e23]: "y"
+        - generic [ref=f25e24]: yangzhi
+      - generic [ref=f25e28]:
+        - generic [ref=f25e29]:
+          - heading "Create your profile." [level=1] [ref=f25e30]
+          - paragraph [ref=f25e31]: This is how you will appear in Plane.
+        - generic [ref=f25e32]:
+          - button "R" [ref=f25e33] [cursor=pointer]
+          - button "Upload image" [ref=f25e34] [cursor=pointer]
+        - generic [ref=f25e41]:
+          - generic [ref=f25e42]: Name*
+          - textbox "Name*" [active] [ref=f25e43]:
+            - /placeholder: Enter your full name
+        - button "Continue" [disabled]

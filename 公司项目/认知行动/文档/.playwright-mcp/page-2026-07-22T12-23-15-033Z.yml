@@ -1,0 +1,42 @@
+- generic [ref=f20e1]:
+  - generic:
+    - region "Notifications"
+  - main [ref=f20e3]:
+    - generic [ref=f20e5]:
+      - generic [ref=f20e6]:
+        - link [ref=f20e7] [cursor=pointer]:
+          - /url: /
+        - generic [ref=f20e16]:
+          - generic [ref=f20e17]: 首次使用 Plane？
+          - link "Sign up" [ref=f20e18] [cursor=pointer]:
+            - /url: /sign-up/
+      - generic [ref=f20e20]:
+        - generic [ref=f20e21]:
+          - generic [ref=f20e22]: Work in all dimensions.
+          - generic [ref=f20e23]: Welcome back to Plane.
+        - generic [ref=f20e61]:
+          - generic [ref=f20e62]:
+            - text: 邮箱
+            - generic [ref=f20e63]:
+              - textbox "邮箱" [disabled] [ref=f20e64]:
+                - /placeholder: name@company.com
+                - text: wangzhenyu@hjdz.com
+              - button "清除邮箱" [ref=f20e65] [cursor=pointer]
+          - generic [ref=f20e70]:
+            - text: 密码
+            - generic [ref=f20e71]:
+              - textbox "密码" [active] [ref=f20e72]:
+                - /placeholder: 输入密码
+              - button "显示密码" [ref=f20e73] [cursor=pointer]
+            - button "忘记密码？" [ref=f20e79] [cursor=pointer]
+          - generic [ref=f20e80]:
+            - button "前往工作区" [disabled]
+        - paragraph [ref=f20e29]:
+          - text: By signing in, you understand and agree to our
+          - link "Terms of Service" [ref=f20e30] [cursor=pointer]:
+            - /url: https://plane.so/legals/terms-and-conditions/
+          - text: and
+          - link "Privacy Policy" [ref=f20e31] [cursor=pointer]:
+            - /url: https://plane.so/legals/privacy-policy/
+          - text: .
+      - generic [ref=f20e32]: Join 10,000+ teams building with Plane

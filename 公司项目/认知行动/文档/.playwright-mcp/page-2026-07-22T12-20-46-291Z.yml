@@ -1,0 +1,109 @@
+- generic [ref=f19e1]:
+  - generic:
+    - region "Notifications":
+      - dialog [ref=f19e283]:
+        - button [ref=f19e284] [cursor=pointer]
+        - generic [ref=f19e293]:
+          - heading "Success!" [level=2] [ref=f19e294]
+          - paragraph [ref=f19e295]: 邀请发送成功
+  - main [ref=f19e4]:
+    - generic [ref=f19e5]:
+      - generic [ref=f19e6]:
+        - button "打开工作空间切换器" [ref=f19e296] [cursor=pointer]:
+          - generic [ref=f19e10]:
+            - generic [ref=f19e11]: C
+            - heading "Cognitive Action Platform" [level=4] [ref=f19e297]
+        - button [ref=f19e19] [cursor=pointer]:
+          - textbox "Search commands..." [ref=f19e298]
+        - generic [ref=f19e24]:
+          - link [ref=f19e25] [cursor=pointer]:
+            - /url: /cognitive-action-platform/notifications/
+          - button [ref=f19e31] [cursor=pointer]:
+            - button [ref=f19e32]
+          - link "在GitHub上为我们加星" [ref=f19e299] [cursor=pointer]:
+            - /url: https://github.com/makeplane/plane
+          - button [ref=f19e300] [cursor=pointer]:
+            - button [ref=f19e301]:
+              - img "thomasleea67" [ref=f19e302]
+      - main [ref=f19e50]:
+        - generic [ref=f19e55]:
+          - generic [ref=f19e56]:
+            - generic [ref=f19e57]:
+              - generic [ref=f19e58]:
+                - button [ref=f19e59] [cursor=pointer]
+                - paragraph [ref=f19e62]: Workspace settings
+              - generic [ref=f19e64]:
+                - generic [ref=f19e65]: C
+                - generic [ref=f19e66]:
+                  - paragraph [ref=f19e67]: Cognitive Action Platform
+                  - paragraph [ref=f19e68]: 管理员
+            - generic [ref=f19e69]:
+              - generic [ref=f19e70]:
+                - generic [ref=f19e71]: administration
+                - generic [ref=f19e72]:
+                  - link "常规" [ref=f19e303] [cursor=pointer]:
+                    - /url: /cognitive-action-platform/settings/
+                  - link "成员" [ref=f19e304] [cursor=pointer]:
+                    - /url: /cognitive-action-platform/settings/members/
+                  - link "账单与计划" [ref=f19e305] [cursor=pointer]:
+                    - /url: /cognitive-action-platform/settings/billing/
+                  - link "导出" [ref=f19e306] [cursor=pointer]:
+                    - /url: /cognitive-action-platform/settings/exports/
+              - generic [ref=f19e97]:
+                - generic [ref=f19e98]: developer
+                - link "Webhooks" [ref=f19e307] [cursor=pointer]:
+                  - /url: /cognitive-action-platform/settings/webhooks/
+          - generic [ref=f19e107]:
+            - generic [ref=f19e108]: 成员
+            - generic [ref=f19e126]:
+              - generic [ref=f19e127]:
+                - heading "成员 1" [level=4] [ref=f19e308]:
+                  - text: 成员
+                  - generic [ref=f19e129]: "1"
+                - generic [ref=f19e130]:
+                  - textbox "搜索..." [ref=f19e309]
+                  - button [ref=f19e310] [cursor=pointer]:
+                    - button "Filters" [ref=f19e311]
+                  - button "添加成员" [active] [ref=f19e312] [cursor=pointer]
+              - table [ref=f19e146]:
+                - rowgroup [ref=f19e147]:
+                  - row [ref=f19e313]:
+                    - columnheader [ref=f19e314]:
+                      - button "Full name" [ref=f19e315] [cursor=pointer]
+                    - columnheader [ref=f19e316]:
+                      - button "Display name" [ref=f19e317] [cursor=pointer]
+                    - columnheader [ref=f19e318]:
+                      - button "Email" [ref=f19e319] [cursor=pointer]
+                    - columnheader [ref=f19e320]:
+                      - button "Role" [ref=f19e321] [cursor=pointer]
+                    - columnheader "身份验证" [ref=f19e322]
+                    - columnheader [ref=f19e323]:
+                      - button "Joining date" [ref=f19e324] [cursor=pointer]
+                - rowgroup [ref=f19e190]:
+                  - row [ref=f19e325]:
+                    - cell "thomasleea67 石建国 s" [ref=f19e326]:
+                      - generic [ref=f19e194]:
+                        - generic [ref=f19e195]:
+                          - link [ref=f19e327] [cursor=pointer]:
+                            - /url: /cognitive-action-platform/profile/a2e60ed1-df5c-4bf6-b13e-5e3b9dce06a5/
+                            - img "thomasleea67" [ref=f19e328]
+                          - generic [ref=f19e199]: 石建国 s
+                        - button [ref=f19e202] [cursor=pointer]
+                    - cell "thomasleea67" [ref=f19e329]
+                    - cell "thomasleea67@gmail.com" [ref=f19e330]
+                    - cell "Admin" [ref=f19e331]
+                    - cell "Email" [ref=f19e332]
+                    - cell "Jul 22, 2026" [ref=f19e333]
+              - generic [ref=f19e334]:
+                - button "待处理邀请 1" [ref=f19e335] [cursor=pointer]:
+                  - generic [ref=f19e337]:
+                    - heading "待处理邀请" [level=4] [ref=f19e338]
+                    - generic [ref=f19e339]: "1"
+                - generic [ref=f19e347]:
+                  - generic [ref=f19e348]:
+                    - generic [ref=f19e349]: w
+                    - heading "wangzhenyu@hjdz.com" [level=4] [ref=f19e351]
+                  - generic [ref=f19e352]:
+                    - paragraph [ref=f19e354]: 待处理
+                    - button "Member" [ref=f19e356] [cursor=pointer]
+                    - button [ref=f19e364] [cursor=pointer]
