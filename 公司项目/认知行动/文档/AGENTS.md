@@ -21,19 +21,19 @@
 
 | 文件 | 类型 | 当前版本 | 说明 |
 | --- | --- | --- | --- |
-| `SRS/`（总册 + 7 子系统分册） | SRS 需求 | **V4.1** | 系统需求规格，按子系统给出功能/非功能/接口/数据/约束。最上游、改动牵连最广。1 总册 + 7 子系统分册（DC/MC/OM/COM/SWM/IRS/OCC 各自功能需求 R-XX-NNN）。**共 41 项功能需求 + 15 项约束**。**V3.9（ADR-001~005）**：废除人设标签实体、删 II-18、SWM-03 对话编写、MC/OCC/OM 前端页精简、「作战→行动」。**V4.1（V3.10）**：新增 R-MC-015 真机 Agent 运行时与编排、CON-15 真机 Agent 独立部署单元、II-02 提供方调整为 M-MC-15。修订某子系统需求时改对应分册，共性章节改总册。 |
+| `SRS/`（总册 + 7 子系统分册） | SRS 需求 | **V4.3** | 系统需求规格，按子系统给出功能/非功能/接口/数据/约束。最上游、改动牵连最广。1 总册 + 7 子系统分册（DC/MC/OM/COM/SWM/IRS/OCC 各自功能需求 R-XX-NNN）。**共 41 项功能需求 + 16 项约束**。**V3.9（ADR-001~005）**：废除人设标签实体、删 II-18、SWM-03 对话编写、MC/OCC/OM 前端页精简、「作战→行动」。**V4.1（V3.10）**：新增 R-MC-015 真机 Agent 运行时与编排、CON-15 真机 Agent 独立部署单元、II-02 提供方调整为 M-MC-15。**V4.2**：新增 CON-16 认证框架对齐若依 + II-16/17 接口定义补全。**V4.3**：合计算术修正（40→41）+ II-09 缺口补注。修订某子系统需求时改对应分册，共性章节改总册。 |
 | `软件需求跟踪矩阵.xlsx` | RTM 追踪 | — | GJB 438C 双向追溯（上游来源→需求→设计模块→验证方法），7 张工作表。**已同步 V3.10**（新增 R-MC-015 + F-MC-15-01~06、CON-15、II-02 提供方调整）。 |
 | `软件概要设计-模块功能拆分-v2.xlsx` | 概要设计 | 已对齐 V3.10 | **41 模块 / 151 功能**（V3.10 新增 M-MC-15 真机 Agent 运行时与编排 + 6 功能点 F-MC-15-01~06；F-MC-05-05 收缩为接口薄层，真机实现下沉 M-MC-15）。 |
 | `软件概要设计-架构图.md` | 概要设计 | V3.0 | 架构图（mermaid，集成在 HLD §4.2），已对齐 V3.10（新增 M-MC-15 节点 + II-02 WS 连线 + AGENT 主机进程节点）。 |
-| `软件概要设计说明.md` | HLD 概要设计 | **V3.0** | 概要设计说明，已对齐 SRS V4.1（V3.10 新增 M-MC-15 §4.2.15 + CON-15 + §3.1 第 8 条核心原则 + §3.3 调用关系图含 M-MC-15）。 |
+| `软件概要设计说明.md` | HLD 概要设计 | **V3.2** | 概要设计说明，已对齐 SRS V4.3（V3.10 新增 M-MC-15 §4.2.15 + CON-15 + §3.1 第 8 条核心原则 + §3.3 调用关系图含 M-MC-15；V3.2 OCC 模块 M-OCC-02↔03 重排对齐 + SWM-07 改名 + II-09/M-SWM-03 缺口补注）。 |
 | `SDD/软件详细设计说明-DC子系统.md` | SDD 详细设计 | **V1.2** | DC 子系统详细设计，M-DC-01~04 四模块下沉到类/接口/数据结构/算法/状态机/部署单元 + §8.1 部署架构图。技术栈 Python（采集域特例）。 |
 | `SDD/软件详细设计说明-OM子系统.md` | SDD 详细设计 | **V1.0** | OM 子系统详细设计，M-OM-01~04 四模块。技术栈 Java(Spring Boot)+KubeSphere。 |
-| `SDD/软件详细设计说明-COM子系统.md` | SDD 详细设计 | **V1.0** | COM 子系统详细设计，M-COM-01/02 下沉到类/接口/数据结构/算法/状态机/部署单元。JWT 无状态 + com-auth-lib 共享验签库，技术栈 Java(Spring Boot)+Spring Security。 |
+| `SDD/软件详细设计说明-COM子系统.md` | SDD 详细设计 | **V1.0** | COM 子系统详细设计，M-COM-01/02 下沉到类/接口/数据结构/算法/状态机/部署单元。若依（RuoYi-Vue-Plus）原生认证框架（CON-16，V4.2 废弃 JWT/com-auth-lib/org_id），技术栈 Java(Spring Boot)+Spring Security。 |
 | `SDD/软件详细设计说明-SWM子系统.md` | SDD 详细设计 | **V1.0** | SWM 子系统详细设计，M-SWM-01/02/04/05/06/07 六模块，「提示词生成与记忆中心」定位（不含运行时，运行时归 MC agent-runtime）。集成层 coze-loop（Go）旁挂 + Java（swm-gw/swm-memory/swm-distill），CON-14 智能体域特例。 |
 | `SDD/软件详细设计说明-MC子系统.md` | SDD 详细设计 | **V1.3** | MC 子系统详细设计，**15 模块**（M-MC-01~14 + V3.10 新增 M-MC-15 真机 Agent 运行时与编排）下沉到类/接口/数据结构/算法/状态机/部署单元。**四边界形态**：mc-service（Java/Spring Boot 单一微服务，15 模块同进程，含 M-MC-15.c 中心侧编排器）+ mc-sfu（mediasoup SFU，远控媒体面转发）+ **mc-agent 主机进程（M-MC-15.a 设备主机侧 Agent 运行时，独立部署单元，CON-15，唯一触真机的进程）** + 指纹浏览器（EI-06 商用）。统一执行网关唯一收口；双执行模式（GraalVM JS 沙箱 + agent-runtime 调 IRS）；账号平台级权威源（AES-256-GCM 凭据加密）。agent-runtime 归 M-MC-06、绑定关系单一物理存储（mc_binding）。借鉴 SonicCloudOrg（已 archived，Apache 2.0 fork 自维护）。技术栈 Java(Spring Boot)+mediasoup+ddmlib+uiautomator2+scrcpy+PostgreSQL+Redis+Kafka+ClickHouse+MinIO。 |
-| `SDD/软件详细设计说明-OCC子系统.md` | SDD 详细设计 | **V1.0** | OCC 子系统详细设计，M-OCC-01~09 九模块（31 功能点）下沉到类/接口/数据结构/算法/状态机/部署单元。双边界形态：occ-service（Java/Spring Boot 单一微服务，M-OCC-01/03/04/05/06/07/08/09 八业务模块同进程）+ occ-analysis（Python/FastAPI，M-OCC-02 数据分析与情报，V3.3 由 DC 移入）。M-OCC-02 群体下钻自研规则树+sklearn 评分模型（不调 IRS，指标自控）；M-OCC-05 编排用 Flowable/BPMN 逐步驱动（OCC 持编排图状态）经 II-10 逐节点下发 MC 网关收口；M-OCC-06 评估基于独立 ClickHouse 库 occ_analysis（DC 明细经 II-13 抽取+MC 成效经 II-10 同步，不重复采集）；M-OCC-03 图谱用 NebulaGraph 独立空间 occ_relation；M-OCC-08 内容主数据权威源（与 MC 账号主数据 CON-11 同构）。技术栈 Java(Spring Boot)+Python(FastAPI)+Flowable+PostgreSQL(occ)+ClickHouse(occ_analysis)+NebulaGraph(occ_relation)+Redis+Kafka+MinIO+ES。 |
+| `SDD/软件详细设计说明-OCC子系统.md` | SDD 详细设计 | **V1.0** | OCC 子系统详细设计，M-OCC-01~09 九模块（31 功能点）下沉到类/接口/数据结构/算法/状态机/部署单元。双边界形态：occ-service（Java/Spring Boot 单一微服务，M-OCC-01/02/04/05/06/07/08/09 八业务模块同进程）+ occ-analysis（Python/FastAPI，M-OCC-03 数据分析与情报，V3.3 由 DC 移入）。M-OCC-03 群体下钻自研规则树+sklearn 评分模型（不调 IRS，指标自控）；M-OCC-02 目标关联网络用 NebulaGraph 独立空间 occ_relation；M-OCC-05 编排用 Flowable/BPMN 逐步驱动（OCC 持编排图状态）经 II-10 逐节点下发 MC 网关收口；M-OCC-06 评估基于独立 ClickHouse 库 occ_analysis（DC 明细经 II-13 抽取+MC 成效经 II-10 同步，不重复采集）；M-OCC-08 内容主数据权威源（与 MC 账号主数据 CON-11 同构）。技术栈 Java(Spring Boot)+Python(FastAPI)+Flowable+PostgreSQL(occ)+ClickHouse(occ_analysis)+NebulaGraph(occ_relation)+Redis+Kafka+MinIO+ES。 |
 | `软件开发计划.md` | SDP 管理 | — | 目录大纲。 |
-| `系统页面清单.md` | 页面视图 | V1.0 | Web 管控控制台页面清单（路由级），4 控制台 / 62 业务页 + 5 横切通用页，每页映射模块 `M-XX-NN` 与角色。线框稿的需求来源。 |
+| `系统页面清单.md` | 页面视图 | V1.2 | Web 管控控制台页面清单（路由级），4 控制台 / 37 业务页 + 5 横切通用页，每页映射模块 `M-XX-NN` 与角色。线框稿的需求来源。 |
 | `认知行动平台-线框图`（.pen，Pencil 格式） | 线框稿 | 进行中 | 全平台 Web 页面低保真灰阶线框稿。Pencil（pencil.dev）MCP 编辑，**加密文件，必须经 Pencil MCP 工具读写，禁止 Read/Grep**。设计规范见本文档 §9。 |
 | `多设备矩阵自动化运营系统开发方案 V1.1.md` | 早期方案 | V1.1 | 位于上级目录，MC 子系统的早期设计与阶段规划（合规导向）。 |
 | `版本变动记录/版本变动记录.md` | 变更记录 | — | 每次修订**必须**追加一条。 |
