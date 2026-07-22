@@ -1,0 +1,37 @@
+- generic [ref=f36e1]:
+  - generic:
+    - region "Notifications"
+  - main [ref=f36e6]:
+    - generic [ref=f36e40]:
+      - generic [ref=f36e44]:
+        - button [ref=f36e46] [cursor=pointer]
+        - button "h 郝宇" [ref=f36e59] [cursor=pointer]:
+          - generic [ref=f36e60]: h
+          - generic [ref=f36e61]: 郝宇
+      - generic [ref=f36e65]:
+        - generic [ref=f36e66]:
+          - heading "Create your workspace" [level=1] [ref=f36e67]
+          - paragraph [ref=f36e68]: All your work — unified.
+        - generic [ref=f36e69]:
+          - generic [ref=f36e70]:
+            - generic [ref=f36e71]: Name your workspace*
+            - textbox "Name your workspace*" [active] [ref=f36e73]:
+              - /placeholder: Enter workspace name
+          - generic [ref=f36e74]:
+            - generic [ref=f36e75]: Set your workspace's URL*
+            - generic [ref=f36e76]:
+              - generic [ref=f36e77]: 10.252.1.200/
+              - textbox "Set your workspace's URL*" [ref=f36e78]:
+                - /placeholder: Type or paste a URL
+            - paragraph [ref=f36e79]: You can only edit the slug of the URL
+          - generic [ref=f36e80]:
+            - generic [ref=f36e81]: How many people will use this workspace?*
+            - generic [ref=f36e83]:
+              - button "Just myself" [ref=f36e84] [cursor=pointer]
+              - button "2-10" [ref=f36e89] [cursor=pointer]
+              - button "11-50" [ref=f36e94] [cursor=pointer]
+              - button "51-200" [ref=f36e99] [cursor=pointer]
+              - button "201-500" [ref=f36e104] [cursor=pointer]
+              - button "500+" [ref=f36e109] [cursor=pointer]
+        - generic [ref=f36e114]:
+          - button "Create workspace" [disabled]

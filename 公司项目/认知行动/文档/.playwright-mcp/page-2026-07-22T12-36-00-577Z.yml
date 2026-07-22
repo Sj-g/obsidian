@@ -1,0 +1,23 @@
+- generic [active] [ref=f35e1]:
+  - generic:
+    - region "Notifications"
+  - main [ref=f35e3]:
+    - generic [ref=f35e7]:
+      - generic [ref=f35e11]:
+        - button [ref=f35e46] [cursor=pointer]
+        - button "h 郝宇" [ref=f35e50] [cursor=pointer]:
+          - generic [ref=f35e23]: h
+          - generic [ref=f35e24]: 郝宇
+      - generic [ref=f35e51]:
+        - generic [ref=f35e52]:
+          - heading "Join invites or create a workspace" [level=1] [ref=f35e53]
+          - paragraph [ref=f35e54]: All your work — unified.
+        - generic [ref=f35e56] [cursor=pointer]:
+          - generic [ref=f35e57]: C
+          - generic [ref=f35e59]:
+            - generic [ref=f35e60]: Cognitive Action Platform
+            - paragraph [ref=f35e61]: Member
+          - checkbox [ref=f35e64]
+        - generic [ref=f35e65]:
+          - button "Continue" [disabled]
+          - button "Create new workspace" [ref=f35e66] [cursor=pointer]
