@@ -1,0 +1,130 @@
+- generic [active] [ref=f63e1]:
+  - generic:
+    - region "Notifications"
+  - main [ref=f63e4]:
+    - generic [ref=f63e5]:
+      - generic [ref=f63e6]:
+        - button "打开工作空间切换器" [ref=f63e9] [cursor=pointer]:
+          - generic [ref=f63e10]:
+            - generic [ref=f63e11]: C
+            - heading "Cognitive Action Platform" [level=4] [ref=f63e12]
+        - button [ref=f63e19] [cursor=pointer]:
+          - textbox "Search commands..." [ref=f63e22]
+        - generic [ref=f63e24]:
+          - link [ref=f63e25] [cursor=pointer]:
+            - /url: /cognitive-action-platform/notifications/
+          - button [ref=f63e31] [cursor=pointer]:
+            - button [ref=f63e32]
+          - link "在GitHub上为我们加星" [ref=f63e37] [cursor=pointer]:
+            - /url: https://github.com/makeplane/plane
+          - button [ref=f63e42] [cursor=pointer]:
+            - button [ref=f63e43]:
+              - img "thomasleea67" [ref=f63e46]
+      - main [ref=f63e50]:
+        - generic [ref=f63e55]:
+          - generic [ref=f63e56]:
+            - generic [ref=f63e57]:
+              - generic [ref=f63e58]:
+                - button [ref=f63e59] [cursor=pointer]
+                - paragraph [ref=f63e62]: Project settings
+              - generic [ref=f63e63]:
+                - generic [ref=f63e64]: 👇
+                - generic [ref=f63e66]:
+                  - paragraph [ref=f63e67]: MC 多设备矩阵自动化群控
+                  - paragraph [ref=f63e68]: 管理员
+            - generic [ref=f63e69]:
+              - generic [ref=f63e70]:
+                - generic [ref=f63e71]: general
+                - generic [ref=f63e72]:
+                  - link "常规" [ref=f63e73] [cursor=pointer]:
+                    - /url: /cognitive-action-platform/settings/projects/3f42f80e-fb4f-4a59-8f06-237edae3acdd/
+                  - link "成员" [ref=f63e78] [cursor=pointer]:
+                    - /url: /cognitive-action-platform/settings/projects/3f42f80e-fb4f-4a59-8f06-237edae3acdd/members/
+              - generic [ref=f63e86]:
+                - generic [ref=f63e87]: features
+                - generic [ref=f63e88]:
+                  - link "周期" [ref=f63e89] [cursor=pointer]:
+                    - /url: /cognitive-action-platform/settings/projects/3f42f80e-fb4f-4a59-8f06-237edae3acdd/features/cycles/
+                  - link "模块" [ref=f63e96] [cursor=pointer]:
+                    - /url: /cognitive-action-platform/settings/projects/3f42f80e-fb4f-4a59-8f06-237edae3acdd/features/modules/
+                  - link "视图" [ref=f63e105] [cursor=pointer]:
+                    - /url: /cognitive-action-platform/settings/projects/3f42f80e-fb4f-4a59-8f06-237edae3acdd/features/views/
+                  - link "页面" [ref=f63e111] [cursor=pointer]:
+                    - /url: /cognitive-action-platform/settings/projects/3f42f80e-fb4f-4a59-8f06-237edae3acdd/features/pages/
+                  - link "接收" [ref=f63e116] [cursor=pointer]:
+                    - /url: /cognitive-action-platform/settings/projects/3f42f80e-fb4f-4a59-8f06-237edae3acdd/features/intake/
+              - generic [ref=f63e122]:
+                - generic [ref=f63e123]: work-structure
+                - generic [ref=f63e124]:
+                  - link "状态" [ref=f63e125] [cursor=pointer]:
+                    - /url: /cognitive-action-platform/settings/projects/3f42f80e-fb4f-4a59-8f06-237edae3acdd/states/
+                  - link "标签" [ref=f63e131] [cursor=pointer]:
+                    - /url: /cognitive-action-platform/settings/projects/3f42f80e-fb4f-4a59-8f06-237edae3acdd/labels/
+                  - link "估算" [ref=f63e138] [cursor=pointer]:
+                    - /url: /cognitive-action-platform/settings/projects/3f42f80e-fb4f-4a59-8f06-237edae3acdd/estimates/
+              - generic [ref=f63e143]:
+                - generic [ref=f63e144]: execution
+                - link "自动化" [ref=f63e146] [cursor=pointer]:
+                  - /url: /cognitive-action-platform/settings/projects/3f42f80e-fb4f-4a59-8f06-237edae3acdd/automations/
+          - generic [ref=f63e151]:
+            - generic [ref=f63e152]: 状态
+            - generic [ref=f63e169]:
+              - generic [ref=f63e171]:
+                - heading "States" [level=3] [ref=f63e172]
+                - paragraph [ref=f63e173]: Define and customize workflow states to track the progress of your work items.
+              - generic [ref=f63e175]:
+                - generic [ref=f63e176]:
+                  - generic [ref=f63e177]:
+                    - generic [ref=f63e178] [cursor=pointer]: backlog
+                    - button [ref=f63e215] [cursor=pointer]
+                  - generic [ref=f63e254]:
+                    - heading "待排期" [level=6] [ref=f63e255]
+                    - paragraph
+                - generic [ref=f63e257]:
+                  - generic [ref=f63e258]:
+                    - generic [ref=f63e259] [cursor=pointer]: unstarted
+                    - button [ref=f63e268] [cursor=pointer]
+                  - generic [ref=f63e271]:
+                    - generic [ref=f63e300]:
+                      - heading "待办" [level=6] [ref=f63e301]
+                      - paragraph
+                    - generic [ref=f63e321]:
+                      - heading "设计" [level=6] [ref=f63e322]
+                      - paragraph
+                    - generic [ref=f63e331]:
+                      - heading "评审" [level=6] [ref=f63e332]
+                      - paragraph
+                - generic [ref=f63e334]:
+                  - generic [ref=f63e335]:
+                    - generic [ref=f63e336] [cursor=pointer]: started
+                    - button [ref=f63e346] [cursor=pointer]
+                  - generic [ref=f63e349]:
+                    - generic [ref=f63e383]:
+                      - heading "开发中" [level=6] [ref=f63e384]
+                      - paragraph
+                    - generic [ref=f63e413]:
+                      - heading "前端" [level=6] [ref=f63e414]
+                      - paragraph
+                    - generic [ref=f63e437]:
+                      - heading "后端" [level=6] [ref=f63e438]
+                      - paragraph
+                    - generic [ref=f63e455]:
+                      - heading "测试" [level=6] [ref=f63e456]
+                      - paragraph
+                    - generic [ref=f63e466]:
+                      - heading "待发布" [level=6] [ref=f63e467]
+                      - paragraph
+                - generic [ref=f63e469]:
+                  - generic [ref=f63e470]:
+                    - generic [ref=f63e471] [cursor=pointer]: completed
+                    - button [ref=f63e480] [cursor=pointer]
+                  - generic [ref=f63e491]:
+                    - heading "已完成" [level=6] [ref=f63e492]
+                    - paragraph
+                - generic [ref=f63e494]:
+                  - generic [ref=f63e495]:
+                    - generic [ref=f63e496] [cursor=pointer]: cancelled
+                    - button [ref=f63e505] [cursor=pointer]
+                  - generic [ref=f63e516]:
+                    - heading "已取消" [level=6] [ref=f63e517]
+                    - paragraph
