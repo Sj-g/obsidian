@@ -919,3 +919,4 @@
 [   42553ms] [WARNING] Canvas2D: Multiple readback operations using getImageData are faster with the willReadFrequently attribute set to true. See: https://html.spec.whatwg.org/multipage/canvas.html#concept-canvas-will-read-frequently @ http://10.252.1.200/assets/use-editor-flagging-BaifWpdk.js:96
 [  170334ms] [ERROR] Failed to load resource: the server responded with a status of 400 (Bad Request) @ http://10.252.1.200/api/workspaces/cognitive-action-platform/projects/ebf8ae48-de52-438d-af23-ec93463f69d0/states/:0
 [  228960ms] [ERROR] Failed to load resource: the server responded with a status of 400 (Bad Request) @ http://10.252.1.200/api/workspaces/cognitive-action-platform/projects/ebf8ae48-de52-438d-af23-ec93463f69d0/modules/:0
+[  515815ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://10.252.1.200/api/workspaces/cognitive-action-platform/issues/3c0cfa9d-4eea-4f5d-9c1a-9fd8301cc932/:0
