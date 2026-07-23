@@ -1,0 +1,465 @@
+- generic [ref=f58e1]:
+  - generic:
+    - generic:
+      - generic:
+        - button "创建副本":
+          - generic:
+            - heading "创建副本" [level=5]
+        - button "在新标签页中打开":
+          - generic:
+            - heading "在新标签页中打开" [level=5]
+        - button "归档 只有已完成或已取消的 工作项可以归档" [disabled]:
+          - generic:
+            - heading "归档" [level=5]
+            - paragraph: 只有已完成或已取消的 工作项可以归档
+        - button "删除":
+          - generic:
+            - heading "删除" [level=5]
+  - generic:
+    - region "Notifications"
+  - main [ref=f58e4]:
+    - generic [ref=f58e5]:
+      - generic [ref=f58e6]:
+        - button "打开工作空间切换器" [ref=f58e9] [cursor=pointer]:
+          - generic [ref=f58e10]:
+            - generic [ref=f58e11]: C
+            - heading "Cognitive Action Platform" [level=4] [ref=f58e12]
+        - button [ref=f58e19] [cursor=pointer]:
+          - textbox "Search commands..." [ref=f58e22]
+        - generic [ref=f58e24]:
+          - link [ref=f58e25] [cursor=pointer]:
+            - /url: /cognitive-action-platform/notifications/
+          - button [ref=f58e31] [cursor=pointer]:
+            - button [ref=f58e32]
+          - link "在GitHub上为我们加星" [ref=f58e37] [cursor=pointer]:
+            - /url: https://github.com/makeplane/plane
+          - button [ref=f58e42] [cursor=pointer]:
+            - button [ref=f58e43]:
+              - img "thomasleea67" [ref=f58e46]
+      - generic [ref=f58e51]:
+        - complementary "Main sidebar" [ref=f58e52]:
+          - complementary [ref=f58e53]:
+            - generic [ref=f58e54]:
+              - generic [ref=f58e55]:
+                - generic [ref=f58e56]:
+                  - generic [ref=f58e57]: Projects
+                  - generic [ref=f58e58]:
+                    - button [ref=f58e59] [cursor=pointer]
+                    - button [ref=f58e62] [cursor=pointer]
+                - button "新工作项" [ref=f58e66] [cursor=pointer]
+              - generic [ref=f58e70]:
+                - link [ref=f58e71] [cursor=pointer]:
+                  - /url: /cognitive-action-platform/
+                  - paragraph [ref=f58e76]: 首页
+                - link [ref=f58e77] [cursor=pointer]:
+                  - /url: /cognitive-action-platform/drafts/
+                  - paragraph [ref=f58e82]: 草稿
+                - link [ref=f58e83] [cursor=pointer]:
+                  - /url: /cognitive-action-platform/profile/a2e60ed1-df5c-4bf6-b13e-5e3b9dce06a5/
+                  - paragraph [ref=f58e89]: 我的工作
+                - link [ref=f58e90] [cursor=pointer]:
+                  - /url: /cognitive-action-platform/stickies/
+                  - paragraph [ref=f58e95]: 便签
+              - generic [ref=f58e96]:
+                - generic [ref=f58e97]:
+                  - button "aria_labels.app_sidebar.close_workspace_menu" [expanded] [ref=f58e98] [cursor=pointer]:
+                    - generic [ref=f58e99]: 工作区
+                  - generic:
+                    - button "aria_labels.app_sidebar.close_workspace_menu" [expanded]
+                - generic [ref=f58e101]:
+                  - link [ref=f58e102] [cursor=pointer]:
+                    - /url: /cognitive-action-platform/projects/
+                    - paragraph [ref=f58e107]: 项目
+                  - button "aria_labels.app_sidebar.open_extended_sidebar" [ref=f58e109] [cursor=pointer]:
+                    - generic [ref=f58e114]: More
+              - generic [ref=f58e116]:
+                - generic [ref=f58e117]:
+                  - button "关闭项目菜单" [expanded] [ref=f58e118] [cursor=pointer]:
+                    - generic [ref=f58e119]: 项目
+                  - button "关闭项目菜单" [ref=f58e121] [cursor=pointer]
+                - generic [ref=f58e126]:
+                  - generic [ref=f58e130]:
+                    - link [ref=f58e131] [cursor=pointer]:
+                      - /url: /cognitive-action-platform/projects/87f2ddbb-3e35-47e6-a387-5e3d1f8cc63c/issues
+                      - button "打开项目菜单" [ref=f58e132]:
+                        - paragraph [ref=f58e135]: IRS 私有化大模型部署
+                    - generic [ref=f58e136]:
+                      - generic:
+                        - button "切换快速操作菜单":
+                          - button
+                  - generic [ref=f58e140]:
+                    - link [ref=f58e141] [cursor=pointer]:
+                      - /url: /cognitive-action-platform/projects/0391e4a7-d2ee-434b-beb3-9fb4b4d79807/issues
+                      - button "打开项目菜单" [ref=f58e142]:
+                        - paragraph [ref=f58e145]: OCC 舆情行动业务子系统
+                    - generic [ref=f58e146]:
+                      - generic:
+                        - button "切换快速操作菜单":
+                          - button
+                  - generic [ref=f58e150]:
+                    - link [ref=f58e151] [cursor=pointer]:
+                      - /url: /cognitive-action-platform/projects/5427476a-10ab-49b5-b5e4-ab3ccfc1327d/issues
+                      - button "打开项目菜单" [ref=f58e152]:
+                        - paragraph [ref=f58e155]: SWM 蜂群智能体子系统
+                    - generic [ref=f58e156]:
+                      - generic:
+                        - button "切换快速操作菜单":
+                          - button
+                  - generic [ref=f58e160]:
+                    - link [ref=f58e161] [cursor=pointer]:
+                      - /url: /cognitive-action-platform/projects/01459250-b7c9-4c28-bf16-cac67bf7d2a1/issues
+                      - button "打开项目菜单" [ref=f58e162]:
+                        - paragraph [ref=f58e165]: COM 公共功能
+                    - generic [ref=f58e166]:
+                      - generic:
+                        - button "切换快速操作菜单":
+                          - button
+                  - generic [ref=f58e170]:
+                    - link [ref=f58e171] [cursor=pointer]:
+                      - /url: /cognitive-action-platform/projects/a0daa66f-d10f-46d7-a9ee-96de62affe35/issues
+                      - button "打开项目菜单" [ref=f58e172]:
+                        - paragraph [ref=f58e175]: OM 运维监控子系统
+                    - generic [ref=f58e176]:
+                      - generic:
+                        - button "切换快速操作菜单":
+                          - button
+                  - generic [ref=f58e180]:
+                    - link [ref=f58e181] [cursor=pointer]:
+                      - /url: /cognitive-action-platform/projects/ebf8ae48-de52-438d-af23-ec93463f69d0/issues
+                      - button "打开项目菜单" [ref=f58e182]:
+                        - paragraph [ref=f58e185]: DC 数据爬取子系统
+                    - generic [ref=f58e186]:
+                      - generic:
+                        - button "切换快速操作菜单":
+                          - button
+                  - generic [ref=f58e190]:
+                    - link [ref=f58e191] [cursor=pointer]:
+                      - /url: /cognitive-action-platform/projects/3f42f80e-fb4f-4a59-8f06-237edae3acdd/issues
+                      - button "打开项目菜单" [ref=f58e192]:
+                        - generic [ref=f58e193]: 👇
+                        - paragraph [ref=f58e195]: MC 多设备矩阵自动化群控
+                    - generic [ref=f58e196]:
+                      - generic:
+                        - button "切换快速操作菜单":
+                          - button
+              - button "打开付费计划模态框" [ref=f58e199] [cursor=pointer]: Community
+            - separator "Resize sidebar" [ref=f58e200]
+        - complementary "Sidebar peek view":
+          - complementary:
+            - generic:
+              - generic:
+                - generic:
+                  - generic: Projects
+                  - generic:
+                    - button
+                    - button
+                - generic:
+                  - button "新工作项"
+              - generic:
+                - link "首页":
+                  - /url: /cognitive-action-platform/
+                  - generic:
+                    - generic:
+                      - paragraph: 首页
+                - link "草稿":
+                  - /url: /cognitive-action-platform/drafts/
+                  - generic:
+                    - generic:
+                      - paragraph: 草稿
+                - link "我的工作":
+                  - /url: /cognitive-action-platform/profile/a2e60ed1-df5c-4bf6-b13e-5e3b9dce06a5/
+                  - generic:
+                    - generic:
+                      - paragraph: 我的工作
+                - link "便签":
+                  - /url: /cognitive-action-platform/stickies/
+                  - generic:
+                    - generic:
+                      - paragraph: 便签
+              - generic:
+                - generic:
+                  - button "aria_labels.app_sidebar.close_workspace_menu" [expanded]:
+                    - generic: 工作区
+                  - generic:
+                    - button "aria_labels.app_sidebar.close_workspace_menu" [expanded]
+                - generic:
+                  - generic:
+                    - link "项目":
+                      - /url: /cognitive-action-platform/projects/
+                      - generic:
+                        - generic:
+                          - paragraph: 项目
+                    - generic:
+                      - button "aria_labels.app_sidebar.open_extended_sidebar":
+                        - generic: More
+              - generic:
+                - generic:
+                  - generic:
+                    - button "关闭项目菜单" [expanded]:
+                      - generic: 项目
+                    - generic:
+                      - button "关闭项目菜单"
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - link "打开项目菜单":
+                              - /url: /cognitive-action-platform/projects/87f2ddbb-3e35-47e6-a387-5e3d1f8cc63c/issues
+                              - button "打开项目菜单":
+                                - paragraph: IRS 私有化大模型部署
+                            - generic:
+                              - generic:
+                                - button "切换快速操作菜单":
+                                  - button
+                      - generic:
+                        - generic:
+                          - generic:
+                            - link "打开项目菜单":
+                              - /url: /cognitive-action-platform/projects/0391e4a7-d2ee-434b-beb3-9fb4b4d79807/issues
+                              - button "打开项目菜单":
+                                - paragraph: OCC 舆情行动业务子系统
+                            - generic:
+                              - generic:
+                                - button "切换快速操作菜单":
+                                  - button
+                      - generic:
+                        - generic:
+                          - generic:
+                            - link "打开项目菜单":
+                              - /url: /cognitive-action-platform/projects/5427476a-10ab-49b5-b5e4-ab3ccfc1327d/issues
+                              - button "打开项目菜单":
+                                - paragraph: SWM 蜂群智能体子系统
+                            - generic:
+                              - generic:
+                                - button "切换快速操作菜单":
+                                  - button
+                      - generic:
+                        - generic:
+                          - generic:
+                            - link "打开项目菜单":
+                              - /url: /cognitive-action-platform/projects/01459250-b7c9-4c28-bf16-cac67bf7d2a1/issues
+                              - button "打开项目菜单":
+                                - paragraph: COM 公共功能
+                            - generic:
+                              - generic:
+                                - button "切换快速操作菜单":
+                                  - button
+                      - generic:
+                        - generic:
+                          - generic:
+                            - link "打开项目菜单":
+                              - /url: /cognitive-action-platform/projects/a0daa66f-d10f-46d7-a9ee-96de62affe35/issues
+                              - button "打开项目菜单":
+                                - paragraph: OM 运维监控子系统
+                            - generic:
+                              - generic:
+                                - button "切换快速操作菜单":
+                                  - button
+                      - generic:
+                        - generic:
+                          - generic:
+                            - link "打开项目菜单":
+                              - /url: /cognitive-action-platform/projects/ebf8ae48-de52-438d-af23-ec93463f69d0/issues
+                              - button "打开项目菜单":
+                                - paragraph: DC 数据爬取子系统
+                            - generic:
+                              - generic:
+                                - button "切换快速操作菜单":
+                                  - button
+                      - generic:
+                        - generic:
+                          - generic:
+                            - link "打开项目菜单":
+                              - /url: /cognitive-action-platform/projects/3f42f80e-fb4f-4a59-8f06-237edae3acdd/issues
+                              - button "打开项目菜单":
+                                - generic: 👇
+                                - paragraph: MC 多设备矩阵自动化群控
+                            - generic:
+                              - generic:
+                                - button "切换快速操作菜单":
+                                  - button
+              - generic:
+                - button "打开付费计划模态框": Community
+            - separator "Resize sidebar"
+        - main [ref=f58e201]:
+          - generic [ref=f58e205]:
+            - generic [ref=f58e207]:
+              - button [ref=f58e210] [cursor=pointer]:
+                - button "👇 MC 多设备矩阵自动化群控" [ref=f58e211]:
+                  - generic [ref=f58e212]:
+                    - generic [ref=f58e213]: 👇
+                    - generic [ref=f58e216]: MC 多设备矩阵自动化群控
+              - link "Work Items" [ref=f58e224] [cursor=pointer]:
+                - /url: /cognitive-action-platform/projects/3f42f80e-fb4f-4a59-8f06-237edae3acdd/issues/
+              - generic [ref=f58e235]: MC-9
+            - generic [ref=f58e240]:
+              - button "取消订阅" [ref=f58e242] [cursor=pointer]
+              - generic [ref=f58e249]:
+                - button [ref=f58e250] [cursor=pointer]
+                - button [ref=f58e255] [cursor=pointer]:
+                  - button [ref=f58e256]
+          - generic [ref=f58e263]:
+            - generic [ref=f58e264]:
+              - generic [ref=f58e265]:
+                - generic [ref=f58e266]:
+                  - button "MC-9" [ref=f58e268] [cursor=pointer]
+                  - generic [ref=f58e269]: Saved
+                - generic [ref=f58e273]:
+                  - textbox "工作项标题" [ref=f58e274]: F-MC-05-01 动作收口与转发
+                  - generic: 18/255
+                - generic [ref=f58e278]:
+                  - generic [ref=f58e279]:
+                    - paragraph [ref=f58e280]:
+                      - strong [ref=f58e281]: "对应需求:"
+                      - text: R-MC-005
+                    - paragraph [ref=f58e282]:
+                      - strong [ref=f58e283]: "工期:"
+                      - text: 5 人天
+                  - generic:
+                    - button
+                - generic [ref=f58e286]:
+                  - button [ref=f58e288] [cursor=pointer]:
+                    - button [ref=f58e290]
+                  - button [ref=f58e297] [cursor=pointer]:
+                    - paragraph [ref=f58e304]: 最后编辑者 thomasleea67 about 12 hours ago
+              - generic [ref=f58e309]:
+                - button [ref=f58e311] [cursor=pointer]:
+                  - button "添加子工作项" [ref=f58e312]
+                - button [ref=f58e318] [cursor=pointer]:
+                  - button "添加关系" [ref=f58e319]
+                - button [ref=f58e323] [cursor=pointer]:
+                  - button "添加链接" [ref=f58e324]
+                - button [ref=f58e329] [cursor=pointer]:
+                  - button "Choose File" [ref=f58e330]
+                  - button "附加" [ref=f58e331]
+              - generic [ref=f58e336]:
+                - generic [ref=f58e337]:
+                  - generic [ref=f58e338]: 活动
+                  - generic [ref=f58e339]:
+                    - button [ref=f58e340] [cursor=pointer]
+                    - button [ref=f58e345] [cursor=pointer]:
+                      - button [ref=f58e346]
+                - generic [ref=f58e350]:
+                  - generic [ref=f58e351]:
+                    - generic [ref=f58e357]:
+                      - link "thomasleea67" [ref=f58e358] [cursor=pointer]:
+                        - /url: /cognitive-action-platform/profile/a2e60ed1-df5c-4bf6-b13e-5e3b9dce06a5/
+                      - generic [ref=f58e359]: created the work item.
+                      - generic [ref=f58e360]: about 12 hours ago
+                    - generic [ref=f58e367]:
+                      - link "thomasleea67" [ref=f58e368] [cursor=pointer]:
+                        - /url: /cognitive-action-platform/profile/a2e60ed1-df5c-4bf6-b13e-5e3b9dce06a5/
+                      - generic [ref=f58e369]:
+                        - text: added a new assignee
+                        - link "wangzhenyu" [ref=f58e370] [cursor=pointer]:
+                          - /url: /cognitive-action-platform/profile/48f41a91-b76b-4697-8c07-e2a7e9f6e128
+                        - text: .
+                      - generic [ref=f58e371]: 5 minutes ago
+                    - generic [ref=f58e380]:
+                      - link "thomasleea67" [ref=f58e381] [cursor=pointer]:
+                        - /url: /cognitive-action-platform/profile/a2e60ed1-df5c-4bf6-b13e-5e3b9dce06a5/
+                      - generic [ref=f58e382]:
+                        - text: added this work item to the cycle
+                        - link "V1.0 演示主链路" [ref=f58e383] [cursor=pointer]:
+                          - /url: /cognitive-action-platform/projects/3f42f80e-fb4f-4a59-8f06-237edae3acdd/cycles/0258232d-1faf-49b4-9eba-78089afd573d
+                      - generic [ref=f58e385]: 3 minutes ago
+                    - generic [ref=f58e396]:
+                      - link "thomasleea67" [ref=f58e397] [cursor=pointer]:
+                        - /url: /cognitive-action-platform/profile/a2e60ed1-df5c-4bf6-b13e-5e3b9dce06a5/
+                      - generic [ref=f58e398]:
+                        - text: added this work item to the module
+                        - link "M-MC-05 统一执行网关" [ref=f58e399] [cursor=pointer]:
+                          - /url: /cognitive-action-platform/projects/3f42f80e-fb4f-4a59-8f06-237edae3acdd/modules/59678795-942c-424a-b82d-9e0f2d489040
+                      - generic [ref=f58e401]: 2 minutes ago
+                    - generic [ref=f58e412]:
+                      - link "thomasleea67" [ref=f58e413] [cursor=pointer]:
+                        - /url: /cognitive-action-platform/profile/a2e60ed1-df5c-4bf6-b13e-5e3b9dce06a5/
+                      - generic [ref=f58e414]:
+                        - text: added this work item to the module
+                        - link "M-MC-05 统一执行网关" [ref=f58e415] [cursor=pointer]:
+                          - /url: /cognitive-action-platform/projects/3f42f80e-fb4f-4a59-8f06-237edae3acdd/modules/59678795-942c-424a-b82d-9e0f2d489040
+                      - generic [ref=f58e417]: 1 minute ago
+                    - generic [ref=f58e424]:
+                      - link "thomasleea67" [ref=f58e425] [cursor=pointer]:
+                        - /url: /cognitive-action-platform/profile/a2e60ed1-df5c-4bf6-b13e-5e3b9dce06a5/
+                      - generic [ref=f58e426]:
+                        - text: added a new assignee
+                        - link "wangzhenyu" [ref=f58e427] [cursor=pointer]:
+                          - /url: /cognitive-action-platform/profile/48f41a91-b76b-4697-8c07-e2a7e9f6e128
+                        - text: .
+                      - generic [ref=f58e428]: 1 minute ago
+                  - generic [ref=f58e431]:
+                    - paragraph [ref=f58e439]: 添加评论
+                    - generic [ref=f58e442]:
+                      - generic [ref=f58e443]:
+                        - generic [ref=f58e444]:
+                          - button [ref=f58e445] [cursor=pointer]
+                          - button [ref=f58e448] [cursor=pointer]
+                          - button [ref=f58e451] [cursor=pointer]
+                          - button [ref=f58e454] [cursor=pointer]
+                        - generic [ref=f58e458]:
+                          - button [ref=f58e459] [cursor=pointer]
+                          - button [ref=f58e461] [cursor=pointer]
+                          - button [ref=f58e463] [cursor=pointer]
+                        - generic [ref=f58e465]:
+                          - button [ref=f58e466] [cursor=pointer]
+                          - button [ref=f58e470] [cursor=pointer]
+                          - button [ref=f58e472] [cursor=pointer]
+                        - generic [ref=f58e476]:
+                          - button [ref=f58e477] [cursor=pointer]
+                          - button [ref=f58e479] [cursor=pointer]
+                        - button [ref=f58e485] [cursor=pointer]
+                      - generic [ref=f58e490]:
+                        - button "评论" [disabled]
+            - generic [ref=f58e493]:
+              - heading "属性" [level=5] [ref=f58e494]
+              - generic [ref=f58e495]:
+                - generic [ref=f58e496]:
+                  - generic [ref=f58e497]: 状态
+                  - button [ref=f58e504] [cursor=pointer]:
+                    - button "待办" [ref=f58e505]
+                - generic [ref=f58e530]:
+                  - generic [ref=f58e531]: 负责人
+                  - button [ref=f58e537] [cursor=pointer]:
+                    - button "添加负责人" [ref=f58e538]
+                - generic [ref=f58e540]:
+                  - generic [ref=f58e541]: 优先级
+                  - button "None" [ref=f58e547] [cursor=pointer]
+                - generic [ref=f58e554]:
+                  - generic [ref=f58e555]: 创建者
+                  - generic [ref=f58e561]:
+                    - img "thomasleea67" [ref=f58e563]
+                    - generic [ref=f58e564]: thomasleea67
+                - generic [ref=f58e565]:
+                  - generic [ref=f58e566]: 开始日期
+                  - button [ref=f58e572] [cursor=pointer]:
+                    - button "Jul 23, 2026" [ref=f58e573]
+                - generic [ref=f58e575]:
+                  - generic [ref=f58e576]: 截止日期
+                  - button [ref=f58e583] [cursor=pointer]:
+                    - button "Jul 30, 2026" [ref=f58e584]
+                - generic [ref=f58e586]:
+                  - generic [ref=f58e587]: 模块
+                  - button [ref=f58e598] [cursor=pointer]:
+                    - button "M-MC-05 统一执行网关" [ref=f58e599]:
+                      - generic [ref=f58e601]:
+                        - generic [ref=f58e602]: M-MC-05 统一执行网关
+                        - button [ref=f58e603]
+                - generic [ref=f58e607]:
+                  - generic [ref=f58e608]: 周期
+                  - button [ref=f58e617] [cursor=pointer]:
+                    - button "V1.0 演示主链路" [ref=f58e618]
+                - generic [ref=f58e620]:
+                  - generic [ref=f58e621]: 父项
+                  - button "添加父工作项" [ref=f58e628] [cursor=pointer]
+                - generic [ref=f58e634]:
+                  - generic [ref=f58e635]: 标签
+                  - button "选择标签" [ref=f58e644] [cursor=pointer]
+  - listbox:
+    - generic [ref=f58e648]:
+      - combobox "搜索" [active] [ref=f58e652]
+      - option "thomasleea67 您" [ref=f58e654] [cursor=pointer]:
+        - generic [ref=f58e656]:
+          - img "thomasleea67" [ref=f58e659]
+          - generic [ref=f58e660]: 您

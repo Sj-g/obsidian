@@ -1,0 +1,202 @@
+- generic [ref=f61e1]:
+  - generic:
+    - region "Notifications"
+  - main [ref=f61e4]:
+    - generic [ref=f61e5]:
+      - generic [ref=f61e6]:
+        - button [ref=f61e304] [cursor=pointer]:
+          - generic [ref=f61e10]:
+            - generic [ref=f61e11]: C
+            - heading [level=4] [ref=f61e305]: Cognitive Action Platform
+        - button [ref=f61e19] [cursor=pointer]:
+          - textbox [ref=f61e306]:
+            - /placeholder: Search commands...
+        - generic [ref=f61e24]:
+          - link [ref=f61e25] [cursor=pointer]:
+            - /url: /cognitive-action-platform/notifications/
+          - button [ref=f61e31] [cursor=pointer]:
+            - button [ref=f61e32]
+          - link [ref=f61e307] [cursor=pointer]:
+            - /url: https://github.com/makeplane/plane
+            - generic [ref=f61e39]: 在GitHub上为我们加星
+          - button [ref=f61e308] [cursor=pointer]:
+            - button [ref=f61e309]
+      - main [ref=f61e50]:
+        - generic [ref=f61e55]:
+          - generic [ref=f61e56]:
+            - generic [ref=f61e57]:
+              - generic [ref=f61e58]:
+                - button [ref=f61e59] [cursor=pointer]
+                - paragraph [ref=f61e62]: Project settings
+              - generic [ref=f61e63]:
+                - generic [ref=f61e64]: 👇
+                - generic [ref=f61e66]:
+                  - paragraph [ref=f61e67]: MC 多设备矩阵自动化群控
+                  - paragraph [ref=f61e68]: 管理员
+            - generic [ref=f61e69]:
+              - generic [ref=f61e70]:
+                - generic [ref=f61e71]: general
+                - generic [ref=f61e72]:
+                  - link [ref=f61e311] [cursor=pointer]:
+                    - /url: /cognitive-action-platform/settings/projects/3f42f80e-fb4f-4a59-8f06-237edae3acdd/
+                    - generic [ref=f61e77]: 常规
+                  - link [ref=f61e312] [cursor=pointer]:
+                    - /url: /cognitive-action-platform/settings/projects/3f42f80e-fb4f-4a59-8f06-237edae3acdd/members/
+                    - generic [ref=f61e85]: 成员
+              - generic [ref=f61e86]:
+                - generic [ref=f61e87]: features
+                - generic [ref=f61e88]:
+                  - link [ref=f61e313] [cursor=pointer]:
+                    - /url: /cognitive-action-platform/settings/projects/3f42f80e-fb4f-4a59-8f06-237edae3acdd/features/cycles/
+                    - generic [ref=f61e95]: 周期
+                  - link [ref=f61e314] [cursor=pointer]:
+                    - /url: /cognitive-action-platform/settings/projects/3f42f80e-fb4f-4a59-8f06-237edae3acdd/features/modules/
+                    - generic [ref=f61e104]: 模块
+                  - link [ref=f61e315] [cursor=pointer]:
+                    - /url: /cognitive-action-platform/settings/projects/3f42f80e-fb4f-4a59-8f06-237edae3acdd/features/views/
+                    - generic [ref=f61e110]: 视图
+                  - link [ref=f61e316] [cursor=pointer]:
+                    - /url: /cognitive-action-platform/settings/projects/3f42f80e-fb4f-4a59-8f06-237edae3acdd/features/pages/
+                    - generic [ref=f61e115]: 页面
+                  - link [ref=f61e317] [cursor=pointer]:
+                    - /url: /cognitive-action-platform/settings/projects/3f42f80e-fb4f-4a59-8f06-237edae3acdd/features/intake/
+                    - generic [ref=f61e121]: 接收
+              - generic [ref=f61e122]:
+                - generic [ref=f61e123]: work-structure
+                - generic [ref=f61e124]:
+                  - link [ref=f61e318] [cursor=pointer]:
+                    - /url: /cognitive-action-platform/settings/projects/3f42f80e-fb4f-4a59-8f06-237edae3acdd/states/
+                    - generic [ref=f61e130]: 状态
+                  - link [ref=f61e319] [cursor=pointer]:
+                    - /url: /cognitive-action-platform/settings/projects/3f42f80e-fb4f-4a59-8f06-237edae3acdd/labels/
+                    - generic [ref=f61e137]: 标签
+                  - link [ref=f61e320] [cursor=pointer]:
+                    - /url: /cognitive-action-platform/settings/projects/3f42f80e-fb4f-4a59-8f06-237edae3acdd/estimates/
+                    - generic [ref=f61e142]: 估算
+              - generic [ref=f61e143]:
+                - generic [ref=f61e144]: execution
+                - link [ref=f61e321] [cursor=pointer]:
+                  - /url: /cognitive-action-platform/settings/projects/3f42f80e-fb4f-4a59-8f06-237edae3acdd/automations/
+                  - generic [ref=f61e150]: 自动化
+          - generic [ref=f61e151]:
+            - generic [ref=f61e152]: 成员
+            - generic [ref=f61e169]:
+              - heading [level=3] [ref=f61e322]: 成员
+              - generic [ref=f61e173]:
+                - generic [ref=f61e174]:
+                  - generic [ref=f61e175]:
+                    - heading [level=4] [ref=f61e323]: Project Lead
+                    - paragraph [ref=f61e177]: Select the project lead for the project.
+                  - button [ref=f61e324] [cursor=pointer]:
+                    - generic [ref=f61e181]: None
+                - generic [ref=f61e190]:
+                  - generic [ref=f61e191]:
+                    - heading [level=4] [ref=f61e325]: Default Assignee
+                    - paragraph [ref=f61e193]: Select the default assignee for the project.
+                  - button [ref=f61e326] [cursor=pointer]:
+                    - generic [ref=f61e197]: None
+                - generic [ref=f61e206]:
+                  - generic [ref=f61e207]:
+                    - heading [level=4] [ref=f61e327]: Guest access
+                    - paragraph [ref=f61e209]: This will allow guests to have view access to all the project work items.
+                  - switch [ref=f61e212] [cursor=pointer]
+              - generic [ref=f61e215]:
+                - generic [ref=f61e216]: 成员
+                - generic [ref=f61e217]:
+                  - textbox [ref=f61e328]:
+                    - /placeholder: Search
+                  - button [ref=f61e329] [cursor=pointer]:
+                    - button [ref=f61e330]:
+                      - generic [ref=f61e226]: Filters
+                  - button [ref=f61e331] [cursor=pointer]: 添加成员
+              - table [ref=f61e232]:
+                - rowgroup [ref=f61e233]:
+                  - row [ref=f61e332]:
+                    - columnheader [ref=f61e333]:
+                      - button [ref=f61e334] [cursor=pointer]:
+                        - generic [ref=f61e238]: Full name
+                    - columnheader [ref=f61e335]:
+                      - button [ref=f61e336] [cursor=pointer]:
+                        - generic [ref=f61e246]: Display name
+                    - columnheader [ref=f61e337]:
+                      - button [ref=f61e338] [cursor=pointer]:
+                        - generic [ref=f61e254]: Email
+                    - columnheader [ref=f61e339]:
+                      - button [ref=f61e340] [cursor=pointer]:
+                        - generic [ref=f61e262]: Role
+                    - columnheader [ref=f61e341]:
+                      - button [ref=f61e342] [cursor=pointer]:
+                        - generic [ref=f61e270]: Joining date
+                - rowgroup [ref=f61e275]:
+                  - row [ref=f61e343]:
+                    - cell [ref=f61e344]:
+                      - generic [ref=f61e279]:
+                        - generic [ref=f61e280]:
+                          - link [ref=f61e345] [cursor=pointer]:
+                            - /url: /cognitive-action-platform/profile/a2e60ed1-df5c-4bf6-b13e-5e3b9dce06a5/
+                          - text: 石建国 s
+                        - button [ref=f61e285] [cursor=pointer]
+                    - cell [ref=f61e347]:
+                      - generic [ref=f61e291]: thomasleea67
+                    - cell [ref=f61e348]:
+                      - generic [ref=f61e293]: thomasleea67@gmail.com
+                    - cell [ref=f61e349]:
+                      - button [ref=f61e350] [cursor=pointer]:
+                        - generic [ref=f61e297]: Admin
+                    - cell [ref=f61e351]:
+                      - generic [ref=f61e303]: Jul 22, 2026
+  - generic:
+    - generic:
+      - generic:
+        - dialog:
+          - generic [ref=f61e356]:
+            - generic [ref=f61e357]:
+              - heading "邀请成员" [level=3] [ref=f61e358]
+              - paragraph [ref=f61e360]: 邀请成员参与您的项目。
+              - generic [ref=f61e362]:
+                - button [expanded] [ref=f61e365] [cursor=pointer]:
+                  - button "Select co-worker" [ref=f61e366]
+                - button "Guest" [ref=f61e374] [cursor=pointer]
+            - generic [ref=f61e380]:
+              - button "添加更多" [ref=f61e381] [cursor=pointer]
+              - generic [ref=f61e384]:
+                - button "取消" [ref=f61e385] [cursor=pointer]
+                - button "添加成员" [ref=f61e386] [cursor=pointer]
+  - listbox "Select co-worker":
+    - combobox "Search" [expanded] [active] [ref=f61e387]
+    - option "H haoyu (郝宇 )" [ref=f61e388] [cursor=pointer]:
+      - generic [ref=f61e390]:
+        - generic [ref=f61e391]: H
+        - generic [ref=f61e394]: haoyu (郝宇 )
+    - option "L liyingxu (李应许 )" [ref=f61e395] [cursor=pointer]:
+      - generic [ref=f61e397]:
+        - generic [ref=f61e398]: L
+        - generic [ref=f61e401]: liyingxu (李应许 )
+    - option "P pilihao (皮理豪 )" [ref=f61e402] [cursor=pointer]:
+      - generic [ref=f61e404]:
+        - generic [ref=f61e405]: P
+        - generic [ref=f61e408]: pilihao (皮理豪 )
+    - option "S shijianguo (石建国 )" [ref=f61e409] [cursor=pointer]:
+      - generic [ref=f61e411]:
+        - generic [ref=f61e412]: S
+        - generic [ref=f61e415]: shijianguo (石建国 )
+    - option "W wangyangyang (王洋洋 )" [ref=f61e416] [cursor=pointer]:
+      - generic [ref=f61e418]:
+        - generic [ref=f61e419]: W
+        - generic [ref=f61e422]: wangyangyang (王洋洋 )
+    - option "W wangzhenyu (王振宇 )" [ref=f61e423] [cursor=pointer]:
+      - generic [ref=f61e425]:
+        - generic [ref=f61e426]: W
+        - generic [ref=f61e429]: wangzhenyu (王振宇 )
+    - option "Y yangzhi (杨志 )" [ref=f61e430] [cursor=pointer]:
+      - generic [ref=f61e432]:
+        - generic [ref=f61e433]: "Y"
+        - generic [ref=f61e436]: yangzhi (杨志 )
+    - option "Z zhangfenglei (张风雷 )" [ref=f61e437] [cursor=pointer]:
+      - generic [ref=f61e439]:
+        - generic [ref=f61e440]: Z
+        - generic [ref=f61e443]: zhangfenglei (张风雷 )
+    - option "Z zhaoxinxin (赵鑫鑫 )" [ref=f61e444] [cursor=pointer]:
+      - generic [ref=f61e446]:
+        - generic [ref=f61e447]: Z
+        - generic [ref=f61e450]: zhaoxinxin (赵鑫鑫 )
