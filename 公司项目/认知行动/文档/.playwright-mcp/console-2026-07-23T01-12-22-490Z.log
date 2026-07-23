@@ -304,3 +304,15 @@
     at on (http://10.252.1.200/assets/index-VH9TOfLF.js:1:1753)
     at MessagePort.Mn (http://10.252.1.200/assets/index-VH9TOfLF.js:1:2146)
 [     393ms] [WARNING] Canvas2D: Multiple readback operations using getImageData are faster with the willReadFrequently attribute set to true. See: https://html.spec.whatwg.org/multipage/canvas.html#concept-canvas-will-read-frequently @ http://10.252.1.200/assets/use-editor-flagging-BaifWpdk.js:96
+[  669236ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://10.252.1.200/api/workspaces/cognitive-action-platform/projects/3f42f80e-fb4f-4a59-8f06-237edae3acdd/intake-state/:0
+[  679286ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://10.252.1.200/api/workspaces/cognitive-action-platform/projects/3f42f80e-fb4f-4a59-8f06-237edae3acdd/intake-state/:0
+[  689100ms] undefined
+[  695811ms] undefined
+[  704493ms] undefined
+[  726826ms] undefined
+[  753578ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://10.252.1.200/api/workspaces/cognitive-action-platform/projects/3f42f80e-fb4f-4a59-8f06-237edae3acdd/intake-state/:0
+[  758631ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://10.252.1.200/api/workspaces/cognitive-action-platform/projects/3f42f80e-fb4f-4a59-8f06-237edae3acdd/intake-state/:0
+[  763487ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://10.252.1.200/api/workspaces/cognitive-action-platform/projects/ebf8ae48-de52-438d-af23-ec93463f69d0/cycles/0258232d-1faf-49b4-9eba-78089afd573d/progress/:0
+[ 1141835ms] undefined
+[ 1151310ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://10.252.1.200/api/workspaces/cognitive-action-platform/projects/3f42f80e-fb4f-4a59-8f06-237edae3acdd/intake-state/:0
+[ 1161360ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://10.252.1.200/api/workspaces/cognitive-action-platform/projects/3f42f80e-fb4f-4a59-8f06-237edae3acdd/intake-state/:0
