@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "计算机相关学习/研发效能/每日站会.md",
+                "file": "公司项目/认知行动/文档/SRS/软件需求规格说明-总册.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "每日站会"
+              "title": "软件需求规格说明-总册"
             }
           }
         ]
@@ -166,13 +166,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "计算机相关学习/研发效能/每日站会.md",
+                "file": "公司项目/认知行动/文档/SRS/软件需求规格说明-总册.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "每日站会 的大纲"
+              "title": "软件需求规格说明-总册 的大纲"
             }
           },
           {
@@ -206,8 +206,9 @@
       "obsidian-excalidraw-plugin:新建绘图文件": false
     }
   },
-  "active": "3dfa581ca7204af3",
+  "active": "e1a180e12f23b4bb",
   "lastOpenFiles": [
+    "计算机相关学习/研发效能/每日站会.md",
     "公司项目/认知行动/文档/mc_states.png",
     "公司项目/认知行动/文档/mc_issues_list.png",
     "计算机相关学习/需求/需求分析提示词.md",
@@ -253,7 +254,6 @@
     "OneNote/resource/Exported image 20260609142502-8.jpeg",
     "OneNote/resource/Exported image 20260609142500-7.jpeg",
     "OneNote/resource/Exported image 20260609142455-6.jpeg",
-    "OneNote/resource/Exported image 20260609142452-5.jpeg",
-    "OneNote/resource/Exported image 20260609142449-4.jpeg"
+    "OneNote/resource/Exported image 20260609142452-5.jpeg"
   ]
 }
