@@ -4,9 +4,14 @@
       {
         "draftModel": "haiku",
         "tabId": "tab-1785305939450-riujstf",
-        "conversationId": "conv-1785305952037-ra9m2c0sd"
+        "conversationId": null
+      },
+      {
+        "draftModel": "fable",
+        "tabId": "tab-1785317558714-rn6j1h4",
+        "conversationId": "conv-1785317644424-cgbhwgu9b"
       }
     ],
-    "activeTabId": "tab-1785305939450-riujstf"
+    "activeTabId": "tab-1785317558714-rn6j1h4"
   }
 }
