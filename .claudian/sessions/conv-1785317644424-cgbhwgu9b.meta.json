@@ -4,8 +4,8 @@
   "title": "Execute wiki ingest workflow",
   "titleGenerationStatus": "success",
   "createdAt": 1785317644426,
-  "updatedAt": 1785318395150,
-  "lastResponseAt": 1785318395150,
+  "updatedAt": 1785319097783,
+  "lastResponseAt": 1785319097783,
   "sessionId": "070f5062-713f-4af6-9819-7e7d1c9092e1",
   "selectedModel": "opus",
   "providerState": {
@@ -13,12 +13,12 @@
   },
   "usage": {
     "model": "opus",
-    "inputTokens": 3172,
+    "inputTokens": 1847,
     "cacheCreationInputTokens": 0,
-    "cacheReadInputTokens": 92864,
+    "cacheReadInputTokens": 133632,
     "contextWindow": 200000,
     "contextWindowIsAuthoritative": true,
-    "contextTokens": 96036,
-    "percentage": 48
+    "contextTokens": 135479,
+    "percentage": 68
   }
 }
