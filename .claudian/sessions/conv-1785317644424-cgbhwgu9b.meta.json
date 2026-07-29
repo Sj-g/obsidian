@@ -4,22 +4,21 @@
   "title": "Execute wiki ingest workflow",
   "titleGenerationStatus": "success",
   "createdAt": 1785317644426,
-  "updatedAt": 1785317652173,
-  "lastResponseAt": 1785317647149,
+  "updatedAt": 1785318395150,
+  "lastResponseAt": 1785318395150,
   "sessionId": "070f5062-713f-4af6-9819-7e7d1c9092e1",
   "selectedModel": "opus",
   "providerState": {
     "providerSessionId": "070f5062-713f-4af6-9819-7e7d1c9092e1"
   },
-  "currentNote": "CLAUDE.md",
   "usage": {
-    "model": "fable",
-    "inputTokens": 0,
+    "model": "opus",
+    "inputTokens": 3172,
     "cacheCreationInputTokens": 0,
-    "cacheReadInputTokens": 0,
+    "cacheReadInputTokens": 92864,
     "contextWindow": 200000,
     "contextWindowIsAuthoritative": true,
-    "contextTokens": 0,
-    "percentage": 0
+    "contextTokens": 96036,
+    "percentage": 48
   }
 }

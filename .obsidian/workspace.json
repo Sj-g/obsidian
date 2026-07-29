@@ -13,15 +13,26 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "raw/01-articles/需求拆分和需求分析.md",
+                "file": "wiki/concepts/MVP.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "需求拆分和需求分析"
+              "title": "MVP"
+            }
+          },
+          {
+            "id": "bb5e13065fef1199",
+            "type": "leaf",
+            "state": {
+              "type": "graph",
+              "state": {},
+              "icon": "lucide-git-fork",
+              "title": "关系图谱"
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -190,7 +201,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 664.5
+    "width": 747.5
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -206,44 +217,43 @@
       "realclaudian:Open Claudian": false
     }
   },
-  "active": "7893c6c91b70ba0a",
+  "active": "bb5e13065fef1199",
   "lastOpenFiles": [
-    "wiki/concepts/系统思考.md",
-    "wiki/concepts/系统思考.md.tmp.772350.e1cae4584d45",
+    "raw/01-articles/llm-wiki.md",
+    "raw/05-Reading a book",
+    "raw/未命名.md",
+    "raw/04-personal",
+    "README.md.md",
+    "CLAUDE.md",
+    "wiki/concepts/需求分析与拆分.md",
+    "wiki/concepts/需求优先级评估.md",
+    "wiki/concepts/INVEST准则.md",
     "wiki/concepts/多元思维模型.md",
+    "wiki/syntheses/5c-prompt-markdown-note-taking.md",
+    "wiki/log.md.tmp.772350.1049bd1cc7d6",
+    "wiki/concepts/MVP.md",
+    "wiki/concepts/纵向拆分.md",
+    "wiki/concepts/影响地图.md",
+    "wiki/concepts/系统思考.md",
+    "wiki/concepts/每日站会.md",
+    "wiki/concepts/复利效应.md",
+    "wiki/log.md.tmp.772350.46fd1a5de605",
+    "raw/01-articles/需求拆分和需求分析.md",
+    "raw/09-archive/需求拆分和需求分析.md",
+    "raw/09-archive/书单.md",
+    "raw/09-archive/每日站会.md",
+    "raw/09-archive/待看名单.md",
+    "raw/09-archive/产品相关文档.md",
+    "wiki/log.md.tmp.772350.8066fbdbc685",
+    "wiki/index.md.tmp.772350.9e4fc9cbcbff",
+    "wiki/concepts/系统思考.md.tmp.772350.e1cae4584d45",
     "wiki/concepts/多元思维模型.md.tmp.772350.aa9342ee7c1f",
     "raw/01-articles/书单.md",
     "raw/01-articles/每日站会.md",
     "raw/01-articles/待看名单.md",
     "raw/01-articles/产品相关文档.md",
-    "wiki/concepts/每日站会.md",
     "wiki/concepts/每日站会.md.tmp.772350.6879127c837c",
-    "CLAUDE.md",
-    "wiki/concepts/复利效应.md",
     "wiki/concepts/复利效应.md.tmp.772350.363ddcd01fce",
-    "wiki/concepts/MVP.md",
-    "wiki/concepts/MVP.md.tmp.772350.7c0a587d9882",
-    "wiki/concepts/需求优先级评估.md",
-    "wiki/concepts/需求优先级评估.md.tmp.772350.c0ee348e6cca",
-    "wiki/concepts/影响地图.md",
-    "wiki/concepts/影响地图.md.tmp.772350.15d722f9b409",
-    "wiki/concepts/INVEST准则.md",
-    "wiki/concepts/INVEST准则.md.tmp.772350.d98295a80c60",
-    "wiki/concepts/纵向拆分.md",
-    "wiki/concepts/纵向拆分.md.tmp.772350.ddca5e7e2b06",
-    "wiki/concepts/需求分析与拆分.md",
-    "wiki/concepts/需求分析与拆分.md.tmp.772350.e3164ebfddac",
-    "wiki/log.md",
-    "wiki/index.md",
-    "wiki/syntheses/5c-prompt-markdown-note-taking.md",
-    "wiki/entities/GJB438C.md",
-    "wiki/sources/摘要-438c-产品文档体系.md",
-    "wiki/sources/摘要-需求拆分过程规程.md",
-    "wiki/sources/摘要-36本书书单.md",
-    "wiki/sources/摘要-待看名单.md",
-    "wiki/sources/摘要-每日站会素材.md",
-    "raw/01-articles/需求拆分和需求分析.md",
-    "计算机相关学习/需求/需求分析提示词.md",
     "assets/hq720.jpg",
     "assets/Karpathy LLM Wiki.png",
     "karpathy-llm-wiki-vault/assets/hq720.jpg",
