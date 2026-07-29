@@ -176,21 +176,21 @@
             }
           },
           {
-            "id": "ae6943bf1ac1ebd6",
+            "id": "59406bc294a96bd2",
             "type": "leaf",
             "state": {
-              "type": "copilot-chat-view",
+              "type": "claudian-view",
               "state": {},
-              "icon": "message-square",
-              "title": "Copilot"
+              "icon": "bot",
+              "title": "Claudian"
             }
           }
         ],
-        "currentTab": 5
+        "currentTab": 6
       }
     ],
     "direction": "horizontal",
-    "width": 445.5
+    "width": 1051.5
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -203,10 +203,11 @@
       "bases:新建数据库": false,
       "obsidian-git:Open Git source control": false,
       "copilot:Open Copilot Chat": false,
-      "obsidian-excalidraw-plugin:新建绘图文件": false
+      "obsidian-excalidraw-plugin:新建绘图文件": false,
+      "realclaudian:Open Claudian": false
     }
   },
-  "active": "e1a180e12f23b4bb",
+  "active": "59406bc294a96bd2",
   "lastOpenFiles": [
     "公司项目/认知行动/untitled.pen",
     "公司项目/认知行动/images/Untitled.fig",
