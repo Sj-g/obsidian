@@ -20,8 +20,21 @@
               "icon": "lucide-file",
               "title": "文档目录"
             }
+          },
+          {
+            "id": "08594bb47c92c8bc",
+            "type": "leaf",
+            "state": {
+              "type": "excalidraw",
+              "state": {
+                "file": "Excalidraw/Drawing 2026-07-29 15.32.04.excalidraw.md"
+              },
+              "icon": "excalidraw-icon",
+              "title": "Drawing 2026-07-29 15.32.04.excalidraw"
+            }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -166,13 +179,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "公司项目/认知行动/文档/文档目录.md",
+                "file": "Excalidraw/Drawing 2026-07-29 15.32.04.excalidraw.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "文档目录 的大纲"
+              "title": "Drawing 2026-07-29 15.32.04.excalidraw 的大纲"
             }
           },
           {
@@ -190,7 +203,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 1051.5
+    "width": 1051.5,
+    "collapsed": true
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -207,8 +221,10 @@
       "realclaudian:Open Claudian": false
     }
   },
-  "active": "59406bc294a96bd2",
+  "active": "08594bb47c92c8bc",
   "lastOpenFiles": [
+    "公司项目/认知行动/文档/文档目录.md",
+    "Excalidraw/Drawing 2026-07-29 15.32.04.excalidraw.md",
     "公司项目/认知行动/untitled.pen",
     "公司项目/认知行动/images/Untitled.fig",
     "公司项目/认知行动/images",
@@ -229,11 +245,9 @@
     "公司项目/认知行动/文档/版本变动记录/版本变动记录.md.tmp.2155129.35c28c349934",
     "公司项目/认知行动/文档/系统页面清单.md.tmp.2155129.2b5a00e6b2be",
     "公司项目/认知行动/文档/系统页面清单.md.tmp.2155129.c322874d5c6f",
-    "公司项目/认知行动/文档/AGENTS.md.tmp.2155129.50fc4c2be4e9",
     "公司项目/认知行动/文档/SRS/软件需求规格说明-OCC子系统.md",
     "公司项目/认知行动/文档/SRS/软件需求规格说明-MC子系统.md",
     "公司项目/认知行动/文档/SRS/软件需求规格说明-IRS子系统.md",
-    "公司项目/认知行动/文档/文档目录.md",
     "公司项目/认知行动/文档/系统页面清单.md",
     "公司项目/认知行动/文档/AGENTS.md",
     "公司项目/认知行动/文档/SRS/软件需求规格说明-COM子系统.md",
