@@ -34,9 +34,21 @@
               "icon": "lucide-file",
               "title": "如何为 Obsidian 配置 AI Agent？9 个必备 Skill 详解与安装指南  杰森的效率工坊"
             }
+          },
+          {
+            "id": "66b9be1713670d33",
+            "type": "leaf",
+            "state": {
+              "type": "excalidraw",
+              "state": {
+                "file": "Excalidraw/Drawing 2026-08-03 14.55.52.excalidraw.md"
+              },
+              "icon": "excalidraw-icon",
+              "title": "Drawing 2026-08-03 14.55.52.excalidraw"
+            }
           }
         ],
-        "currentTab": 1
+        "currentTab": 2
       }
     ],
     "direction": "vertical"
@@ -205,7 +217,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 575.5
+    "width": 200
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -221,10 +233,15 @@
       "realclaudian:Open Claudian": false
     }
   },
-  "active": "bb5e13065fef1199",
+  "active": "66b9be1713670d33",
   "lastOpenFiles": [
-    "2026-07-29.md",
+    "Excalidraw/resource/Pasted Image 20260803145638_655.png",
+    "Excalidraw/resource/Pasted Image 20260803145554_399.png",
+    "Excalidraw/resource",
     "raw/01-articles/如何为 Obsidian 配置 AI Agent？9 个必备 Skill 详解与安装指南  杰森的效率工坊.md",
+    "Excalidraw/Drawing 2026-08-03 14.55.52.excalidraw.md",
+    "Excalidraw",
+    "2026-07-29.md",
     "wiki/log.md.tmp.772350.e1feca4697db",
     "wiki/entities/Karpathy.md",
     "wiki/log.md",
@@ -248,9 +265,7 @@
     "wiki/concepts/Memex.md.tmp.772350.6842e55b5b19",
     "wiki/concepts/RAG.md.tmp.772350.8e6ab0623784",
     "wiki/concepts/LLM Wiki.md.tmp.772350.2153c5263a74",
-    "wiki/sources/摘要-llm-wiki.md.tmp.772350.3ccd57c8ce13",
     "raw/01-articles/llm-wiki.md",
-    "wiki/log.md.tmp.772350.6ebc93fe78fd",
     "未命名.canvas",
     "raw/未命名.md",
     "README.md.md",
@@ -258,8 +273,6 @@
     "wiki/concepts/需求优先级评估.md",
     "wiki/concepts/INVEST准则.md",
     "wiki/concepts/多元思维模型.md",
-    "wiki/syntheses/5c-prompt-markdown-note-taking.md",
-    "wiki/concepts/MVP.md",
     "assets/hq720.jpg",
     "assets/Karpathy LLM Wiki.png",
     "karpathy-llm-wiki-vault/assets/hq720.jpg",
@@ -268,7 +281,6 @@
     "公司项目/认知行动/文档/mc_issues_list.png",
     "公司项目/认知作战/文档/cozeloop-prompt-detail.png",
     "resource/diagram.png",
-    "OneNote/CS-408/操作系统/第二章 进程与线程 - Ink.svg",
-    "OneNote/resource/Exported image 20260609144009-9.jpeg"
+    "OneNote/CS-408/操作系统/第二章 进程与线程 - Ink.svg"
   ]
 }
