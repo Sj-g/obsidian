@@ -80,7 +80,9 @@
               "type": "file-explorer",
               "state": {
                 "sortOrder": "alphabetical",
-                "autoReveal": false
+                "autoReveal": false,
+                "showSearch": false,
+                "searchQuery": ""
               },
               "icon": "lucide-folder-closed",
               "title": "文件列表"
@@ -247,11 +249,11 @@
   },
   "active": "5eed5c3ab313fe20",
   "lastOpenFiles": [
+    "Excalidraw/Drawing 2026-08-03 14.55.52.excalidraw.md",
     "Excalidraw/resource/Pasted Image 20260803145638_655.png",
     "Excalidraw/resource/Pasted Image 20260803145554_399.png",
     "CLAUDE.md",
     "README.md.md",
-    "Excalidraw/Drawing 2026-08-03 14.55.52.excalidraw.md",
     "Excalidraw/resource",
     "raw/01-articles/如何为 Obsidian 配置 AI Agent？9 个必备 Skill 详解与安装指南  杰森的效率工坊.md",
     "Excalidraw",
