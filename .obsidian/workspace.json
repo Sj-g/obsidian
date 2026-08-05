@@ -51,12 +51,14 @@
             "id": "5eed5c3ab313fe20",
             "type": "leaf",
             "state": {
-              "type": "excalidraw",
+              "type": "markdown",
               "state": {
-                "file": "Excalidraw/Drawing 2026-08-03 14.55.52.excalidraw.md"
+                "file": "Clippings/常见网络安全设备合集：IDS、IPS、上网行为管理、网闸、漏扫、日志审计、数据库审计、堡垒机.md",
+                "mode": "source",
+                "source": false
               },
-              "icon": "excalidraw-icon",
-              "title": "Drawing 2026-08-03 14.55.52.excalidraw"
+              "icon": "lucide-file",
+              "title": "常见网络安全设备合集：IDS、IPS、上网行为管理、网闸、漏扫、日志审计、数据库审计、堡垒机"
             }
           }
         ],
@@ -249,7 +251,12 @@
   },
   "active": "5eed5c3ab313fe20",
   "lastOpenFiles": [
+    "Clippings/终于有人把8类常见网络安全设备讲清楚了：IDS、IPS、上网行为管理、网闸、漏扫、日志审计、数据库审计、堡垒机.md",
+    "Clippings/常见网络安全设备合集：IDS、IPS、上网行为管理、网闸、漏扫、日志审计、数据库审计、堡垒机.md",
+    "Clippings/网络安全必知会：防火墙、VPN、堡垒机、零信任分别管什么？.md",
+    "Clippings/一篇讲清楚10类网络安全设备的区别：防火墙、WAF、堡垒机、网闸、漏洞扫描、日志审计…….md",
     "Excalidraw/Drawing 2026-08-03 14.55.52.excalidraw.md",
+    "Clippings",
     "Excalidraw/resource/Pasted Image 20260803145638_655.png",
     "Excalidraw/resource/Pasted Image 20260803145554_399.png",
     "CLAUDE.md",
@@ -279,14 +286,10 @@
     "wiki/concepts/Memex.md",
     "wiki/concepts/Memex.md.tmp.772350.6842e55b5b19",
     "wiki/concepts/RAG.md.tmp.772350.8e6ab0623784",
-    "wiki/concepts/LLM Wiki.md.tmp.772350.2153c5263a74",
     "raw/01-articles/llm-wiki.md",
     "未命名.canvas",
     "raw/未命名.md",
     "wiki/concepts/需求分析与拆分.md",
-    "wiki/concepts/需求优先级评估.md",
-    "wiki/concepts/INVEST准则.md",
-    "wiki/concepts/多元思维模型.md",
     "assets/hq720.jpg",
     "assets/Karpathy LLM Wiki.png",
     "karpathy-llm-wiki-vault/assets/hq720.jpg",
