@@ -60,9 +60,21 @@
               "icon": "excalidraw-icon",
               "title": "Drawing 2026-08-14 09.44.25.excalidraw"
             }
+          },
+          {
+            "id": "42ab7bae5ada2f2e",
+            "type": "leaf",
+            "state": {
+              "type": "excalidraw",
+              "state": {
+                "file": "Excalidraw/Drawing 2026-08-14 15.00.39.excalidraw.md"
+              },
+              "icon": "excalidraw-icon",
+              "title": "Drawing 2026-08-14 15.00.39.excalidraw"
+            }
           }
         ],
-        "currentTab": 3
+        "currentTab": 4
       }
     ],
     "direction": "vertical"
@@ -121,8 +133,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 362.5,
-    "collapsed": true
+    "width": 362.5
   },
   "right": {
     "id": "7971d56ea5728395",
@@ -251,10 +262,11 @@
       "realclaudian:Open Claudian": false
     }
   },
-  "active": "e75ba7ded395e33a",
+  "active": "42ab7bae5ada2f2e",
   "lastOpenFiles": [
-    "Clippings/Matt Pocock Skills 完整使用指南与最佳实践.md",
     "Excalidraw/Drawing 2026-08-14 09.44.25.excalidraw.md",
+    "Excalidraw/Drawing 2026-08-14 15.00.39.excalidraw.md",
+    "Clippings/Matt Pocock Skills 完整使用指南与最佳实践.md",
     "Excalidraw/Drawing 2026-08-03 14.55.52.excalidraw.md",
     "Clippings/经济.md",
     "Clippings/常见网络安全设备合集：IDS、IPS、上网行为管理、网闸、漏扫、日志审计、数据库审计、堡垒机.md",
@@ -288,7 +300,6 @@
     "wiki/concepts/LLM Wiki.md",
     "wiki/entities/Karpathy.md.tmp.772350.3f2acd418877",
     "wiki/concepts/RAG.md",
-    "wiki/concepts/Memex.md",
     "wiki/concepts/Memex.md.tmp.772350.6842e55b5b19",
     "wiki/concepts/RAG.md.tmp.772350.8e6ab0623784",
     "未命名.canvas",
