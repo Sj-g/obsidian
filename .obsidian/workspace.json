@@ -93,12 +93,14 @@
             "id": "e98ef5df65665d95",
             "type": "leaf",
             "state": {
-              "type": "excalidraw",
+              "type": "markdown",
               "state": {
-                "file": "Excalidraw/Drawing 2026-08-19 10.16.15.excalidraw.md"
+                "file": "地址.md",
+                "mode": "source",
+                "source": false
               },
-              "icon": "excalidraw-icon",
-              "title": "Drawing 2026-08-19 10.16.15.excalidraw"
+              "icon": "lucide-file",
+              "title": "地址"
             }
           }
         ],
@@ -292,10 +294,10 @@
   },
   "active": "e98ef5df65665d95",
   "lastOpenFiles": [
+    "Excalidraw/Drawing 2026-08-19 10.16.15.excalidraw.md",
     "Excalidraw/Drawing 2026-08-14 09.44.25.excalidraw.md",
     "Excalidraw/Drawing 2026-08-03 14.55.52.excalidraw.md",
     "地址.md",
-    "Excalidraw/Drawing 2026-08-19 10.16.15.excalidraw.md",
     "Excalidraw/Drawing 2026-08-14 15.00.39.excalidraw.md",
     "Excalidraw/resource/Pasted Image 20260803145554_399.png",
     "Excalidraw/resource/Pasted Image 20260803145638_655.png",
