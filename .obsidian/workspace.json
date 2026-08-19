@@ -88,9 +88,21 @@
               "icon": "lucide-file",
               "title": "地址"
             }
+          },
+          {
+            "id": "e98ef5df65665d95",
+            "type": "leaf",
+            "state": {
+              "type": "excalidraw",
+              "state": {
+                "file": "Excalidraw/Drawing 2026-08-19 10.16.15.excalidraw.md"
+              },
+              "icon": "excalidraw-icon",
+              "title": "Drawing 2026-08-19 10.16.15.excalidraw"
+            }
           }
         ],
-        "currentTab": 5
+        "currentTab": 6
       }
     ],
     "direction": "vertical"
@@ -237,7 +249,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "地址.md",
+                "file": "Excalidraw/Drawing 2026-08-19 10.16.15.excalidraw.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
@@ -278,24 +290,25 @@
       "realclaudian:Open Claudian": false
     }
   },
-  "active": "71d9c49f25d1e648",
+  "active": "e98ef5df65665d95",
   "lastOpenFiles": [
+    "Excalidraw/Drawing 2026-08-14 15.00.39.excalidraw.md",
+    "Excalidraw/Drawing 2026-08-19 10.16.15.excalidraw.md",
+    "Excalidraw/Drawing 2026-08-14 09.44.25.excalidraw.md",
+    "Excalidraw/Drawing 2026-08-03 14.55.52.excalidraw.md",
+    "Excalidraw/resource/Pasted Image 20260803145554_399.png",
     "CLAUDE.md",
     "地址.md",
-    "Excalidraw/Drawing 2026-08-03 14.55.52.excalidraw.md",
-    "Excalidraw/resource/Pasted Image 20260803145638_655.png",
-    "Excalidraw/resource/Pasted Image 20260803145554_399.png",
     "Clippings/项目汇报PPT.md",
-    "Clippings/Matt Pocock Skills 完整使用指南与最佳实践.md",
-    "Clippings/PPT汇报.md",
     "Clippings/The AI Engineering Skills Map.md",
+    "Clippings/PPT汇报.md",
+    "Excalidraw/resource/Pasted Image 20260803145638_655.png",
+    "Clippings/Matt Pocock Skills 完整使用指南与最佳实践.md",
     "Clippings/经济.md",
     "Clippings/常见网络安全设备合集：IDS、IPS、上网行为管理、网闸、漏扫、日志审计、数据库审计、堡垒机.md",
     "Clippings/终于有人把8类常见网络安全设备讲清楚了：IDS、IPS、上网行为管理、网闸、漏扫、日志审计、数据库审计、堡垒机.md",
     "Clippings/一篇讲清楚10类网络安全设备的区别：防火墙、WAF、堡垒机、网闸、漏洞扫描、日志审计…….md",
     "Clippings/网络安全必知会：防火墙、VPN、堡垒机、零信任分别管什么？.md",
-    "Excalidraw/Drawing 2026-08-14 09.44.25.excalidraw.md",
-    "Excalidraw/Drawing 2026-08-14 15.00.39.excalidraw.md",
     "Clippings",
     "README.md.md",
     "Excalidraw/resource",
@@ -312,8 +325,6 @@
     "wiki/index.md.tmp.772350.d336aa486a89",
     "wiki/sources/摘要-需求拆分过程规程.md",
     "wiki/sources/摘要-每日站会素材.md",
-    "wiki/sources/摘要-待看名单.md",
-    "wiki/sources/摘要-438c-产品文档体系.md",
     "wiki/entities/Obsidian.md.tmp.772350.3df413c82a0d",
     "wiki/entities/Karpathy.md.tmp.772350.3f2acd418877",
     "wiki/concepts/Memex.md.tmp.772350.6842e55b5b19",
