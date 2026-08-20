@@ -107,12 +107,14 @@
             "id": "4fc61e025ae885d8",
             "type": "leaf",
             "state": {
-              "type": "excalidraw",
+              "type": "markdown",
               "state": {
-                "file": "Excalidraw/Drawing 2026-08-19 19.27.44.excalidraw.md"
+                "file": "地址.md",
+                "mode": "source",
+                "source": false
               },
-              "icon": "excalidraw-icon",
-              "title": "Drawing 2026-08-19 19.27.44.excalidraw"
+              "icon": "lucide-file",
+              "title": "地址"
             }
           }
         ],
@@ -175,8 +177,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 318.3000183105469,
-    "collapsed": true
+    "width": 318.3000183105469
   },
   "right": {
     "id": "7971d56ea5728395",
