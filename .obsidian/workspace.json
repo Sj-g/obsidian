@@ -20,8 +20,21 @@
               "icon": "lucide-file",
               "title": "问题集锦"
             }
+          },
+          {
+            "id": "804ea617541effa4",
+            "type": "leaf",
+            "state": {
+              "type": "excalidraw",
+              "state": {
+                "file": "Excalidraw/Drawing 2026-08-25 20.33.31.excalidraw.md"
+              },
+              "icon": "excalidraw-icon",
+              "title": "Drawing 2026-08-25 20.33.31.excalidraw"
+            }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -209,9 +222,10 @@
       "realclaudian:Open Claudian": false
     }
   },
-  "active": "2e3d9a8166bfd20d",
+  "active": "804ea617541effa4",
   "lastOpenFiles": [
     "问题集锦.md",
+    "Excalidraw/Drawing 2026-08-25 20.33.31.excalidraw.md",
     "地址.md",
     "思路.md",
     "Clippings/经济.md",
@@ -242,7 +256,6 @@
     "wiki/log.md",
     "wiki/index.md",
     "wiki/sources/摘要-llm-wiki.md",
-    "raw/09-archive/llm-wiki.md",
     "wiki/log.md.tmp.772350.bf28d1cdded1",
     "wiki/index.md.tmp.772350.d336aa486a89",
     "wiki/entities/Obsidian.md.tmp.772350.3df413c82a0d",
