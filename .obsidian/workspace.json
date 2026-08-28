@@ -53,12 +53,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "问题调整.md",
+                "file": "项目规划.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "问题调整"
+              "title": "项目规划"
             }
           }
         ],
@@ -253,8 +253,8 @@
   "active": "a179ad3f438ea2ea",
   "lastOpenFiles": [
     "项目重点.md",
+    "项目规划.md",
     "问题集锦.md",
-    "问题调整.md",
     "Excalidraw/Drawing 2026-08-25 20.33.31.excalidraw.md",
     "地址.md",
     "思路.md",
