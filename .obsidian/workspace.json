@@ -37,14 +37,12 @@
             "id": "9f9541c292ce8435",
             "type": "leaf",
             "state": {
-              "type": "markdown",
+              "type": "excalidraw",
               "state": {
-                "file": "项目规划.md",
-                "mode": "source",
-                "source": false
+                "file": "Excalidraw/Drawing 2026-08-28 13.38.32.excalidraw.md"
               },
-              "icon": "lucide-file",
-              "title": "项目规划"
+              "icon": "excalidraw-icon",
+              "title": "Drawing 2026-08-28 13.38.32.excalidraw"
             }
           }
         ],
@@ -236,22 +234,22 @@
       "realclaudian:Open Claudian": false
     }
   },
-  "active": "7893c6c91b70ba0a",
+  "active": "9f9541c292ce8435",
   "lastOpenFiles": [
-    "问题集锦.md",
-    "项目规划.md",
-    "Excalidraw/Drawing 2026-08-28 13.38.32.excalidraw.md",
-    "项目重点.md",
     "Excalidraw/Drawing 2026-08-25 20.33.31.excalidraw.md",
-    "地址.md",
-    "思路.md",
-    "Clippings/经济.md",
     "Excalidraw/Drawing 2026-08-19 19.27.44.excalidraw.md",
     "Excalidraw/Drawing 2026-08-19 10.16.15.excalidraw.md",
-    "Excalidraw/Drawing 2026-08-14 15.00.39.excalidraw.md",
     "Excalidraw/Drawing 2026-08-14 09.44.25.excalidraw.md",
+    "Excalidraw/Drawing 2026-08-14 15.00.39.excalidraw.md",
     "Excalidraw/Drawing 2026-08-03 14.55.52.excalidraw.md",
     "Excalidraw/resource/Pasted Image 20260803145554_399.png",
+    "地址.md",
+    "思路.md",
+    "项目规划.md",
+    "问题集锦.md",
+    "Excalidraw/Drawing 2026-08-28 13.38.32.excalidraw.md",
+    "项目重点.md",
+    "Clippings/经济.md",
     "Excalidraw/resource/Pasted Image 20260803145638_655.png",
     "Clippings/PPT汇报.md",
     "Clippings/Matt Pocock Skills 完整使用指南与最佳实践.md",
@@ -269,7 +267,6 @@
     "Excalidraw",
     "2026-07-29.md",
     "wiki/log.md.tmp.772350.e1feca4697db",
-    "wiki/entities/Karpathy.md",
     "wiki/log.md.tmp.772350.bf28d1cdded1",
     "wiki/index.md.tmp.772350.d336aa486a89",
     "wiki/entities/Obsidian.md.tmp.772350.3df413c82a0d",
