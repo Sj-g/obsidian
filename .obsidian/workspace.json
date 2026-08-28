@@ -60,9 +60,21 @@
               "icon": "lucide-file",
               "title": "项目规划"
             }
+          },
+          {
+            "id": "9f9541c292ce8435",
+            "type": "leaf",
+            "state": {
+              "type": "excalidraw",
+              "state": {
+                "file": "Excalidraw/Drawing 2026-08-28 13.38.32.excalidraw.md"
+              },
+              "icon": "excalidraw-icon",
+              "title": "Drawing 2026-08-28 13.38.32.excalidraw"
+            }
           }
         ],
-        "currentTab": 3
+        "currentTab": 4
       }
     ],
     "direction": "vertical"
@@ -250,10 +262,11 @@
       "realclaudian:Open Claudian": false
     }
   },
-  "active": "a179ad3f438ea2ea",
+  "active": "9f9541c292ce8435",
   "lastOpenFiles": [
-    "项目重点.md",
     "项目规划.md",
+    "Excalidraw/Drawing 2026-08-28 13.38.32.excalidraw.md",
+    "项目重点.md",
     "问题集锦.md",
     "Excalidraw/Drawing 2026-08-25 20.33.31.excalidraw.md",
     "地址.md",
@@ -283,7 +296,6 @@
     "2026-07-29.md",
     "wiki/log.md.tmp.772350.e1feca4697db",
     "wiki/entities/Karpathy.md",
-    "wiki/log.md",
     "wiki/log.md.tmp.772350.bf28d1cdded1",
     "wiki/index.md.tmp.772350.d336aa486a89",
     "wiki/entities/Obsidian.md.tmp.772350.3df413c82a0d",
