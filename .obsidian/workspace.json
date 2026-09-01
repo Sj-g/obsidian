@@ -60,9 +60,21 @@
               "icon": "lucide-file",
               "title": "计划"
             }
+          },
+          {
+            "id": "7d35aaaac591d380",
+            "type": "leaf",
+            "state": {
+              "type": "excalidraw",
+              "state": {
+                "file": "Excalidraw/Drawing 2026-09-01 10.22.38.excalidraw.md"
+              },
+              "icon": "excalidraw-icon",
+              "title": "Drawing 2026-09-01 10.22.38.excalidraw"
+            }
           }
         ],
-        "currentTab": 3
+        "currentTab": 4
       }
     ],
     "direction": "vertical"
@@ -250,10 +262,11 @@
       "realclaudian:Open Claudian": false
     }
   },
-  "active": "67de7a368cd789ec",
+  "active": "7d35aaaac591d380",
   "lastOpenFiles": [
-    "项目规划.md",
     "计划.md",
+    "Excalidraw/Drawing 2026-09-01 10.22.38.excalidraw.md",
+    "项目规划.md",
     "Excalidraw/Drawing 2026-08-28 13.38.32.excalidraw.md",
     "Excalidraw/Drawing 2026-08-25 20.33.31.excalidraw.md",
     "Excalidraw/Drawing 2026-08-14 15.00.39.excalidraw.md",
@@ -282,7 +295,6 @@
     "Excalidraw/resource",
     "raw/01-articles/如何为 Obsidian 配置 AI Agent？9 个必备 Skill 详解与安装指南  杰森的效率工坊.md",
     "Excalidraw",
-    "2026-07-29.md",
     "wiki/log.md.tmp.772350.e1feca4697db",
     "wiki/log.md.tmp.772350.bf28d1cdded1",
     "wiki/index.md.tmp.772350.d336aa486a89",
