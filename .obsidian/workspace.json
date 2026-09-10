@@ -100,9 +100,21 @@
               "icon": "lucide-file",
               "title": "下周计划"
             }
+          },
+          {
+            "id": "9640e43e7bf79495",
+            "type": "leaf",
+            "state": {
+              "type": "excalidraw",
+              "state": {
+                "file": "Excalidraw/Drawing 2026-09-10 17.24.28.excalidraw.md"
+              },
+              "icon": "excalidraw-icon",
+              "title": "Drawing 2026-09-10 17.24.28.excalidraw"
+            }
           }
         ],
-        "currentTab": 6
+        "currentTab": 7
       }
     ],
     "direction": "vertical"
@@ -290,10 +302,12 @@
       "realclaudian:Open Claudian": false
     }
   },
-  "active": "8c5c5effb776b7ea",
+  "active": "9640e43e7bf79495",
   "lastOpenFiles": [
-    "未命名.md",
+    "Excalidraw/resource/Pasted Image 20260910172435_243.png",
     "下周计划.md",
+    "Excalidraw/Drawing 2026-09-10 17.24.28.excalidraw.md",
+    "未命名.md",
     "Excalidraw/Drawing 2026-09-01 10.22.38.excalidraw.md",
     "Excalidraw/resource/Pasted Image 20260901115857_464.png",
     "计划.md",
@@ -319,8 +333,6 @@
     "CLAUDE.md",
     "Clippings/常见网络安全设备合集：IDS、IPS、上网行为管理、网闸、漏扫、日志审计、数据库审计、堡垒机.md",
     "Clippings/终于有人把8类常见网络安全设备讲清楚了：IDS、IPS、上网行为管理、网闸、漏扫、日志审计、数据库审计、堡垒机.md",
-    "Clippings/一篇讲清楚10类网络安全设备的区别：防火墙、WAF、堡垒机、网闸、漏洞扫描、日志审计…….md",
-    "Clippings/网络安全必知会：防火墙、VPN、堡垒机、零信任分别管什么？.md",
     "Clippings",
     "Excalidraw/resource",
     "Excalidraw",
