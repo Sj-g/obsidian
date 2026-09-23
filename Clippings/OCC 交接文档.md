@@ -5,9 +5,8 @@
 3. [系统清单总表](#3-系统清单总表)
 4. [各系统详述](#4-各系统详述)
 5. [CI/CD 总览与维护](#5-cicd-总览与维护)
-6. [交接在途事项](#6-交接在途事项)
-7. [附录 A occ 本地联调速查](#附录-a-occ-本地联调速查)
-8. [附录 B 跨仓文档索引](#附录-b-跨仓文档索引)
+6. [附录 A occ 本地联调速查](#附录-a-occ-本地联调速查)
+7. [附录 B 跨仓文档索引](#附录-b-跨仓文档索引)
 
 ---
 
@@ -108,13 +107,15 @@
 
 ```mermaid
 flowchart TB
-    U[用户浏览器] --> FE["前端 cc-front-action-center<br/>:30083"]
-    FE -->|/prod-api、/flowApi 反代| GW["cwp 网关 smms-gateway<br/>dev :30080 / prod :30084<br/>三族单通道路由 + X-API-Key 鉴权"]
+    U[用户浏览器] --> FE["行动中心前端 cc-front-action-center<br/>:30083"]
+    U --> DM["设备矩阵前端 cc-front-device-matrix<br/>:30082"]
+    FE -->|/prod-api、/flowApi 反代| GW
+    DM -->|/prod-api 反代| GW["cwp 网关 smms-gateway<br/>dev :30080 / prod :30084<br/>三族单通道路由 + X-API-Key 鉴权"]
 
     GW -->|/occ/**| OCC["occ-go-back（smms-occ）<br/>dev :30890 / prod :30900<br/>监测域 + 素材库 + 决策中心编排外环"]
     GW -->|/workflow/api/**| WF["workflow（Coze Studio 二开）<br/>dev :30889 / prod :30901<br/>工作流引擎 · 账号行动实际执行器"]
     GW -->|/mc/**| MC["mc 账号中心 :8089<br/>账号主数据真源（occ 只读代理）"]
-    GW --> SMMS["SMMS 群其余服务<br/>auth / system / file / job<br/>action = 设备接入 MCP"]
+    GW --> SMMS["SMMS 群其余服务<br/>auth / system / file / job<br/>smms-action = 设备矩阵后端 + 设备 MCP"]
 
     OCC -->|沙箱编排 + 执行轮询| RUN["coze-runner（ns coze-runner）<br/>ClusterIP :8080 · 集群内无鉴权<br/>K8s Job 拉起 + 生命周期管理"]
     RUN -->|终态回调| OCC
@@ -122,6 +123,7 @@ flowchart TB
     AGENT -.->|occ-cli 数据面回查| GW
     AGENT -.->|LLM| DS["DeepSeek API"]
     AGENT -.->|真机 MCP 操控| SMMS
+    SMMS -->|Sonic 连接器| SONIC["Sonic 真机平台<br/>sonic-agent 在设备侧宿主机（K8s 外）"]
 
     LOOP["coze-loop<br/>:30888/loop · SSO 集成若依<br/>评测 · 观测平台"]
     LOOP -->|SandboxAgent 实验| RUN
@@ -150,7 +152,7 @@ flowchart TB
 4. **留痕**。台账行执行成功单向投影成行动记录（action_record），人工 Excel 导入是第二来源，两者一起支撑复盘。
 5. **评测观测**。coze-loop 承担 prompt 开发、智能体评测和 Trace 观测，沙箱实验经 coze-runner 跑。
 
-有一条原则贯穿整套设计，智能体只起草、不执行。执行的提交、状态跟踪、回调接收、定时派发全在 occ 的编排外环，数据面访问一律走网关单通道，这是票 31 定的口径，配置里不存在直连 occ、flowApi 或 mc 的地址键。
+有一条原则贯穿整套设计，智能体只起草、不执行。执行的提交、状态跟踪、回调接收、定时派发全在 occ 的编排外环，数据面访问一律走网关单通道。
 
 ### 2.3 环境与数据隔离
 
@@ -164,19 +166,19 @@ dev 和 prod 共用一套中间件实例，数据隔离靠库名、bucket、索�
 
 ## 3. 系统清单总表
 
-| # | 系统 | 仓库 | 技术栈 | 部署 | 作用 | 负责人 |
-|---|---|---|---|---|---|---|
-| 1 | occ-go-back（smms-occ） | occ-go-back | Go 1.25 / Gin / GORM | ns cwp-occ-backend-{dev,prod}，NodePort 30890 dev / 30900 prod | 业务主体，监测域、素材库、决策中心编排外环 | 石建国 |
-| 2 | cc-front-action-center | cc-front-action-center | Vue3 / Vite / pnpm / nginx | ns cwp-frontend-{dev,prod}，NodePort 30083 | 全部前端页面 | zyj |
-| 3 | workflow | LYX/work_flow | Coze Studio 二开（Go + React） | ns cwp-occ-backend-{dev,prod}，NodePort 30889 dev / 30901 prod | 工作流引擎，账号行动的实际执行器 | LYX |
-| 4 | cwp 网关（smms-gateway） | cwp | Spring Cloud Gateway | ns cwp，NodePort 30080 dev / 30084 prod | 全后端 API 总入口、鉴权、限流 | Java 团队 |
-| 5 | mc（smms-modules-mc） | cwp | Spring Boot（端口 8089） | ns cwp | 账号主数据真源 | Java 团队 |
-| 6 | smms-action 等其余 SMMS 模块 | cwp | Spring Cloud | ns cwp | 认证、系统管理、文件、任务调度、设备接入 MCP | Java 团队 |
-| 7 | coze-loop | coze-loop | Go + Rush 前端（单镜像） | ns cwp-occ-backend-{dev,prod}，NodePort 30888 挂 /loop | 评测观测平台 + 沙箱实验 | sjg |
-| 8 | coze-runner | coze-runner | Go | ns coze-runner，ClusterIP 8080 | 批量智能体容器执行 | sjg |
-| 9 | 共享中间件群 | occ-manifest `middleware/` | MySQL/CH/MinIO/Redis/ES/Milvus/NSQ/RMQ/etcd/Nacos/Jaeger | ns cwp-backend-middleware | 全生态的数据和配置都落在这一层 | 待补 |
-| 10 | 外部采集/研判 | 集群外 172.16.13.217 | 无 | 无 | 命中帖子数据源、监测启动、媒体服务 | 郝宇 |
-| 11 | decision-center-agent 镜像 | occ-go-back `image/` | node22 + pi + occ-cli | Harbor `cwp/decision-center-agent` | 沙箱智能体运行时，手动构建，见 §5.3 | 石建国 |
+| #   | 系统                       | 仓库                         | 技术栈                                                      | 部署                                                            | 作用                       | 负责人        |
+| --- | ------------------------ | -------------------------- | -------------------------------------------------------- | ------------------------------------------------------------- | ------------------------ | ---------- |
+| 1   | occ-go-back（smms-occ）    | occ-go-back                | Go 1.25 / Gin / GORM                                     | ns cwp-occ-backend-{dev,prod}，NodePort 30890 dev / 30900 prod | 业务主体，监测域、素材库、决策中心编排外环    | 石建国        |
+| 2   | cc-front-action-center   | cc-front-action-center     | Vue3 / Vite / pnpm / nginx                               | ns cwp-frontend-{dev,prod}，NodePort 30083                     | 全部前端页面                   | 张艳杰        |
+| 3   | workflow                 | LYX/work_flow              | Coze Studio 二开（Go + React）                               | ns cwp-occ-backend-{dev,prod}，NodePort 30889 dev / 30901 prod | 工作流引擎，账号行动的实际执行器         | 李应许        |
+| 4   | cwp 网关（smms-gateway）     | cwp                        | Spring Cloud Gateway                                     | ns cwp，NodePort 30080 dev / 30084 prod                        | 全后端 API 总入口、鉴权、限流        | 王振宇/皮理豪/杨志 |
+| 5   | mc（smms-modules-mc）      | cwp                        | Spring Boot（端口 8089）                                     | ns cwp                                                        | 账号主数据真源                  | 王振宇/皮理豪/杨志 |
+| 6   | smms-action 等其余 SMMS 模块  | cwp                        | Spring Cloud                                             | ns cwp                                                        | 认证、系统管理、文件、任务调度、设备接入 MCP | 王振宇/皮理豪/杨志 |
+| 7   | coze-loop                | coze-loop                  | Go + Rush 前端（单镜像）                                        | ns cwp-occ-backend-{dev,prod}，NodePort 30888 挂 /loop          | 评测观测平台 + 沙箱实验            | 石建国        |
+| 8   | coze-runner              | coze-runner                | Go                                                       | ns coze-runner，ClusterIP 8080                                 | 批量智能体容器执行                | 石建国        |
+| 9   | 共享中间件群                   | occ-manifest `middleware/` | MySQL/CH/MinIO/Redis/ES/Milvus/NSQ/RMQ/etcd/Nacos/Jaeger | ns cwp-backend-middleware                                     | 全生态的数据和配置都落在这一层          | 待补         |
+| 10  | 外部采集/研判                  | 集群外 172.16.13.217          | 无                                                        | 无                                                             | 命中帖子数据源、监测启动、媒体服务        | 郝宇         |
+| 11  | decision-center-agent 镜像 | occ-go-back `image/`       | node22 + pi + occ-cli                                    | Harbor `cwp/decision-center-agent`                            | 沙箱智能体运行时，手动构建，见          | 石建国        |
 
 ---
 
@@ -227,7 +229,7 @@ Java 这边的 Spring Cloud Alibaba 微服务群，网关、认证、账号中�
 
 数据在 smms-mysql（30306），`smms-config` 是 Nacos 配置库、全部微服务配置都在里面，`smms-cloud` 是业务库，另有 Seata 库。SQL 种子在 cwp 仓的 `sql-20260725/`。部署在 ns cwp，cwp-manifest 加 ArgoCD，流水线一次构建 7 个镜像。负责人是 Java 团队。
 
-### 4.5 coze-loop
+### 4.5 coze-loop（可以舍弃，主要是提示词调试）
 
 Coze Loop 开源版二开部署，管 prompt 开发（Playground 和版本管理）、评测（评测集、评估器、实验）和观测（Trace 全过程可视化），沙箱智能体实验的评测宿主也是它。Go 1.24 以上后端加 Rush 管的前端，打成单个镜像，后端加前端静态资源加 nginx 一体。
 
@@ -320,34 +322,6 @@ tag 等于 pi-coding-agent 版本加迭代号，pi 版本钉死在 tag 上，升
 3. 观察 ArgoCD prod 应用同步，coze-runner 没有 ArgoCD，看流水线 apply 日志；
 4. 改动涉及 agent 镜像或中间件地址时，同步改 `nacos/templates/*-prod.*` 并 seed；
 5. prod 数据只靠后缀隔离，prod 库不做实验性写入。
-
-### 5.6 日常维护与已知坑
-
-| 事项 | 说明 |
-|---|---|
-| `make test` 全绿 | occ-go-back 合并前唯一硬门禁 |
-| Jenkinsfile 头注释过时 | `hjdz/hjdz-manifest` 是历史命名，实际命名空间见 §1.3 |
-| ClickHouse 端口 | 根 config.yaml 写 31823，manifest README 写 31090，需核对 |
-| agentImage tag 漂移 | -32 待进 Nacos，见 §5.3 |
-| 凭证 `gitlab-cc-front` 是个人账号 | 交接必换，否则四条 CI 全断 |
-| coze-runner port-forward | 本地联调必开且易断（18080 转 8080） |
-| 分析服务中继 | 办公网直连 172.16.13.x 必超时，用 `scripts/local-analysis-relay.sh` |
-| 网关 key 失效表现 | 报“API Key 无效或已禁用”，换 key 后对 occ、workflow、mc 三族路由冒烟 |
-| 中间件变更 | 不经 ArgoCD，手动 apply，有状态先 PV 平移加 mysqldump 兜底 |
-| smms-action 无文档 | README 微服务表未列（设备接入 MCP），建议补 |
-| Nacos 手改漂移 | 一切配置改动走模板加 seed，勿控制台直改 |
-
----
-
-## 6. 交接在途事项
-
-1. **个人凭证移交**。`gitlab-cc-front` 是 sjg 的个人账号，被 occ、work_flow、coze-loop、coze-runner 四条流水线共用，要换成服务账号，否则交接人账号一停，这四条 CI 全断。
-2. **agent 镜像 tag 改一致**。0.84.1-32 已推 Harbor，Nacos 未改，见 §5.3。
-3. **未提交代码**。occ-go-back 工作区有素材重命名覆盖 bug 的修复和测试（`service/file_rename_test.go` 及对应改动），没提交，确认后提交或丢弃。
-4. **个人仓归属**。前端在 zhangyanjie 名下，工作流在 LYX 名下，转组的事宜待办。
-5. **进行中需求**。决策中心编排向导改版还在改，计划分组的口径没钉死。ADR 0009 相关功能的本地联调和镜像验证没做完。
-6. **待补信息**。KubeSphere、Jenkins、ArgoCD、Nacos、GitLab 的控制台地址与账号，coze-loop 平台 PAT，中间件负责人，mc 测试账号清单的文件位置，ClickHouse 现行 NodePort。
-7. **Issue 面板**。occ-go-back 的 GitLab issues 用 glab CLI 管理，五标签分诊（needs-triage / needs-info / ready-for-agent / ready-for-human / wontfix），接手后先过一遍 open issues。
 
 ---
 
