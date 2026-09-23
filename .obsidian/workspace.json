@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "OCC 交接文档.md",
+                "file": "Clippings/OCC 交接文档.md",
                 "mode": "source",
                 "source": false
               },
@@ -209,9 +209,10 @@
       "realclaudian:Open Claudian": false
     }
   },
-  "active": "8b78bbf6c2a73728",
+  "active": "7893c6c91b70ba0a",
   "lastOpenFiles": [
-    "OCC 交接文档.md",
+    "CLAUDE.md",
+    "Clippings/OCC 交接文档.md",
     "Excalidraw/Drawing 2026-09-14 14.54.26.excalidraw.md",
     "未命名 1.md",
     "Excalidraw/Drawing 2026-09-10 17.24.28.excalidraw.md",
@@ -240,7 +241,6 @@
     "Clippings/Matt Pocock Skills 完整使用指南与最佳实践.md",
     "Clippings/项目汇报PPT.md",
     "Clippings/The AI Engineering Skills Map.md",
-    "CLAUDE.md",
     "Clippings",
     "Excalidraw/resource",
     "Excalidraw",

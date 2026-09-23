@@ -33,21 +33,21 @@
 
 ### 1.2 访问地址总表
 
-集群入口节点 `10.254.1.3`，另一个节点 `10.1.1.30` 的 NodePort 等价可达。
+集群入口节点 10.1.1.30，另一个节点 `10.1.1.30` 的 NodePort 等价可达。
 
 **应用/控制面入口**
 
-| 地址 | 用途 |
-|---|---|
-| `http://10.254.1.3:30083` | 前端页面（occ 全部页面入口） |
-| `http://10.254.1.3:30080` | cwp 网关 dev，全部后端 API 总入口。三族路由 `/occ/**`、`/workflow/api/**`、`/mc/**`，X-API-Key 鉴权 |
-| `10.254.1.3:30084` | cwp 网关 prod（smms-gateway-external-prod） |
-| `10.254.1.3:30890 / 30900` | occ 后端 dev / prod 直连 NodePort |
-| `10.254.1.3:30889 / 30901` | workflow dev / prod NodePort |
-| `http://10.254.1.3:30888/loop/` | coze-loop 控制台 dev（SSO 登录/验证码经 `/prod-api` 反代 smms-gateway），API 32491，prod 30902/30903 |
-| `10.254.1.3:30002` | Harbor 镜像库（HTTP registry，客户端需 insecure 配置） |
-| `10.254.1.3:30848` | Nacos 控制台（另有 30850/31848） |
-| `10.254.1.3:30880` | KubeSphere |
+| 地址                             | 用途                                                                                    |
+| ------------------------------ | ------------------------------------------------------------------------------------- |
+| `http://10.1.1.30:30083`       | 前端页面（occ 全部页面入口）                                                                      |
+| `http://10.1.1.30:30080`       | cwp 网关 dev，全部后端 API 总入口。三族路由 `/occ/**`、`/workflow/api/**`、`/mc/**`，X-API-Key 鉴权       |
+| `10.1.1.30:30084`              | cwp 网关 prod（smms-gateway-external-prod）                                               |
+| `10.1.1.30:30890 / 30900`      | occ 后端 dev / prod 直连 NodePort                                                         |
+| `10.1.1.30:30889 / 30901`      | workflow dev / prod NodePort                                                          |
+| `http://10.1.1.30:30888/loop/` | coze-loop 控制台 dev（SSO 登录/验证码经 `/prod-api` 反代 smms-gateway），API 32491，prod 30902/30903 |
+| `10.1.1.30:30002`              | Harbor 镜像库（HTTP registry，客户端需 insecure 配置）                                            |
+| `10.1.1.30:30848`              | Nacos 控制台（另有 30850/31848）                                                             |
+| `10.1.1.30:30880`              | KubeSphere                                                                            |
 
 **中间件（NodePort，dev/prod 共实例、后缀隔离数据）**
 
@@ -88,22 +88,17 @@
 ![image.png](https://obsidian-shijianguo.oss-cn-beijing.aliyuncs.com/images/20260923100546937.png)
 这个是持续部署页面
 ![image.png](https://obsidian-shijianguo.oss-cn-beijing.aliyuncs.com/images/20260923100640457.png)
+容器组
+
+![image.png](https://obsidian-shijianguo.oss-cn-beijing.aliyuncs.com/images/20260923101257992.png)
 
 ### 1.4 账号与凭证
 
-| 凭证 | 值 / 位置 | 用途 |
-|---|---|---|
-| cwp 网关 API key | `sk-USr8nAvlH8moydBil0yVe98ITa5JjY2NdXTv6N9z8Z4`（occ `config.yaml` decisionConfig，2026-09-07 换过，旧 key 已失效） | 网关鉴权（X-API-Key 单头），occ-cli / 容器访问 workflow 与 mc |
-| DeepSeek API key | occ `config.yaml` 的 decisionConfig.modelApiKey | 沙箱内 LLM |
-| 中间件 root | `cozeloop-mysql` / `cozeloop-minio` / `cozeloop-clickhouse`（见 config.yaml） | MySQL/MinIO/CH |
-| Harbor `robot$occ+occ-ci` | KubeSphere 凭证 `harbor-occ` | occ / work_flow 流水线推镜像 |
-| Harbor `robot$kubesphere-devops` | KubeSphere 凭证 `harbor-credentiala` | 前端 / cwp / coze-loop 流水线推镜像 |
-| Harbor `robot$coze-runner-push` | KubeSphere 凭证 `harbor-coze-runner` | coze-runner 流水线推镜像 |
-| GitLab 凭证 `gitlab-cc-front` | sjg 个人账号（用户名加 access token，basic-auth） | occ / work_flow / coze-loop / coze-runner 流水线拉源码，交接必换，见 §6.1 |
-| GitLab 凭证 `gitlab-cwp` / `gitlab-cwp-manifest` | cwp 流水线源码/清单仓 | cwp CI |
-| `k3s-kubeconfig` | KubeSphere 凭证（kubeconfig 类型） | coze-runner 流水线直接部署 |
-| mc 测试账号清单 | 交接人本地备忘 | 本地联调账号解析 |
-| KubeSphere / Jenkins / ArgoCD / Nacos / GitLab 个人账号、coze-loop 平台 PAT | 待补，当面移交 | 控制台/平台 |
+| 凭证                                                                   | 值 / 位置                                                                     | 用途             |
+| -------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------- |
+| DeepSeek API key                                                     | occ `config.yaml` 的 decisionConfig.modelApiKey                             | 沙箱内 LLM        |
+| 中间件 root                                                             | `cozeloop-mysql` / `cozeloop-minio` / `cozeloop-clickhouse`（见 config.yaml） | MySQL/MinIO/CH |
+| KubeSphere / Jenkins / ArgoCD / Nacos / GitLab 个人账号、coze-loop 平台 PAT | 待补，当面移交<br>KubeSphere（admin Hjdz@10086）<br>nacos 为默认                       | 控制台/平台         |
 
 ---
 
@@ -236,7 +231,7 @@ Java 这边的 Spring Cloud Alibaba 微服务群，网关、认证、账号中�
 
 Coze Loop 开源版二开部署，管 prompt 开发（Playground 和版本管理）、评测（评测集、评估器、实验）和观测（Trace 全过程可视化），沙箱智能体实验的评测宿主也是它。Go 1.24 以上后端加 Rush 管的前端，打成单个镜像，后端加前端静态资源加 nginx 一体。
 
-控制台在 `http://10.254.1.3:30888/loop/`。它接了若依 SSO，前端构建期 `PUBLIC_BASE=/loop`，console API `/loop/api/**` 和登录验证码 `/prod-api/**` 都反代 smms-gateway，清单 env 里的 COZE_LOOP_API_UPSTREAM 和 RUOYI_GATEWAY_UPSTREAM 管这两个上游。数据用 MySQL `cozeloop-mysql-{dev,prod}`、ClickHouse `cozeloop-clickhouse-{dev,prod}`、MinIO 桶 `cozeloop-minio-{dev,prod}`。配置在 entrypoint 启动时从 Nacos 拉 `cozeloop-{env}.cfg`，export 成 `COZE_LOOP_*`，拉不到就退出，kill-switch 是 `COZE_LOOP_NACOS_CONFIG_ENABLED=false`。
+控制台在 `http://10.1.1.30:30888/loop/`。它接了若依 SSO，前端构建期 `PUBLIC_BASE=/loop`，console API `/loop/api/**` 和登录验证码 `/prod-api/**` 都反代 smms-gateway，清单 env 里的 COZE_LOOP_API_UPSTREAM 和 RUOYI_GATEWAY_UPSTREAM 管这两个上游。数据用 MySQL `cozeloop-mysql-{dev,prod}`、ClickHouse `cozeloop-clickhouse-{dev,prod}`、MinIO 桶 `cozeloop-minio-{dev,prod}`。配置在 entrypoint 启动时从 Nacos 拉 `cozeloop-{env}.cfg`，export 成 `COZE_LOOP_*`，拉不到就退出，kill-switch 是 `COZE_LOOP_NACOS_CONFIG_ENABLED=false`。
 
 它跟 coze-runner 的关系是，实验执行提交给 runner，走 DEFAULT_IMAGE 等于 pi-shim 那条路，平台 PAT 注入，执行日志按 log_callback 契约回灌，L1 ingest 已上线。负责人 sjg。
 
@@ -303,7 +298,7 @@ GitOps 靠两个清单仓撑着。occ-manifest 管后端三服务，`apps/{occ, 
 ### 5.3 decision-center-agent 镜像（手动）
 
 ```bash
-./image/build.sh                     # 构建+推送 10.254.1.3:30002/cwp/decision-center-agent:<pi版本>-<迭代>
+./image/build.sh                     # 构建+推送 10.1.1.30:30002/cwp/decision-center-agent:<pi版本>-<迭代>
 ITER=2 ./image/build.sh              # 同 tag 修复迭代（runner Pod PullAlways，重推即生效）
 PI_VERSION=x ITER=1 ./image/build.sh # 升级 pi 版本（tag 随之变，升级走回归）
 ```
