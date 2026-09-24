@@ -34,9 +34,21 @@
               "icon": "lucide-file",
               "title": "规划"
             }
+          },
+          {
+            "id": "9c660426f2283e78",
+            "type": "leaf",
+            "state": {
+              "type": "excalidraw",
+              "state": {
+                "file": "Excalidraw/Drawing 2026-09-24 10.19.13.excalidraw.md"
+              },
+              "icon": "excalidraw-icon",
+              "title": "Drawing 2026-09-24 10.19.13.excalidraw"
+            }
           }
         ],
-        "currentTab": 1
+        "currentTab": 2
       }
     ],
     "direction": "vertical"
@@ -224,10 +236,11 @@
       "realclaudian:Open Claudian": false
     }
   },
-  "active": "d74193da9d318704",
+  "active": "9c660426f2283e78",
   "lastOpenFiles": [
-    "项目规划.md",
     "规划.md",
+    "Excalidraw/Drawing 2026-09-24 10.19.13.excalidraw.md",
+    "项目规划.md",
     "下周计划.md",
     "未命名 1.md",
     "未命名.md",
@@ -255,7 +268,6 @@
     "Excalidraw/resource/Pasted Image 20260803145638_655.png",
     "Clippings/PPT汇报.md",
     "Clippings/Matt Pocock Skills 完整使用指南与最佳实践.md",
-    "Clippings/项目汇报PPT.md",
     "Clippings",
     "Excalidraw/resource",
     "Excalidraw",
