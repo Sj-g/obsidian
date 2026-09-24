@@ -39,12 +39,14 @@
             "id": "9c660426f2283e78",
             "type": "leaf",
             "state": {
-              "type": "excalidraw",
+              "type": "markdown",
               "state": {
-                "file": "Excalidraw/Drawing 2026-09-24 10.19.13.excalidraw.md"
+                "file": "Clippings/OCC 交接文档.md",
+                "mode": "source",
+                "source": false
               },
-              "icon": "excalidraw-icon",
-              "title": "Drawing 2026-09-24 10.19.13.excalidraw"
+              "icon": "lucide-file",
+              "title": "OCC 交接文档"
             }
           }
         ],
@@ -238,8 +240,9 @@
   },
   "active": "9c660426f2283e78",
   "lastOpenFiles": [
-    "规划.md",
+    "Clippings/PPT汇报.md",
     "Excalidraw/Drawing 2026-09-24 10.19.13.excalidraw.md",
+    "规划.md",
     "项目规划.md",
     "下周计划.md",
     "未命名 1.md",
@@ -266,7 +269,6 @@
     "项目重点.md",
     "Clippings/经济.md",
     "Excalidraw/resource/Pasted Image 20260803145638_655.png",
-    "Clippings/PPT汇报.md",
     "Clippings/Matt Pocock Skills 完整使用指南与最佳实践.md",
     "Clippings",
     "Excalidraw/resource",
